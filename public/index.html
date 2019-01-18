@@ -26,7 +26,22 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <div id="root">
+      
+      <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase.js"></script>
+      <script>
+        // Initialize Firebase
+        var config = {
+          apiKey: "AIzaSyArvjqKlClk35Xsr-TsUXVtpX-ZysOGqVk",
+          authDomain: "kidsability-871ac.firebaseapp.com",
+          databaseURL: "https://kidsability-871ac.firebaseio.com",
+          projectId: "kidsability-871ac",
+          storageBucket: "kidsability-871ac.appspot.com",
+          messagingSenderId: "754093479554"
+        };
+        firebase.initializeApp(config);
+      </script>
+    </div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

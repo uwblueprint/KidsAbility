@@ -1,3 +1,15 @@
+/*
+All .(css|less|sass) files should be imported into this file.
+This file is loaded into App.js the root component - making all css styling available to any component
+
+If you have styling for a page called Example -> 
+then insead of importing Example.css into Example.js -> 
+import Example.css here and it can be used in Example.js
+
+@import {filename}
+
+*/
+
 .App {
   text-align: center;
 }
