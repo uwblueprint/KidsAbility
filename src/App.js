@@ -10,6 +10,7 @@ import React, { Component } from 'react';
 //These are all npm packages 
 import {Router, Route, Switch, Redirect} from 'react-router';
 import {NotificationContainer} from 'react-notifications';
+import {NotificationManager} from 'react-notifications';
 import createBrowserHistory from 'history/createBrowserHistory';
 
 //These are page components we are importing from our /src/pages folder
