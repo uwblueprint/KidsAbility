@@ -14,9 +14,8 @@ import createBrowserHistory from 'history/createBrowserHistory';
 //These are page components we are importing from our /src/pages folder
 import Home from '../src/pages/Home/Home'
 import NotFound from '../src/pages/NotFound/NotFound'
-import Footer from '../components/Footer/Footer'
-import Header from '../components/Header/Header'
-import Menu from '../components/Menu/Menu'
+import Footer from '../src/components/Footer/Footer'
+import Header from '../src/components/Header/Header'
 
 //Create an instance of browserHistory
 const browserHistory = createBrowserHistory();

@@ -9,6 +9,9 @@ import Example.css here and it can be used in Example.js
 @import {filename}
 
 */
+@import '../src/components/Footer/Footer.less';
+@import '../src/components/Header/Header.less';
+@import '../src/components/Header/Menu/Menu.less';
 
 .App {
   text-align: center;

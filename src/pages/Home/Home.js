@@ -9,6 +9,13 @@ export default class Home extends Component {
         // parent
         super(props);
 
+        // We set 3 states in this contructor (you can set more later) There is an empty
+        // string, a boolean and a string (default message) You can set objects, arrays
+        // and numbers
+        // NOTE: Arrays are Objects but not vice versa An array is basically an ordered
+        // object that has significantly less functionality. However, does the advantage
+        // of having the .length method
+
         this.state = {
             message: "",
             MenuButtonEnabled: false,
@@ -16,6 +23,11 @@ export default class Home extends Component {
         };
 
     }
+
+    // componentWillMount() {} componentDidMount() {} componentWillReceiveProps() {}
+    // componentDidUpdate() {} componentWillUnmount() {} componentWillUpdate() {}
+    // shouldComponentUpdate() {} getSnapshotBeforeUpdate() {} Previously known as
+    // ComponentWillUpdate()
 
     render() {
         return (
