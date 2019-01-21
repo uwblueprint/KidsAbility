@@ -19,7 +19,7 @@ Project Members (Please add your name)!
   
   
   
-  
+  ---------------------------------------------------------------------------------------------------
   chmod u+x "scriptname" (This will give you execute permissions for the script)
   ### `./script/deploy.sh`
 
