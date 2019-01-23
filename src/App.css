@@ -1,0 +1,47 @@
+/*
+All .(css|less|sass) files should be imported into this file.
+This file is loaded into App.js the root component - making all css styling available to any component
+
+If you have styling for a page called Example -> 
+then insead of importing Example.css into Example.js -> 
+import Example.css here and it can be used in Example.js
+
+@import {filename}
+
+*/
+@import '../src/components/Footer/Footer.less';
+@import '../src/components/Header/Header.less';
+@import '../src/components/Header/Menu/Menu.less';
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
