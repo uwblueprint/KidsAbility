@@ -6,6 +6,7 @@ import './App.css';
 import React, {Component} from 'react';
 
 //These are all npm packages
+import firebase from 'firebase';
 import {Router, Route, Switch, Redirect} from 'react-router';
 import {NotificationContainer} from 'react-notifications';
 import {NotificationManager} from 'react-notifications';
@@ -27,6 +28,15 @@ export default class App extends Component {
     constructor(props) {
         super(props);
 
+        firebase.initializeApp({
+            apiKey: "AIzaSyArvjqKlClk35Xsr-TsUXVtpX-ZysOGqVk",
+            authDomain: "kidsability-871ac.firebaseapp.com",
+            databaseURL: "https://kidsability-871ac",
+            projectId: "kidsability-871ac",
+            storageBucket: "kidsability-871ac.appspot.com",
+            messagingSenderId: "754093479554"
+        });
+
         // This is where we declare the states for THIS component. The states can be
         // passed as props to components called within render
         this.state = {};
@@ -38,6 +48,7 @@ export default class App extends Component {
     // the states in this component
 
     render() {
+        var db = firebase.firestore();
 
         // This is where pre-render calculations happen These calculations can also be
         // done in lifecycle methods. The latter is probably better practice
@@ -64,10 +75,11 @@ export default class App extends Component {
                             <Header/>
                             <NotificationContainer/>
                             <Switch>
-                                <Route exact="exact" path="/" component={Home}/>
-                                <Route component={NotFound}/>
+                                <Route exact={true} path="/" db={db} component={Home}/>
+                                <Route component={NotFound} db={db}/>
                             </Switch>
-                            <Footer/>
+
+                            <Footer db={db}></Footer>
                         </div>
                     </Router>
                 </header>
