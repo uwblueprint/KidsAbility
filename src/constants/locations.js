@@ -86,6 +86,116 @@ const LOCATIONS = {
     city: CITIES.Cambridge,
     status: STATUSES.Active,
   },
+  'CAMBDOLPHI': {
+    description: 'Camb Dolphin',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active
+  },
+  'CAMBELEPHA': {
+    description: 'Camb Elephant',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active
+  },
+  'CAMBFAMILY': {
+    description: 'Camb Family Den',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active
+  },
+  'CAMBFOUND': {
+    description: 'Camb Foundation Room',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active
+  },
+  'CAMBFROG': {
+    description: 'Camb Frog',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active
+  },
+  'CAMBGIRAFF': {
+    description: 'Camb Giraffe',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active
+  },
+  'CAMBGYM': {
+    description: 'Camb Gym',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active
+  },
+  'CAMBHIPPO': {
+    description: 'Camb Hippo',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active
+  },
+  'CAMBKANG': {
+    description: 'Camb Kangaroo',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active
+  },
+  'CAMBLION': {
+    description: 'Camb Lion',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active
+  },
+  'CAMBMONKEY': {
+    description: 'Camb Monkey',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active
+  },
+  'CAMBMTG': {
+    description: 'Camb Meeting Room',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active
+  },
+  'CAMBMTG3': {
+    description: 'Camb Meeting Room 3',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active
+  },
+  'CAMBPENGUI': {
+    description: 'Camb Penguin',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active
+  },
+  'CAMBRIDGE': {
+    description: 'Cambridge Site',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active
+  },
+  'CAMBSEAL': {
+    description: 'Camb Seal',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active
+  },
+  'CAMBTIGER': {
+    description: 'Camb Tiger',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active
+  },
+  'CAMBWALRUS': {
+    description: 'Camb Walrus',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active
+  },
+  'CAMBYOUTH': {
+    description: 'Camb Youth Centre',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active
+  },
+  'CAMBZEBRA': {
+    description: 'Camb Zebra',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active
+  },
+  'CAMCC': {
+    description: 'C-Cambridge Children's Centre',
+    city: CITIES.Cambridge
+    status: STATUSES.Active
+  },
+  'CAMPUS': {
+    description: 'G-Campus Coop Day Care',
+    city: CITIES.Guelph,
+    status: STATUSES.Active
+  },
 };
 
 export default LOCATIONS;
