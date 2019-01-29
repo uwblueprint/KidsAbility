@@ -3,6 +3,8 @@ const CITIES = {
   Guelph: 'Guelph',
   Kitchener: 'Kitchener',
   Waterloo: 'Waterloo',
+  Fergus: 'Fergus',
+  // I think the "f" might be Fergus
 };
 
 const STATUSES = {
@@ -33,7 +35,7 @@ const LOCATIONS = {
   },
   'ARTHURY': {
     description: 'F-Arthur Y Childcare',
-    // not sure what the F means for city
+    city: CITIES.Fergus,
     status: STATUSES.Active,
   },
   'BRASON': {
@@ -89,113 +91,175 @@ const LOCATIONS = {
   'CAMBDOLPHI': {
     description: 'Camb Dolphin',
     city: CITIES.Cambridge,
-    status: STATUSES.Active
+    status: STATUSES.Active,
   },
   'CAMBELEPHA': {
     description: 'Camb Elephant',
     city: CITIES.Cambridge,
-    status: STATUSES.Active
+    status: STATUSES.Active,
   },
   'CAMBFAMILY': {
     description: 'Camb Family Den',
     city: CITIES.Cambridge,
-    status: STATUSES.Active
+    status: STATUSES.Active,
   },
   'CAMBFOUND': {
     description: 'Camb Foundation Room',
     city: CITIES.Cambridge,
-    status: STATUSES.Active
+    status: STATUSES.Active,
   },
   'CAMBFROG': {
     description: 'Camb Frog',
     city: CITIES.Cambridge,
-    status: STATUSES.Active
+    status: STATUSES.Active,
   },
   'CAMBGIRAFF': {
     description: 'Camb Giraffe',
     city: CITIES.Cambridge,
-    status: STATUSES.Active
+    status: STATUSES.Active,
   },
   'CAMBGYM': {
     description: 'Camb Gym',
     city: CITIES.Cambridge,
-    status: STATUSES.Active
+    status: STATUSES.Active,
   },
   'CAMBHIPPO': {
     description: 'Camb Hippo',
     city: CITIES.Cambridge,
-    status: STATUSES.Active
+    status: STATUSES.Active,
   },
   'CAMBKANG': {
     description: 'Camb Kangaroo',
     city: CITIES.Cambridge,
-    status: STATUSES.Active
+    status: STATUSES.Active,
   },
   'CAMBLION': {
     description: 'Camb Lion',
     city: CITIES.Cambridge,
-    status: STATUSES.Active
+    status: STATUSES.Active,
   },
   'CAMBMONKEY': {
     description: 'Camb Monkey',
     city: CITIES.Cambridge,
-    status: STATUSES.Active
+    status: STATUSES.Active,
   },
   'CAMBMTG': {
     description: 'Camb Meeting Room',
     city: CITIES.Cambridge,
-    status: STATUSES.Active
+    status: STATUSES.Active,
   },
   'CAMBMTG3': {
     description: 'Camb Meeting Room 3',
     city: CITIES.Cambridge,
-    status: STATUSES.Active
+    status: STATUSES.Active,
   },
   'CAMBPENGUI': {
     description: 'Camb Penguin',
     city: CITIES.Cambridge,
-    status: STATUSES.Active
+    status: STATUSES.Active,
   },
   'CAMBRIDGE': {
     description: 'Cambridge Site',
     city: CITIES.Cambridge,
-    status: STATUSES.Active
+    status: STATUSES.Active,
   },
   'CAMBSEAL': {
     description: 'Camb Seal',
     city: CITIES.Cambridge,
-    status: STATUSES.Active
+    status: STATUSES.Active,
   },
   'CAMBTIGER': {
     description: 'Camb Tiger',
     city: CITIES.Cambridge,
-    status: STATUSES.Active
+    status: STATUSES.Active,
   },
   'CAMBWALRUS': {
     description: 'Camb Walrus',
     city: CITIES.Cambridge,
-    status: STATUSES.Active
+    status: STATUSES.Active,
   },
   'CAMBYOUTH': {
     description: 'Camb Youth Centre',
     city: CITIES.Cambridge,
-    status: STATUSES.Active
+    status: STATUSES.Active,
   },
   'CAMBZEBRA': {
     description: 'Camb Zebra',
     city: CITIES.Cambridge,
-    status: STATUSES.Active
+    status: STATUSES.Active,
   },
   'CAMCC': {
-    description: 'C-Cambridge Children's Centre',
-    city: CITIES.Cambridge
-    status: STATUSES.Active
+    description: 'C-Cambridge Children\'s Centre',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active,
   },
   'CAMPUS': {
     description: 'G-Campus Coop Day Care',
     city: CITIES.Guelph,
-    status: STATUSES.Active
+    status: STATUSES.Active,
   },
+  'CATHIECC': {
+    description: 'F-Cathie\'s Children\'s Centre',
+    city: CITIES.Fergus,
+    status: STATUSES.Active,
+  },
+  'CEDARCREEK': {
+    description: 'C-Cedar Creek P.S.',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active,
+  },
+  'CENTREEDUC': {
+    description: 'W-Cent Educatif Village d\'Elis',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'CENTRESAUT': {
+    description: 'C-Centre Educ P\'tites Sauterel',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'CENTREVILL': {
+    description: 'K-Centreville Chicopee',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'CENTREWELL': {
+    description: 'G-Centre Wellington Day Care',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'CHILDCARE': {
+    description: 'K-Child Care Plus',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'CHILDCCLAU': {
+    description: 'W-Children\'s Creativ Centr-Lau',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'CHILDPLACE': {
+    description: 'W-Children\'s Place Nursery Sch',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'CHRISTELE': {
+    description: 'W-Christ Elementary Early Lear',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'CHRISTOPHE': {
+    description: 'C-Christopher Children\'s Centr',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active,
+  },
+  'COM-PART': {
+    description: 'Community Partner',
+    city: 
+    // I think this location might not be city specific
+    status: STATUSES.Active,
+  },
+
 };
 
 export default LOCATIONS;
