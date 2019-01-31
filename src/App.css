@@ -9,8 +9,8 @@ import Example.css here and it can be used in Example.js
 @import {filename}
 
 */
-@import '../src/components/Footer/Footer.less';
-@import '../src/components/Header/Header.less';
+@import '../src/components/Footer/Footer.css';
+@import '../src/components/Header/Header.css';
 @import '../src/components/Header/Menu/Menu.less';
 
 .App {
@@ -27,10 +27,12 @@ import Example.css here and it can be used in Example.js
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /*align-items: center;*/
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  margin: 0;
+  padding: 0;
 }
 
 .App-link {
