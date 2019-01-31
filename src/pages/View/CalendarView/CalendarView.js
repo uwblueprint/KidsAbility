@@ -7,6 +7,6 @@ export default class CalendarView extends Component {
     }
 
     render() {
-        return ();
+        return null;
     }
 }

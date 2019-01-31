@@ -7,6 +7,6 @@ export default class ChartView extends Component {
     }
 
     render() {
-        return ();
+        return null;
     }
 }
