@@ -4,7 +4,8 @@ const CITIES = {
   Kitchener: 'Kitchener',
   Waterloo: 'Waterloo',
   Fergus: 'Fergus',
-  // I think the "f" might be Fergus
+  Null: 'Null',
+  // Confirmed the f is for Fergus, Created a Null option
 };
 
 const STATUSES = {
@@ -255,11 +256,344 @@ const LOCATIONS = {
   },
   'COM-PART': {
     description: 'Community Partner',
-    city: 
-    // I think this location might not be city specific
+    city: CITIES.Null,
+    status: STATUSES.Active,
+    // I think this location might not be city specific, created a null option
+  },
+  'CONDOON': {
+    description: 'W-Conestoga College - Doon',
+    city: CITIES.Waterloo,
     status: STATUSES.Active,
   },
-
+  'CONDRIFT': {
+    description: 'W-Conestoga Colleg - Driftwood',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'CONGLEN': {
+    description: 'K-Conestoga College- Glencairn',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'CONJOHN' {
+    description: 'W-Conestoga Coll - John Darlin',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'CONSILVER': {
+    description: 'W-Conestoga Coll - Silverheig',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'CORONATION': {
+    description: 'C-Coronation Early Learning Childcare Centre',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active,
+  },
+  'CRAYON': {
+    description: 'C-Crayon Club',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active,
+  },
+  'CREBEG-BAD': {
+    description: 'K-Creative Begin - Baden PS',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'CREBEG-II': {
+    description: 'W-Creative Begin Ch Care II',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'CREBEG-INH': {
+    description: 'K-Creativ Begin I -New Hamburg',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'CREBEG-SAB': {
+    description: 'K-Creative Begin-Sir Adam Beck',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'DINOKIDZ': {
+    description: 'C-Dino and Kidz',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active,
+  },
+  'EARLY': {
+    description: 'G-Early Learning Centre',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'EASTSIDE': {
+    description: 'C-East Side Day Care Centre',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active,
+  },
+  'EDITHMAC': {
+    description: 'W-Edith MacIntosh Ch Care Cen',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'EDUKIDS' {
+    description: 'C-EDU KIDS DAYCARE',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active,
+  },
+  'ELMIRACC': {
+    description: 'W-Elmira Children\'s Centre',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'ELMIRACOMM': {
+    description: 'W-Elmira Community Nursery School',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'ELORACOOP': {
+    description: 'F-Elora Co-Op Preschool',
+    city: CITIES.Fergus,
+    status: STATUSES.Active,
+  },
+  'EMMANUEL': {
+    description: 'W-Emanuel At Brighton CCC',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'F-CLIENT': {
+    description: 'F-Fergus Client Home',
+    city: CITIES.Fergus,
+    status: STATUSES.Active,
+  },
+  'FERGLARGE': {
+    description: 'Ferg Large Tx Room',
+    city: CITIES.Fergus,
+    status: STATUSES.Active,
+  },
+  'FERGSMALL': {
+    description: 'Ferg Small Tx Room',
+    city: CITIES.Fergus,
+    status: STATUSES.Active,
+  },
+  'FERGUS': {
+    description: 'Fergus Site',
+    city: CITIES.Fergus,
+    status: STATUSES.Active,
+  },
+  'FIDDLESTIC': {
+    description: 'C-Fiddlesticks Day Care',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active,
+  },
+  'FIRSTSTEPS': {
+    description: 'G-First Steps Day Care',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'FREDAHAM': {
+    description: 'G-Fred A Hamilton Preschool',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'G-CLIENT' {
+    description: 'G-Guelph Client Home',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'G-GATEWAY': {
+    description: 'G-Gateway P.S.',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'GINGERBREA': {
+    description: 'G-Gingerbread House Co-Op',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'GREENBROOK': {
+    description: 'W-Greenbrook Co-op Prescho',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'GUELALBERTA': {
+    description: 'Guel Alberta',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'GUELBRITISH': {
+    description: 'Guel British Columbia',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'GUELELORA': {
+    description: 'Guel Elora Gorge Family Lounge',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'GUELGRAND': {
+    description: 'Guel Grand River',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'GUELHUDSON': {
+    description: 'Guel Hudson Bay',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'GUELMANITOBA': {
+    description: 'Guel Manitoba',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'GUELMANITOULIN': {
+    description: 'Guel Manitoulin Island',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'GUELMAPLE': {
+    description: 'Guel Maple Leaf',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'GUELNIAGARA': {
+    description: 'Guel Niagara Falls',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'GUELPEGGY': {
+    description: 'Guel Peggy\'s Cove',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'GUELPH': {
+    description: 'Guelph Site',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'GUELPOINT': {
+    description: 'Guel Point Peele',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'GUELROYAL': {
+    description: 'Guel The Royal City Board Room',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'GUELSAUGEE': {
+    description: 'Guel Saugeen River',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'GUELYUKON': {
+    description: 'Guel Yukon',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'GUEMONT': {
+    description: 'G-Guelph Montessori School',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'GUESCHOO': {
+    description: 'G-Guelph School-Age Day Care',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'HANSEL': {
+    description: 'G-Hansel & Gretel CoOp Nursery',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'HARMONY': {
+    description: 'G-Harmony Kids Day Care',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'HARRISTON': {
+    description: 'G-Harriston Preschool',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'HEALTH': {
+    description: 'Health Fair',
+    city: CITIES.Null,
+    status: STATUSES.Active,
+  },
+  'HILDEGARD': {
+    description: 'W-Hildegard Marsden CoOp',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'HOME-CAM': {
+    description: 'C-Home Ch Care Srvcs - Cam',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active,
+  },
+  'HOME-WAT': {
+    description: 'W-Home Ch Care Srvcs - Wat',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'HOME-WELL': {
+    description: 'G-Home Ch Care Srvcs - Well',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'HOSP-CAMB': {
+    description: 'Cambridge Memorial Hospital',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active,
+  },
+  'HOSP-GRAND': {
+    description: 'Grand River Hospital',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'INSPIR-ELC': {
+    description: 'W-Inspiring Minds Early Learn',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'INSPIR-SCH': {
+    description: 'W-Inspiring Minds School Age',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'JACKANDJIL': {
+    description: 'G-Jack And Jill Day Nursery',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'JACOB-CHIL': {
+    description: 'C-Jacob Hespeler-Ch Care Cent',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active,
+  },
+  'JACOB-JANET': {
+    description: 'K-Jacob Hespeler-Janet Metcalfe Daycare',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'JACOB-LACK': {
+    description: 'W-Jacob Hespeler-Lackner Woods',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'JACOB-WEST': {
+    description: 'W-Jacob Hespeler-Westvale',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'JACOB-WOOD': {
+    description: 'C-Jacob Hespeler-Woodland Park',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active,
+  },
+  'JACOBMILLE': {
+    description: 'W-Jacob Millen Childcare',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
 };
-
 export default LOCATIONS;
