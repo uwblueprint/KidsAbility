@@ -7,9 +7,6 @@ export default class Search extends Component {
       // add other input fields
       time: '',
     };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange = (e) => {
