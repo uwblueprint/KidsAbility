@@ -1,5 +1,14 @@
 import React, {Component} from 'react';
 
+const user = {
+    firstName: 'Rebecca',
+    lastName: 'Tucker',
+};
+
+function formatName(user) {
+    return user.firstName + ' ' + user.lastName;
+}
+
 export default class Home extends Component {
 
     //This is a constructor
@@ -28,11 +37,11 @@ export default class Home extends Component {
     // componentDidUpdate() {} componentWillUnmount() {} componentWillUpdate() {}
     // shouldComponentUpdate() {} getSnapshotBeforeUpdate() {} Previously known as
     // ComponentWillUpdate()
-
+      
     render() {
         return (
             <div className="container">
-                <h2>Welcome to the home page :)</h2>
+                <h2>Welcome <b>{formatName(user)}</b></h2>
             </div>
         );
     }
