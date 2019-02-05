@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import './Home.css';
 
 const user = {
     firstName: 'Rebecca',
@@ -6,7 +7,15 @@ const user = {
 };
 
 function formatName(user) {
-    return user.firstName + ' ' + user.lastName;
+    return user.firstName + ' ' + user.lastName
+}
+
+function availTimes(){
+    return "AVAIL" //to update redirect   
+}
+
+function savedTimes(){
+    return "SAVED" //to update redirect
 }
 
 export default class Home extends Component {
@@ -37,11 +46,15 @@ export default class Home extends Component {
     // componentDidUpdate() {} componentWillUnmount() {} componentWillUpdate() {}
     // shouldComponentUpdate() {} getSnapshotBeforeUpdate() {} Previously known as
     // ComponentWillUpdate()
-      
+    
+
     render() {
         return (
             <div className="container">
                 <h2>Welcome <b>{formatName(user)}</b></h2>
+                <button onclick="availTimes()">Find Available Time</button>
+                <br></br>
+                <button className="special" onclick="savedTimes()">View Saved Times</button>
             </div>
         );
     }
