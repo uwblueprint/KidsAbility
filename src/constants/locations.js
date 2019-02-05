@@ -595,5 +595,120 @@ const LOCATIONS = {
     city: CITIES.Waterloo,
     status: STATUSES.Active,
   },
+  'JDHOGARTH': {
+    description: 'G-J D Hogarth Day Care',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'JUMPJACKS': {
+    description: 'C-Jumping Jacks Child Care',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active,
+  },
+  'JUMPJACKSI': {
+    description: 'C-Jumping Jacks III Child Care',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active,
+  },
+  'JUSTFORKID': {
+    description: 'W-Just For Kids',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'K-CLIENT': {
+    description: 'K-Kitchener Client Home',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'KIDSCOMEFI': {
+    description: 'G-Kids Come First',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'KIDSCOWAT': {
+    description: 'W-Kids & Company Techtown',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'KIDSFIRST': {
+    description: 'G-Kids First Day Care',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'KINGSDALE': {
+    description: 'K-Kingsdale Participating P.S.',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'KINSMEN': {
+    description: 'C-Kinsmen Children\'s Centre',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active,
+  },
+  'KITC1078': {
+    description: 'Kitc 1078',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'KITC1102': {
+    description: 'Kitc 1102-Sims Resource',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'KITC1103': {
+    description: 'Kitc 1103-Petrozzi',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'KITC1110': {
+    description: 'Kitc 1110-Weber',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'KITC1111': {
+    description: 'Kitc 1111-Johnson Fmly Lnge',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'KITC1112A': {
+    description: 'Kitc 1112A-Clinic',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'KITC1112B': {
+    description: 'Kitc 1112B-Clinic',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'KITC1113': {
+    description: 'Kitc 1113-Harkins',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'KITC1114': {
+    description: 'Kitc 1114-Ambassador',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'KITC1117': {
+    description: 'Kitc 1117-Rangers',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'KITCBUSY': {
+    description: 'Kitc Busy Bee Room',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'KITCFOREST': {
+    description: 'Kitc Forest Room',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'KITCHENER': {
+    description: 'Kitchener Site',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
 };
 export default LOCATIONS;
