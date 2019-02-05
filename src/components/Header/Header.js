@@ -12,7 +12,7 @@ export default class Header extends Component {
             <header>
                 <div className="header-container">
                     <div className="logo-container">RocketCare</div>
-                    <div className="menu-container">
+                    <div>
                         <Menu/>
                     </div>
                 </div>

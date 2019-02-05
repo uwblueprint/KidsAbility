@@ -16,6 +16,9 @@ import Home from '../src/pages/Home/Home'
 import NotFound from '../src/pages/NotFound/NotFound'
 import Footer from '../src/components/Footer/Footer'
 import Header from '../src/components/Header/Header'
+import Search from '../src/pages/Search/Search'
+import View from '../src/pages/View/View'
+import Saved from '../src/pages/Saved/Saved'
 
 //Create an instance of browserHistory
 const browserHistory = createBrowserHistory();
@@ -64,7 +67,11 @@ export default class App extends Component {
                             <Header/>
                             <NotificationContainer/>
                             <Switch>
-                                <Route exact="exact" path="/" component={Home}/>
+                                <Route exact={true} path="/" component={Home}/>
+                                <Route path="/find-time" component={Search}/>
+                                <Route path="/about" component={NotFound}/>
+                                <Route path="/saved" component={Saved}/>
+                                <Route path="/view-search/:searchId" searchcomponent={View}/>
                                 <Route component={NotFound}/>
                             </Switch>
                             <Footer/>
