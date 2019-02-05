@@ -1,0 +1,11 @@
+.footer-container{
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	background: orange;
+	min-height: 1.5em;
+}
+
+.tagline {
+	font-size: 0.5em;
+}

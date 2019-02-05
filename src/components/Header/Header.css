@@ -1,0 +1,19 @@
+.header-container {
+	position: absolute;
+	top: 0;
+	text-align: left;
+	width: 100%;
+	background: orange;
+	min-height: 2em;
+	max-height: 100px;
+}
+
+.logo-container {
+	float: left;
+	display: inline-block;
+}
+
+.menu-container {
+	float: right;
+	display: inline-block;
+}

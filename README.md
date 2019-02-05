@@ -2,8 +2,11 @@ Project Members (Please add your name)!
   - Greg Maxin
   - Cathy Wang
   - Brandon Leung
+  - Karissa Manning
   - Hannah Wang
   - Christina Liu
+  - Monica Iyer
+  - Yifei Ren
   
   
   
@@ -33,7 +36,4 @@ Project Members (Please add your name)!
   Installs nodejs and npm
   Installs/Updates all npm modules outlined in package.json for the project in the current directory
   
-
-  
-
 
