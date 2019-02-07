@@ -85,9 +85,6 @@ export default class App extends Component {
                             <Switch>
 
                                 <Route exact={true} path="/" db={db} component={Home}/>
-                                <Route component={NotFound} db={db}/>
-
-                                <Route exact={true} path="/" component={Home}/>
                                 <Route path="/find-time" component={Search}/>
                                 <Route path="/about" component={NotFound}/>
                                 <Route path="/saved" component={Saved}/>

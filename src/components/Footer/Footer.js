@@ -21,14 +21,15 @@ export default class Footer extends Component {
         // realTimeDB.push({message: 5});
 
         let storageDB = this.props.db.collection("Website Visitors").doc(
-            "Number of Visitors"
+            "PINRPcQ061nUISIIyeLj"
         );
 
         storageDB.get().then(function(doc) {
             if (doc.exists) {
-                this.setState({"views": doc.data().numvisitors});
+                this.setState({"views": doc.data().visitors});
+                console.log(doc.data().visitors);
                 storageDB.set({
-                    numvisitors: doc.data().numvisitors + 1
+                    visitors: doc.data().visitors + 1
                 });
             }
         }.bind(this)).catch(function(error) {
@@ -44,9 +45,11 @@ export default class Footer extends Component {
         return (
             <header>
                 <div className="footer-container">
-                    {"Total number of views: " + this.state.views}
+                    <div>
+                        {"Total number of views: " + this.state.views}
+                    </div>
                     <div className="tagline">Made by
-                        <a>UW Blueprint</a>
+                        <a href="https://uwblueprint.org/">UW Blueprint</a>
                     </div>
                     <div className="tagline">Copyright????</div>
                 </div>
