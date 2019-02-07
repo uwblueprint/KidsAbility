@@ -1,21 +1,14 @@
 import React, {Component} from 'react';
+import {Router, Route, Switch, Redirect} from 'react-router';
 import './Home.css';
 
 const user = {
     firstName: 'Rebecca',
-    lastName: 'Tucker',
+    lastName: 'Tucker'
 };
 
 function formatName(user) {
     return user.firstName + ' ' + user.lastName
-}
-
-function availTimes(){
-    return "AVAIL" //to update redirect   
-}
-
-function savedTimes(){
-    return "SAVED" //to update redirect
 }
 
 export default class Home extends Component {
@@ -35,26 +28,41 @@ export default class Home extends Component {
         // of having the .length method
 
         this.state = {
-            message: "",
-            MenuButtonEnabled: false,
-            changeMessageButton: "Change it to this message"
+            redirect: false,
+            redirectTo: "/"
         };
 
+    }
+
+    availTimes = () => {
+        this.setState({redirect: true, redirectTo: "find-time"});
+    }
+
+    savedTimes = () => {
+        this.setState({redirect: true, redirectTo: "saved"});
     }
 
     // componentWillMount() {} componentDidMount() {} componentWillReceiveProps() {}
     // componentDidUpdate() {} componentWillUnmount() {} componentWillUpdate() {}
     // shouldComponentUpdate() {} getSnapshotBeforeUpdate() {} Previously known as
     // ComponentWillUpdate()
-    
 
     render() {
         return (
             <div className="container">
-                <h2>Welcome <b>{formatName(user)}</b></h2>
-                <button onclick="availTimes()">Find Available Time</button>
+                <h2>Welcome
+                    <b>{formatName(user)}</b>
+                </h2>
+                <button onClick={this.availTimes}>Find Available Time</button>
                 <br></br>
-                <button className="special" onclick="savedTimes()">View Saved Times</button>
+                <button className="special" onClick={this.savedTimes}>View Saved Times</button>
+
+                {
+                    this.state.redirect
+                        ? <Redirect to={(this.state.redirectTo)}/>
+                        : null
+                }
+
             </div>
         );
     }
