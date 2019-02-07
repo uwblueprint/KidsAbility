@@ -1,0 +1,10 @@
+.menu-wrapper {
+  display: inline-block;
+  margin: 0;
+  padding: 1em;
+  list-style-type: none;
+  width: 100%;
+  min-height: 2em;
+  max-height: 100px;
+  padding: 0px;
+}

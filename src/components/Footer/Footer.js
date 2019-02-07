@@ -41,11 +41,16 @@ export default class Footer extends Component {
     }
 
     render() {
-
-        return (<header>
-            {"Total number of views: " + this.state.views}
-            {/*}<button onClick={this.handleClick}></button>*/}
-        </header>
+        return (
+            <header>
+                <div className="footer-container">
+                    {"Total number of views: " + this.state.views}
+                    <div className="tagline">Made by
+                        <a>UW Blueprint</a>
+                    </div>
+                    <div className="tagline">Copyright????</div>
+                </div>
+            </header>
         );
     }
 }
