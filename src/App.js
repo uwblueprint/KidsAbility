@@ -17,9 +17,13 @@ import Home from '../src/pages/Home/Home'
 import NotFound from '../src/pages/NotFound/NotFound'
 import Footer from '../src/components/Footer/Footer'
 import Header from '../src/components/Header/Header'
+import * as settings from '../src/constants/settings.json';
 
 //Create an instance of browserHistory
 const browserHistory = createBrowserHistory();
+
+const fire = settings.firebase;
+console.log(fire);
 
 export default class App extends Component {
 
@@ -29,12 +33,12 @@ export default class App extends Component {
         super(props);
 
         firebase.initializeApp({
-            apiKey: "AIzaSyArvjqKlClk35Xsr-TsUXVtpX-ZysOGqVk",
+            apiKey: fire.apikey,
             authDomain: "kidsability-871ac.firebaseapp.com",
             databaseURL: "https://kidsability-871ac",
             projectId: "kidsability-871ac",
             storageBucket: "kidsability-871ac.appspot.com",
-            messagingSenderId: "754093479554"
+            messagingSenderId: fire.messagingSenderId
         });
 
         // This is where we declare the states for THIS component. The states can be
