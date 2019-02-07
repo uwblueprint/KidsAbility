@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^3.9.1",
+    "axios": "^0.18.0",
+    "firebase": "^5.8.2",
     "history": "^4.7.2",
     "react": "^16.7.0",
     "react-bootstrap": "^0.32.4",
