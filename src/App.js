@@ -61,11 +61,11 @@ export default class App extends Component {
         // This is where pre-render calculations happen These calculations can also be
         // done in lifecycle methods. The latter is probably better practice
 
-        return (<div className="App">
-            <header className="App-header">
+        return (
+            <div className="App">
+                <header className="App-header">
 
-                {
-                    /*
+                    {/*
                         We need the curly braces to write in-line comments inside
                         return.
 
@@ -79,23 +79,28 @@ export default class App extends Component {
                     */
                     }
                     <Router history={browserHistory}>
-                            <div>
-                                <Header/>
-                                <NotificationContainer/>
-                                <Switch>
-                                    <<<<<<< HEAD <Route exact={true} path="/" db={db} component={Home}/> <Route
-                                    component={NotFound} db={db}/> ======= <Route exact={true} path="/"
-                                    component={Home}/> <Route path="/find-time" component={Search}/> <Route
-                                    path="/about" component={NotFound}/> <Route path="/saved" component={Saved}/>
-                                    <Route path="/view-search/:searchId" searchcomponent={View}/> <Route
-                                    component={NotFound}/> >>>>>>> master
-                                </Switch>
+                        <div>
+                            <Header/>
+                            <NotificationContainer/>
+                            <Switch>
 
-                                <Footer db={db}></Footer>
-                            </div>
-                        </Router>
-                    </header>
-                </div>
-                );
-            }
-        }
+                                <Route exact={true} path="/" db={db} component={Home}/>
+                                <Route component={NotFound} db={db}/>
+
+                                <Route exact={true} path="/" component={Home}/>
+                                <Route path="/find-time" component={Search}/>
+                                <Route path="/about" component={NotFound}/>
+                                <Route path="/saved" component={Saved}/>
+                                <Route path="/view-search/:searchId" searchcomponent={View}/>
+                                <Route component={NotFound}/>
+
+                            </Switch>
+
+                            <Footer db={db}></Footer>
+                        </div>
+                    </Router>
+                </header>
+            </div>
+        );
+    }
+}
