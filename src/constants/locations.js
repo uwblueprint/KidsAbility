@@ -275,7 +275,7 @@ const LOCATIONS = {
     city: CITIES.Kitchener,
     status: STATUSES.Active,
   },
-  'CONJOHN' {
+  'CONJOHN': {
     description: 'W-Conestoga Coll - John Darlin',
     city: CITIES.Waterloo,
     status: STATUSES.Active,
@@ -335,7 +335,7 @@ const LOCATIONS = {
     city: CITIES.Waterloo,
     status: STATUSES.Active,
   },
-  'EDUKIDS' {
+  'EDUKIDS': {
     description: 'C-EDU KIDS DAYCARE',
     city: CITIES.Cambridge,
     status: STATUSES.Active,
@@ -395,7 +395,7 @@ const LOCATIONS = {
     city: CITIES.Guelph,
     status: STATUSES.Active,
   },
-  'G-CLIENT' {
+  'G-CLIENT': {
     description: 'G-Guelph Client Home',
     city: CITIES.Guelph,
     status: STATUSES.Active,
@@ -708,6 +708,126 @@ const LOCATIONS = {
   'KITCHENER': {
     description: 'Kitchener Site',
     city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'KITCLEARN': {
+    description: 'Kitc The Learning Garden',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'KITCOCEAN': {
+    description: 'Kitc Ocean Room',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'KITCOWL': {
+    description: 'Kitc Owl Room',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'KITCRAC': {
+    description: 'Kitc Raccoon Room',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'KITCSEA': {
+    description: 'Kitc Sea Horse Rooom',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'KITCSQUI': {
+    description: 'Kitc Squirrel Room',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'KITCTURTLE': {
+    description: 'Kitc Turtle Room',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'KITCWHALE': {
+    description: 'Kitc Whale Room',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'KLEMMER': {
+    description: 'W-Klemmer Farmhouse Cooperativ',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'KORTWRIGHT': {
+    description: 'G-Kortright Playschool',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'KWENGLISH': {
+    description: 'W-K-W English Preschool',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'KWMONTBRID': {
+    description: 'W-K-W Montessori School-Bridg',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'LAGARDERIE': {
+    description: 'G-La Garderie De L\'Arc En Ciel',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'LAKESHORE': {
+    description: 'W-Lakeshore Co-Op Nursery Sch.',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'LAKESIDE': {
+    description: 'G-Lakeside Childcare Centre',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'LAPETITE': {
+    description: 'W-La Petite Ecole Francophone',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'LECNTRE': {
+    description: 'C-Le Centre Educatif Les Petit',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active,
+  },
+  'LECOLE': {
+    description: 'W-l\'Ecole Elemenetai l\'Harmoni',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'LEGARDERIE': {
+    description: 'K-Le Garderie Des Lutin De Kit',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'LILLIANS': {
+    description: 'G-Lillian\'s Children\'s Centre',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'LILLIPUT': {
+    description: 'G-Lilliput Land Preschool',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'LITTLEANGE': {
+    description: 'G-Little Angels Day Care',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'LITTLECHAM': {
+    description: 'W-Little Champs Academy',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'LITTLECHAMGUE': {
+    description: 'G-Little Champs Daycare',
+    city: CITIES.Guelph,
     status: STATUSES.Active,
   },
 };
