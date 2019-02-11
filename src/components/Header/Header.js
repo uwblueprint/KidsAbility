@@ -10,8 +10,12 @@ export default class Header extends Component {
     render() {
         return (
             <header>
-                This is a Header
-                <Menu/>
+                <div className="header-container">
+                    <div className="logo-container">RocketCare</div>
+                    <div>
+                        <Menu/>
+                    </div>
+                </div>
             </header>
 
         );
