@@ -1,4 +1,15 @@
 import React, {Component} from 'react';
+import {Router, Route, Switch, Redirect} from 'react-router';
+import './Home.css';
+
+const user = {
+    firstName: 'Rebecca',
+    lastName: 'Tucker'
+};
+
+function formatName(user) {
+    return user.firstName + ' ' + user.lastName
+}
 
 export default class Home extends Component {
 
@@ -17,11 +28,18 @@ export default class Home extends Component {
         // of having the .length method
 
         this.state = {
-            message: "",
-            MenuButtonEnabled: false,
-            changeMessageButton: "Change it to this message"
+            redirect: false,
+            redirectTo: "/"
         };
 
+    }
+
+    availTimes = () => {
+        this.setState({redirect: true, redirectTo: "find-time"});
+    }
+
+    savedTimes = () => {
+        this.setState({redirect: true, redirectTo: "saved"});
     }
 
     // componentWillMount() {} componentDidMount() {} componentWillReceiveProps() {}
@@ -32,7 +50,19 @@ export default class Home extends Component {
     render() {
         return (
             <div className="container">
-                <h2>Welcome to the home page :)</h2>
+                <h2>Welcome
+                    <b>{formatName(user)}</b>
+                </h2>
+                <button onClick={this.availTimes}>Find Available Time</button>
+                <br></br>
+                <button className="special" onClick={this.savedTimes}>View Saved Times</button>
+
+                {
+                    this.state.redirect
+                        ? <Redirect to={(this.state.redirectTo)}/>
+                        : null
+                }
+
             </div>
         );
     }
