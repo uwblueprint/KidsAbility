@@ -5,7 +5,8 @@ const CITIES = {
   Waterloo: 'Waterloo',
   Fergus: 'Fergus',
   Null: 'Null',
-  // Confirmed the f is for Fergus, Created a Null option
+  MountForest: 'Mount Forest',
+  // added Mount Forest option
 };
 
 const STATUSES = {
@@ -828,6 +829,36 @@ const LOCATIONS = {
   'LITTLECHAMGUE': {
     description: 'G-Little Champs Daycare',
     city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'LITTLELEARN': {
+    description: 'G-Little Learners Preschool',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'LITTLEMOUN': {
+    description: 'W-Little Mountain/Open Sesame',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'MACMGS': {
+    description: 'W-MAC MGS Preschool',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'MF-CLIENT': {
+    description: 'MF-Mount Forest-Client Home',
+    city: CITIES.MountForest,
+    status: STATUSES.Active,
+  },
+  'MONTACAD': {
+    description: 'G-Montessori Academy Learning',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'MONTCAMBRI': {
+    description: 'C-Montessori School of Camb',
+    city: CITIES.Cambridge,
     status: STATUSES.Active,
   },
 };
