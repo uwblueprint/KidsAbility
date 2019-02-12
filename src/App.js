@@ -16,7 +16,7 @@ import Home from '../src/pages/Home/Home'
 import NotFound from '../src/pages/NotFound/NotFound'
 import Footer from '../src/components/Footer/Footer'
 import Header from '../src/components/Header/Header'
-import Search from '../src/pages/Search/Search'
+import Search from '../src/pages/Search/Search.jsx'
 import View from '../src/pages/View/View'
 import Saved from '../src/pages/Saved/Saved'
 
