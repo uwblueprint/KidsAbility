@@ -861,5 +861,340 @@ const LOCATIONS = {
     city: CITIES.Cambridge,
     status: STATUSES.Active,
   },
+  'MONTLITTLE': {
+    description: 'G-Montessori Little Folks',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'MONTMORN': {
+    description: 'C-Montessori Sch-Morningside',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active,
+  },
+  'MONTTRILL': {
+    description: 'K-Montessori Trillium',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'MONTWELL': {
+    description: 'G-Montessori School of Welling',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'MOPPET': {
+    description: 'W-Moppet Parent Particip P.S.',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'MOUNTFORES': {
+    description: 'G-Mount Forest Day Care',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'MT.FOREST': {
+    description: 'G-Mount Forest Site',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'NA': {
+    description: 'Not Applicable',
+    city: CITIES.Null,
+    status: STATUSES.Active,
+  },
+  'NEWDUNDEE': {
+    description: 'K-New Dundee Parent Participat',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'NEWHAMBURG': {
+    description: 'K-New Hamburg Cooperative P.S.',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'NOAHSARK': {
+    description: 'G-Noah\'s Ark Day Care',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'NOELSWOOD': {
+    description: 'G-Noel\'s Children Centre-Woodl',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'NORTHDUMFR': {
+    description: 'C-North Dumfries P.S. CoOp',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active,
+  },
+  'NORTHLAKE': {
+    description: 'W-Northlake Co-op Preschool',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'OEYC-CAM': {
+    description: 'C-OEYC-Cambridge',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active,
+  },
+  'OEYC-ERB': {
+    description: 'W-OEYC-Erbsville',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'OEYC-GUE': {
+    description: 'G-OEYC-Guelph',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'OEYC-KIT': {
+    description: 'K-OEYC-Kitchener',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'OEYC-MTFOR': {
+    description: 'G-OEYC-Mount Forest',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'OEYC-RIVERSIDE': {
+    description: 'W-OEYC-RIVERSIDE P.S.',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'OEYC-WAT': {
+    description: 'W-OEYC-Waterloo',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'OTHER': {
+    description: 'Other Community',
+    city: CITIES.Null,
+    status: STATUSES.Active,
+  },
+  'OWLAUBURN': {
+    description: 'W-Owl Child Care-Auburn',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'OWLJOHNSWE': {
+    description: 'K-Owl Child Care-John Sweeney',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'OWLLINCOLN': {
+    description: 'W-Owl Child Care-Lincoln',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'OWLOURLADY': {
+    description: 'C-Owl Ch Care-Our Lady of Fat',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active,
+  },
+  'OWLPOPEJOH': {
+    description: 'K-Owl Child Care-Pope John Pau',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'OWLSTBRIGID': {
+    description: 'C-Owl Child Care-St. Brigid',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active,
+  },
+  'OWLSTLUKES': {
+    description: 'W-Owl Child Care-St. Luke\'s',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'OWLSTMATTH': {
+    description: 'W-Owl Child Care-St. Matthew',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'OWLSTNICHO': {
+    description: 'W-Owl Child Care-St. Nicholas',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'OWLWESTMOU': {
+    description: 'W-Owl Child Care-Westmount',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'PAINTINPLA': {
+    description: 'W-Paintin\' Place Co-op Day',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'PALMERSTON': {
+    description: 'W-Palmerston Childcare',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'PARKMINSTE': {
+    description: 'W-Parkminster Nursery School',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'PARKVIEW': {
+    description: 'G-Parkview Day Care',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'PARKWOOD': {
+    description: 'G-Parkwood Gardens Nursery Sch',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'PEEKABOOMA': {
+    description: 'C-Peekaboo Child Care-Maple',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active,
+  },
+  'PEEKABOOSH': {
+    description: 'C-Peekaboo Child Care-Sheldon',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active,
+  },
+  'PEEKABOOVI': {
+    description: 'W-Peekaboo Child Care-Victoria',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'PLUTOACTIV': {
+    description: 'K-Pluto Day Care Centre-Activa',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'PLUTOBROOK': {
+    description: 'C-Pluto Day Care Centre-Brook',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active,
+  },
+  'PLUTOKING': {
+    description: 'W-Pluto Day Care Centre-King',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'PLUTOOTTAW': {
+    description: 'K-Pluto Day Care Centre-Ottawa',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'PLUTOWEBER': {
+    description: 'W-Pluto Day Care Centre-Weber',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'POLKADOT': {
+    description: 'C-Polkadot Palace',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active,
+  },
+  'PRESTONHEI': {
+    description: 'C-Preston Heights Participatin',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active,
+  },
+  'RICKSONRID': {
+    description: 'G-Rickson Ridge Day Care',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'ROCKINGHOR': {
+    description: 'G-Rocking HorseEarly Learni C',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'ROCKWOOD': {
+    description: 'G-Rockwood Nursery School',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'ROLLINGHIL': {
+    description: 'G-Rolling Hills Day Care',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'ROYALCITY': {
+    description: 'G-Royal City Co-op Prescho',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'SAGINAW': {
+    description: 'C-Saginaw Child Care Centre',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active,
+  },
+  'SALVATION': {
+    description: 'G-Salvation Army Guel Toddler',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'SCHOOL': {
+    description: 'School',
+    city: CITIES.Null,
+    status: STATUSES.Active,
+  },
+  'SMALLANGEL': {
+    description: 'G-Small Angels Day Care',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'SMITHSON': {
+    description: 'W-Smithson Preschool',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'SPOTSFORTO': {
+    description: 'W-Spots For Tots',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'STANLEYPAR': {
+    description: 'W-Stanley Park Rosemount P.S.',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'STANLEYSPR': {
+    description: 'K-Stanley\'s Preschool',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'STATIONRD': {
+    description: 'G-Station Road Nursery School',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'STATIONROA': {
+    description: 'G-Station Road Preschool',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'STBONIFACE': {
+    description: 'W-ST.BONIFACE',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'STCLEMENTS': {
+    description: 'W-St. Clements Nursery School',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'STGREG': {
+    description: 'C-St. Gregory',
+    city: CITIES.Cambridge,
+    status: STATUSES.Inactive,
+  },
+  'STJACOBS': {
+    description: 'W-St. Jacobs Day Care',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'STJOHNSCHR': {
+    description: 'W-St. Johns Christian Nursery S',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
 };
 export default LOCATIONS;
