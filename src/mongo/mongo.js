@@ -1,4 +1,15 @@
 
+var MongoClient = require('mongodb').MongoClient;
+MongoClient.connect("mongodb://localhost: 3000/test", function(err, db){
+
+	if (err) throw err;
+    else {
+    	console.log("connected");
+    }
+});
+
+
+/*
 //Index.js
 
 	var mongoose = require('mongoose');
@@ -24,7 +35,7 @@
 	   scheduled: {
 	       type: Boolean,
 	       default: false
-	   },
+	   },	
 	   created_date: {
 	       type: Date,
 	       default: Date.now
@@ -36,3 +47,4 @@
 	
 	//when this file is required, it will provide the model
 	module.exports = Schedule;
+*/
