@@ -53,7 +53,7 @@ export default class View extends Component {
                         ? <ChartView/>
                         : <CalendarView/>
                 }
-                <div>
+                <div className="box">
                     <BigCalendar
                         localizer={localizer}
                         events={myEventsList}
