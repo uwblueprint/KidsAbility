@@ -88,7 +88,7 @@ export default class App extends Component {
                                 <Route path="/find-time" component={Search}/>
                                 <Route path="/about" component={NotFound}/>
                                 <Route path="/saved" component={Saved}/>
-                                <Route path="/view-search/:searchId" searchcomponent={View}/>
+                                <Route path="/view-search" component={View}/>
                                 <Route component={NotFound}/>
 
                             </Switch>
