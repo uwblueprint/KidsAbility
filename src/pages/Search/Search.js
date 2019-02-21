@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Select from 'react-select';
+import './Search.css';
 
 const options1 = [
   {value: 'bob', label: 'Bob'},
@@ -51,6 +52,25 @@ const options6 = [
   {value: 'morning', label: 'Morning'},
   {value: 'afternoon', label: 'Afternoon'}
 ]
+
+// const customStyles = {
+//   option: (provided, state) => ({
+//     ...provided,
+//     borderBottom: '1px dotted pink',
+//     color: state.isSelected ? 'red' : 'blue',
+//     padding: 20,
+//   }),
+//   control: () => ({
+//     // none of react-select's styles are passed to <Control />
+//     width: 20,
+//   }),
+//   singleValue: (provided, state) => {
+//     const opacity = state.isDisabled ? 0.5 : 1;
+//     const transition = 'opacity 300ms';
+
+//     return { ...provided, opacity, transition };
+//   }
+// }
 
 export default class Search extends Component {
   constructor(props) {
@@ -109,46 +129,50 @@ export default class Search extends Component {
       timeOfDay
     } = this.state;
     return (
-      <div> 
+      <div class="row"> 
         <h1> Find Available Times </h1>
-        Clinician Name/ID 
-        <Select
-          isMulti
-          value={name}
-          onChange={this.handleChange1}
-          options={options1}
-        />
-        Service type
-        <Select
-          isMulti
-          value={service}
-          onChange={this.handleChange2}
-          options={options2}
-        />
-        Location
-        <Select
-          value={location}
-          onChange={this.handleChange3}
-          options={options3}
-        />
-        Min. Time Required
-        <Select
-          value={time}
-          onChange={this.handleChange4}
-          options={options4}
-        />
-        Number of Sessions
-        <Select
-          value={sessions}
-          onChange={this.handleChange5}
-          options={options5}
-        />
-        Time of Day
-        <Select
-          value={timeOfDay}
-          onChange={this.handleChange6}
-          options={options6}
-        />
+        <div class="column">
+          Clinician Name/ID 
+          <Select className="leftdropdown"
+            isMulti
+            value={name}
+            onChange={this.handleChange1}
+            options={options1}
+          />
+          Service type
+          <Select className="leftdropdown"
+            isMulti
+            value={service}
+            onChange={this.handleChange2}
+            options={options2}
+          />
+          Location
+          <Select className="leftdropdown"
+            value={location}
+            onChange={this.handleChange3}
+            options={options3}
+          />
+        </div>
+        <div class="column">
+          Min. Time Required
+          <Select className="rightdropdown"
+            value={time}
+            onChange={this.handleChange4}
+            options={options4}
+          />
+          Number of Sessions
+          <Select className="rightdropdown"
+            value={sessions}
+            onChange={this.handleChange5}
+            options={options5}
+          />
+          Time of Day
+          <Select className="rightdropdown"
+            value={timeOfDay}
+            onChange={this.handleChange6}
+            options={options6}
+          />
+        </div>
       </div>
     );
   }

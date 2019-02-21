@@ -1,0 +1,25 @@
+.leftdropdown {
+    width: 10cm;
+    color: black;
+    margin: 20px 10px;
+}
+
+.rightdropdown {
+    width: 10cm;
+    color: black;
+    margin: 20px 10px;
+}
+
+.column {
+    float: left;
+    width: 50%;
+    padding: 5px;
+    height: 300px;
+}
+
+.row {
+    content: "";
+    display: table;
+    clear: both;
+    margin: 10px 200px;
+}
