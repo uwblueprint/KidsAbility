@@ -181,6 +181,9 @@ export default class Search extends Component {
             onChange={this.handleChange6}
             options={options6}
           />
+          <form ref="form" onSubmit={this.handleSubmit}>
+            <button type="submit">Search</button>
+          </form>
         </div>
       </div>
     );
