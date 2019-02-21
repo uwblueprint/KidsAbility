@@ -83,6 +83,14 @@ export default class Search extends Component {
       sessions: null,
       timeOfDay: null
     };
+
+    this.handleChange1 = this.handleChange1.bind(this);
+    this.handleChange2 = this.handleChange2.bind(this);
+    this.handleChange3 = this.handleChange3.bind(this);
+    this.handleChange4 = this.handleChange4.bind(this);
+    this.handleChange5 = this.handleChange5.bind(this);
+    this.handleChange6 = this.handleChange6.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange1 = (name) => {
@@ -115,9 +123,10 @@ export default class Search extends Component {
     console.log(`Option selected:`, timeOfDay)
   }
 
-  // handleSubmit = (e) => {
-  //   // make request to backend/db based on form input (get the input from this.state)
-  // }
+  handleSubmit = (e) => {
+    alert('Search criteria was submitted')
+    // make request to backend/db based on form input (get the input from this.state)
+  }
   
   render() {
     const { 

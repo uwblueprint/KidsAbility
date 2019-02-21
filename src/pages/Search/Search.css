@@ -23,3 +23,19 @@
     clear: both;
     margin: 10px 200px;
 }
+
+button {
+    background-color: darkorchid;
+    border: none;
+    color: white;
+    padding: 15px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    /*margin: 20px 800px;*/
+    position: absolute;
+    right: 50px;
+    cursor: pointer;
+    width: 7cm
+}
