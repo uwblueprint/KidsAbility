@@ -1,5 +1,9 @@
+{/* I tried to change it to a % value - but it doesn't seem to be referencing the current size of the window */}
+
 .box {
-  height: 500px
+  height: 1100px;
+  width: 100%;
+  padding: 100px;
 }
 
 .rbc-btn {
@@ -49,12 +53,14 @@ button.rbc-input::-moz-focus-inner {
 }
 .rbc-ellipsis,
 .rbc-event-label,
-.rbc-row-segment .rbc-event-content,
+.rbc-row-segment 
+.rbc-event-content,
 .rbc-show-more {
   display: block;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
+  font-size: 15px;
+/*white-space: nowrap;*/
 }
 .rbc-rtl {
   direction: rtl;

@@ -14,6 +14,7 @@ import Example.css here and it can be used in Example.js
 @import '../src/components/Header/Menu/Menu.css';
 @import '../src/pages/View/View.css'
 
+
 .App {
   text-align: center;
 }
@@ -25,7 +26,7 @@ import Example.css here and it can be used in Example.js
   flex-direction: column;
   /*align-items: center;*/
   justify-content: center;
-  font-size: calc(2px + 2vmin);
+  font-size: 25px;
   color: white;
   margin: 0;
   padding: 0;

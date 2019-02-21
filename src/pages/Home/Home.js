@@ -53,10 +53,9 @@ export default class Home extends Component {
                 <h2>Welcome
                     <b>{formatName(user)}</b>
                 </h2>
-                <button onClick={this.availTimes}>Find Available Time</button>
+                <button className="button-find" onClick={this.availTimes}>Find Available Time</button>
                 <br></br>
-                <button className="special" onClick={this.savedTimes}>View Saved Times</button>
-
+                <button className="button-save" onClick={this.savedTimes}>View Saved Times</button>
                 {
                     this.state.redirect
                         ? <Redirect to={(this.state.redirectTo)}/>
