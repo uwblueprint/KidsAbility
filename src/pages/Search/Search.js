@@ -163,7 +163,7 @@ export default class Search extends Component {
             options={options6}
           />
           <form ref="form" onSubmit={this.handleSubmit}>
-            <button type="submit">Search</button>
+            <button className="button" type="submit">Search</button>
           </form>
         </div>
       </div>
