@@ -23,6 +23,8 @@ import Search from '../src/pages/Search/Search'
 import View from '../src/pages/View/View'
 import Saved from '../src/pages/Saved/Saved'
 
+
+
 //Create an instance of browserHistory
 const browserHistory = createBrowserHistory();
 
@@ -54,6 +56,19 @@ export default class App extends Component {
     // You can pass handler functions as props to another components Those
     // components can call the handler functions which could, for example, update
     // the states in this component
+    componentDidMount() {
+        this.callAPI()
+            .then(res => this.setState({response: res.express}))
+            .catch(err => console.log(err))
+    }
+
+    callAPI = async () => {
+        const response = await fetch('/api/work');
+        const body = await response.json();
+
+        if (response.status !== 200) throw Error(body.message);
+        console.log(body);
+    };
 
     render() {
         var db = firebase.firestore();
