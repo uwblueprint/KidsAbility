@@ -15,23 +15,11 @@ mongoose.Promise = Promise;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
 
-//basic routes (will update and refactor later)
+//basic routes (to be refactored)
 app.get('/api/work', (req, res) => {
 	res.send({ work: 'this works' });
 });
 
+module.exports.ScheduleSchema = require('./schedule.js');
+
 app.listen(port, () => console.log("LISTENING"));
-/*
-var MongoClient = require('mongodb').MongoClient;
-
-
-
-MongoClient.connect(url, function(err, db){
-
-	if (err) {
-		throw err;
-	} else {
-    	console.log("connected");
-    }
-});
-*/
