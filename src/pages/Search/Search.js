@@ -21,8 +21,8 @@ const options3 = [
 ]
 
 const options4 = [
-  {value: 'thiry', label: '30 mins'},
-  {value: 'fourty_five', label: '45 mins'},
+  {value: 'thirty', label: '30 mins'},
+  {value: 'forty_five', label: '45 mins'},
   {value: 'sixty', label: '60 mins'}  
 ]
 
@@ -64,14 +64,6 @@ export default class Search extends Component {
       sessions: null,
       timeOfDay: null
     };
-
-    this.handleChange1 = this.handleChange1.bind(this);
-    this.handleChange2 = this.handleChange2.bind(this);
-    this.handleChange3 = this.handleChange3.bind(this);
-    this.handleChange4 = this.handleChange4.bind(this);
-    this.handleChange5 = this.handleChange5.bind(this);
-    this.handleChange6 = this.handleChange6.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange1 = (name) => {
