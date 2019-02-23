@@ -1,0 +1,40 @@
+.leftdropdown {
+    width: 10cm;
+    color: black;
+    margin: 20px 10px;
+}
+
+.rightdropdown {
+    width: 10cm;
+    color: black;
+    margin: 20px 10px;
+}
+
+.column {
+    float: left;
+    width: 50%;
+    padding: 5px;
+    height: 300px;
+}
+
+.row {
+    content: "";
+    display: table;
+    clear: both;
+    margin: 10px 200px;
+}
+
+.button {
+    background-color: darkorchid;
+    border: none;
+    color: white;
+    padding: 15px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    position: relative;
+    right: -110px;
+    cursor: pointer;
+    width: 7cm
+}

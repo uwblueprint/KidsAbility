@@ -6,6 +6,7 @@ import './App.css';
 import React, {Component} from 'react';
 
 //These are all npm packages
+import firebase from 'firebase';
 import {Router, Route, Switch, Redirect} from 'react-router';
 import {NotificationContainer} from 'react-notifications';
 import {NotificationManager} from 'react-notifications';
@@ -16,9 +17,16 @@ import Home from '../src/pages/Home/Home'
 import NotFound from '../src/pages/NotFound/NotFound'
 import Footer from '../src/components/Footer/Footer'
 import Header from '../src/components/Header/Header'
+import * as settings from '../src/constants/settings.json';
+import Search from '../src/pages/Search/Search.js'
+import View from '../src/pages/View/View'
+import Saved from '../src/pages/Saved/Saved'
 
 //Create an instance of browserHistory
 const browserHistory = createBrowserHistory();
+
+const fire = settings.firebase;
+console.log(fire);
 
 export default class App extends Component {
 
@@ -26,6 +34,15 @@ export default class App extends Component {
     // constructor
     constructor(props) {
         super(props);
+
+        firebase.initializeApp({
+            apiKey: fire.apikey,
+            authDomain: "kidsability-871ac.firebaseapp.com",
+            databaseURL: "https://kidsability-871ac",
+            projectId: "kidsability-871ac",
+            storageBucket: "kidsability-871ac.appspot.com",
+            messagingSenderId: fire.messagingSenderId
+        });
 
         // This is where we declare the states for THIS component. The states can be
         // passed as props to components called within render
@@ -38,6 +55,7 @@ export default class App extends Component {
     // the states in this component
 
     render() {
+        var db = firebase.firestore();
 
         // This is where pre-render calculations happen These calculations can also be
         // done in lifecycle methods. The latter is probably better practice
@@ -64,10 +82,17 @@ export default class App extends Component {
                             <Header/>
                             <NotificationContainer/>
                             <Switch>
-                                <Route exact="exact" path="/" component={Home}/>
+
+                                <Route exact={true} path="/" db={db} component={Home}/>
+                                <Route path="/find-time" component={Search}/>
+                                <Route path="/about" component={NotFound}/>
+                                <Route path="/saved" component={Saved}/>
+                                <Route path="/view-search" component={View}/>
                                 <Route component={NotFound}/>
+
                             </Switch>
-                            <Footer/>
+
+                            <Footer db={db}></Footer>
                         </div>
                     </Router>
                 </header>
