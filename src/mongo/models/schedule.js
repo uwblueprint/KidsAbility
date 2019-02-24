@@ -49,7 +49,7 @@ var scheduleSchema = new mongoose.Schema({
 	ServiceDescription: {
 		type: String
 	}
-});
+}, { collection: 'KidsAbility' });
 
 	
 var Schedule = mongoose.model('Schedule', scheduleSchema);
