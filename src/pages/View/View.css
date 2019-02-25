@@ -1,7 +1,7 @@
 {/* I tried to change it to a % value - but it doesn't seem to be referencing the current size of the window */}
 
 .box {
-  height: 1100px;
+  height: 700px;
   width: 100%;
   padding: 100px;
 }
