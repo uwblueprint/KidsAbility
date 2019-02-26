@@ -2,6 +2,7 @@
   "name": "kidsability",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:5000/",
   "dependencies": {
     "@material-ui/core": "^3.9.1",
     "axios": "^0.18.0",
@@ -14,6 +15,7 @@
     "moment": "^2.24.0",
     "mongodb": "^3.1.13",
     "mongoose": "^5.4.15",
+    "proxy": "^0.2.4",
     "react": "^16.7.0",
     "react-big-calendar": "^0.20.3",
     "react-bootstrap": "^0.32.4",

@@ -63,14 +63,21 @@ export default class App extends Component {
     }
 
     callAPI = async () => {
-        const response = await fetch('/api/work');
+        const response = await fetch('/api/schedules');
+        console.log(response);
         const body = await response.json();
-
-        if (response.status !== 200) throw Error(body.message);
         console.log(body);
+
+
+        if (response.status !== 200) {
+            throw Error(body.message);
+            console.log(body);
+        }
     };
 
     render() {
+        
+        console.log(this.state.reponse);
         var db = firebase.firestore();
 
         // This is where pre-render calculations happen These calculations can also be
@@ -99,7 +106,7 @@ export default class App extends Component {
                             <NotificationContainer/>
                             <Switch>
 
-                                <Route exact={true} path="/" db={db} component={Home}/>
+                                <Route exact={true} path="/" db={db} callAPI={this.callAPI} component={Home}/>
                                 <Route path="/find-time" component={Search}/>
                                 <Route path="/about" component={NotFound}/>
                                 <Route path="/saved" component={Saved}/>
