@@ -28,20 +28,24 @@ export default class Saved extends Component {
                         <table>
                             <thead>
                                 <tr>
+                                    <th>Clinician Name</th>
+                                    <th>Client ID</th>
                                     <th>Date</th>
                                     <th>Time</th>
                                     <th>Location</th>
-                                    <th>Save</th>
+                                    <th>Notes</th>
+                                    <th>Unsave</th>
                                 </tr>
                             </thead>
                         
                             {
                                 data.map((elem) =>
                                 <tr>
+                                    <td>{elem.FirstNaMe}</td>
+                                    <td>{elem.ID}</td>
                                     <td>{elem.Date}</td>
                                     <td>{elem.Start} - {elem.End}</td>
                                     <td>{elem.Location.charAt(0) + elem.Location.substr(1).toLowerCase()}</td>
-                                    <td>{elem.saved}</td>
                                 </tr>)
                             }
                             
