@@ -3,11 +3,17 @@ import moment from 'moment';
 import ScrollArea from 'react-scrollbar'
 import { data } from './data';
 import './Saved.css';
+import Icon from '@material-ui/core/Icon';
 
 export default class Saved extends Component {
     constructor(props) {
         super(props);
         this.state = {};
+    }
+
+    toggleSave = (event) => {
+        alert('Save button pressed')
+        // console.log(event.target)
     }
 
     render() {
@@ -46,6 +52,11 @@ export default class Saved extends Component {
                                     <td>{elem.Date}</td>
                                     <td>{elem.Start} - {elem.End}</td>
                                     <td>{elem.Location.charAt(0) + elem.Location.substr(1).toLowerCase()}</td>
+                                    <td>
+                                        <Icon style={{color:'purple'}} onClick={this.toggleSave}> 
+                                            bookmark_border
+                                        </Icon>
+                                    </td>
                                 </tr>)
                             }
                             
