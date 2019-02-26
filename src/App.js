@@ -23,6 +23,8 @@ import Search from '../src/pages/Search/Search'
 import View from '../src/pages/View/View'
 import Saved from '../src/pages/Saved/Saved'
 
+
+
 //Create an instance of browserHistory
 const browserHistory = createBrowserHistory();
 
@@ -54,8 +56,28 @@ export default class App extends Component {
     // You can pass handler functions as props to another components Those
     // components can call the handler functions which could, for example, update
     // the states in this component
+    componentDidMount() {
+        this.callAPI()
+            .then(res => this.setState({response: res.express}))
+            .catch(err => console.log(err))
+    }
+
+    callAPI = async () => {
+        const response = await fetch('/api/schedules');
+        console.log(response);
+        const body = await response.json();
+        console.log(body);
+
+
+        if (response.status !== 200) {
+            throw Error(body.message);
+            console.log(body);
+        }
+    };
 
     render() {
+        
+        console.log(this.state.reponse);
         var db = firebase.firestore();
 
         // This is where pre-render calculations happen These calculations can also be
@@ -84,7 +106,7 @@ export default class App extends Component {
                             <NotificationContainer/>
                             <Switch>
 
-                                <Route exact={true} path="/" db={db} component={Home}/>
+                                <Route exact={true} path="/" db={db} callAPI={this.callAPI} component={Home}/>
                                 <Route path="/find-time" component={Search}/>
                                 <Route path="/about" component={NotFound}/>
                                 <Route path="/saved" component={Saved}/>

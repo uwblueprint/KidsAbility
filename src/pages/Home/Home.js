@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Router, Route, Switch, Redirect} from 'react-router';
 import './Home.css';
+const axios = require('axios');
 
 const user = {
     firstName: 'Rebecca',
@@ -41,13 +42,26 @@ export default class Home extends Component {
     savedTimes = () => {
         this.setState({redirect: true, redirectTo: "saved"});
     }
+    
 
     // componentWillMount() {} componentDidMount() {} componentWillReceiveProps() {}
     // componentDidUpdate() {} componentWillUnmount() {} componentWillUpdate() {}
     // shouldComponentUpdate() {} getSnapshotBeforeUpdate() {} Previously known as
     // ComponentWillUpdate()
+    
+    componentDidMount(){
+        console.log("We are on the home page");
+        //This causes errors
+        {/*}
+        this.props.callAPI()
+            .then(res => this.setState({response: res.express}))
+            .catch(err => console.log(err))
+            */}
+    }
 
     render() {
+    
+            
         return (
             <div className="container">
                 <h2>Welcome
