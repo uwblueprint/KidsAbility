@@ -1196,5 +1196,110 @@ const LOCATIONS = {
     city: CITIES.Waterloo,
     status: STATUSES.Active,
   },
+  'SUNNYDAY': {
+    description: 'K-Sunny Day Care',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'SUNSHINEMO': {
+    description: 'K-Sunshine Montessori',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'TENDER': {
+    description: 'C-Tender Loving Day Care',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active,
+  },
+  'TENDERII': {
+    description: 'C-Tender Loving Day Care Too',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active,
+  },
+  'THECHILDPL': {
+    description: 'W-The Children\'s Place',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'THEEARLYLE': {
+    description: 'F-The Early Lean Centre-Harri',
+    city: CITIES.Fergus,
+    status: STATUSES.Active,
+  },
+  'THEOAKS': {
+    description: 'C-The Oaks Preschool',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active,
+  },
+  'THERIGHT': {
+    description: 'C-The Right Start Preschool',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active,
+  },
+  'TINYHOPG': {
+    description: 'G-Tiny Hoppers Daycare, Guelph',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'TINYTIM': {
+    description: 'C-Tiny Tim Day Care',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active,
+  },
+  'UNIOFGUELP': {
+    description: 'G-Univ of Guelph Child Care',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'UOFWECEC': {
+    description: 'W-University of Waterloo -ECEC',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'VISTORIADA': {
+    description: 'W-Victoria Learning Centre',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'W-CLIENT': {
+    description: 'W-Waterloo Client Home',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'WATCOOP': {
+    description: 'W-Waterloo Coop Preschool',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'WATEFS109': {
+    description: 'WATE FAMILY SUITE 109',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'WATEMP127': {
+    description: 'Wate MP-Room 127 Purple',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+   'WATEMP128': {
+    description: 'Wate MP-Room 128 Purple',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+   'WATEMP130': {
+    description: 'Wate MP-Room 130 Purple',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+   'WATEMP141': {
+    description: 'Wate MP-Room 141 Yellow',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+   'WATEMP142': {
+    description: 'Wate MP-Room 142 yellow',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
 };
 export default LOCATIONS;
