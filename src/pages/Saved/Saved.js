@@ -8,7 +8,14 @@ import Icon from '@material-ui/core/Icon';
 export default class Saved extends Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            notes: false
+        };
+    }
+
+    showNotes = (notes) => {
+        this.setState({notes: !notes})
+        console.log(`Toggle show notes to:`, notes)
     }
 
     toggleSave = (event) => {
@@ -52,6 +59,14 @@ export default class Saved extends Component {
                                     <td>{elem.Date}</td>
                                     <td>{elem.Start} - {elem.End}</td>
                                     <td>{elem.Location.charAt(0) + elem.Location.substr(1).toLowerCase()}</td>
+                                    <td>
+                                        <Icon>
+                                            event_note
+                                        </Icon>
+                                        <Icon onClick={this.showNotes}>
+                                            keyboard_arrow_down
+                                        </Icon>
+                                    </td>
                                     <td>
                                         <Icon style={{color:'purple'}} onClick={this.toggleSave}> 
                                             bookmark_border
