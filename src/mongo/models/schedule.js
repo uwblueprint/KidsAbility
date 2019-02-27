@@ -53,6 +53,5 @@ var scheduleSchema = new mongoose.Schema({
 
 	
 var Schedule = mongoose.model('Schedule', scheduleSchema);
-
 module.exports = Schedule;
 	
