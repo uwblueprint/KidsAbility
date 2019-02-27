@@ -113,7 +113,7 @@ export default class Search extends Component {
     return (
       <div class="row"> 
         <h1> Find Available Times </h1>
-        <div class="column">
+        <div className="column">
           Clinician Name/ID 
           <Select className="leftdropdown"
             isMulti
