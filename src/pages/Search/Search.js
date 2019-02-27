@@ -135,7 +135,7 @@ export default class Search extends Component {
             options={options3}
           />
         </div>
-        <div class="column">
+        <div className="column">
           Min. Time Required
           <Select className="rightdropdown"
             value={time}
