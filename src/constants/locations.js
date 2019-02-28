@@ -1281,23 +1281,423 @@ const LOCATIONS = {
     city: CITIES.Waterloo,
     status: STATUSES.Active,
   },
-   'WATEMP128': {
+  'WATEMP128': {
     description: 'Wate MP-Room 128 Purple',
     city: CITIES.Waterloo,
     status: STATUSES.Active,
   },
-   'WATEMP130': {
+  'WATEMP130': {
     description: 'Wate MP-Room 130 Purple',
     city: CITIES.Waterloo,
     status: STATUSES.Active,
   },
-   'WATEMP141': {
+  'WATEMP141': {
     description: 'Wate MP-Room 141 Yellow',
     city: CITIES.Waterloo,
     status: STATUSES.Active,
   },
-   'WATEMP142': {
+  'WATEMP142': {
     description: 'Wate MP-Room 142 yellow',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'WATEMP34': {
+    description: 'Wate MP-Seating/Mobility 34',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'WATEMP35': {
+    description: 'Wate MP-Seating/Mobility 34',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'WATEMP49': {
+    description: 'Wate MP-Room 49',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'WATEMP50': {
+    description: 'Wate MP-Teen Services 50',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'WATEMP51': {
+    description: 'Wate MP-Teen Services 51',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'WATEMP53': {
+    description: 'Wate MP-Room 53',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'WATEMPACT2': {
+    description: 'Wate MP-Activity Room 2',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'WATEMPACT3': {
+    description: 'Wate MP-Activity Room 3',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'WATEMPACLIN': {
+    description: 'Wate MP-Clinic Room',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'WATEMPECE': {
+    description: 'Wate MP-ECE 60',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'WATEMPFAMI': {
+    description: 'Wate MP-Family Lounge',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'WATEMPMOBI': {
+    description: 'Wate MP-Mobility Room',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'WATEMPOBSE': {
+    description: 'Wate MP-Observation Room',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'WATERLOO': {
+    description: 'Waterloo Site',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'WATESP10': {
+    description: 'Wate Speech-Room 10',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'WATESP11': {
+    description: 'Wate Speech-Room 11',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'WATESP12': {
+    description: 'Wate Speech-Room 12',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'WATESP13': {
+    description: 'Wate Speech-Room 13',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'WATESP131': {
+    description: 'Wate Speech-Room 131',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'WATESP14': {
+    description: 'Wate Speech-Room 14',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'WATESP1148': {
+    description: 'Wate Speech-Room 148',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'WATESP16': {
+    description: 'Wate Speech-Room 16',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'WATESP17': {
+    description: 'Wate Speech-Room 17',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'WATESP18': {
+    description: 'Wate Speech-Room 18',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'WATESP19': {
+    description: 'Wate Speech-Room 19',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'WATESP20': {
+    description: 'Wate Speech-Room 20',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'WATESP21': {
+    description: 'Wate Speech-Room 21',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'WATESPACTI': {
+    description: 'Wate Speech-Activity Room 1',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  }, 
+  'WATESPHANE': {
+    description: 'Wate Speech-Hanen',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'WATINFANT': {
+    description: 'W-Waterloo Infant Toddler Day',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'WEE-CAMB': {
+    description: 'C-Wee Watch - Cambridge',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active,
+  },
+  'WEE-NOTCH': {
+    description: 'K-Wee Watch - Notchwood Cresc.',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'WEE-WATKIT': {
+    description: 'K-Wee Watch - Wat/Central Kit',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'WELLESLEY': {
+    description: 'W-Wellesley & District Co-op',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'WELLINGTON': {
+    description: 'G-Wellington Early Learn Cent',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'WHISTLE': {
+    description: 'G-Whistle Stop Coop Preschool',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'WILLOWDALE': {
+    description: 'G-Willowdale Day Care',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'WILMOT': {
+    description: 'K-Wilmot Family Resource Ctre',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'WOOLWICH': {
+    description: 'W-Woolwich Community Hlth Ctre',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'WORKSIDE': {
+    description: 'G-Workside Day Care (Homewood)',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'YMCA-BRIGA': {
+    description: 'K-YMCA-Brigadoon Day Care',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'YMCA-CHAPL': {
+    description: 'C-YMCA-Chaplin Family Ch Care',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active,
+  },
+  'YMCA-CLEME': {
+    description: 'C-YMCA-Clemens Mill Day Care',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active,
+  },
+  'YMCA-EDNAS': {
+    description: 'W-YMCA-Edna Staebler',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'YMCA-ELGIN': {
+    description: 'C-YMCA-Elgin Street Child Care',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active,
+  },
+  'YMCA-GROH': {
+    description: 'K-YMCA-Groh Child Care',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'YMCA-HEAD': {
+    description: 'W-YMCA-Head to Toe Day Care',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'YMCA-JEAN': {
+    description: 'G-YMCA-Jean Little Y Day Care',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'YMCA-JUST': {
+    description: 'W-YMCA-Just For Kids Day Care',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'YMCA-BRIGA': {
+    description: 'K-YMCA-Brigadoon Day Care',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'YMCA-JWGER': {
+    description: 'K-YMCA-J.W. Gerth Child Care',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'YMCA-KENSI': {
+    description: 'G-YMCA-Kensington Day Care',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'YMCA-LITTL': {
+    description: 'K-YMCA-Little Pause Day Care',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'YMCA-MOFFA': {
+    description: 'C-YMCA-MOFFAT CREEK',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active,
+  },
+  'YMCA-MOTHE': {
+    description: 'C-YMCA-Mother Teresa',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active,
+  },
+  'YMCA-SHEPH': {
+    description: 'W-YMCA-Shepherd\'s Flock Chl Ca',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'YMCA-STEPP': {
+    description: 'C-YMCA-Stepping Stone Day Care',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active,
+  },
+  'YMCA-STMIC': {
+    description: 'G-YMCA-St. Michael\'s',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'YMCA-VINCENT': {
+    description: 'C-YMCA-Vincent de Paul Childcare',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active,
+  },
+  'YMCA-WILL': {
+    description: 'K-YMCA-Williamsburg',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'YMCA-WINST': {
+    description: 'W-YMCA-Winston Park Day Care',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'YMCA-WOODL': {
+    description: 'G-YMCA-Woodland Glen Child Car',
+    city: CITIES.Guelph,
+    status: STATUSES.Active,
+  },
+  'YMCA-WST': {
+    description: 'K-YMCA-Westmount Child Care',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'YMCA-WSTII': {
+    description: 'K-YMCA-Westmount II',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'YMCA-WTTOW': {
+    description: 'K-YMCA-W.T. Townsend Daycare',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'YWCA-BRIDG': {
+    description: 'W-YWCA-Bridge Street',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'YWCA-CHIGH': {
+    description: 'C-YWCA-Cambridge-Highland',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active,
+  },
+  'YWCA-CHILL': {
+    description: 'C-YWCA-Cambridge-Hillcrest',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active,
+  },
+  'YWCA-CITYK': {
+    description: 'W-YWCA-City Kids Day Care',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'YWCA-DOWNT': {
+    description: 'W-YWCA-Downtown Day Care',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'YWCA-EMPIR': {
+    description: 'W-YWCA-Empire After School',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'YWCA-JEANS': {
+    description: 'K-YWCA-Jean Steckle Daycare',
+    city: CITIES.Kitchener,
+    status: STATUSES.Active,
+  },
+  'YWCA-KWCC': {
+    description: 'C-YWCA-KW Childcare Centre',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active,
+  },
+  'YWCA-LAURE': {
+    description: 'W-YWCA-Laurel School Age',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'YWCA-LINC': {
+    description: 'W-YWCA-LINC Preschool',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'YWCA-RYERS': {
+    description: 'C-YWCA-Ryerson',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active,
+  },
+  'YWCA-SOUTH': {
+    description: 'W-YWCA-Southridge',
+    city: CITIES.Waterloo,
+    status: STATUSES.Active,
+  },
+  'YWCA-STELI': {
+    description: 'C-YWCA-St. Elizabeth Day Care',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active,
+  },
+  'YWCA-STMAR': {
+    description: 'C-YWCA-St. Margaret Day Care',
+    city: CITIES.Cambridge,
+    status: STATUSES.Active,
+  },
+  'YWCA-STPAU': {
+    description: 'W-YWCA-St. Paul',
     city: CITIES.Waterloo,
     status: STATUSES.Active,
   },
