@@ -1,3 +1,9 @@
+.view {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
 .box {
   height: 500px
 }
