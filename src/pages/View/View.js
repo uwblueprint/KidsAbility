@@ -32,35 +32,36 @@ export default class View extends Component {
         myEventsList.push(event1);
 
         return (
-            <div className="container">
-                <h2>Available Times</h2>
-                <button
-                    onClick={this.toggleView}
-                    data={this.props.data}
-                    disabled={this.state.view === 'chart'}
-                    value="chart">
-                    Chart View
-                </button>
-                <button
-                    onClick={this.toggleView}
-                    data={this.props.data}
-                    disabled={this.state.view === 'calendar'}
-                    value="calendar">
-                    Calendar View
-                </button>
-                {
-                    this.state.view === 'chart'
-                        ? <ChartView/>
-                        : <CalendarView/>
-                }
-                {/* <div className="box">
-                    <BigCalendar
-                        localizer={localizer}
-                        events={myEventsList}
-                        startAccessor="start"
-                        endAccessor="end"/>
-                </div> */}
-
+            <div className="view">
+                <div>
+                    <h2>Available Times</h2>
+                    <button
+                        onClick={this.toggleView}
+                        data={this.props.data}
+                        disabled={this.state.view === 'chart'}
+                        value="chart">
+                        Chart View
+                    </button>
+                    <button
+                        onClick={this.toggleView}
+                        data={this.props.data}
+                        disabled={this.state.view === 'calendar'}
+                        value="calendar">
+                        Calendar View
+                    </button>
+                    {
+                        this.state.view === 'chart'
+                            ? <ChartView/>
+                            : <CalendarView/>
+                    }
+                    {/* <div className="box">
+                        <BigCalendar
+                            localizer={localizer}
+                            events={myEventsList}
+                            startAccessor="start"
+                            endAccessor="end"/>
+                    </div> */}
+                </div>
             </div>
         );
     }
