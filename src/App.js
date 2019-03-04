@@ -27,7 +27,6 @@ import Saved from '../src/pages/Saved/Saved'
 
 //Create an instance of browserHistory
 const browserHistory = createBrowserHistory();
-
 const fire = settings.firebase;
 console.log(fire);
 
@@ -39,12 +38,12 @@ export default class App extends Component {
         super(props);
 
         firebase.initializeApp({
-            apiKey: fire.apikey,
+            apiKey: "AIzaSyArvjqKlClk35Xsr-TsUXVtpX-ZysOGqVk",
             authDomain: "kidsability-871ac.firebaseapp.com",
-            databaseURL: "https://kidsability-871ac",
+            databaseURL: "https://kidsability-871ac.firebaseio.com",
             projectId: "kidsability-871ac",
             storageBucket: "kidsability-871ac.appspot.com",
-            messagingSenderId: fire.messagingSenderId
+            messagingSenderId: "754093479554"
         });
 
         // This is where we declare the states for THIS component. The states can be
@@ -59,10 +58,11 @@ export default class App extends Component {
     componentDidMount() {
         this.callAPI()
             .then(res => this.setState({response: res.express}))
-            .catch(err => console.log(err))
+            .catch(err => console.log("Error: " + err))
     }
 
-    callAPI = async () => {
+    callAPI = async (param1, param2) => {
+        console.log(param1 + param2);
         const response = await fetch('/api/schedules');
         console.log(response);
         const body = await response.json();
@@ -73,11 +73,20 @@ export default class App extends Component {
             throw Error(body.message);
             console.log(body);
         }
+        
+        return body;
     };
 
     render() {
         
-        console.log(this.state.reponse);
+        const SearchPage = (props) => {
+            return (
+                <Search
+                    callAPI={this.callAPI}
+                />
+            )
+        }
+        
         var db = firebase.firestore();
 
         // This is where pre-render calculations happen These calculations can also be
@@ -106,11 +115,12 @@ export default class App extends Component {
                             <NotificationContainer/>
                             <Switch>
 
-                                <Route exact={true} path="/" db={db} callAPI={this.callAPI} component={Home}/>
-                                <Route path="/find-time" component={Search}/>
+                                <Route exact={true} path="/" component={Home}/>
+                                <Route path="/find-time" render={SearchPage}/>
                                 <Route path="/about" component={NotFound}/>
                                 <Route path="/saved" component={Saved}/>
                                 <Route path="/view-search" component={View}/>
+                                <Route path="latest" components={{Search: Search}} />
                                 <Route component={NotFound}/>
 
                             </Switch>

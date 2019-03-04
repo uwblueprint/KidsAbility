@@ -100,8 +100,14 @@ export default class Search extends Component {
     alert('Search criteria was submitted')
     // make request to backend/db based on form input (get the input from this.state)
   }
-  
+
   render() {
+     
+     this.props.callAPI("One", " Two")
+                    .then(res => console.log(res))
+                    .catch(err => console.log(err))
+    //console.log(this.state.reponse);
+    
     const { 
       name,
       service,
@@ -111,7 +117,7 @@ export default class Search extends Component {
       timeOfDay
     } = this.state;
     return (
-      <div class="row"> 
+      <div className="row"> 
         <h1> Find Available Times </h1>
         <div className="column">
           Clinician Name/ID 
@@ -121,7 +127,7 @@ export default class Search extends Component {
             onChange={this.handleChange1}
             options={options1}
           />
-          Service type
+          Service
           <Select className="leftdropdown"
             isMulti
             value={service}
