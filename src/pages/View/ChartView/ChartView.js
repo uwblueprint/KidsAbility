@@ -24,9 +24,8 @@ export default class ChartView extends Component {
 
     render() {
         let groupedData = {};
-        data.sort(this.compareFunction).map(elem => {
+        data.sort(this.compareFunction).forEach(elem => {
             let key = (moment().diff(elem.Date, 'weeks') - 20) * -1;
-            console.log(key);
             if (groupedData[key]) {
                 groupedData[key].push(elem);
             } else {
@@ -35,9 +34,7 @@ export default class ChartView extends Component {
             }
         });
 
-        console.log(groupedData);
-
-        return (              
+        return (
             <table>
                 <thead>
                     <tr>
