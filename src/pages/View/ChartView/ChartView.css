@@ -1,6 +1,7 @@
 th, td {
   padding: 5px 20px;
   min-width: 200px;
+  text-align: left;
 }
 
 thead tr{
@@ -31,7 +32,6 @@ tbody::-webkit-scrollbar-track {
 tbody::-webkit-scrollbar-thumb {
   background-color: purple;
 }
-
 
 .save-button:hover {
   cursor: pointer;
