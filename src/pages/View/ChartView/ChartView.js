@@ -49,7 +49,7 @@ export default class ChartView extends Component {
                     Object.keys(groupedData).map((key) => (
                         <tr>
                             <tr>
-                                <td className="section-header">{`In ${key} weeks`}</td>
+                                <td className="section-header">{key == 0 ? 'This week' : `In ${key} week${key == 1 ? '' : 's'}`}</td>
                             </tr>
                             {
                                 groupedData[key].map((elem, index) =>
