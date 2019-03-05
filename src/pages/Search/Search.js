@@ -96,17 +96,18 @@ export default class Search extends Component {
     console.log(`Option selected:`, timeOfDay)
   }
 
-  handleSubmit = (e) => {
-    alert('Search criteria was submitted')
+  handleSubmit = () => {
+    //alert('Search criteria was submitted')
+    this.props.callAPI("RHONDA","MACKINNON").then(res => console.log(res)).catch(err => console.log(err))
     // make request to backend/db based on form input (get the input from this.state)
   }
 
   render() {
      
-     this.props.callAPI("One", " Two")
-                    .then(res => console.log(res))
-                    .catch(err => console.log(err))
+     //this.props.callAPI("One", " Two").then(res => console.log(res)).catch(err => console.log(err))
     //console.log(this.state.reponse);
+    
+    this.handleSubmit();
     
     const { 
       name,
@@ -161,7 +162,7 @@ export default class Search extends Component {
             options={options6}
           />
           <form ref="form" onSubmit={this.handleSubmit}>
-            <button className="button" type="submit">Search</button>
+            <button className="button">Search</button>
           </form>
         </div>
       </div>

@@ -1,6 +1,6 @@
 {
   "name": "kidsability",
-  "proxy": "http://99.254.209.232:443",
+  "proxy": "http://localhost:5005",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

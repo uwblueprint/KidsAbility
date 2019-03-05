@@ -61,11 +61,19 @@ export default class App extends Component {
             .catch(err => console.log("Error: " + err))
     }
 
-    callAPI = async (param1, param2) => {
-        console.log(param1 + param2);
-        const response = await fetch('/api/schedules');
+    callAPI = async (firstName, lastName) => {
+        console.log(firstName + lastName);
+        let response;
+        let body;
+        if (firstName && lastName){
+            response = await fetch('/api/schedules/'+firstName+"/"+lastName);
+            body = await response.json();
+        }
+        else {
+            response = await fetch('/api/schedules');
+            body = await response.json();
+        }
         console.log(response);
-        const body = await response.json();
         console.log(body);
 
 
@@ -102,7 +110,7 @@ export default class App extends Component {
 
                         We are calling the component "Router" below -
                         which is imported from an npm package. We are passing the
-                        router a prop called "history". The router has an opening
+                        router a prop c)alled "history". The router has an opening
                         and closing tag.
 
                         The "<Header/>" component ends in a "/>"
