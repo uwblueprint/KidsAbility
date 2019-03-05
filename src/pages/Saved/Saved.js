@@ -4,18 +4,22 @@ import ScrollArea from 'react-scrollbar'
 import { data } from './data';
 import './Saved.css';
 import Icon from '@material-ui/core/Icon';
+import Modal from 'react-responsive-modal';
 
 export default class Saved extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            notes: false
+            open: false
         };
     }
 
-    showNotes = (notes) => {
-        this.setState({notes: !notes})
-        console.log(`Toggle show notes to:`, notes)
+    openNotes = () => {
+        this.setState({open: true})
+    }
+
+    closeNotes = () => {
+        this.setState({open: false})
     }
 
     toggleSave = (event) => {
@@ -24,7 +28,7 @@ export default class Saved extends Component {
     }
 
     render() {
-
+        const { open } = this.state;
         console.log(data);
 
         return (
@@ -63,9 +67,17 @@ export default class Saved extends Component {
                                         <Icon>
                                             event_note
                                         </Icon>
-                                        <Icon onClick={this.showNotes}>
+                                        <Icon onClick={this.openNotes}>
                                             keyboard_arrow_down
                                         </Icon>
+                                        <Modal open = {open} onClose={this.closeNotes} center>
+                                            <h2>Simple centered modal</h2>
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+                                                pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
+                                                hendrerit risus, sed porttitor quam.
+                                            </p>
+                                        </Modal>
                                     </td>
                                     <td>
                                         <Icon style={{color:'purple'}} onClick={this.toggleSave}> 
