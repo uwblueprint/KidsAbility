@@ -1,0 +1,15 @@
+.box {
+  height: 60vh;
+  width: 70vw;
+  overflow: auto;
+}
+
+.rbc-calendar {
+  min-height: 500px;
+  min-width: 700px;
+}
+
+.rbc-calendar button {
+  max-width: 70px;
+  font-size: 14px;
+}
