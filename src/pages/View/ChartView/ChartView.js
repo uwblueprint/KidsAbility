@@ -90,8 +90,6 @@ export default class ChartView extends Component {
             }
         });
 
-        processedData.pop();
-
         processedData.forEach(elem => {
             let key = (moment().diff(elem.Date, 'weeks')) * -1;
             if (groupedData[key]) {
@@ -113,29 +111,27 @@ export default class ChartView extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                    {
-                        Object.keys(groupedData).map((key) => (
+                    { Object.keys(groupedData).map((key) => (
+                        <tr>
                             <tr>
-                                <tr>
-                                    <td className="section-header">{key == 0 ? 'This week' : `In ${key} week${key == 1 ? '' : 's'}`}</td>
-                                </tr>
-                                {
-                                    groupedData[key].map((elem, index) =>
-                                        <tr key={index}>
-                                            <td>{moment(elem.Date).format('MMM D')}</td>
-                                            <td>{moment(elem.Start, 'h:mm').format('h:mm a')} - {moment(elem.End, 'h:mm').format('h:mm a')}</td>
-                                            <td>{elem.Location.charAt(0) + elem.Location.substr(1).toLowerCase()}</td>
-                                            <td>
-                                                <Icon className="save-button" style={{color: "purple"}} onClick={this.onClickSave}>
-                                                    bookmark_border
-                                                </Icon>
-                                            </td>
-                                        </tr>
-                                    )
-                                }
+                                <td className="section-header">{key == 0 ? 'This week' : `In ${key} week${key == 1 ? '' : 's'}`}</td>
                             </tr>
-                        ))
-                    }
+                            {
+                                groupedData[key].map((elem, index) =>
+                                    <tr key={index}>
+                                        <td>{moment(elem.Date).format('MMM D')}</td>
+                                        <td>{moment(elem.Start, 'h:mm').format('h:mm a')} - {moment(elem.End, 'h:mm').format('h:mm a')}</td>
+                                        <td>{elem.Location.charAt(0) + elem.Location.substr(1).toLowerCase()}</td>
+                                        <td>
+                                            <Icon className="save-button" style={{color: "purple"}} onClick={this.onClickSave}>
+                                                bookmark_border
+                                            </Icon>
+                                        </td>
+                                    </tr>
+                                )
+                            }
+                        </tr>
+                    )) }
                 </tbody>
             </table>
 
