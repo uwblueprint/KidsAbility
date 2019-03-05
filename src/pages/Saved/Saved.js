@@ -4,6 +4,9 @@ import ScrollArea from 'react-scrollbar'
 import { data } from './data';
 import './Saved.css';
 import Icon from '@material-ui/core/Icon';
+import TextField from '@material-ui/core/TextField';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 
 export default class Saved extends Component {
     constructor(props) {
@@ -77,6 +80,22 @@ export default class Saved extends Component {
                         </table>
                     </div>
                 </ScrollArea>
+                {/* <TextField style={{color:'white'}}
+                    id="filled"
+                    defaultValue="Reminder: Please do not include a client's name, birthdate, and/or any personal identifiers in your notes."
+                    variant="filled"
+                    // fullWidth="true"
+                    rows="3"
+                /> */}
+                <Paper className="reminder" elevation={10}>
+                    <Typography variant="h5" component="h3">
+                        <p>
+                        <b>Reminder:</b> Please do not include a
+                        client's name, birthdate, and/or any 
+                        personal identifiers in your notes.
+                        </p>
+                    </Typography>
+                </Paper>
             </div>
         )
     }
