@@ -30,7 +30,7 @@ export default class Saved extends Component {
         console.log(data);
 
         return (
-            <div>
+            <div class="content">
                 <h1>Saved Times</h1>
                 <ScrollArea
                     speed={0.8}
