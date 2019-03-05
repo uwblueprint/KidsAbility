@@ -19,8 +19,7 @@ export default class Saved extends Component {
     }
 
     toggleSave = (event) => {
-        alert('Save button pressed')
-        // console.log(event.target)
+        event.target.innerHTML = (event.target.innerHTML === "bookmark") ? "bookmark_border" : "bookmark"
     }
 
     render() {
@@ -69,7 +68,7 @@ export default class Saved extends Component {
                                     </td>
                                     <td>
                                         <Icon style={{color:'purple'}} onClick={this.toggleSave}> 
-                                            bookmark_border
+                                            bookmark
                                         </Icon>
                                     </td>
                                 </tr>)
