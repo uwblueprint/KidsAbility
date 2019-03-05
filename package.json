@@ -8,6 +8,7 @@
     "axios": "^0.18.0",
     "express": "^4.16.4",
     "express-pino-logger": "^4.0.0",
+    "body-parser": "^1.18.3",
     "firebase": "^5.8.2",
     "firebase-tools": "^6.4.0",
     "fullcalendar": "^3.10.0",
@@ -19,6 +20,7 @@
     "nodemon": "^1.18.10",
     "npm-run-all": "^4.1.5",
     "pino-colada": "^1.4.4",
+    "mongodb": "^3.1.13",
     "react": "^16.7.0",
     "react-big-calendar": "^0.20.3",
     "react-bootstrap": "^0.32.4",
@@ -35,8 +37,11 @@
     "server": "node src/mongo/index.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "server": "node server --exec nodemon",
+    "dev": "run-p server start"
   },
+  "proxy": "http://localhost:5000",
   "eslintConfig": {
     "extends": "react-app"
   },
