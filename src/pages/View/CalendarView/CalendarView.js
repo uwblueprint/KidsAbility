@@ -15,6 +15,16 @@ export default class CalendarView extends Component {
     }
 
     render() {
+        let myEventsList = [];
+        let event1 = {
+            title: "Testing",
+            start: new Date(),
+            end: new Date(),
+            "allDay?": true,
+            "resource?": "Hello"
+        }
+        myEventsList.push(event1);
+        
         return (
             <div>
                 <ScrollArea>
