@@ -5,6 +5,8 @@ import { data } from './data';
 import './Saved.css';
 import Icon from '@material-ui/core/Icon';
 import Modal from 'react-responsive-modal';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 
 export default class Saved extends Component {
     constructor(props) {
@@ -23,8 +25,7 @@ export default class Saved extends Component {
     }
 
     toggleSave = (event) => {
-        alert('Save button pressed')
-        // console.log(event.target)
+        event.target.innerHTML = (event.target.innerHTML === "bookmark") ? "bookmark_border" : "bookmark"
     }
 
     render() {
@@ -81,7 +82,7 @@ export default class Saved extends Component {
                                     </td>
                                     <td>
                                         <Icon style={{color:'purple'}} onClick={this.toggleSave}> 
-                                            bookmark_border
+                                            bookmark
                                         </Icon>
                                     </td>
                                 </tr>)
@@ -90,6 +91,22 @@ export default class Saved extends Component {
                         </table>
                     </div>
                 </ScrollArea>
+                {/* <TextField style={{color:'white'}}
+                    id="filled"
+                    defaultValue="Reminder: Please do not include a client's name, birthdate, and/or any personal identifiers in your notes."
+                    variant="filled"
+                    // fullWidth="true"
+                    rows="3"
+                /> */}
+                <Paper className="reminder" elevation={10}>
+                    <Typography variant="h5" component="h3">
+                        <p>
+                        <b>Reminder:</b> Please do not include a
+                        client's name, birthdate, and/or any 
+                        personal identifiers in your notes.
+                        </p>
+                    </Typography>
+                </Paper>
             </div>
         )
     }
