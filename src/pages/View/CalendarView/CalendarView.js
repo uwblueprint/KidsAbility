@@ -5,6 +5,8 @@ import BigCalendar from 'react-big-calendar'
 import events from './events'
 import dates from './dates'
 import ScrollArea from 'react-scrollbar'
+import 'react-big-calendar/lib/css/react-big-calendar.css';
+import './CalendarView.css';
 
 const localizer = BigCalendar.momentLocalizer(moment)
 
