@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Select from 'react-select';
 import './Search.css';
+import LOCATIONS from '../../constants/locations';
 
 const options1 = [
   {value: 'bob', label: 'Bob'},
@@ -65,7 +66,16 @@ export default class Search extends Component {
       timeOfDay: null
     };
   }
-
+  componentWillMount = () => {
+      let loc = [];
+      for (const [key, value] of Object.entries(LOCATIONS)) {
+          console.log(key, value);
+          loc.push({value: key, label: value.description});
+      }   
+      console.log(loc);
+      this.setState({loca: loc});
+  }
+  
   handleChange1 = (name) => {
     this.setState({name: name})
     console.log(`Option selected:`, name)
@@ -104,7 +114,10 @@ export default class Search extends Component {
 
   render() {
      
-     //this.props.callAPI("One", " Two").then(res => console.log(res)).catch(err => console.log(err))
+     
+     console.log(this.state.loca);
+     console.log(options5);
+;     //this.props.callAPI("One", " Two").then(res => console.log(res)).catch(err => console.log(err))
     //console.log(this.state.reponse);
     
     this.handleSubmit();
@@ -123,6 +136,7 @@ export default class Search extends Component {
         <div className="column">
           Clinician Name/ID 
           <Select className="leftdropdown"
+            name="Clincian"
             isMulti
             value={name}
             onChange={this.handleChange1}
@@ -133,13 +147,13 @@ export default class Search extends Component {
             isMulti
             value={service}
             onChange={this.handleChange2}
-            options={options2}
+            options={this.state.loca}
           />
           Location
           <Select className="leftdropdown"
             value={location}
             onChange={this.handleChange3}
-            options={options3}
+            options={this.state.loca}
           />
         </div>
         <div className="column">
