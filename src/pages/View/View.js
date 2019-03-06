@@ -1,9 +1,12 @@
 import React, {Component} from 'react';
 import ChartView from './ChartView/ChartView';
 import CalendarView from './CalendarView/CalendarView';
-import moment from 'moment';
-import BigCalendar from 'react-big-calendar';
+import ScrollArea from 'react-scrollbar'
 import './View.css';
+import moment from 'moment';
+import BigCalendar from 'react-big-calendar'
+import events from './events'
+import dates from './dates'
 
 const localizer = BigCalendar.momentLocalizer(moment)
 

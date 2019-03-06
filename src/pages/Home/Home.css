@@ -1,4 +1,4 @@
-button {
+.button-find{
     background-color: darkorchid;
     border: none;
     color: white;
@@ -9,9 +9,20 @@ button {
     font-size: 16px;
     margin: 20px 10px;
     cursor: pointer;
-    width: 7cm
+    width: 7cm;
+    
 }
 
-.special {
-    background-color: lightsalmon;
+.button-save {
+  border: none;
+  color: white;
+  padding: 15px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 20px 10px;
+  cursor: pointer;
+  width: 7cm;
+  background-color: lightsalmon;
 }
