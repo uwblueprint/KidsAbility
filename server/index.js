@@ -16,10 +16,6 @@ app.get('/', function(req, res){
 // prefix route for the routes
 app.use('/api/schedules', scheduleRoutes);
 
-app.listen(5000, function(){
-	console.log("App on port " + 5000);
-<<<<<<< HEAD
-});
-=======
-});
->>>>>>> master
+app.listen(5000, () =>
+	console.log("App on port " + 5000)
+);

@@ -17,8 +17,4 @@ mongoose.connect("mongodb+srv://greg:kidsability@kidsability-vswng.mongodb.net/C
 mongoose.Promise = Promise;
 
 // require the schema
-<<<<<<< HEAD
 module.exports.Schedule = require("./schedule");
-=======
-module.exports.Schedule = require("./schedule");
->>>>>>> master
