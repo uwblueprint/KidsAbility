@@ -17,9 +17,8 @@ import Home from '../src/pages/Home/Home'
 import NotFound from '../src/pages/NotFound/NotFound'
 import Footer from '../src/components/Footer/Footer'
 import Header from '../src/components/Header/Header'
-
 import * as settings from '../src/constants/settings.json';
-import Search from '../src/pages/Search/Search'
+import Search from '../src/pages/Search/Search.js'
 import View from '../src/pages/View/View'
 import Saved from '../src/pages/Saved/Saved'
 

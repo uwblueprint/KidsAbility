@@ -1,4 +1,8 @@
-{/* I tried to change it to a % value - but it doesn't seem to be referencing the current size of the window */}
+.view {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
 
 .box {
   height: 1000px;
