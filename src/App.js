@@ -76,10 +76,20 @@ export default class App extends Component {
         console.log(response);
         console.log(body);
 
-
+        
         if (response.status !== 200) {
             throw Error(body.message);
             console.log(body);
+        }
+        
+        const res = await fetch('/api/schedules/allClinicians');
+        console.log(res);
+        const b = await res.json();
+        console.log(b);
+        
+        if (res.status !== 200) {
+            throw Error(b.message);
+            console.log(b);
         }
         
         return body;

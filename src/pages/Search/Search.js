@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Select from 'react-select';
 import './Search.css';
 import LOCATIONS from '../../constants/locations';
+import PROGRAMS from '../../constants/programs'
 
 const options1 = [
   {value: 'bob', label: 'Bob'},
@@ -49,7 +50,8 @@ const options5 = [
 ]
 
 {/* does this need to be radio buttons? */}
-const options6 = [
+const TimeofDay = [
+  {value: 'anytime', label: 'AnyTime'},
   {value: 'morning', label: 'Morning'},
   {value: 'afternoon', label: 'Afternoon'}
 ]
@@ -61,19 +63,27 @@ export default class Search extends Component {
       name: null,
       service: null,
       location: null,
-      time: null,
-      sessions: null,
-      timeOfDay: null
+      time: options4[0],
+      sessions: options5[0],
+      timeOfDay: TimeofDay[0]
     };
   }
   componentWillMount = () => {
-      let loc = [];
+      
+      let locations = [];
       for (const [key, value] of Object.entries(LOCATIONS)) {
-          console.log(key, value);
-          loc.push({value: key, label: value.description});
+          locations.push({value: key, label: value.description});
       }   
-      console.log(loc);
-      this.setState({loca: loc});
+      this.setState({locations: locations});
+      
+      console.log(PROGRAMS);
+      let programs = [];
+      for (const [key, value] of Object.entries(PROGRAMS)) {
+          console.log(key,value);
+          programs.push({value: key, label: value.description})
+      }
+      
+      this.setState({programs: programs});
   }
   
   handleChange1 = (name) => {
@@ -108,15 +118,13 @@ export default class Search extends Component {
 
   handleSubmit = () => {
     //alert('Search criteria was submitted')
-    this.props.callAPI("RHONDA","MACKINNON").then(res => console.log(res)).catch(err => console.log(err))
+    this.props.callAPI("RHONDA","MACKINNON").then(res => console.log(res)).catch(err => console.log(err));
     // make request to backend/db based on form input (get the input from this.state)
   }
 
   render() {
      
-     
-     console.log(this.state.loca);
-     console.log(options5);
+     console.log(this.state.programs);
 ;     //this.props.callAPI("One", " Two").then(res => console.log(res)).catch(err => console.log(err))
     //console.log(this.state.reponse);
     
@@ -142,18 +150,18 @@ export default class Search extends Component {
             onChange={this.handleChange1}
             options={options1}
           />
-          Service
+          Service/Program
           <Select className="leftdropdown"
             isMulti
             value={service}
             onChange={this.handleChange2}
-            options={this.state.loca}
+            options={this.state.programs}
           />
           Location
           <Select className="leftdropdown"
             value={location}
             onChange={this.handleChange3}
-            options={this.state.loca}
+            options={this.state.locations}
           />
         </div>
         <div className="column">
@@ -173,7 +181,7 @@ export default class Search extends Component {
           <Select className="rightdropdown"
             value={timeOfDay}
             onChange={this.handleChange6}
-            options={options6}
+            options={TimeofDay}
           />
           <form ref="form" onSubmit={this.handleSubmit}>
             <button className="button">Search</button>
