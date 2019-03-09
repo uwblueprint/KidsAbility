@@ -9,7 +9,7 @@ const db = require('../models/server.js');
 
 // route for returning all entries
 router.get('/all', function(req, res){
-	db.Schedule.find({FirstNaMe: "HILLARY"})
+	db.Schedule.find()
 
 	.then(function(schedules){
 		res.json(schedules);
