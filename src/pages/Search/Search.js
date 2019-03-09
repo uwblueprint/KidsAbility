@@ -56,6 +56,8 @@ const TimeofDay = [
   {value: 'afternoon', label: 'Afternoon'}
 ]
 
+let clin = [];
+
 export default class Search extends Component {
   constructor(props) {
     super(props);
@@ -70,20 +72,47 @@ export default class Search extends Component {
   }
   componentWillMount = () => {
       
+      //load in the locations
       let locations = [];
       for (const [key, value] of Object.entries(LOCATIONS)) {
           locations.push({value: key, label: value.description});
       }   
       this.setState({locations: locations});
       
-      console.log(PROGRAMS);
+      //load in the programs
       let programs = [];
       for (const [key, value] of Object.entries(PROGRAMS)) {
-          console.log(key,value);
           programs.push({value: key, label: value.description})
       }
-      
       this.setState({programs: programs});
+      
+      //load in clinicians
+      let clinicians = [];
+      var result;
+      this.props.getCliniciansAPI().then((res) => {  
+          this.setState({result: res});
+      }.bind(this));
+      //this.props.getScheduleAPI("RHONDA","MACKINNON").then(res => console.log(res)).catch(err => console.log(err));
+      console.log(result);
+      console.log(this.state.result);
+      console.log(clin);
+      //console.log(this.getAll());
+  }
+  
+  componentDidMount () {
+      this.props.getCliniciansAPI().then(function(res) {
+          this.setState({result: res});
+      });
+      console.log(this.state.result);
+  }
+  
+  async getAll() {
+      let result = await this.props.getCliniciansAPI().then(res => {
+          console.log(res.json());
+          return res;
+      });
+      console.log(result);
+      return result;
   }
   
   handleChange1 = (name) => {
@@ -118,7 +147,7 @@ export default class Search extends Component {
 
   handleSubmit = () => {
     //alert('Search criteria was submitted')
-    this.props.callAPI("RHONDA","MACKINNON").then(res => console.log(res)).catch(err => console.log(err));
+    this.props.getScheduleAPI("RHONDA","MACKINNON").then(res => console.log(res)).catch(err => console.log(err));
     // make request to backend/db based on form input (get the input from this.state)
   }
 

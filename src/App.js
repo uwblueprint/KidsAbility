@@ -56,42 +56,25 @@ export default class App extends Component {
     // components can call the handler functions which could, for example, update
     // the states in this component
     componentDidMount() {
-        this.callAPI()
-            .then(res => this.setState({response: res.express}))
-            .catch(err => console.log("Error: " + err))
+        //this.callAPI()
+            //.then(res => this.setState({response: res.express}))
+        //    .catch(err => console.log("Error: " + err))
     }
-
-    callAPI = async (firstName, lastName) => {
-        console.log(firstName + lastName);
-        let response;
-        let body;
-        if (firstName && lastName){
-            response = await fetch('/api/schedules/'+firstName+"/"+lastName);
-            body = await response.json();
-        }
-        else {
-            response = await fetch('/api/schedules');
-            body = await response.json();
-        }
-        console.log(response);
-        console.log(body);
-
-        
+    
+    getScheduleAPI = async (firstName, lastName) => {
+        const response = await fetch('/api/schedules/'+firstName+"/"+lastName);
+        const body = await response.json();
         if (response.status !== 200) {
             throw Error(body.message);
-            console.log(body);
         }
-        
-        const res = await fetch('/api/schedules/allClinicians');
-        console.log(res);
-        const b = await res.json();
-        console.log(b);
-        
-        if (res.status !== 200) {
-            throw Error(b.message);
-            console.log(b);
+        return body;
+    };
+    getCliniciansAPI = async () => {
+        const response = await fetch('/api/schedules/allClinicians');
+        const body = await response.json();
+        if (response.status !== 200) {
+            throw Error(body.message);
         }
-        
         return body;
     };
 
@@ -100,10 +83,13 @@ export default class App extends Component {
         const SearchPage = (props) => {
             return (
                 <Search
-                    callAPI={this.callAPI}
+                    getScheduleAPI={this.getScheduleAPI}
+                    getCliniciansAPI={this.getCliniciansAPI}
                 />
             )
         }
+        
+        console.log(this.getCliniciansAPI());
         
         var db = firebase.firestore();
 

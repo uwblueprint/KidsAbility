@@ -8,8 +8,8 @@ const router = express.Router();
 const db = require('../models/server.js');
 
 // route for returning all entries
-router.get('/', function(req, res){
-	db.Schedule.find()
+router.get('/all', function(req, res){
+	db.Schedule.find({FirstNaMe: "HILLARY"})
 
 	.then(function(schedules){
 		res.json(schedules);
@@ -50,7 +50,10 @@ router.get('/:firstName/:lastName', function(req, res){
 });
 
 router.get('/allClinicians', function(req, res){
-	db.Schedule.distinct({"firstNaMe"});
+	
+	db.Schedule.aggregate([
+		{ $group: { _id: {First: "$FirstNaMe", Last: "$LastName"}}}
+	])
 	
 	.then(function(found){
 		console.log(res);
