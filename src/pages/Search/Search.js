@@ -67,7 +67,7 @@ export default class Search extends Component {
       location: null,
       time: options4[0],
       sessions: options5[0],
-      timeOfDay: TimeofDay[0]
+      timeOfDay: TimeofDay[0],
     };
   }
   componentWillMount = () => {
@@ -87,32 +87,21 @@ export default class Search extends Component {
       this.setState({programs: programs});
       
       //load in clinicians
-      let clinicians = [];
-      var result;
-      this.props.getCliniciansAPI().then((res) => {  
-          this.setState({result: res});
-      }.bind(this));
+      this.props.getCliniciansAPI().then((res) => {
+           let clinicians = [];
+           res.forEach((name) => {
+               let value = name._id.First + " " + name._id.Last;
+               let option = {
+                   value: value,
+                   label: value,
+                   First: name._id.First,
+                   Last: name._id.Last,
+               }
+               clinicians.push(option);
+           });
+          this.setState({clinicians: clinicians});
+      });
       //this.props.getScheduleAPI("RHONDA","MACKINNON").then(res => console.log(res)).catch(err => console.log(err));
-      console.log(result);
-      console.log(this.state.result);
-      console.log(clin);
-      //console.log(this.getAll());
-  }
-  
-  componentDidMount () {
-      this.props.getCliniciansAPI().then(function(res) {
-          this.setState({result: res});
-      });
-      console.log(this.state.result);
-  }
-  
-  async getAll() {
-      let result = await this.props.getCliniciansAPI().then(res => {
-          console.log(res.json());
-          return res;
-      });
-      console.log(result);
-      return result;
   }
   
   handleChange1 = (name) => {
@@ -147,17 +136,22 @@ export default class Search extends Component {
 
   handleSubmit = () => {
     //alert('Search criteria was submitted')
-    this.props.getScheduleAPI("RHONDA","MACKINNON").then(res => console.log(res)).catch(err => console.log(err));
+    if (this.state.name){
+        this.state.name.forEach(name => {
+            this.props.getScheduleAPI(name.First, name.Last).then(res => console.log(res)).catch(err => console.log(err));
+        });
+    }
+    else {
+        console.log("Please select at least one name");
+    }
     // make request to backend/db based on form input (get the input from this.state)
   }
 
   render() {
-     
-     console.log(this.state.programs);
 ;     //this.props.callAPI("One", " Two").then(res => console.log(res)).catch(err => console.log(err))
     //console.log(this.state.reponse);
     
-    this.handleSubmit();
+    console.log(this.state.clinicians);
     
     const { 
       name,
@@ -177,7 +171,7 @@ export default class Search extends Component {
             isMulti
             value={name}
             onChange={this.handleChange1}
-            options={options1}
+            options={this.state.clinicians}
           />
           Service/Program
           <Select className="leftdropdown"
@@ -212,9 +206,16 @@ export default class Search extends Component {
             onChange={this.handleChange6}
             options={TimeofDay}
           />
+          <button 
+              className="button" 
+              onClick={this.handleSubmit}>
+              Search
+          </button>
+          {/*}
           <form ref="form" onSubmit={this.handleSubmit}>
             <button className="button">Search</button>
           </form>
+          */}
         </div>
       </div>
     );
