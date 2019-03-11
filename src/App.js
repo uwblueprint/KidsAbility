@@ -97,7 +97,8 @@ export default class App extends Component {
         const ViewSearch = (props) => {
             return (
                 <View
-                    latestSearch={this.state.lastestSearch}        
+                    latestSearch={this.state.lastestSearch}
+                    getScheduleAPI={this.getScheduleAPI}        
                 />
             )
         }
