@@ -49,20 +49,4 @@ router.get('/:firstName/:lastName', function(req, res){
 	})
 });
 
-router.get('/allClinicians', function(req, res){
-	
-	db.Schedule.aggregate([
-		{ $group: { _id: {First: "$FirstNaMe", Last: "$LastName"}}}
-	])
-	
-	.then(function(found){
-		console.log(res);
-		res.json(found);
-	})
-	.catch(function(err){
-		res.send(err);
-	})
-});
-
-
 module.exports = router

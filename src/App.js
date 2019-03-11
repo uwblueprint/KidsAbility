@@ -70,7 +70,7 @@ export default class App extends Component {
         return body;
     };
     getCliniciansAPI = async () => {
-        const response = await fetch('/api/schedules/allClinicians');
+        const response = await fetch('/api/clinicians');
         const body = await response.json();
         if (response.status !== 200) {
             throw Error(body.message);
