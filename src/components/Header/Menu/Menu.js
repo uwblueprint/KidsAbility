@@ -13,20 +13,23 @@ export default class Menu extends Component {
             <nav className="navbar navbar-default">
                 <div className="container-fluid">
                     <div className="navbar-header">
-                        <a className="navbar-brand" href="/">KidsAbility</a>
+                        <a className="navbar-brand" href="/">RocketCare</a>
                     </div>
                     <ul className="nav navbar-nav">
-                        <li>
-                            <a href="/">Home</a>
-                        </li>
-                        <li>
+                        <li className="find-time">
                             <a href="/find-time">Find Available Time</a>
                         </li>
                         <li>
                             <a href="/saved">View Saved Times</a>
                         </li>
+                        <li className="divider">
+                            <hr/>
+                        </li>
+                        <li className="logout">
+                            <a href="/log-out">Log Out</a>
+                        </li>
                         <li>
-                            <a href="about">About</a>
+                            <a href="/help">Help</a>
                         </li>
                     </ul>
                 </div>
