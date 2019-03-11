@@ -537,3 +537,5 @@ const PROGRAMS = {
     status: STATUSES.Active,
  },
 }
+
+export default PROGRAMS;

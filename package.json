@@ -1,5 +1,6 @@
 {
   "name": "kidsability",
+  "proxy": "http://localhost:5000",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -7,34 +8,37 @@
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
+    "express-pino-logger": "^4.0.0",
     "firebase": "^5.8.2",
+    "firebase-tools": "^6.4.0",
     "fullcalendar": "^3.10.0",
     "history": "^4.7.2",
     "jquery": "^3.3.1",
     "moment": "^2.24.0",
     "mongodb": "^3.1.13",
-    "mongoose": "^5.4.17",
-    "npm-run-all": "^4.1.5",
+    "mongoose": "^5.4.18",
+    "node-env-run": "^3.0.2",
+    "nodemon": "^1.18.10",
+    "pino-colada": "^1.4.4",
     "react": "^16.7.0",
     "react-big-calendar": "^0.20.3",
     "react-bootstrap": "^0.32.4",
     "react-dom": "^16.7.0",
     "react-notifications": "^1.4.3",
     "react-router": "^4.3.1",
-    "react-scripts": "^2.1.5",
+    "react-scripts": "^2.1.8",
     "react-scrollbar": "^0.5.4",
     "react-select": "^2.4.1",
     "redux": "^4.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
+    "server": "node server --exec nodemon",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server": "node server --exec nodemon",
     "dev": "run-p server start"
   },
-  "proxy": "http://localhost:5000",
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -43,5 +47,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
+  }
 }

@@ -17,14 +17,16 @@ import Home from '../src/pages/Home/Home'
 import NotFound from '../src/pages/NotFound/NotFound'
 import Footer from '../src/components/Footer/Footer'
 import Header from '../src/components/Header/Header'
+
 import * as settings from '../src/constants/settings.json';
-import Search from '../src/pages/Search/Search.js'
+import Search from '../src/pages/Search/Search'
 import View from '../src/pages/View/View'
 import Saved from '../src/pages/Saved/Saved'
 
+
+
 //Create an instance of browserHistory
 const browserHistory = createBrowserHistory();
-
 const fire = settings.firebase;
 console.log(fire);
 
@@ -36,12 +38,12 @@ export default class App extends Component {
         super(props);
 
         firebase.initializeApp({
-            apiKey: fire.apikey,
+            apiKey: "AIzaSyArvjqKlClk35Xsr-TsUXVtpX-ZysOGqVk",
             authDomain: "kidsability-871ac.firebaseapp.com",
-            databaseURL: "https://kidsability-871ac",
+            databaseURL: "https://kidsability-871ac.firebaseio.com",
             projectId: "kidsability-871ac",
             storageBucket: "kidsability-871ac.appspot.com",
-            messagingSenderId: fire.messagingSenderId
+            messagingSenderId: "754093479554"
         });
 
         // This is where we declare the states for THIS component. The states can be
@@ -53,8 +55,42 @@ export default class App extends Component {
     // You can pass handler functions as props to another components Those
     // components can call the handler functions which could, for example, update
     // the states in this component
+    componentDidMount() {
+        //this.callAPI()
+            //.then(res => this.setState({response: res.express}))
+        //    .catch(err => console.log("Error: " + err))
+    }
+    
+    getScheduleAPI = async (firstName, lastName) => {
+        const response = await fetch('/api/schedules/'+firstName+"/"+lastName);
+        const body = await response.json();
+        if (response.status !== 200) {
+            throw Error(body.message);
+        }
+        return body;
+    };
+    getCliniciansAPI = async () => {
+        const response = await fetch('/api/clinicians');
+        const body = await response.json();
+        if (response.status !== 200) {
+            throw Error(body.message);
+        }
+        return body;
+    };
 
     render() {
+        
+        const SearchPage = (props) => {
+            return (
+                <Search
+                    getScheduleAPI={this.getScheduleAPI}
+                    getCliniciansAPI={this.getCliniciansAPI}
+                />
+            )
+        }
+        
+        console.log(this.getCliniciansAPI());
+        
         var db = firebase.firestore();
 
         // This is where pre-render calculations happen These calculations can also be
@@ -70,7 +106,7 @@ export default class App extends Component {
 
                         We are calling the component "Router" below -
                         which is imported from an npm package. We are passing the
-                        router a prop called "history". The router has an opening
+                        router a prop c)alled "history". The router has an opening
                         and closing tag.
 
                         The "<Header/>" component ends in a "/>"
@@ -83,11 +119,12 @@ export default class App extends Component {
                             <NotificationContainer/>
                             <Switch>
 
-                                <Route exact={true} path="/" db={db} component={Home}/>
-                                <Route path="/find-time" component={Search}/>
+                                <Route exact={true} path="/" component={Home}/>
+                                <Route path="/find-time" render={SearchPage}/>
                                 <Route path="/about" component={NotFound}/>
                                 <Route path="/saved" component={Saved}/>
                                 <Route path="/view-search" component={View}/>
+                                <Route path="latest" components={{Search: Search}} />
                                 <Route component={NotFound}/>
 
                             </Switch>
