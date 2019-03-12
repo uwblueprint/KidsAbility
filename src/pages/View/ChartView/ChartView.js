@@ -33,8 +33,6 @@ export default class ChartView extends Component {
                             {
                                 this.props.data[key].map((elem, index) =>
                                     <tr key={index}>
-                                        {console.log(this.props.clinicians)}
-                                        {console.log(elem)}
                                         <td className="date-and-dot">
                                             {moment(elem.Date).format('MMM D')}
                                             <div className="dot" style={{ backgroundColor: this.props.clinicians[elem.id].color }}></div>

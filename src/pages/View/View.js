@@ -40,7 +40,6 @@ const processData = (data) => {
 
 // find available times from booked times returned from mongo
 const getAvailableTimes = (sortedData) => {
-    console.log(sortedData);
     const availableTimes = [];
     sortedData.forEach((elem, index) => {
         if (index === sortedData.length - 1) return;
