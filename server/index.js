@@ -4,6 +4,7 @@ const express = require('express'),
 	app = express();
 
 const scheduleRoutes = require('./routes/schedules');
+const clinicianRoutes = require('./routes/clinicians');
 
 // allows us to access request body in a post or put
 app.use(bodyParser.json());
@@ -15,6 +16,7 @@ app.get('/', function(req, res){
 
 // prefix route for the routes
 app.use('/api/schedules', scheduleRoutes);
+app.use('/api/clinicians', clinicianRoutes);
 
 app.listen(5000, () =>
 	console.log("App on port " + 5000)

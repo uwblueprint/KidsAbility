@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import ChartView from './ChartView/ChartView';
 import CalendarView from './CalendarView/CalendarView';
-import moment from 'moment';
-import BigCalendar from 'react-big-calendar';
+import ScrollArea from 'react-scrollbar'
 import './View.css';
+import moment from 'moment';
+import BigCalendar from 'react-big-calendar'
 
 const localizer = BigCalendar.momentLocalizer(moment)
 
@@ -25,6 +26,7 @@ export default class View extends Component {
                 <div>
                     <h2 className="heading2">Available Times</h2>
                     <button
+                        className="button-find"
                         onClick={this.toggleView}
                         data={this.props.data}
                         disabled={this.state.view === 'chart'}
@@ -32,6 +34,7 @@ export default class View extends Component {
                         Chart View
                     </button>
                     <button
+                        className="button-find"
                         onClick={this.toggleView}
                         data={this.props.data}
                         disabled={this.state.view === 'calendar'}
