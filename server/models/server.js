@@ -18,4 +18,4 @@ mongoose.Promise = Promise;
 
 // require the schema
 module.exports.Schedule = require("./schedule");
-module.exports.Save = require("./saved_time");
+module.exports.Saved = require("./saved_time");
