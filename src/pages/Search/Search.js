@@ -3,6 +3,7 @@ import Select from 'react-select';
 import './Search.css';
 import LOCATIONS from '../../constants/locations';
 import PROGRAMS from '../../constants/programs'
+import {Router, Route, Switch, Redirect, Link} from 'react-router';
 
 const options1 = [
   {value: 'bob', label: 'Bob'},
@@ -68,6 +69,7 @@ export default class Search extends Component {
       time: options4[0],
       sessions: options5[0],
       timeOfDay: TimeofDay[0],
+      redirect: false,
     };
   }
   componentWillMount = () => {
@@ -136,15 +138,37 @@ export default class Search extends Component {
 
   handleSubmit = () => {
     //alert('Search criteria was submitted')
-    if (this.state.name){
-        this.state.name.forEach(name => {
-            this.props.getScheduleAPI(name.First, name.Last).then(res => console.log(res)).catch(err => console.log(err));
-        });
+    
+    let names = this.state.name;
+    let services = this.state.service;
+    let location = this.state.location;
+    let time = this.state.time;
+    let numSessions = this.state.sessions
+    let timeOfDay = this.state.timeOfDay
+    
+    let info = {
+        names,
+        services,
+        location,
+        time,
+        numSessions,
+        timeOfDay,
+    }
+    
+    console.log(info);
+    
+    this.props.updateSearch(info);
+    
+    
+    //Do some basic error checking
+    if (!names || !services || location || time || numSessions || timeOfDay){
+        console.log("Please fill out all fields")
     }
     else {
-        console.log("Please select at least one name");
+        this.setState({info: info});
+        console.log(this.state.info);
+        //this.setState({redirect: true});
     }
-    // make request to backend/db based on form input (get the input from this.state)
   }
 
   render() {
@@ -161,6 +185,17 @@ export default class Search extends Component {
       sessions,
       timeOfDay
     } = this.state;
+    
+    
+    
+    let renderRedirect;
+    if (this.state.redirect){
+        return <Redirect to={{
+            pathname: "/view-search",
+            state: { stateName: this.state.info }
+        }}/>
+    }
+    
     return (
       <div className="row"> 
         <h1> Find Available Times </h1>

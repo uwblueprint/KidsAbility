@@ -77,6 +77,10 @@ export default class App extends Component {
         }
         return body;
     };
+    
+    updateSearch = (info) => {
+        this.setState({lastestSearch: info});
+    }
 
     render() {
         
@@ -85,6 +89,16 @@ export default class App extends Component {
                 <Search
                     getScheduleAPI={this.getScheduleAPI}
                     getCliniciansAPI={this.getCliniciansAPI}
+                    updateSearch={this.updateSearch}
+                />
+            )
+        }
+        
+        const ViewSearch = (props) => {
+            return (
+                <View
+                    latestSearch={this.state.lastestSearch}
+                    getScheduleAPI={this.getScheduleAPI}        
                 />
             )
         }
@@ -123,7 +137,7 @@ export default class App extends Component {
                                 <Route path="/find-time" render={SearchPage}/>
                                 <Route path="/about" component={NotFound}/>
                                 <Route path="/saved" component={Saved}/>
-                                <Route path="/view-search" component={View}/>
+                                <Route path="/view-search" render={ViewSearch}/>
                                 <Route path="latest" components={{Search: Search}} />
                                 <Route component={NotFound}/>
 
