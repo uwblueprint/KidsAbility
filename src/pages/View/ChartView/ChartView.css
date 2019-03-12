@@ -1,6 +1,7 @@
 th, td {
   padding: 5px 20px;
-  min-width: 200px;
+  min-width: 200px !important;
+  width: auto;
   text-align: left;
 }
 
@@ -19,6 +20,12 @@ tbody{
 .section-header {
   padding-top: 10px !important;
   color: purple;
+}
+
+.date-and-dot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 tbody::-webkit-scrollbar {
