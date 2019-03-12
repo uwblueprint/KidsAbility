@@ -29,9 +29,9 @@ router.post('/', function(req, res){
 	})
 });
 
-router.delete('/', function(req, res){
+router.delete('/:id', function(req, res){
 	//res.send(req.body.id);
-	db.Saved.deleteOne({"_id": ObjectId(req.params.id)})
+	db.Saved.deleteOne({_id: req.params.id})
 
 	.then(function(deleted){
 		res.status(202).json(deleted);
