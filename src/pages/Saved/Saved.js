@@ -65,10 +65,10 @@ export default class Saved extends Component {
                                     <td>{elem.Start} - {elem.End}</td>
                                     <td>{elem.Location.charAt(0) + elem.Location.substr(1).toLowerCase()}</td>
                                     <td>
-                                        <Icon>
+                                        <Icon style={{color:'#000051'}}>
                                             event_note
                                         </Icon>
-                                        <Icon onClick={this.openNotes}>
+                                        <Icon style={{color:'#000051'}} onClick={this.openNotes}>
                                             keyboard_arrow_down
                                         </Icon>
                                         <Modal open = {open} onClose={this.closeNotes} center>
@@ -81,7 +81,7 @@ export default class Saved extends Component {
                                         </Modal>
                                     </td>
                                     <td>
-                                        <Icon style={{color:'purple'}} onClick={this.toggleSave}> 
+                                        <Icon style={{color:'#E8BF31'}} onClick={this.toggleSave}> 
                                             bookmark
                                         </Icon>
                                     </td>
@@ -98,8 +98,8 @@ export default class Saved extends Component {
                     // fullWidth="true"
                     rows="3"
                 /> */}
-                <Paper className="reminder" elevation={10}>
-                    <Typography variant="h5" component="h3">
+                <Paper className="reminder">
+                    <Typography style={{color:'rgba(0,0,0,0.6)'}} variant="h5" component="h3">
                         <p>
                         <b>Reminder:</b> Please do not include a
                         client's name, birthdate, and/or any 

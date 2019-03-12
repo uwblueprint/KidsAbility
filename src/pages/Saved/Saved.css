@@ -5,7 +5,7 @@ th, td {
 
 .reminder{
   width: 7cm;
-  color: white;
+  background-color: white;
   margin: 20px 10px;
   position: relative;
   right: -800px;
