@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var scheduleSchema = new mongoose.Schema({
+var savedSchema = new mongoose.Schema({
 	Date: {
 		type: String
 	},
@@ -49,10 +49,10 @@ var scheduleSchema = new mongoose.Schema({
 	ServiceDescription: {
 		type: String
 	}
-}, { collection: 'BookedTimes' });
+}, { collection: 'SavedTimes' });
 
 	
-var Schedule = mongoose.model('Schedule', scheduleSchema);
+var Saved = mongoose.model('Saved', savedSchema);
 
-module.exports = Schedule;
+module.exports = Saved;
 	

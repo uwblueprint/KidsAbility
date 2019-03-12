@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 // for debugging the database
-mongoose.set('debug', false);
+//mongoose.set('debug', false);
 
 // connect to database server; if database doesn't exist, it will create it
 mongoose.connect("mongodb+srv://greg:kidsability@kidsability-vswng.mongodb.net/ClientData", { useNewUrlParser: true }, 
@@ -18,3 +18,4 @@ mongoose.Promise = Promise;
 
 // require the schema
 module.exports.Schedule = require("./schedule");
+module.exports.Save = require("./saved_time");
