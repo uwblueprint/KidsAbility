@@ -65,11 +65,12 @@ export default class Search extends Component {
     this.state = {
       name: null,
       service: null,
-      location: null,
+      location: null,   
       time: options4[0],
       sessions: options5[0],
       timeOfDay: TimeofDay[0],
       redirect: false,
+      searchId: null,
     };
   }
   componentWillMount = () => {
@@ -103,6 +104,7 @@ export default class Search extends Component {
            });
           this.setState({clinicians: clinicians});
       });
+      
       //this.props.getScheduleAPI("RHONDA","MACKINNON").then(res => console.log(res)).catch(err => console.log(err));
   }
   
@@ -155,25 +157,32 @@ export default class Search extends Component {
         timeOfDay,
     }
     
-    console.log(info);
-    
-    this.props.updateSearch(info);
-    
-    
     //Do some basic error checking
-    if (!names || !services || location || time || numSessions || timeOfDay){
+    if (!names || !services || !location || !time || !numSessions || !timeOfDay){
         console.log("Please fill out all fields")
     }
     else {
-        this.setState({info: info});
+        this.setState({info: info, redirect: true});
         console.log(this.state.info);
-        //this.setState({redirect: true});
     }
+  }
+  
+  
+  componentDidUpdate = () => {
+      console.log("Component Updating");
+      console.log(this.state.redirect);
+      if (this.state.info && this.state.redirect){
+          console.log("posting search");
+          this.props.postSearchAPI(this.state.info).then((res) => {
+              console.log(res);
+              console.log(res._id);
+              this.setState({searchId: res._id});
+              console.log(this.state.searchId);
+          });
+      }
   }
 
   render() {
-;     //this.props.callAPI("One", " Two").then(res => console.log(res)).catch(err => console.log(err))
-    //console.log(this.state.reponse);
     
     console.log(this.state.clinicians);
     
@@ -186,14 +195,13 @@ export default class Search extends Component {
       timeOfDay
     } = this.state;
     
-    
+    console.log(this.state.searchId);
     
     let renderRedirect;
-    if (this.state.redirect){
-        return <Redirect to={{
-            pathname: "/view-search",
-            state: { stateName: this.state.info }
-        }}/>
+    if (this.state.redirect && this.state.searchId){
+        
+        let path = "view-search/"+this.state.searchId;
+        return <Redirect to={path}/>
     }
     
     return (

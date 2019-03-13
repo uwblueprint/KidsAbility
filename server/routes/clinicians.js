@@ -13,11 +13,11 @@ router.get('/', function(req, res){
 	])
 	
 	.then(function(found){
-		console.log(res);
+		//console.log(res);
 		res.json(found);
 	})
 	.catch(function(err){
-		res.send(err);
+		//res.send(err);
 	})
 });
 

@@ -21,12 +21,12 @@ const compareFunction = (a, b) => {
 }
 
 // create an array of available times grouped by weeks
-const processData = (data) => {
+const processData = (data, current) => {
     const sortedData = data
         .flatMap(x => x)
         .sort(compareFunction);
     const availableTimes = getAvailableTimes(sortedData);
-    const groupedData = {};
+    const groupedData = {}
     availableTimes.forEach(elem => {
         let key = (moment().diff(elem.Date, 'weeks')) * -1;
         if (groupedData[key]) {
@@ -117,24 +117,74 @@ export default class View extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            view: 'chart'
+            view: 'chart',
+            data: [],
+            ready: false,
+            index: 0,
         };
         this.clinicians = {};
-        data.forEach((elem, index) => {
-            this.clinicians[elem[0].ID] = {
-                name: `${elem[0].FirstNaMe} ${elem[0].LastName}`,
-                color: colors[index],
-            }
+        
+        let searchId = this.props.hidden.match.params.searchId;
+        console.log(searchId);
+        this.props.getSearchAPI(searchId).then((res) => {
+            console.log(res);
+            var rawdata = []
+            res[0].names.forEach(name => {
+                console.log(name);
+                this.props.getScheduleAPI(name[0].First, name[0].Last).then((res) => {
+                    console.log(res);
+                    
+                    
+                    res.forEach((elem, index) => {
+                        console.log("We are adding a clinician");
+                        this.clinicians[elem.ID] = {
+                            name: `${elem.FirstName} ${elem.LastName}`,
+                            color: colors[this.state.index],
+                        }
+                        this.setState({index: this.state.index + 1});
+                    });
+                    
+                    
+                    let tt = [];
+                    tt.push(res);
+                    tt.push(this.state.data);
+                    console.log(tt);
+                    this.data = processData(tt);
+                    this.setState({data: res});
+                    
+               })
+            });
         });
-        this.data = processData(data);
+        
+        
+        console.log(JSON.stringify(this.state.data));
+        
     }
 
     toggleView = (e) => {
         this.setState({view: e.target.value});
     }
+    componentDidMount = () => {
+        console.log(this.state.data);
+    }
     
     componentWillMount = () => {
         
+        console.log(this.state.data);
+        
+
+        console.log(data);
+        console.log(this.state.data);
+        this.data = processData(this.state.data);
+    
+        
+        //this.state.info.name.forEach(name => {
+        //    this.props.getScheduleAPI(name.First, name.Last).then((res) => {
+        //        this.state.data.push(res);
+        //    })
+        //});
+        
+        {/*}
         let info = {
             name: [
                     {value: "AMY WETTLAUFER", label: "AMY WETTLAUFER", First: "AMY", Last: "WETTLAUFER"},
@@ -149,15 +199,21 @@ export default class View extends Component {
             time: {value: 30, label: "30 mins"},
             timeOfDay: {value: "anytime", label: "AnyTime"},
         }
+    
         
         info.name.forEach(name => {
             this.props.getScheduleAPI(name.First, name.Last).then(res => console.log(res)).catch(err => console.log(err));
         });
-        
+        */}
         
     }
 
     render() {
+        
+        console.log(this.state.data);
+        
+        
+        
         
         return (
             <div className="view">

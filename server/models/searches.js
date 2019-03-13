@@ -1,8 +1,8 @@
 var mongoose = require('mongoose');
 	
 	
-var savedSchema = new mongoose.Schema({	
-	names: {
+var searchSchema = new mongoose.Schema({	
+    names: {
 		type: [[name]]
 	},
 	services: { 
@@ -20,7 +20,7 @@ var savedSchema = new mongoose.Schema({
 	numSessions: {
 		type: {numSession}
 	}
-}, { collection: 'SavedTimes' });
+}, { collection: 'searches' });
 
 var name = new mongoose.Schema({
 	first: {
@@ -82,8 +82,7 @@ var timeOfDay = new mongoose.Schema({
 	}
 });
 
-	
-var Saved = mongoose.model('Saved', savedSchema);
 
-module.exports = Saved;
-	
+var Search = mongoose.model('Search', searchSchema);
+
+module.exports = Search;

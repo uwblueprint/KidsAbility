@@ -80,15 +80,10 @@ export default class App extends Component {
         return body;
     };
     
-    postSavedTimeAPI = async () => {
-        console.log("Running");
-        
-        let databody = {
-            "FirstName": "Test",
-            "LastName": "Greg"
-        }
+    postSearchAPI = async (databody) => {
+        console.log(databody);
 
-        fetch('/api/saved/post', {
+        const response = await fetch('/api/search/post', {
             method: 'POST', 
             body: JSON.stringify(databody),
             headers: {
@@ -96,22 +91,35 @@ export default class App extends Component {
                'Content-Type': 'application/json',
              },
         })
-    }
+        
+        const body = await response.json();
+        
+        if (response.status !== 201) {
+            console.log(response);
+            console.log("Error with posting saved-times");
+        }
+        
+        console.log(body);
+        return body;
+    };
     
-    updateSearch = (info) => {
-        this.setState({lastestSearch: info});
-    }
+    getSearchAPI = async (id) => {
+        const response = await fetch('/api/search/'+id);
+        const body = await response.json();
+        if (response.status !== 200) {
+            throw Error(body.message);
+        }
+        return body;
+    };
 
     render() {
-        
-        this.postSavedTimeAPI();
         
         const SearchPage = (props) => {
             return (
                 <Search
                     getScheduleAPI={this.getScheduleAPI}
                     getCliniciansAPI={this.getCliniciansAPI}
-                    updateSearch={this.updateSearch}
+                    postSearchAPI={this.postSearchAPI}
                 />
             )
         }
@@ -119,8 +127,9 @@ export default class App extends Component {
         const ViewSearch = (props) => {
             return (
                 <View
-                    latestSearch={this.state.lastestSearch}
-                    getScheduleAPI={this.getScheduleAPI}        
+                    hidden={props}
+                    getScheduleAPI={this.getScheduleAPI}
+                    getSearchAPI={this.getSearchAPI}        
                 />
             )
         }
@@ -157,8 +166,7 @@ export default class App extends Component {
                                 <Route path="/find-time" render={SearchPage}/>
                                 <Route path="/about" component={NotFound}/>
                                 <Route path="/saved" component={Saved}/>
-                                <Route path="/view-search" render={ViewSearch}/>
-                                <Route path="latest" components={{Search: Search}} />
+                                <Route path="/view-search/:searchId" render={ViewSearch}/>
                                 <Route component={NotFound}/>
 
                             </Switch>
