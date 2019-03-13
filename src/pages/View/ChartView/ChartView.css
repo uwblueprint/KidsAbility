@@ -1,8 +1,9 @@
 
 th, td {
-    padding: 5px 20px;
-    min-width: 200px;
-    text-align: left;
+  padding: 5px 20px;
+  min-width: 200px !important;
+  width: auto;
+  text-align: left;
 }
 
 
@@ -12,12 +13,23 @@ thead tr{
 }
 
 tbody{
-    display:block;
-    overflow:auto;
-    height:50vh;
-    width:100%;
-  } from 2:30-3:30
-  
+  display:block;
+  overflow:auto;
+  height:50vh;
+  width:100%;
+}
+
+.section-header {
+  padding-top: 10px !important;
+  color: purple;
+}
+
+.date-and-dot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 tbody::-webkit-scrollbar {
     width: 0.5em;
   }
