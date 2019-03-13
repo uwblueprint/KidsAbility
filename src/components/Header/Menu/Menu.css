@@ -17,18 +17,7 @@
   float: left;
 }
 .navbar-nav {
-  float: right;
+  float: left;
 }
-.find-time {
-  padding-right: 5em;
-}
-.divider > hr {
-  border: none;
-  border-left: 3em solid green;
-  height: 100%;
-  padding-left: 5%;
-  padding-right: 5%;
-}
-.logout {
-  padding-right: 5em;
-}
+
+
