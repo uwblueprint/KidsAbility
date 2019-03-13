@@ -2,8 +2,8 @@
 All .(css|less|sass) files should be imported into this file.
 This file is loaded into App.js the root component - making all css styling available to any component
 
-If you have styling for a page called Example -> 
-then insead of importing Example.css into Example.js -> 
+If you have styling for a page called Example ->
+then insead of importing Example.css into Example.js ->
 import Example.css here and it can be used in Example.js
 
 @import {filename}
@@ -20,7 +20,7 @@ import Example.css here and it can be used in Example.js
 }
 
 .App-header {
-  background-color: grey;
+  background-color: #828181;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -35,4 +35,3 @@ import Example.css here and it can be used in Example.js
 .App-link {
   color: #61dafb;
 }
-
