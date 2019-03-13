@@ -30,6 +30,8 @@ const browserHistory = createBrowserHistory();
 const fire = settings.firebase;
 console.log(fire);
 
+var bodyParser = require('body-parser');
+
 export default class App extends Component {
 
     // This is an empty contructor - please see the other classes for a used
@@ -78,11 +80,31 @@ export default class App extends Component {
         return body;
     };
     
+    postSavedTimeAPI = async () => {
+        console.log("Running");
+        
+        let databody = {
+            "FirstName": "Test",
+            "LastName": "Greg"
+        }
+
+        fetch('/api/saved/post', {
+            method: 'POST', 
+            body: JSON.stringify(databody),
+            headers: {
+               'Accept': 'application/json',
+               'Content-Type': 'application/json',
+             },
+        })
+    }
+    
     updateSearch = (info) => {
         this.setState({lastestSearch: info});
     }
 
     render() {
+        
+        this.postSavedTimeAPI();
         
         const SearchPage = (props) => {
             return (
@@ -102,8 +124,6 @@ export default class App extends Component {
                 />
             )
         }
-        
-        console.log(this.getCliniciansAPI());
         
         var db = firebase.firestore();
 

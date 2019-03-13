@@ -10,6 +10,7 @@ const savedRoutes = require('./routes/saved_times');
 // allows us to access request body in a post or put
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.json()); 
 
 app.get('/', function(req, res){
 	res.send("root");
