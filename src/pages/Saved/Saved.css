@@ -2,3 +2,18 @@ th, td {
   padding: 5px 10px;
   min-width: 150px;
 }
+
+ .reminder{
+  width: 7cm;
+  background-color: white;
+  margin: 20px 10px;
+  position: relative;
+  right: -800px;
+  padding: 5px;
+}
+
+ .content{
+  max-width: 1100px;
+  margin: auto;
+  padding: 10px;
+} 
