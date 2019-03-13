@@ -43,7 +43,7 @@ export default class Saved extends Component {
                     style={{ height: "300px" }}
                 >
                     <div >                
-                        <table>
+                        <table className="saved-times">
                             <thead>
                                 <tr>
                                     <th>Clinician Name</th>

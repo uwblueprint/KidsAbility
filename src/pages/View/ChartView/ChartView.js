@@ -101,6 +101,7 @@ export default class ChartView extends Component {
         });
 
         return (
+            <div className="table">
             <table>
                 <thead>
                     <tr>
@@ -134,6 +135,7 @@ export default class ChartView extends Component {
                     )) }
                 </tbody>
             </table>
+        </div>
 
         )
     }
