@@ -65,7 +65,7 @@ export default class Home extends Component {
         return (
             <div className="container">
                 <h2>Welcome
-                    <b>{formatName(user)}</b>
+                    <b>{" " + formatName(user)}</b>
                 </h2>
                 <button className="button-find" onClick={this.availTimes}>Find Available Time</button>
                 <br></br>

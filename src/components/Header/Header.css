@@ -3,7 +3,7 @@
 	top: 0;
 	text-align: left;
 	width: 100%;
-	background: orange;
+	background: rgb(255, 255, 255);
 	min-height: 2em;
 	max-height: 100px;
 }
