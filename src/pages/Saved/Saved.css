@@ -1,6 +1,11 @@
-th, td {
+th, td { 
   padding: 5px 10px;
-  min-width: 150px;
+  min-width: 150px; 
+}
+
+.saved-times thead tr{
+  display: table-row;
+  border-bottom: 1px solid white;
 }
 
 .reminder{

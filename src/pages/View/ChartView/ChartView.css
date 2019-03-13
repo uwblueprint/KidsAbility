@@ -1,0 +1,42 @@
+
+th, td {
+    padding: 5px 20px;
+    min-width: 200px;
+    text-align: left;
+}
+
+
+thead tr{
+    display: block;
+    border-bottom: 1px solid white;
+}
+
+tbody{
+    display:block;
+    overflow:auto;
+    height:50vh;
+    width:100%;
+  } from 2:30-3:30
+  
+tbody::-webkit-scrollbar {
+    width: 0.5em;
+  }
+
+tbody::-webkit-scrollbar-track {
+    background-color: rgba(0,0,0,0.2);
+}
+
+tbody::-webkit-scrollbar-thumb {
+    background-color: purple;
+}
+
+
+
+.section-header {
+  padding-top: 10px !important;
+  color: purple;
+}
+
+.save-button:hover {
+  cursor: pointer;
+}
