@@ -83,7 +83,7 @@ export default class App extends Component {
     postSearchAPI = async (databody) => {
         console.log(databody);
 
-        const response = await fetch('/api/search/post', {
+        const response = await fetch('/api/search/', {
             method: 'POST', 
             body: JSON.stringify(databody),
             headers: {
