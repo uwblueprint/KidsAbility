@@ -124,40 +124,46 @@ export default class View extends Component {
         };
         this.clinicians = {};
         
+        
+        //grab the id from the url
         let searchId = this.props.hidden.match.params.searchId;
         console.log(searchId);
+        
+        //Use the id to get the search params
         this.props.getSearchAPI(searchId).then((res) => {
             console.log(res);
-            var rawdata = []
-            res[0].names.forEach(name => {
+            
+            //For every name in the seach ->
+            //  - Add the clinician name to the list of clinicians (dict)
+            //  - Add the dates together
+            res[0].names.forEach((name, index) => {
                 console.log(name);
+                
+                this.clinicians[name[0].label] = {
+                    name: [name[0].label],
+                    color: colors[index],
+                }
+                
                 this.props.getScheduleAPI(name[0].First, name[0].Last).then((res) => {
                     console.log(res);
                     
                     
-                    res.forEach((elem, index) => {
-                        console.log("We are adding a clinician");
-                        this.clinicians[elem.ID] = {
-                            name: `${elem.FirstName} ${elem.LastName}`,
-                            color: colors[this.state.index],
-                        }
-                        this.setState({index: this.state.index + 1});
-                    });
-                    
-                    
-                    let tt = [];
-                    tt.push(res);
-                    tt.push(this.state.data);
-                    console.log(tt);
-                    this.data = processData(tt);
-                    this.setState({data: res});
+                    this.state.data.push(res);
+                    console.log(this.state.data);
+                    //This is garbage
+                    //let  tt = [];
+                    //tt.push(res);
+                    //tt.push(this.state.data);
+                    //console.log(tt);
+                    //this.setState({data: res});
                     
                })
             });
         });
         
-        
+        console.log(this.clinicians);
         console.log(JSON.stringify(this.state.data));
+        this.data = processData(this.state.data);
         
     }
 
