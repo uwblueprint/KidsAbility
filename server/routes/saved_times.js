@@ -17,7 +17,7 @@ router.get('/', function(req, res){
 	})
 });
 
-router.post('/post', function(req, res){
+router.post('/', function(req, res){
 	
 	console.log("We have called the post function with the following body: ");
 	//console.log(req.body);

@@ -112,6 +112,15 @@ export default class App extends Component {
         return body;
     };
 
+    getSavedAPI = async () => {
+        const response  = await fetch('/api/saved');
+        const body = await response.json();
+        if (response.status !== 200) {
+            throw Error(body.message);
+        }
+        return body;
+    }
+
     render() {
         
         const SearchPage = (props) => {
@@ -134,6 +143,14 @@ export default class App extends Component {
             )
         }
         
+        const Saved = (props) => {
+            return (
+                <Saved
+                    getSavedAPI = {this.getSavedAPI}
+                />
+            )
+        }
+
         var db = firebase.firestore();
 
         // This is where pre-render calculations happen These calculations can also be
