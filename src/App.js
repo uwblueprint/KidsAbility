@@ -143,7 +143,7 @@ export default class App extends Component {
             )
         }
         
-        const Saved = (props) => {
+        const SavedPage = (props) => {
             return (
                 <Saved
                     getSavedAPI = {this.getSavedAPI}
@@ -182,7 +182,7 @@ export default class App extends Component {
                                 <Route exact={true} path="/" component={Home}/>
                                 <Route path="/find-time" render={SearchPage}/>
                                 <Route path="/about" component={NotFound}/>
-                                <Route path="/saved" component={Saved}/>
+                                <Route path="/saved" component={SavedPage}/>
                                 <Route path="/view-search/:searchId" render={ViewSearch}/>
                                 <Route component={NotFound}/>
 
