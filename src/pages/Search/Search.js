@@ -208,7 +208,7 @@ export default class Search extends Component {
       <div className="row"> 
         <h1> Find Available Times </h1>
         <div className="column">
-          Clinician Name/ID 
+          Clinician Name(s) or ID(s) <font color="red">[Required]</font>
           <Select className="leftdropdown"
             name="Clincian"
             isMulti

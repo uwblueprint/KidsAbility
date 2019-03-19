@@ -1,12 +1,18 @@
-th, td { 
+#table-wrapper th { 
   padding: 5px 10px;
-  min-width: 150px; 
+  width: 200px !important; 
 }
 
-.saved-times thead tr{
+#table-wrapper td { 
+  padding: 5px 10px;
+  width: 200px !important; 
+}
+
+/* .saved-times thead tr{
   display: table-row;
   border-bottom: 1px solid white;
-}
+  width: 10%;
+} */
 
 .reminder{
   width: 7cm;
@@ -18,7 +24,15 @@ th, td {
 }
 
 .content{
-  max-width: 1100px;
+  max-width: 1300px;
   margin: auto;
-  padding: 10px;
+  padding: 5px;
+}
+
+#table-wrapper {
+  position:relative;
+}
+
+#table-wrapper table {
+  width:100%;
 }
