@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import moment from 'moment';
-import ScrollArea from 'react-scrollbar'
 import { data } from './data';
 import './Saved.css';
 import Icon from '@material-ui/core/Icon';
@@ -35,27 +34,20 @@ export default class Saved extends Component {
         return (
             <div class="content">
                 <h1>Saved Times</h1>
-                <ScrollArea
-                    speed={0.8}
-                    className="area"
-                    contentClassName="content"
-                    horizontal={false}
-                    style={{ height: "300px" }}
-                >
-                    <div >                
-                        <table className="saved-times">
-                            <thead>
-                                <tr>
-                                    <th>Clinician Name</th>
-                                    <th>Client ID</th>
-                                    <th>Date</th>
-                                    <th>Time</th>
-                                    <th>Location</th>
-                                    <th>Notes</th>
-                                    <th>Unsave</th>
-                                </tr>
-                            </thead>
-                        
+                <div id="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Clinician Name</th>
+                                <th>Client ID</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Location</th>
+                                <th>Notes</th>
+                                <th>Unsave</th>
+                            </tr>
+                        </thead>
+                        <tbody>
                             {
                                 data.map((elem) =>
                                 <tr>
@@ -87,17 +79,10 @@ export default class Saved extends Component {
                                     </td>
                                 </tr>)
                             }
-                            
-                        </table>
-                    </div>
-                </ScrollArea>
-                {/* <TextField style={{color:'white'}}
-                    id="filled"
-                    defaultValue="Reminder: Please do not include a client's name, birthdate, and/or any personal identifiers in your notes."
-                    variant="filled"
-                    // fullWidth="true"
-                    rows="3"
-                /> */}
+                        </tbody>
+                    </table>
+                </div>
+                
                 <Paper className="reminder">
                     <Typography style={{color:'rgba(0,0,0,0.6)'}} variant="h5" component="h3">
                         <p>

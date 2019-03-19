@@ -1,5 +1,11 @@
+.table td {
+  padding: 5px 20px;
+  min-width: 200px !important;
+  width: auto;
+  text-align: left;
+}
 
-th, td {
+.table th {
   padding: 5px 20px;
   min-width: 200px !important;
   width: auto;
