@@ -22,6 +22,7 @@ const compareFunction = (a, b) => {
 
 // create an array of available times grouped by weeks
 const processData = (data, current) => {
+    console.log(data);
     const sortedData = data
         .flatMap(x => x)
         .sort(compareFunction);
@@ -65,7 +66,7 @@ const getAvailableTimes = (sortedData) => {
         if ((index === 0 || sortedData[index - 1].Date !== elem.Date) && elem.Start !== DAY_START) {
             availableTimes.push({
                 id: elem.ID,
-                Name: `${elem.FirstNaMe} ${elem.LastName}`,
+                Name: `${elem.FirstName} ${elem.LastName}`,
                 Date: elem.Date,
                 Start: DAY_START,
                 End: elem.Start,
@@ -76,7 +77,7 @@ const getAvailableTimes = (sortedData) => {
         if (elem.Date === sortedData[index + 1].Date) {
             availableTimes.push({
                 id: elem.ID,
-                Name: `${elem.FirstNaMe} ${elem.LastName}`,
+                Name: `${elem.FirstName} ${elem.LastName}`,
                 Date: elem.Date,
                 Start: elem.End,
                 End: sortedData[index + 1].Start,
@@ -87,7 +88,7 @@ const getAvailableTimes = (sortedData) => {
         if (sortedData[index + 1].Date !== elem.Date && elem.end !== DAY_END) {
             availableTimes.push({
                 id: elem.ID,
-                Name: `${elem.FirstNaMe} ${elem.LastName}`,
+                Name: `${elem.FirstName} ${elem.LastName}`,
                 Date: elem.Date,
                 Start: elem.End,
                 End: DAY_END,
@@ -100,7 +101,7 @@ const getAvailableTimes = (sortedData) => {
             if (currentDay.day() != 0 && currentDay.day() != 6) {
                 availableTimes.push({
                     id: elem.ID,
-                    Name: `${elem.FirstNaMe} ${elem.LastName}`,
+                    Name: `${elem.FirstName} ${elem.LastName}`,
                     Date: currentDay.format('D-MMM-YY'),
                     Start: DAY_START,
                     End: DAY_END,
@@ -144,27 +145,26 @@ export default class View extends Component {
                     color: colors[index],
                 }
                 
-                this.props.getScheduleAPI(name[0].First, name[0].Last).then((res) => {
-                    console.log(res);
-                    
-                    
-                    this.state.data.push(res);
-                    console.log(this.state.data);
-                    //This is garbage
-                    //let  tt = [];
-                    //tt.push(res);
-                    //tt.push(this.state.data);
-                    //console.log(tt);
-                    //this.setState({data: res});
-                    
-               })
+                this.props.getScheduleAPI(name[0].First, name[0].Last)
+                    .then((res) => {
+                        console.log(res);
+                        
+                        
+                        this.state.data = this.state.data.concat(res);
+                        console.log(this.state.data);
+                        //This is garbage
+                        //let  tt = [];
+                        //tt.push(res);
+                        //tt.push(this.state.data);
+                        //console.log(tt);
+                        //this.setState({data: res});
+                        
+                    })
+                    .then(() => processData(this.state.data))
+                    .then((data) => { this.data = data })
+                    .then(() => this.setState({ ready: true }));
             });
-        });
-        
-        console.log(this.clinicians);
-        console.log(JSON.stringify(this.state.data));
-        this.data = processData(this.state.data);
-        
+        })        
     }
 
     toggleView = (e) => {
