@@ -8,6 +8,7 @@
   min-height: 2em;
   max-height: 100px;
   padding: 0px;
+  font-size: 2em;
   font-family: Open Sans;
   font-style: normal;
   text-align: center;
@@ -17,7 +18,18 @@
   float: left;
 }
 .navbar-nav {
-  float: left;
+  float: right;
 }
-
-
+.find-time {
+  padding-right: 5em;
+}
+.divider > hr {
+  border: none;
+  border-left: 3em solid green;
+  height: 100%;
+  padding-left: 5em;
+  padding-right: 5em;
+}
+.logout {
+  padding-right: 5em;
+}
