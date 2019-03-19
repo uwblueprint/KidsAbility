@@ -14,6 +14,8 @@ export default class ChartView extends Component {
     }
 
     render() {
+        console.log(this.props.data);
+        console.log(this.props.clinicians);
         return (
             <div className="table">
             <table>
@@ -36,7 +38,7 @@ export default class ChartView extends Component {
                                     <tr key={index}>
                                         <td className="date-and-dot">
                                             {moment(elem.Date).format('MMM D')}
-                                            <div className="dot" style={{ backgroundColor: this.props.clinicians[elem.id].color }}></div>
+                                            <div className="dot" style={{ backgroundColor: this.props.clinicians[elem.Name].color }}></div>
                                         </td>
                                         <td>{moment(elem.Start, 'h:mm').format('h:mm a')} - {moment(elem.End, 'h:mm').format('h:mm a')}</td>
                                         <td>{elem.Location.charAt(0) + elem.Location.substr(1).toLowerCase()}</td>
