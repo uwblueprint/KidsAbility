@@ -6,16 +6,18 @@ const db = require('../models/server.js');
 
 router.get('/', function(req, res){
 	
+	//get all unique clinicians
+	//treats entire object as a dictionary key
 	db.Schedule.aggregate([
-		{ $group: { _id: {First: "$FirstNaMe", Last: "$LastName"}}}
+		{ $group: { _id: {First: "$FirstName", Last: "$LastName"}}}
 	])
 	
 	.then(function(found){
-		console.log(res);
+		//console.log(res);
 		res.json(found);
 	})
 	.catch(function(err){
-		res.send(err);
+		//res.send(err);
 	})
 });
 

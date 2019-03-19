@@ -4,31 +4,36 @@ import ScrollArea from 'react-scrollbar'
 import { data } from './data';
 import './Saved.css';
 import Icon from '@material-ui/core/Icon';
+import Modal from 'react-responsive-modal';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 
 export default class Saved extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            notes: false
+            open: false
         };
     }
 
-    showNotes = (notes) => {
-        this.setState({notes: !notes})
-        console.log(`Toggle show notes to:`, notes)
+    openNotes = () => {
+        this.setState({open: true})
+    }
+
+    closeNotes = () => {
+        this.setState({open: false})
     }
 
     toggleSave = (event) => {
-        alert('Save button pressed')
-        // console.log(event.target)
+        event.target.innerHTML = (event.target.innerHTML === "bookmark") ? "bookmark_border" : "bookmark"
     }
 
     render() {
-
+        const { open } = this.state;
         console.log(data);
 
         return (
-            <div>
+            <div class="content">
                 <h1>Saved Times</h1>
                 <ScrollArea
                     speed={0.8}
@@ -38,7 +43,7 @@ export default class Saved extends Component {
                     style={{ height: "300px" }}
                 >
                     <div >                
-                        <table>
+                        <table className="saved-times">
                             <thead>
                                 <tr>
                                     <th>Clinician Name</th>
@@ -60,16 +65,24 @@ export default class Saved extends Component {
                                     <td>{elem.Start} - {elem.End}</td>
                                     <td>{elem.Location.charAt(0) + elem.Location.substr(1).toLowerCase()}</td>
                                     <td>
-                                        <Icon>
+                                        <Icon style={{color:'#000051'}}>
                                             event_note
                                         </Icon>
-                                        <Icon onClick={this.showNotes}>
+                                        <Icon style={{color:'#000051'}} onClick={this.openNotes}>
                                             keyboard_arrow_down
                                         </Icon>
+                                        <Modal open = {open} onClose={this.closeNotes} center>
+                                            <h2>Simple centered modal</h2>
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+                                                pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
+                                                hendrerit risus, sed porttitor quam.
+                                            </p>
+                                        </Modal>
                                     </td>
                                     <td>
-                                        <Icon style={{color:'purple'}} onClick={this.toggleSave}> 
-                                            bookmark_border
+                                        <Icon style={{color:'#E8BF31'}} onClick={this.toggleSave}> 
+                                            bookmark
                                         </Icon>
                                     </td>
                                 </tr>)
@@ -78,6 +91,22 @@ export default class Saved extends Component {
                         </table>
                     </div>
                 </ScrollArea>
+                {/* <TextField style={{color:'white'}}
+                    id="filled"
+                    defaultValue="Reminder: Please do not include a client's name, birthdate, and/or any personal identifiers in your notes."
+                    variant="filled"
+                    // fullWidth="true"
+                    rows="3"
+                /> */}
+                <Paper className="reminder">
+                    <Typography style={{color:'rgba(0,0,0,0.6)'}} variant="h5" component="h3">
+                        <p>
+                        <b>Reminder:</b> Please do not include a
+                        client's name, birthdate, and/or any 
+                        personal identifiers in your notes.
+                        </p>
+                    </Typography>
+                </Paper>
             </div>
         )
     }

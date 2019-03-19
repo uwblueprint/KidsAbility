@@ -30,6 +30,8 @@ const browserHistory = createBrowserHistory();
 const fire = settings.firebase;
 console.log(fire);
 
+var bodyParser = require('body-parser');
+
 export default class App extends Component {
 
     // This is an empty contructor - please see the other classes for a used
@@ -77,6 +79,47 @@ export default class App extends Component {
         }
         return body;
     };
+    
+    postSearchAPI = async (databody) => {
+        console.log(databody);
+
+        const response = await fetch('/api/search/post', {
+            method: 'POST', 
+            body: JSON.stringify(databody),
+            headers: {
+               'Accept': 'application/json',
+               'Content-Type': 'application/json',
+             },
+        })
+        
+        const body = await response.json();
+        
+        if (response.status !== 201) {
+            console.log(response);
+            console.log("Error with posting saved-times");
+        }
+        
+        console.log(body);
+        return body;
+    };
+    
+    getSearchAPI = async (id) => {
+        const response = await fetch('/api/search/'+id);
+        const body = await response.json();
+        if (response.status !== 200) {
+            throw Error(body.message);
+        }
+        return body;
+    };
+
+    getSavedAPI = async () => {
+        const response  = await fetch('/api/saved');
+        const body = await response.json();
+        if (response.status !== 200) {
+            throw Error(body.message);
+        }
+        return body;
+    }
 
     render() {
         
@@ -85,12 +128,29 @@ export default class App extends Component {
                 <Search
                     getScheduleAPI={this.getScheduleAPI}
                     getCliniciansAPI={this.getCliniciansAPI}
+                    postSearchAPI={this.postSearchAPI}
                 />
             )
         }
         
-        console.log(this.getCliniciansAPI());
+        const ViewSearch = (props) => {
+            return (
+                <View
+                    hidden={props}
+                    getScheduleAPI={this.getScheduleAPI}
+                    getSearchAPI={this.getSearchAPI}        
+                />
+            )
+        }
         
+        const Saved = (props) => {
+            return (
+                <Saved
+                    getSavedAPI = {this.getSavedAPI}
+                />
+            )
+        }
+
         var db = firebase.firestore();
 
         // This is where pre-render calculations happen These calculations can also be
@@ -123,8 +183,7 @@ export default class App extends Component {
                                 <Route path="/find-time" render={SearchPage}/>
                                 <Route path="/about" component={NotFound}/>
                                 <Route path="/saved" component={Saved}/>
-                                <Route path="/view-search" component={View}/>
-                                <Route path="latest" components={{Search: Search}} />
+                                <Route path="/view-search/:searchId" render={ViewSearch}/>
                                 <Route component={NotFound}/>
 
                             </Switch>

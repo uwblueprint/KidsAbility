@@ -42,13 +42,14 @@ export default class Footer extends Component {
     }
 
     render() {
+        let madeby = "Made by ";
         return (
             <header>
                 <div className="footer-container">
                     <div>
                         {"Total number of views: " + this.state.views}
                     </div>
-                    <div className="tagline">Made by
+                    <div className="tagline"> {madeby}
                         <a href="https://uwblueprint.org/">UW Blueprint</a>
                     </div>
                     <div className="tagline">Copyright????</div>

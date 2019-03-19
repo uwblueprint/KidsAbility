@@ -1,12 +1,15 @@
+
 th, td {
   padding: 5px 20px;
-  min-width: 200px;
+  min-width: 200px !important;
+  width: auto;
   text-align: left;
 }
 
+
 thead tr{
-  display:block;
-  border-bottom: 1px solid white;
+    display: block;
+    border-bottom: 1px solid white;
 }
 
 tbody{
@@ -21,16 +24,29 @@ tbody{
   color: purple;
 }
 
-tbody::-webkit-scrollbar {
-  width: 0.5em;
+.date-and-dot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
+tbody::-webkit-scrollbar {
+    width: 0.5em;
+  }
+
 tbody::-webkit-scrollbar-track {
-  background-color: rgba(0,0,0,0.2);
+    background-color: rgba(0,0,0,0.2);
 }
 
 tbody::-webkit-scrollbar-thumb {
-  background-color: purple;
+    background-color: purple;
+}
+
+
+
+.section-header {
+  padding-top: 10px !important;
+  color: purple;
 }
 
 .save-button:hover {

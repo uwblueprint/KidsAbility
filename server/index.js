@@ -5,10 +5,13 @@ const express = require('express'),
 
 const scheduleRoutes = require('./routes/schedules');
 const clinicianRoutes = require('./routes/clinicians');
+const savedRoutes = require('./routes/saved_times');
+const searchRoutes = require('./routes/searches');
 
 // allows us to access request body in a post or put
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.json()); 
 
 app.get('/', function(req, res){
 	res.send("root");
@@ -17,6 +20,8 @@ app.get('/', function(req, res){
 // prefix route for the routes
 app.use('/api/schedules', scheduleRoutes);
 app.use('/api/clinicians', clinicianRoutes);
+app.use('/api/saved', savedRoutes);
+app.use('/api/search', searchRoutes);
 
 app.listen(5000, () =>
 	console.log("App on port " + 5000)

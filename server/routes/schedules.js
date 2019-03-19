@@ -1,6 +1,3 @@
-// api routes all have prefix "api/schedules"
-// update, delete, and different search routes available as well
-
 const express = require('express');
 
 // allows routes to be sent out
@@ -23,7 +20,6 @@ router.get('/', function(req, res){
 // route for adding an entry to the database
 // devnote: use postman if you want to access this
 router.post('/', function(req, res){
-	console.log(req.body);
 	db.Schedule.create(req.body)
 
 	// status code 201 means created
@@ -39,7 +35,7 @@ router.post('/', function(req, res){
 // get by specified parameters
 // will probably refactor route to make less ugly
 router.get('/:firstName/:lastName', function(req, res){
-	db.Schedule.find({FirstNaMe: req.params.firstName, LastName: req.params.lastName})
+	db.Schedule.find({FirstName: req.params.firstName, LastName: req.params.lastName})
 
 	.then(function(foundSchedule){
 		res.json(foundSchedule);

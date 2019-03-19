@@ -3,6 +3,7 @@ import Select from 'react-select';
 import './Search.css';
 import LOCATIONS from '../../constants/locations';
 import PROGRAMS from '../../constants/programs'
+import {Router, Route, Switch, Redirect, Link} from 'react-router';
 
 const options1 = [
   {value: 'bob', label: 'Bob'},
@@ -64,10 +65,12 @@ export default class Search extends Component {
     this.state = {
       name: null,
       service: null,
-      location: null,
+      location: null,   
       time: options4[0],
       sessions: options5[0],
       timeOfDay: TimeofDay[0],
+      redirect: false,
+      searchId: null,
     };
   }
   componentWillMount = () => {
@@ -101,6 +104,7 @@ export default class Search extends Component {
            });
           this.setState({clinicians: clinicians});
       });
+      
       //this.props.getScheduleAPI("RHONDA","MACKINNON").then(res => console.log(res)).catch(err => console.log(err));
   }
   
@@ -136,20 +140,49 @@ export default class Search extends Component {
 
   handleSubmit = () => {
     //alert('Search criteria was submitted')
-    if (this.state.name){
-        this.state.name.forEach(name => {
-            this.props.getScheduleAPI(name.First, name.Last).then(res => console.log(res)).catch(err => console.log(err));
-        });
+    
+    let names = this.state.name;
+    let services = this.state.service;
+    let location = this.state.location;
+    let time = this.state.time;
+    let numSessions = this.state.sessions
+    let timeOfDay = this.state.timeOfDay
+    
+    let info = {
+        names,
+        services,
+        location,
+        time,
+        numSessions,
+        timeOfDay,
+    }
+    
+    //Do some basic error checking
+    if (!names || !services || !location || !time || !numSessions || !timeOfDay){
+        console.log("Please fill out all fields")
     }
     else {
-        console.log("Please select at least one name");
+        this.setState({info: info, redirect: true});
+        console.log(this.state.info);
     }
-    // make request to backend/db based on form input (get the input from this.state)
+  }
+  
+  
+  componentDidUpdate = () => {
+      console.log("Component Updating");
+      console.log(this.state.redirect);
+      if (this.state.info && this.state.redirect){
+          console.log("posting search");
+          this.props.postSearchAPI(this.state.info).then((res) => {
+              console.log(res);
+              console.log(res._id);
+              this.setState({searchId: res._id});
+              console.log(this.state.searchId);
+          });
+      }
   }
 
   render() {
-;     //this.props.callAPI("One", " Two").then(res => console.log(res)).catch(err => console.log(err))
-    //console.log(this.state.reponse);
     
     console.log(this.state.clinicians);
     
@@ -161,6 +194,16 @@ export default class Search extends Component {
       sessions,
       timeOfDay
     } = this.state;
+    
+    console.log(this.state.searchId);
+    
+    let renderRedirect;
+    if (this.state.redirect && this.state.searchId){
+        
+        let path = "view-search/"+this.state.searchId;
+        return <Redirect to={path}/>
+    }
+    
     return (
       <div className="row"> 
         <h1> Find Available Times </h1>

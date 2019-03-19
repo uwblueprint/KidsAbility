@@ -10,12 +10,12 @@ export default class Menu extends Component {
 
     render() {
         return (
-            <nav className="navbar navbar-default">
-                <div className="container-fluid">
+            <nav className="navbar navbar-default navbar-expand">
+                <div>
                     <div className="navbar-header">
                         <a className="navbar-brand" href="/">RocketCare</a>
                     </div>
-                    <ul className="nav navbar-nav">
+                    <ul className="nav navbar-nav navbar-expand">
                         <li className="find-time">
                             <a href="/find-time">Find Available Time</a>
                         </li>
