@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import moment from 'moment';
-import { data } from './data';
 import './Saved.css';
 import Icon from '@material-ui/core/Icon';
 import Modal from 'react-responsive-modal';
@@ -11,8 +10,32 @@ export default class Saved extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            open: false
+            open: false,
+            saved: []
         };
+    }
+
+    async loadData(){
+        let saved = await fetch("api/saved/")
+        .then(resp => {
+            if (!resp.ok){
+                if(resp.status >= 400 && resp.status < 500){
+                    return resp.json().then(data => {
+                        let err = {errMessage: data.message};
+                        throw err;
+                    })
+                } else{
+                    let err = {errMessage: "server not responding"};
+                    throw err;
+                }
+            }
+            return resp.json();
+        });
+        this.setState({saved});
+    }
+
+    componentWillMount(){
+        this.loadData();
     }
 
     openNotes = () => {
@@ -29,7 +52,7 @@ export default class Saved extends Component {
 
     render() {
         const { open } = this.state;
-        console.log(data);
+        const saved = this.state.saved;
 
         return (
             <div class="content">
@@ -49,13 +72,14 @@ export default class Saved extends Component {
                         </thead>
                         <tbody>
                             {
-                                data.map((elem) =>
+                                
+                                saved.map((elem) =>
                                 <tr>
-                                    <td>{elem.FirstNaMe}</td>
-                                    <td>{elem.ID}</td>
+                                    <td>{elem.Name}</td>
+                                    <td>{elem.id}</td>
                                     <td>{elem.Date}</td>
                                     <td>{elem.Start} - {elem.End}</td>
-                                    <td>{elem.Location.charAt(0) + elem.Location.substr(1).toLowerCase()}</td>
+                                    <td>{elem.Location}</td>
                                     <td>
                                         <Icon style={{color:'#000051'}}>
                                             event_note
