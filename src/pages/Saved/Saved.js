@@ -46,8 +46,27 @@ export default class Saved extends Component {
         this.setState({open: false})
     }
 
-    toggleSave = (event) => {
-        event.target.innerHTML = (event.target.innerHTML === "bookmark") ? "bookmark_border" : "bookmark"
+    onClickUnsave = (event, id) => {
+        fetch("/api/saved/"+id, {
+            method: 'delete'
+        })
+        .then(resp => {
+          if(!resp.ok) {
+            if(resp.status >=400 && resp.status < 500) {
+              return resp.json().then(data => {
+                let err = {errorMessage: data.message};
+                throw err;
+              })
+            } else {
+              let err = {errorMessage: 'Please try again later, server is not responding'};
+              throw err;
+            }
+          }
+          return resp.json();
+        });
+        event.target.innerHTML = (event.target.innerHTML === "bookmark") ? "bookmark_border" : "bookmark";
+        const saved = this.state.saved.filter(saved => saved._id !== id);
+        this.setState({saved: saved});
     }
 
     render() {
@@ -74,7 +93,7 @@ export default class Saved extends Component {
                             {
                                 
                                 saved.map((elem) =>
-                                <tr>
+                                <tr key={elem._id}>
                                     <td>{elem.Name}</td>
                                     <td>{elem.id}</td>
                                     <td>{elem.Date}</td>
@@ -97,7 +116,7 @@ export default class Saved extends Component {
                                         </Modal>
                                     </td>
                                     <td>
-                                        <Icon style={{color:'#E8BF31'}} onClick={this.toggleSave}> 
+                                        <Icon style={{color:'#E8BF31'}} onClick={(e) => this.onClickUnsave(e, elem._id)}> 
                                             bookmark
                                         </Icon>
                                     </td>

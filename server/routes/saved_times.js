@@ -24,8 +24,6 @@ router.post('/', function(req, res){
 	
 	// status code 201 means created
 	.then(function(saved){
-		console.log(req.body);
-		console.log(res.status);
 		res.status(201).json(saved);
 	})
 	.catch(function(err){
