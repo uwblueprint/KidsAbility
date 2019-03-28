@@ -3,7 +3,6 @@ import ChartView from './ChartView/ChartView';
 import CalendarView from './CalendarView/CalendarView';
 import moment from 'moment';
 import {Router, Route, Switch, Redirect, Link} from 'react-router';
-import { data } from './data.js';
 import './View.css';
 
 const DAY_START = '8:00';
@@ -15,28 +14,36 @@ const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
 const compareFunction = (a, b) => {
     if (moment(a.Date) < moment(b.Date)) return -1;
     if (moment(b.Date) < moment(a.Date)) return 1;
-    if (a.Start < b.Start) return -1;
-    if (b.Start < a.Start) return 1;
+    if (moment(a.Start) < moment(b.Start)) return -1;
+    if (moment(b.Start) < moment(a.Start)) return 1;
+    if (moment(a.End) < moment(b.End)) return -1;
+    if (moment(b.End) < moment(a.End)) return 1;
     return 0;
 }
 
 // create an array of available times grouped by weeks
-const processData = (data, current) => {
-    console.log(data);
+const processData = (data) => {
     const sortedData = data
         .flatMap(x => x)
         .sort(compareFunction);
-    const availableTimes = getAvailableTimes(sortedData);
+    return getAvailableTimes(sortedData);
+}
+
+const groupData = (data, searchParams) => {
     const groupedData = {}
-    availableTimes.forEach(elem => {
-        let key = (moment().diff(elem.Date, 'weeks')) * -1;
-        if (groupedData[key]) {
-            groupedData[key].push(elem);
-        } else {
-            groupedData[key] = [];
-            groupedData[key].push(elem);
-        }
-    });
+    data
+        .filter(elem =>
+            moment(elem.End, 'h:mm').diff(moment(elem.Start, 'h:mm'), 'minutes') > searchParams.time.value)
+        .sort(compareFunction)
+        .forEach(elem => {
+            let key = (moment().diff(elem.Date, 'weeks')) * -1;
+            if (groupedData[key]) {
+                groupedData[key].push(elem);
+            } else {
+                groupedData[key] = [];
+                groupedData[key].push(elem);
+            }
+        });
     return groupedData;
 }
 
@@ -96,8 +103,8 @@ const getAvailableTimes = (sortedData) => {
             })
         }
         // add full day time slots between today and next booked slot (excluding weekends)
-        let currentDay = moment(elem.Date);
-        while (moment(sortedData[index + 1].Date).diff(currentDay, 'days')) {
+        let currentDay = moment(elem.Date).add(1, 'days');
+        while (moment(sortedData[index + 1].Date).diff(currentDay, 'days') > 0) {
             if (currentDay.day() != 0 && currentDay.day() != 6) {
                 availableTimes.push({
                     id: elem.ID,
@@ -122,8 +129,10 @@ export default class View extends Component {
             data: [],
             ready: false,
             index: 0,
+            searchParams: {},
         };
         this.clinicians = {};
+        this.data = {};
         
         
         //grab the id from the url
@@ -133,11 +142,12 @@ export default class View extends Component {
         //Use the id to get the search params
         this.props.getSearchAPI(searchId).then((res) => {
             console.log(res);
+            this.setState({ searchParams: res[0] });
             
             //For every name in the seach ->
             //  - Add the clinician name to the list of clinicians (dict)
             //  - Add the dates together
-            res[0].names.forEach((name, index) => {
+            Promise.all(res[0].names.map((name, index) => {
                 console.log(name);
                 
                 this.clinicians[name[0].label] = {
@@ -145,82 +155,22 @@ export default class View extends Component {
                     color: colors[index],
                 }
                 
-                this.props.getScheduleAPI(name[0].First, name[0].Last)
+                return this.props.getScheduleAPI(name[0].First, name[0].Last)
                     .then((res) => {
-                        console.log(res);
-                        
-                        
-                        this.state.data = this.state.data.concat(res);
-                        console.log(this.state.data);
-                        //This is garbage
-                        //let  tt = [];
-                        //tt.push(res);
-                        //tt.push(this.state.data);
-                        //console.log(tt);
-                        //this.setState({data: res});
-                        
-                    })
-                    .then(() => processData(this.state.data))
-                    .then((data) => { this.data = data })
-                    .then(() => this.setState({ ready: true }));
-            });
-        })        
+                        console.log(res)
+                        const availableTimes = processData(res);
+                        this.state.data = this.state.data.concat(availableTimes);
+                    });
+            })).then(() => this.setState({ ready: true }));
+        })
     }
 
     toggleView = (e) => {
         this.setState({view: e.target.value});
     }
-    componentDidMount = () => {
-        console.log(this.state.data);
-    }
-    
-    componentWillMount = () => {
-        
-        console.log(this.state.data);
-        
-
-        console.log(data);
-        console.log(this.state.data);
-        this.data = processData(this.state.data);
-    
-        
-        //this.state.info.name.forEach(name => {
-        //    this.props.getScheduleAPI(name.First, name.Last).then((res) => {
-        //        this.state.data.push(res);
-        //    })
-        //});
-        
-        {/*}
-        let info = {
-            name: [
-                    {value: "AMY WETTLAUFER", label: "AMY WETTLAUFER", First: "AMY", Last: "WETTLAUFER"},
-                    {value: "JILL VILLAR", label: "JILL VILLAR", First: "JILL", Last: "VILLAR"},
-                ],
-            services: [
-                        {value: "ABA-ABA", label: "ABA-ABA"},
-                        {value: "ACS-MAIN", label: "ACS-MAIN"},
-                    ],
-            location: {value: "ALEXDC", label: "W-Alexandra Day Care"},
-            numSessions: {value: 1, label: "1"},
-            time: {value: 30, label: "30 mins"},
-            timeOfDay: {value: "anytime", label: "AnyTime"},
-        }
-    
-        
-        info.name.forEach(name => {
-            this.props.getScheduleAPI(name.First, name.Last).then(res => console.log(res)).catch(err => console.log(err));
-        });
-        */}
-        
-    }
 
     render() {
-        
-        console.log(this.state.data);
-        
-        
-        
-        
+        this.data = groupData(this.state.data, this.state.searchParams);
         return (
             <div className="view">
                 <div>

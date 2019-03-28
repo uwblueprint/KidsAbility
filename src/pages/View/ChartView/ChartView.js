@@ -22,8 +22,9 @@ export default class ChartView extends Component {
                 <thead>
                     <tr>
                         <th>Date</th>
-                        <th>Time</th>
+                        <th className="wide">Time</th>
                         <th>Location</th>
+                        <th>Availability</th>
                         <th>Save</th>
                     </tr>
                 </thead>
@@ -36,12 +37,14 @@ export default class ChartView extends Component {
                             {
                                 this.props.data[key].map((elem, index) =>
                                     <tr key={index}>
-                                        <td className="date-and-dot">
+                                        <td>
                                             {moment(elem.Date).format('MMM D')}
+                                        </td>
+                                        <td className="wide">{moment(elem.Start, 'h:mm').format('h:mm a')} - {moment(elem.End, 'h:mm').format('h:mm a')}</td>
+                                        <td>{elem.Location.charAt(0) + elem.Location.substr(1).toLowerCase()}</td>
+                                        <td>
                                             <div className="dot" style={{ backgroundColor: this.props.clinicians[elem.Name].color }}></div>
                                         </td>
-                                        <td>{moment(elem.Start, 'h:mm').format('h:mm a')} - {moment(elem.End, 'h:mm').format('h:mm a')}</td>
-                                        <td>{elem.Location.charAt(0) + elem.Location.substr(1).toLowerCase()}</td>
                                         <td>
                                             <Icon className="save-button" style={{color: "purple"}} onClick={this.onClickSave}>
                                                 bookmark_border

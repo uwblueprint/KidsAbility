@@ -1,13 +1,13 @@
 .table td {
   padding: 5px 20px;
-  min-width: 200px !important;
+  min-width: 150px;
   width: auto;
   text-align: left;
 }
 
 .table th {
   padding: 5px 20px;
-  min-width: 200px !important;
+  min-width: 150px;
   width: auto;
   text-align: left;
 }
@@ -30,10 +30,8 @@ tbody{
   color: purple;
 }
 
-.date-and-dot {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.wide {
+  min-width: 240px !important;
 }
 
 tbody::-webkit-scrollbar {
