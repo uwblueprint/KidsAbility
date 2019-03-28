@@ -12,12 +12,41 @@ const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
 
 // compare function to sort time slots
 const compareFunction = (a, b) => {
-    if (moment(a.Date) < moment(b.Date)) return -1;
-    if (moment(b.Date) < moment(a.Date)) return 1;
-    if (moment(a.Start) < moment(b.Start)) return -1;
-    if (moment(b.Start) < moment(a.Start)) return 1;
-    if (moment(a.End) < moment(b.End)) return -1;
-    if (moment(b.End) < moment(a.End)) return 1;
+    
+    if (moment(a.Date).hour(a.Start.split(":")[0]).minute(a.Start.split(":")[1]) < 
+        moment(b.Date).hour(b.Start.split(":")[0]).minute(b.Start.split(":")[1])) 
+    return -1;
+    
+    if (moment(a.Date).hour(a.Start.split(":")[0]).minute(a.Start.split(":")[1]) > 
+        moment(b.Date).hour(b.Start.split(":")[0]).minute(b.Start.split(":")[1])) 
+    return 1;
+    
+    if (a.Start < b.Start) return 1;
+    if (b.Start < a.Start) return -1;
+    
+    return 0;
+}
+
+//compare function for time "h:mm"
+const compareTime = (a, b) => {
+    let hourA = parseInt(a.split(":")[0])
+    let hourB = parseInt(b.split(":")[0]);
+    let minA = parseInt(a.split(":")[1])
+    let minB = parseInt(b.split(":")[1])
+    if (hourA < hourB){
+        return 1;
+    }
+    if (hourA > hourB) {
+        return -1;
+    } 
+    else if (hourA == hourB) {
+        if (minA < minB){
+            return 1;
+        }
+        if (minA > minB){
+            return -1;
+        }
+    }
     return 0;
 }
 
@@ -170,7 +199,9 @@ export default class View extends Component {
     }
 
     render() {
+        
         this.data = groupData(this.state.data, this.state.searchParams);
+        
         return (
             <div className="view">
                 <div>
@@ -205,7 +236,7 @@ export default class View extends Component {
                     {
                         this.state.view === 'chart'
                             ? <ChartView data={this.data} clinicians={this.clinicians} />
-                            : <CalendarView/>
+                            : <CalendarView data={this.data} clinicians={this.clinicians}/>
                     }
                 </div>
             </div>

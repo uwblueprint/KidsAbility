@@ -29,7 +29,7 @@ export default class ChartView extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                    { Object.keys(this.props.data).map((key) => (
+                    { Object.keys(this.props.data).map((key, index) => (
                         <tr>
                             <tr>
                                 <td className="section-header">{key == 0 ? 'This week' : `In ${key} week${key == 1 ? '' : 's'}`}</td>

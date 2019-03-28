@@ -15,24 +15,40 @@ export default class CalendarView extends Component {
         super(props);
         this.state = {};
     }
+    
+    componentWillMount = () => {
+        console.log(this.props.data);
+        let data = this.props.data;
+        let Events = [];
+        console.log(data);
+        console.log(data.length);
+        Object.values(data).map((week, index) => {
+            for (var j = 0; j < week.length; j++) {
+                console.log(week[j]);
+                let elem = week[j];
+                Events.push({
+                    title: "Available",
+                    start: moment(elem.Date).hour(elem.Start.split(":")[0]).minute(elem.Start.split(":")[1]).toDate(),
+                    end: moment(elem.Date).hour(elem.End.split(":")[0]).minute(elem.End.split(":")[1]).toDate(),
+                    "allDay?": false,
+                    "resource?": "Hello"
+                })
+            }
+        });
+        console.log(Events)
+        this.setState({events: Events})
+        
+    }
 
     render() {
-        let myEventsList = [];
-        let event1 = {
-            title: "Testing",
-            start: new Date(),
-            end: new Date(),
-            "allDay?": true,
-            "resource?": "Hello"
-        }
-        myEventsList.push(event1);
+        let myEventsList = this.state.events;
         
         return (
             <div>
                 <ScrollArea>
                     <div className="box">
                 <BigCalendar
-                    events={events}
+                    events={myEventsList}
                     views={["week", "day", "agenda"]}
                     min={new Date(2018, 10, 0, 8, 0, 0)}
                     max={new Date(2018, 10, 0, 20, 0, 0)}
