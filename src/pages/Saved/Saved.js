@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import moment from 'moment';
-import { data } from './data';
 import './Saved.css';
 import Icon from '@material-ui/core/Icon';
 import Modal from 'react-responsive-modal';
@@ -11,8 +10,32 @@ export default class Saved extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            open: false
+            open: false,
+            saved: []
         };
+    }
+
+    async loadData(){
+        let saved = await fetch("api/saved/")
+        .then(resp => {
+            if (!resp.ok){
+                if(resp.status >= 400 && resp.status < 500){
+                    return resp.json().then(data => {
+                        let err = {errMessage: data.message};
+                        throw err;
+                    })
+                } else{
+                    let err = {errMessage: "server not responding"};
+                    throw err;
+                }
+            }
+            return resp.json();
+        });
+        this.setState({saved});
+    }
+
+    componentWillMount(){
+        this.loadData();
     }
 
     openNotes = () => {
@@ -23,13 +46,32 @@ export default class Saved extends Component {
         this.setState({open: false})
     }
 
-    toggleSave = (event) => {
-        event.target.innerHTML = (event.target.innerHTML === "bookmark") ? "bookmark_border" : "bookmark"
+    onClickUnsave = (event, id) => {
+        fetch("/api/saved/"+id, {
+            method: 'delete'
+        })
+        .then(resp => {
+          if(!resp.ok) {
+            if(resp.status >=400 && resp.status < 500) {
+              return resp.json().then(data => {
+                let err = {errorMessage: data.message};
+                throw err;
+              })
+            } else {
+              let err = {errorMessage: 'Please try again later, server is not responding'};
+              throw err;
+            }
+          }
+          return resp.json();
+        });
+        event.target.innerHTML = (event.target.innerHTML === "bookmark") ? "bookmark_border" : "bookmark";
+        const saved = this.state.saved.filter(saved => saved._id !== id);
+        this.setState({saved: saved});
     }
 
     render() {
         const { open } = this.state;
-        console.log(data);
+        const saved = this.state.saved;
 
         return (
             <div class="content">
@@ -49,13 +91,14 @@ export default class Saved extends Component {
                         </thead>
                         <tbody>
                             {
-                                data.map((elem) =>
-                                <tr>
-                                    <td>{elem.FirstNaMe}</td>
-                                    <td>{elem.ID}</td>
+                                
+                                saved.map((elem) =>
+                                <tr key={elem._id}>
+                                    <td>{elem.Name}</td>
+                                    <td>{elem.id}</td>
                                     <td>{elem.Date}</td>
                                     <td>{elem.Start} - {elem.End}</td>
-                                    <td>{elem.Location.charAt(0) + elem.Location.substr(1).toLowerCase()}</td>
+                                    <td>{elem.Location}</td>
                                     <td>
                                         <Icon style={{color:'#000051'}}>
                                             event_note
@@ -73,7 +116,7 @@ export default class Saved extends Component {
                                         </Modal>
                                     </td>
                                     <td>
-                                        <Icon style={{color:'#E8BF31'}} onClick={this.toggleSave}> 
+                                        <Icon style={{color:'#E8BF31'}} onClick={(e) => this.onClickUnsave(e, elem._id)}> 
                                             bookmark
                                         </Icon>
                                     </td>

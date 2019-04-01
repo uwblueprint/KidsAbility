@@ -11,43 +11,13 @@ var savedSchema = new mongoose.Schema({
 	End: {
 		type: String
 	}, 
-	Duration: {
+	Name: {
+		type: String
+	},
+	id:{
 		type: Number
-	},
-	LastName: {
-		type: String
-	},
-	FirstName: {
-		type: String
-	},
-	ID:{
-		type: Number
-	},
-	Email: {
-		type: String
-	},
-	ClientLast: {
-		type: String
-	},
-	ClientFirst: {
-		type: String
-	},
-	ClientID: {
-		type: String
 	},
 	Location: {
-		type: String
-	},
-	Service: {
-		type: String
-	},
-	Treatment: {
-		type: String
-	},
-	Program: {
-		type: String
-	},
-	ServiceDescription: {
 		type: String
 	}
 }, { collection: 'SavedTimes' });
