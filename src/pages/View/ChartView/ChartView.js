@@ -10,7 +10,7 @@ export default class ChartView extends Component {
     }
 
     onClickSave = (e) => {
-        e.target.innerHTML = (e.target.innerHTML === "bookmark") ? "bookmark_border" : "bookmark";
+        e.target.innerHTML = (e.target.innerHTML === "bookmark") ? "bookmark" : "bookmark";
     }
 
     render() {
