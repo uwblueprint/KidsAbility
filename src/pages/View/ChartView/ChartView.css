@@ -25,6 +25,17 @@ tbody{
   width:100%;
 }
 
+.dots {
+  display: flex;
+}
+
+.dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 16px;
+}
+
 .section-header {
   padding-top: 10px !important;
   color: purple;
