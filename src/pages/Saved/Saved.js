@@ -106,8 +106,7 @@ export default class Saved extends Component {
                                         <Icon style={{color:'#000051'}} onClick={this.openNotes}>
                                             keyboard_arrow_down
                                         </Icon>
-                                        <Modal open = {open} onClose={this.closeNotes} center>
-                                            <h2>Simple centered modal</h2>
+                                        <Modal open = {open} onClose={this.closeNotes} center classNames={{modal: "customModal", overlay: "customOverlay"}} >
                                             <p>
                                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
                                                 pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
