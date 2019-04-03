@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Modal} from 'react-bootstrap';
-import {Navbar, Nav, Navitem} from 'react-bootstrap';
+import {NavDropdown, Navbar, Nav, NavItem, Collapse} from 'react-bootstrap';
 
 export default class Menu extends Component {
     constructor(props) {
@@ -10,31 +10,25 @@ export default class Menu extends Component {
 
     render() {
         return (
-            <nav className="navbar navbar-default navbar-expand">
-                <div>
-                    <div className="navbar-header">
-                        <a className="navbar-brand" href="/">RocketCare</a>
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>                        
+                            </button>
+                            <a class="navbar-brand" href="/"><font color="5F5FC4">RocketCare</font></a>
                     </div>
-                    <ul className="nav navbar-nav navbar-expand">
-                        <li className="find-time">
-                            <a href="/find-time">Find Available Time</a>
-                        </li>
-                        <li>
-                            <a href="/saved">View Saved Times</a>
-                        </li>
-                        <li className="divider">
-                            <hr/>
-                        </li>
-                        <li className="logout">
-                            <a href="/log-out">Log Out</a>
-                        </li>
-                        <li>
-                            <a href="/help">Help</a>
-                        </li>
-                    </ul>
+                    <div class="collapse navbar-collapse" id="myNavbar">
+                        <ul class="nav navbar-nav mr-auto">
+                            <li><a href="/find-time">Find Available Times</a></li>
+                            <li><a href="/saved">View Saved Times</a></li>
+                            <li><a href="/log-out">Logout</a></li>
+                            <li><a href="/help">Help</a></li>
+                        </ul>
+                    </div>
                 </div>
-
-                {/* We still need to add a login button & Modal here */}
             </nav>
         );
     }
