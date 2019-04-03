@@ -17,14 +17,10 @@ export default class CalendarView extends Component {
     }
     
     componentWillMount = () => {
-        console.log(this.props.data);
         let data = this.props.data;
         let Events = [];
-        console.log(data);
-        console.log(data.length);
         Object.values(data).map((week, index) => {
             for (var j = 0; j < week.length; j++) {
-                console.log(week[j]);
                 let elem = week[j];
                 Events.push({
                     title: "Available",
@@ -35,7 +31,6 @@ export default class CalendarView extends Component {
                 })
             }
         });
-        console.log(Events)
         this.setState({events: Events})
         
     }
@@ -55,9 +50,9 @@ export default class CalendarView extends Component {
                     step={30}
                     timeslots={1}
                     showMultiDayTimes={true}
-                    defaultDate={new Date(2015, 3, 1)}
+                    defaultDate={new Date()}
                     localizer={localizer}
-                    defaultView={BigCalendar.Views.DAY}></BigCalendar>
+                    defaultView={BigCalendar.Views.DAY} />
                 </div>
                 </ScrollArea>
             </div>

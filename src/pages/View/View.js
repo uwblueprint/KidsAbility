@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import ChartView from './ChartView/ChartView';
 import CalendarView from './CalendarView/CalendarView';
 import moment from 'moment';
-import {Router, Route, Switch, Redirect, Link} from 'react-router';
 import './View.css';
 
 const DAY_START = '8:00';
@@ -58,6 +57,32 @@ const processData = (data) => {
     return getAvailableTimes(sortedData);
 }
 
+// find overlapping times from two arrays of time slots
+const getOverlappingTimes = (t1, t2) => {
+    const overlappingTimes = [];
+    for (let i = 0, j = 0; i < t1.length - 1 && j < t2.length - 1; ) {
+        if (moment(t1[i].Date) < moment(t2[j].Date)) i++
+        else if (moment(t2[j].Date) < moment(t1[i].Date)) j++;
+
+        else if (moment(t1[i].Start, 'h:mm') > moment(t2[j].End, 'h:mm')) j++;
+        else if (moment(t1[i].End, 'h:mm') < moment(t2[j].Start, 'h:mm')) i++;
+
+        else if (moment(t1[i].End, 'h:mm') > moment(t2[j].Start, 'h:mm') && moment(t2[j].End, 'h:mm') > moment(t1[i].Start, 'h:mm')){
+            overlappingTimes.push({
+                Start: moment(t1[i].Start, 'h:mm') > moment(t2[j].Start, 'h:mm') ? t1[i].Start : t2[j].Start,
+                End: moment(t1[i].End, 'h:mm') < moment(t2[j].End, 'h:mm') ? t1[i].End : t2[j].End,
+                Names: t1[i].Names.concat(t2[j].Names),
+                Date: t1[i].Date,
+                Location: t1[i].Location,
+            })
+            if (moment(t1[i].End, 'h:mm') < moment(t2[j].End, 'h:mm')) i++;
+            else j++;
+        }
+
+    }
+    return overlappingTimes;
+}
+
 const groupData = (data, searchParams) => {
     const groupedData = {}
     data
@@ -102,7 +127,7 @@ const getAvailableTimes = (sortedData) => {
         if ((index === 0 || sortedData[index - 1].Date !== elem.Date) && elem.Start !== DAY_START) {
             availableTimes.push({
                 id: elem.ID,
-                Name: `${elem.FirstName} ${elem.LastName}`,
+                Names: [`${elem.FirstName} ${elem.LastName}`],
                 Date: elem.Date,
                 Start: DAY_START,
                 End: elem.Start,
@@ -113,7 +138,7 @@ const getAvailableTimes = (sortedData) => {
         if (elem.Date === sortedData[index + 1].Date) {
             availableTimes.push({
                 id: elem.ID,
-                Name: `${elem.FirstName} ${elem.LastName}`,
+                Names: [`${elem.FirstName} ${elem.LastName}`],
                 Date: elem.Date,
                 Start: elem.End,
                 End: sortedData[index + 1].Start,
@@ -124,7 +149,7 @@ const getAvailableTimes = (sortedData) => {
         if (sortedData[index + 1].Date !== elem.Date && elem.end !== DAY_END) {
             availableTimes.push({
                 id: elem.ID,
-                Name: `${elem.FirstName} ${elem.LastName}`,
+                Names: [`${elem.FirstName} ${elem.LastName}`],
                 Date: elem.Date,
                 Start: elem.End,
                 End: DAY_END,
@@ -137,7 +162,7 @@ const getAvailableTimes = (sortedData) => {
             if (currentDay.day() != 0 && currentDay.day() != 6) {
                 availableTimes.push({
                     id: elem.ID,
-                    Name: `${elem.FirstName} ${elem.LastName}`,
+                    Names: [`${elem.FirstName} ${elem.LastName}`],
                     Date: currentDay.format('D-MMM-YY'),
                     Start: DAY_START,
                     End: DAY_END,
@@ -166,18 +191,15 @@ export default class View extends Component {
         
         //grab the id from the url
         let searchId = this.props.hidden.match.params.searchId;
-        console.log(searchId);
         
         //Use the id to get the search params
         this.props.getSearchAPI(searchId).then((res) => {
-            console.log(res);
             this.setState({ searchParams: res[0] });
             
             //For every name in the seach ->
             //  - Add the clinician name to the list of clinicians (dict)
             //  - Add the dates together
             Promise.all(res[0].names.map((name, index) => {
-                console.log(name);
                 
                 this.clinicians[name[0].label] = {
                     name: [name[0].label],
@@ -186,9 +208,8 @@ export default class View extends Component {
                 
                 return this.props.getScheduleAPI(name[0].First, name[0].Last)
                     .then((res) => {
-                        console.log(res)
                         const availableTimes = processData(res);
-                        this.state.data = this.state.data.concat(availableTimes);
+                        this.state.data.push(availableTimes);
                     });
             })).then(() => this.setState({ ready: true }));
         })
@@ -199,8 +220,16 @@ export default class View extends Component {
     }
 
     render() {
+
+        if (!this.state.ready) return null;
         
-        this.data = groupData(this.state.data, this.state.searchParams);
+        
+        let overlappingTimes = this.state.data[0];
+        for (let i = 1; i < this.state.data.length; i++) {
+            overlappingTimes = getOverlappingTimes(overlappingTimes, this.state.data[i]);
+        }
+        
+        this.data = groupData(overlappingTimes, this.state.searchParams);
         
         return (
             <div className="view">
