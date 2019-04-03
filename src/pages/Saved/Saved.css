@@ -8,11 +8,14 @@
   width: 200px !important; 
 }
 
-/* .saved-times thead tr{
-  display: table-row;
-  border-bottom: 1px solid white;
-  width: 10%;
-} */
+.customOverlay {
+  background: rgba(179, 179, 179, 0.07);
+}
+.customModal {
+  background: white;
+  max-width: 500px;
+  width: 100%;
+}
 
 .reminder{
   width: 7cm;
