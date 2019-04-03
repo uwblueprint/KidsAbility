@@ -73,11 +73,15 @@ export default class App extends Component {
     };
     getCliniciansAPI = async () => {
         const response = await fetch('/api/clinicians', {
+            method: 'GET',
             headers : { 
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             }
         });
+        console.log(response);
+        //const body = await response.text();
+        //console.log(body);
         const body = await response.json();
         if (response.status !== 200) {
             throw Error(body.message);
