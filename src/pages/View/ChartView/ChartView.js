@@ -14,33 +14,36 @@ export default class ChartView extends Component {
     // note that as discussed, the save does not persist on the view page
     // this is temporary
     onClickSave = (e, param) => {
-        console.log(param);
-        fetch('/api/saved/',{
-            method: 'post',
-            headers: new Headers({
-                'Content-Type': 'application/json'
-            }),
-            body: JSON.stringify({Name: param.Names, Date: param.Date, Start: param.Start, End: param.End, id: param.id, Location: param.Location})
-        })
-        .then(res => {
-            if (!res.ok){
-                if(res.status >= 400 && res.status < 500){
-                    return res.json().then(data => {
-                        let err = {errMessage: data.message};
+        if (e.target.innerHTML != "bookmark"){
+            console.log(param);
+            fetch('/api/saved/',{
+                method: 'post',
+                headers: new Headers({
+                    'Content-Type': 'application/json'
+                }),
+                body: JSON.stringify({Name: param.Names, Date: param.Date, Start: param.Start, End: param.End, id: param.id, Location: param.Location})
+            })
+            .then(res => {
+                if (!res.ok){
+                    if(res.status >= 400 && res.status < 500){
+                        return res.json().then(data => {
+                            let err = {errMessage: data.message};
+                            throw err;
+                        })
+                    } else{
+                        let err = {errMessage: "server not responding"};
                         throw err;
-                    })
-                } else{
-                    let err = {errMessage: "server not responding"};
-                    throw err;
+                    }
                 }
-            }
-            return res.json();
-        })
-        e.target.innerHTML = (e.target.innerHTML === "bookmark") ? "bookmark_border" : "bookmark";
+                return res.json();
+            })
+            e.target.innerHTML = "bookmark";
+        }
     }
 
     render() {
         return (
+            <div>
             <div className="table">
             <table>
                 <thead>
@@ -84,6 +87,7 @@ export default class ChartView extends Component {
                     )) }
                 </tbody>
             </table>
+        </div>
         </div>
 
         )

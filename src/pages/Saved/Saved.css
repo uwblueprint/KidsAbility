@@ -29,7 +29,11 @@
 .content{
   max-width: 1300px;
   margin: auto;
-  padding: 5px;
+  background-color: white;
+  padding-top: 5%;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-bottom: 5%;
 }
 
 #table-wrapper {

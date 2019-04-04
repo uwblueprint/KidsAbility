@@ -137,6 +137,11 @@ export default class Search extends Component {
     this.setState({timeOfDay: timeOfDay})
     console.log(`Option selected:`, timeOfDay)
   }
+  
+  handleChange7 = (reoccurence) => {
+    this.setState({reoccurence: reoccurence})
+    console.log(`Option selected:`, reoccurence)
+  }
 
   handleSubmit = () => {
     //alert('Search criteria was submitted')
@@ -192,7 +197,8 @@ export default class Search extends Component {
       location,
       time,
       sessions,
-      timeOfDay
+      timeOfDay,
+      reoccurence
     } = this.state;
     
     console.log(this.state.searchId);
@@ -205,62 +211,68 @@ export default class Search extends Component {
     }
     
     return (
-      <div className="row"> 
-        <h1> Find Available Times </h1>
-        <div className="column">
-          Clinician Name(s) or ID(s) <font color="red">[Required]</font>
-          <Select className="leftdropdown"
-            name="Clincian"
-            isMulti
-            value={name}
-            onChange={this.handleChange1}
-            options={this.state.clinicians}
-          />
-          Service/Program
-          <Select className="leftdropdown"
-            isMulti
-            value={service}
-            onChange={this.handleChange2}
-            options={this.state.programs}
-          />
-          Location
-          <Select className="leftdropdown"
-            value={location}
-            onChange={this.handleChange3}
-            options={this.state.locations}
-          />
-        </div>
-        <div className="column">
-          Min. Time Required
-          <Select className="rightdropdown"
-            value={time}
-            onChange={this.handleChange4}
-            options={options4}
-          />
-          Number of Sessions
-          <Select className="rightdropdown"
-            value={sessions}
-            onChange={this.handleChange5}
-            options={options5}
-          />
-          Time of Day
-          <Select className="rightdropdown"
-            value={timeOfDay}
-            onChange={this.handleChange6}
-            options={TimeofDay}
-          />
-          <button 
-              className="button" 
-              onClick={this.handleSubmit}>
-              Search
-          </button>
-          {/*}
-          <form ref="form" onSubmit={this.handleSubmit}>
-            <button className="button">Search</button>
-          </form>
-          */}
-        </div>
-      </div>
+          <div className="row"> 
+            <h1> Find Available Times </h1>
+            <div className="column">
+              Clinician Name(s) or ID(s) <font color="red">[Required]</font>
+              <Select className="leftdropdown"
+                name="Clincian"
+                isMulti
+                value={name}
+                onChange={this.handleChange1}
+                options={this.state.clinicians}
+              />
+              Service/Program
+              <Select className="leftdropdown"
+                isMulti
+                value={service}
+                onChange={this.handleChange2}
+                options={this.state.programs}
+              />
+              Location
+              <Select className="leftdropdown"
+                value={location}
+                onChange={this.handleChange3}
+                options={this.state.locations}
+              />
+              Reoccurence
+              <Select className="leftdropdown"
+                value={reoccurence}
+                onChange={this.handleChange7}
+                options={options5}
+              />
+            </div>
+            <div className="column">
+              Min. Time Required
+              <Select className="rightdropdown"
+                value={time}
+                onChange={this.handleChange4}
+                options={options4}
+              />
+              Number of Sessions
+              <Select className="rightdropdown"
+                value={sessions}
+                onChange={this.handleChange5}
+                options={options5}
+              />
+              Time of Day
+              <Select className="rightdropdown"
+                value={timeOfDay}
+                onChange={this.handleChange6}
+                options={TimeofDay}
+              />
+              <button 
+                  className="button" 
+                  onClick={this.handleSubmit}>
+                  Search
+              </button>
+              {/*}
+              <form ref="form" onSubmit={this.handleSubmit}>
+                <button className="button">Search</button>
+              </form>
+              */}
+            </div>
+          </div>
     );
   }
 };

@@ -21,10 +21,16 @@
     display: table;
     clear: both;
     margin: auto;
+    background-color: white;
+    padding-top: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 5%;
 }
 
+
 .button {
-    background-color: darkorchid;
+    background-color: blue;
     border: none;
     color: white;
     padding: 15px 10px;
@@ -33,7 +39,7 @@
     display: inline-block;
     font-size: 16px;
     position: relative;
-    right: -110px;
+    top: 50px;
     cursor: pointer;
     width: 7cm
 }

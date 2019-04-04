@@ -220,7 +220,9 @@ export default class View extends Component {
     }
 
     render() {
-
+        
+        
+        //We should return a spinner :P
         if (!this.state.ready) return null;
         
         
@@ -257,7 +259,7 @@ export default class View extends Component {
                     </div>
                     <div className="clinicians-list">
                         {Object.values(this.clinicians).map((elem, index) =>
-                        <div className="clinician" key={index}>
+                        <div className="clinician" key={index+"(3 clinicial hours)"}>
                             <div className="dot" style={{ backgroundColor: elem.color }}></div>
                             {elem.name}
                         </div>)}

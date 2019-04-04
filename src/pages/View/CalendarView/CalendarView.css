@@ -2,6 +2,11 @@
   height: 60vh;
   width: 70vw;
   overflow: auto;
+  background-color: white;
+  padding-top: 5%;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-bottom: 5%;
 }
 
 .rbc-calendar {
