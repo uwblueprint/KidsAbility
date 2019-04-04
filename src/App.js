@@ -71,8 +71,9 @@ export default class App extends Component {
         }
         return body;
     };
+        
     getCliniciansAPI = async () => {
-        const response = await fetch('/api/clinicians', {
+        const response = await fetch('http://99.250.248.121:5005/api/clinicians', {
             method: 'GET',
             headers : { 
                 'Content-Type': 'application/json',

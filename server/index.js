@@ -1,7 +1,8 @@
 const express = require('express'),
-	mongoose = require('mongoose'),
-	bodyParser = require('body-parser'),
-	app = express();
+mongoose = require('mongoose'),
+bodyParser = require('body-parser'),
+cors = require('cors');
+app = express();
 
 const scheduleRoutes = require('./routes/schedules');
 const clinicianRoutes = require('./routes/clinicians');
@@ -9,6 +10,7 @@ const savedRoutes = require('./routes/saved_times');
 const searchRoutes = require('./routes/searches');
 
 // allows us to access request body in a post or put
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.json()); 

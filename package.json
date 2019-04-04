@@ -1,12 +1,13 @@
 {
   "name": "kidsability",
-  "proxy": "http://99.250.248.121:5005",
+  "proxy": "http://gc-web-mitm.kidsability.org/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^3.9.1",
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
     "express": "^4.16.4",
     "express-pino-logger": "^4.0.0",
     "firebase": "^5.8.2",

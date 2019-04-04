@@ -2,7 +2,6 @@
   "database": {
     "rules": "database.rules.json"
   },
-  "proxy": "http://99.250.248.121:443",
   "hosting": {
     "public": "build",
     "ignore": [

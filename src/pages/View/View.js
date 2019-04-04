@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import ChartView from './ChartView/ChartView';
 import CalendarView from './CalendarView/CalendarView';
 import moment from 'moment';
+import axios from 'axios';
 import './View.css';
 
 const DAY_START = '8:00';
@@ -220,8 +221,7 @@ export default class View extends Component {
     }
 
     render() {
-        
-        
+            
         //We should return a spinner :P
         if (!this.state.ready) return null;
         
