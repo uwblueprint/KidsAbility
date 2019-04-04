@@ -74,6 +74,7 @@ export default class App extends Component {
     getCliniciansAPI = async () => {
         const response = await fetch('/api/clinicians', {
             method: 'GET',
+            redirect: "follow",
             headers : { 
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'

@@ -12,7 +12,7 @@ var savedSchema = new mongoose.Schema({
 		type: String
 	}, 
 	Name: {
-		type: String
+		type: [String]
 	},
 	id:{
 		type: Number

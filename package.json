@@ -1,6 +1,6 @@
 {
   "name": "kidsability",
-  "proxy": "http://gc-web-mitm.kidsability.org",
+  "proxy": "http://99.250.248.121:443/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

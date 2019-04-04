@@ -20,7 +20,7 @@ export default class ChartView extends Component {
             headers: new Headers({
                 'Content-Type': 'application/json'
             }),
-            body: JSON.stringify({Name: param.Name, Date: param.Date, Start: param.Start, End: param.End, id: param.id, Location: param.Location})
+            body: JSON.stringify({Name: param.Names, Date: param.Date, Start: param.Start, End: param.End, id: param.id, Location: param.Location})
         })
         .then(res => {
             if (!res.ok){
@@ -73,7 +73,7 @@ export default class ChartView extends Component {
                                             </div>
                                         </td>
                                         <td>
-                                            <Icon className="save-button" style={{color: "purple"}} onClick={this.onClickSave}>
+                                            <Icon className="save-button" style={{color: "purple"}} onClick={(e) => this.onClickSave(e, elem)}>
                                                 bookmark_border
                                             </Icon>
                                         </td>
