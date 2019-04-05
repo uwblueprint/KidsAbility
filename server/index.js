@@ -25,6 +25,6 @@ app.use('/api/clinicians', clinicianRoutes);
 app.use('/api/saved', savedRoutes);
 app.use('/api/search', searchRoutes);
 
-app.listen(4000, () =>
-	console.log("App on port " + 4000)
+app.listen(80, () =>
+	console.log("App on port " + 80)
 );

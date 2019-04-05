@@ -73,7 +73,7 @@ export default class App extends Component {
     };
         
     getCliniciansAPI = async () => {
-        const response = await fetch('http://99.250.248.121:5005/api/clinicians', {
+        const response = await fetch('https://gc-web-mitm.kidsability.org/api/clinicians', {
             method: 'GET',
             headers : { 
                 'Content-Type': 'application/json',
