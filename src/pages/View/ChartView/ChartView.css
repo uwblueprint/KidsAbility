@@ -1,13 +1,13 @@
 .table td {
   padding: 5px 20px;
-  min-width: 200px !important;
+  min-width: 150px;
   width: auto;
   text-align: left;
 }
 
 .table th {
   padding: 5px 20px;
-  min-width: 200px !important;
+  min-width: 150px;
   width: auto;
   text-align: left;
 }
@@ -25,15 +25,24 @@ tbody{
   width:100%;
 }
 
+.dots {
+  display: flex;
+}
+
+.dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 16px;
+}
+
 .section-header {
   padding-top: 10px !important;
   color: purple;
 }
 
-.date-and-dot {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.wide {
+  min-width: 240px !important;
 }
 
 tbody::-webkit-scrollbar {
