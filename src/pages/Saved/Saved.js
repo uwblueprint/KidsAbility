@@ -14,28 +14,10 @@ export default class Saved extends Component {
             saved: []
         };
     }
-
-    async loadData(){
-        let saved = await fetch("api/saved/")
-        .then(resp => {
-            if (!resp.ok){
-                if(resp.status >= 400 && resp.status < 500){
-                    return resp.json().then(data => {
-                        let err = {errMessage: data.message};
-                        throw err;
-                    })
-                } else{
-                    let err = {errMessage: "server not responding"};
-                    throw err;
-                }
-            }
-            return resp.json();
-        });
-        this.setState({saved});
-    }
-
     componentWillMount(){
-        this.loadData();
+        this.props.getSavedAPI().then((res) => {
+            this.setState({saved: res});
+        });
     }
 
     openNotes = () => {

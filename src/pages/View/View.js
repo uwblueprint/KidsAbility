@@ -266,7 +266,7 @@ export default class View extends Component {
                     </div>
                     {
                         this.state.view === 'chart'
-                            ? <ChartView data={this.data} clinicians={this.clinicians} />
+                            ? <ChartView data={this.data} postSavedAPI={this.props.postSavedAPI} clinicians={this.clinicians} />
                             : <CalendarView data={this.data} clinicians={this.clinicians}/>
                     }
                 </div>
