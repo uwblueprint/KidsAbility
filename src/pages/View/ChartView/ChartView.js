@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import moment from 'moment';
 import Icon from '@material-ui/core/Icon';
+import Modal from 'react-modal';
 import './ChartView.css';
 
 export default class ChartView extends Component {
@@ -21,6 +22,9 @@ export default class ChartView extends Component {
     }
 
     render() {
+        
+        console.log(this.props.data)
+        
         return (
             <div>
             <div className="table">

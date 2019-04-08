@@ -64,13 +64,14 @@ export default class Search extends Component {
     super(props);
     this.state = {
       name: null,
-      service: null,
-      location: null,   
+      service: PROGRAMS[0],
+      location: LOCATIONS[0],   
       time: options4[0],
       sessions: options5[0],
       timeOfDay: TimeofDay[0],
       redirect: false,
       searchId: null,
+      reoccurence: options5[0],
     };
   }
   componentWillMount = () => {
