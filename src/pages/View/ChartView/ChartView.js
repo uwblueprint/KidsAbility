@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import moment from 'moment';
 import Icon from '@material-ui/core/Icon';
+import Modal from 'react-modal';
 import './ChartView.css';
 
 export default class ChartView extends Component {
@@ -14,33 +15,18 @@ export default class ChartView extends Component {
     // note that as discussed, the save does not persist on the view page
     // this is temporary
     onClickSave = (e, param) => {
-        console.log(param);
-        fetch('/api/saved/',{
-            method: 'post',
-            headers: new Headers({
-                'Content-Type': 'application/json'
-            }),
-            body: JSON.stringify({Name: param.Name, Date: param.Date, Start: param.Start, End: param.End, id: param.id, Location: param.Location})
-        })
-        .then(res => {
-            if (!res.ok){
-                if(res.status >= 400 && res.status < 500){
-                    return res.json().then(data => {
-                        let err = {errMessage: data.message};
-                        throw err;
-                    })
-                } else{
-                    let err = {errMessage: "server not responding"};
-                    throw err;
-                }
-            }
-            return res.json();
-        })
-        e.target.innerHTML = (e.target.innerHTML === "bookmark") ? "bookmark_border" : "bookmark";
+        if (e.target.innerHTML != "bookmark"){
+            this.props.postSavedAPI(param);
+            e.target.innerHTML = "bookmark";
+        }
     }
 
     render() {
+        
+        console.log(this.props.data)
+        
         return (
+            <div>
             <div className="table">
             <table>
                 <thead>
@@ -73,7 +59,7 @@ export default class ChartView extends Component {
                                             </div>
                                         </td>
                                         <td>
-                                            <Icon className="save-button" style={{color: "purple"}} onClick={this.onClickSave}>
+                                            <Icon className="save-button" style={{color: "purple"}} onClick={(e) => this.onClickSave(e, elem)}>
                                                 bookmark_border
                                             </Icon>
                                         </td>
@@ -84,6 +70,7 @@ export default class ChartView extends Component {
                     )) }
                 </tbody>
             </table>
+        </div>
         </div>
 
         )

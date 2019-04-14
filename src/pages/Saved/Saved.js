@@ -14,28 +14,10 @@ export default class Saved extends Component {
             saved: []
         };
     }
-
-    async loadData(){
-        let saved = await fetch("api/saved/")
-        .then(resp => {
-            if (!resp.ok){
-                if(resp.status >= 400 && resp.status < 500){
-                    return resp.json().then(data => {
-                        let err = {errMessage: data.message};
-                        throw err;
-                    })
-                } else{
-                    let err = {errMessage: "server not responding"};
-                    throw err;
-                }
-            }
-            return resp.json();
-        });
-        this.setState({saved});
-    }
-
     componentWillMount(){
-        this.loadData();
+        this.props.getSavedAPI().then((res) => {
+            this.setState({saved: res});
+        });
     }
 
     openNotes = () => {
@@ -47,7 +29,7 @@ export default class Saved extends Component {
     }
 
     onClickUnsave = (event, id) => {
-        fetch("/api/saved/"+id, {
+        fetch("https://gc-web-mitm.kidsability.org/api/saved/"+id, {
             method: 'delete'
         })
         .then(resp => {
@@ -108,9 +90,7 @@ export default class Saved extends Component {
                                         </Icon>
                                         <Modal open = {open} onClose={this.closeNotes} center classNames={{modal: "customModal", overlay: "customOverlay"}} >
                                             <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-                                                pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
-                                                hendrerit risus, sed porttitor quam.
+                                                There is no notes for this save
                                             </p>
                                         </Modal>
                                     </td>

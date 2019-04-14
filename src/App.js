@@ -32,6 +32,8 @@ console.log(fire);
 
 var bodyParser = require('body-parser');
 
+const proxy = "https://gc-web-mitm.kidsability.org";
+
 export default class App extends Component {
 
     // This is an empty contructor - please see the other classes for a used
@@ -64,15 +66,25 @@ export default class App extends Component {
     }
     
     getScheduleAPI = async (firstName, lastName) => {
-        const response = await fetch('/api/schedules/'+firstName+"/"+lastName);
+        const response = await fetch(proxy+'/api/schedules/'+firstName+"/"+lastName);
         const body = await response.json();
         if (response.status !== 200) {
             throw Error(body.message);
         }
         return body;
     };
+        
     getCliniciansAPI = async () => {
-        const response = await fetch('/api/clinicians');
+        const response = await fetch(proxy+'/api/clinicians', {
+            method: 'GET',
+            headers : { 
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        });
+        console.log(response);
+        //const body = await response.text();
+        //console.log(body);
         const body = await response.json();
         if (response.status !== 200) {
             throw Error(body.message);
@@ -80,10 +92,49 @@ export default class App extends Component {
         return body;
     };
     
+    getSavedAPI = async () => {
+        const response = await fetch(proxy+'/api/saved', {
+            method: 'GET',
+            headers : { 
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        });
+        console.log(response);
+        //const body = await response.text();
+        //console.log(body);
+        const body = await response.json();
+        if (response.status !== 200) {
+            throw Error(body.message);
+        }
+        return body;
+    }
+    
+    postSavedAPI = async (param) => {
+        const response = await fetch(proxy+'/api/saved', {
+            method: 'POST', 
+            body: JSON.stringify({Name: param.Names, Date: param.Date, Start: param.Start, End: param.End, id: param.id, Location: param.Location}),
+            headers: {
+               'Accept': 'application/json',
+               'Content-Type': 'application/json',
+             },
+        })
+        
+        const body = await response.json();
+        
+        if (response.status !== 201) {
+            console.log(response);
+            console.log("Error with posting saved-times");
+        }
+        
+        console.log(body);
+        return body;
+    }
+    
     postSearchAPI = async (databody) => {
         console.log(databody);
 
-        const response = await fetch('/api/search/post', {
+        const response = await fetch(proxy+'/api/search/post', {
             method: 'POST', 
             body: JSON.stringify(databody),
             headers: {
@@ -104,7 +155,7 @@ export default class App extends Component {
     };
     
     getSearchAPI = async (id) => {
-        const response = await fetch('/api/search/'+id);
+        const response = await fetch(proxy+'/api/search/'+id);
         const body = await response.json();
         if (response.status !== 200) {
             throw Error(body.message);
@@ -127,6 +178,7 @@ export default class App extends Component {
         const ViewSearch = (props) => {
             return (
                 <View
+                    postSavedAPI={this.postSavedAPI}
                     hidden={props}
                     getScheduleAPI={this.getScheduleAPI}
                     getSearchAPI={this.getSearchAPI}        
@@ -136,7 +188,9 @@ export default class App extends Component {
         
         const SavedPage = (props) => {
             return (
-                <Saved />
+                <Saved 
+                    getSavedAPI={this.getSavedAPI}
+                />
             )
         }
 
