@@ -1,19 +1,12 @@
-.leftdropdown {
-    width: 10cm;
-    color: black;
-    margin: 20px 10px;
-}
-
-.rightdropdown {
-    width: 10cm;
+.dropdown {
+    width: calc(100%);
     color: black;
     margin: 20px 10px;
 }
 
 .column {
-    float: left;
-    width: 50%;
-    padding: 5px;
+  float: left;
+  padding: 10px
 }
 
 .row {
@@ -22,24 +15,28 @@
     clear: both;
     margin: auto;
     background-color: white;
-    padding-top: 5%;
-    padding-left: 5%;
-    padding-right: 5%;
-    padding-bottom: 5%;
+    margin-top: calc(5% + 1cm);
+    margin-bottom: calc(5% + 1cm);
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 2%;
+    padding-bottom: 2%;
 }
 
 
 .button {
+    float: left;
     background-color: blue;
     border: none;
+    top: 28px;
+    margin: 20px 10px;
     color: white;
-    padding: 15px 10px;
+    padding: 10px 10px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
     position: relative;
-    top: 50px;
     cursor: pointer;
-    width: 7cm
+    width: 100%
 }

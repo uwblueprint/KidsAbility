@@ -17,7 +17,7 @@ import Home from '../src/pages/Home/Home'
 import NotFound from '../src/pages/NotFound/NotFound'
 import Footer from '../src/components/Footer/Footer'
 import Header from '../src/components/Header/Header'
-
+import Login from '../src/components/Users/Login'
 import * as settings from '../src/constants/settings.json';
 import Search from '../src/pages/Search/Search'
 import View from '../src/pages/View/View'
@@ -52,7 +52,9 @@ export default class App extends Component {
 
         // This is where we declare the states for THIS component. The states can be
         // passed as props to components called within render
-        this.state = {};
+        this.state = {
+            user: false
+        };
     }
 
     // This is where handler functions and lifecycle methods/functions are declared
@@ -162,6 +164,17 @@ export default class App extends Component {
         }
         return body;
     };
+    
+    login = (user) => {
+        localStorage.setItem('user', user);
+        console.log("logging in");
+        this.setState({user: user});
+    }
+    
+    componentWillMount = () => {
+        let user = localStorage.getItem('user');
+        this.setState({user: user});
+    }
 
     render() {
         
@@ -193,6 +206,16 @@ export default class App extends Component {
                 />
             )
         }
+        const LoginPage = (props) => {
+            return (
+                <Login
+                />
+            )
+        }
+        
+        
+        //postUserAPI={this.postUserAPI}
+        //getUsersAPI={this.getUsersAPI}
 
         var db = firebase.firestore();
 
@@ -220,16 +243,28 @@ export default class App extends Component {
                         <div>
                             <Header/>
                             <NotificationContainer/>
+                            { this.state.user 
+                                ?
                             <Switch>
 
                                 <Route exact={true} path="/" component={Home}/>
                                 <Route path="/find-time" render={SearchPage}/>
                                 <Route path="/about" component={NotFound}/>
                                 <Route path="/saved" component={SavedPage}/>
+                                <Route path="/login" component={LoginPage}/>
                                 <Route path="/view-search/:searchId" render={ViewSearch}/>
                                 <Route component={NotFound}/>
 
                             </Switch>
+                                :
+                            <Switch>
+                                
+                                <Route exact={true} path="/" component={Login}/>
+                                <Route path="/login" component={Login}/>
+                                
+                            </Switch>
+                                
+                            }
 
                             <Footer db={db}></Footer>
                         </div>

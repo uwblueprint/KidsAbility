@@ -5,7 +5,7 @@ export default class NotFound extends Component {
         return (
             <div className="container">
                 <h2>404 - Not Found</h2>
-                <p>Whoops! Greg page doesn't exist</p>
+                <p>Whoops! This page does not exist</p>
             </div>
         );
     }

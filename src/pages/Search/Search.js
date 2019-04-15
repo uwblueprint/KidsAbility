@@ -4,6 +4,7 @@ import './Search.css';
 import LOCATIONS from '../../constants/locations';
 import PROGRAMS from '../../constants/programs'
 import {Router, Route, Switch, Redirect, Link} from 'react-router';
+import ScrollArea from 'react-scrollbar'
 
 const options1 = [
   {value: 'bob', label: 'Bob'},
@@ -211,68 +212,72 @@ export default class Search extends Component {
     }
     
     return (
-          <div className="row"> 
-            <h1> Find Available Times </h1>
-            <div className="column">
-              Clinician Name(s) or ID(s) <font color="red">[Required]</font>
-              <Select className="leftdropdown"
-                name="Clincian"
-                isMulti
-                value={name}
-                onChange={this.handleChange1}
-                options={this.state.clinicians}
-              />
-              Service/Program
-              <Select className="leftdropdown"
-                isMulti
-                value={service}
-                onChange={this.handleChange2}
-                options={this.state.programs}
-              />
-              Location
-              <Select className="leftdropdown"
-                value={location}
-                onChange={this.handleChange3}
-                options={this.state.locations}
-              />
-              Reoccurence
-              <Select className="leftdropdown"
-                value={reoccurence}
-                onChange={this.handleChange7}
-                options={options5}
-              />
-            </div>
-            <div className="column">
-              Min. Time Required
-              <Select className="rightdropdown"
-                value={time}
-                onChange={this.handleChange4}
-                options={options4}
-              />
-              Number of Sessions
-              <Select className="rightdropdown"
-                value={sessions}
-                onChange={this.handleChange5}
-                options={options5}
-              />
-              Time of Day
-              <Select className="rightdropdown"
-                value={timeOfDay}
-                onChange={this.handleChange6}
-                options={TimeofDay}
-              />
-              <button 
-                  className="button" 
-                  onClick={this.handleSubmit}>
-                  Search
-              </button>
-              {/*}
-              <form ref="form" onSubmit={this.handleSubmit}>
-                <button className="button">Search</button>
-              </form>
-              */}
-            </div>
-          </div>
+        <div>
+              <div className="row"> 
+                              <ScrollArea>
+                <h1> Find Available Times </h1>
+                <div className="column">
+                  Clinician Name(s) or ID(s) <font color="red">[Required]</font>
+                  <Select className="dropdown"
+                    name="Clincian"
+                    isMulti
+                    value={name}
+                    onChange={this.handleChange1}
+                    options={this.state.clinicians}
+                  />
+                  Service/Program
+                  <Select className="dropdown"
+                    isMulti
+                    value={service}
+                    onChange={this.handleChange2}
+                    options={this.state.programs}
+                  />
+                  Location
+                  <Select className="dropdown"
+                    value={location}
+                    onChange={this.handleChange3}
+                    options={this.state.locations}
+                  />
+                  Reoccurence
+                  <Select className="dropdown"
+                    value={reoccurence}
+                    onChange={this.handleChange7}
+                    options={options5}
+                  />
+                </div>
+                <div className="column">
+                  Min. Time Required
+                  <Select className="dropdown"
+                    value={time}
+                    onChange={this.handleChange4}
+                    options={options4}
+                  />
+                  Number of Sessions
+                  <Select className="dropdown"
+                    value={sessions}
+                    onChange={this.handleChange5}
+                    options={options5}
+                  />
+                  Time of Day
+                  <Select className="dropdown"
+                    value={timeOfDay}
+                    onChange={this.handleChange6}
+                    options={TimeofDay}
+                  />
+                  <button 
+                      className="button" 
+                      onClick={this.handleSubmit}>
+                      Search
+                  </button>
+                  {/*}
+                  <form ref="form" onSubmit={this.handleSubmit}>
+                    <button className="button">Search</button>
+                  </form>
+                  */}
+                </div>
+                          </ScrollArea>
+              </div>
+      </div>
     );
   }
 };
