@@ -1,0 +1,32 @@
+.dropdownlogin {
+    width: calc(100%);
+    color: black;
+    margin: 20px 10px;
+}
+
+.loginbox {
+  margin-left: 25%;
+  margin-right: 25%;
+  background-color: white;
+  margin-top: calc(5% + 1cm);
+  margin-bottom: calc(5% + 1cm);
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+
+.buttonlogin {
+    background-color: blue;
+    border: none;
+    margin: 20px 10px;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    position: relative;
+    cursor: pointer;
+    width: 100%
+}

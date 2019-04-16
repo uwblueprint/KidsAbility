@@ -164,18 +164,17 @@ export default class App extends Component {
         }
         return body;
     };
-    
-    login = (user) => {
-        localStorage.setItem('user', user);
-        console.log("logging in");
-        this.setState({user: user});
-    }
-    
+
     componentWillMount = () => {
-        let user = localStorage.getItem('user');
-        this.setState({user: user});
+        this.handleUserUpdate();
     }
 
+    handleUserUpdate = () => {
+        var user = localStorage.getItem('user');
+        console.log(user);
+        this.setState({user: user});
+    }
+    
     render() {
         
         const SearchPage = (props) => {
@@ -209,6 +208,7 @@ export default class App extends Component {
         const LoginPage = (props) => {
             return (
                 <Login
+                    handleUserUpdate={this.handleUserUpdate}
                 />
             )
         }
@@ -222,28 +222,15 @@ export default class App extends Component {
         // This is where pre-render calculations happen These calculations can also be
         // done in lifecycle methods. The latter is probably better practice
 
+        console.log(this.state.user);
         return (
             <div className="App">
                 <header className="App-header">
-
-                    {/*
-                        We need the curly braces to write in-line comments inside
-                        return.
-
-                        We are calling the component "Router" below -
-                        which is imported from an npm package. We are passing the
-                        router a prop c)alled "history". The router has an opening
-                        and closing tag.
-
-                        The "<Header/>" component ends in a "/>"
-                        instead of a ">" so it doesn't need a closing tag
-                    */
-                    }
                     <Router history={browserHistory}>
                         <div>
                             <Header/>
                             <NotificationContainer/>
-                            { this.state.user 
+                            { (this.state.user && this.state.user != "") 
                                 ?
                             <Switch>
 
@@ -259,8 +246,8 @@ export default class App extends Component {
                                 :
                             <Switch>
                                 
-                                <Route exact={true} path="/" component={Login}/>
-                                <Route path="/login" component={Login}/>
+                                <Route path="/login" component={LoginPage}/>
+                                <Route component={LoginPage}/>
                                 
                             </Switch>
                                 
