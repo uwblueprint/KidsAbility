@@ -238,7 +238,7 @@ export default class View extends Component {
             );
         }
         
-        
+        //If there is more than 1 person - it hangs here
         let overlappingTimes = this.state.data[0];
         for (let i = 1; i < this.state.data.length; i++) {
             overlappingTimes = getOverlappingTimes(overlappingTimes, this.state.data[i]);
@@ -246,6 +246,9 @@ export default class View extends Component {
         
         //In the case when overlappingTimes is empty - this hangs (add a check here or in groupdata itself)
         this.data = groupData(overlappingTimes, this.state.searchParams);
+        
+        
+        
         
         //This works (returns all available times for the first clinician)
         //this.data = groupData(this.state.data[0], this.state.searchParams);
