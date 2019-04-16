@@ -62,6 +62,7 @@ const processData = (data) => {
 const getOverlappingTimes = (t1, t2) => {
     const overlappingTimes = [];
     for (let i = 0, j = 0; i < t1.length - 1 && j < t2.length - 1; ) {
+        console.log("We looping");
         if (moment(t1[i].Date) < moment(t2[j].Date)) i++
         else if (moment(t2[j].Date) < moment(t1[i].Date)) j++;
 
@@ -85,6 +86,7 @@ const getOverlappingTimes = (t1, t2) => {
 }
 
 const groupData = (data, searchParams) => {
+    console.log(data);
     const groupedData = {}
     data
         .filter(elem =>
@@ -189,7 +191,7 @@ export default class View extends Component {
         this.clinicians = {};
         this.data = {};
         
-        
+        console.log("We are on the view page");
         //grab the id from the url
         let searchId = this.props.hidden.match.params.searchId;
         
@@ -207,11 +209,15 @@ export default class View extends Component {
                     color: colors[index],
                 }
                 
-                return this.props.getScheduleAPI(name[0].First, name[0].Last)
+                var result = this.props.getScheduleAPI(name[0].First, name[0].Last)
                     .then((res) => {
+                        console.log(res);
                         const availableTimes = processData(res);
+                        console.log(availableTimes);
                         this.state.data.push(availableTimes);
                     });
+                console.log(result);
+                return result;
             })).then(() => this.setState({ ready: true }));
         })
     }
@@ -221,9 +227,16 @@ export default class View extends Component {
     }
 
     render() {
+        console.log(this.state.ready);
+        console.log(this.state.data);
             
         //We should return a spinner :P
-        if (!this.state.ready) return null;
+        if (!this.state.ready) {
+            
+        return (
+                <p> Loading </p>
+            );
+        }
         
         
         let overlappingTimes = this.state.data[0];
@@ -231,7 +244,14 @@ export default class View extends Component {
             overlappingTimes = getOverlappingTimes(overlappingTimes, this.state.data[i]);
         }
         
+        //In the case when overlappingTimes is empty - this hangs (add a check here or in groupdata itself)
         this.data = groupData(overlappingTimes, this.state.searchParams);
+        
+        //This works (returns all available times for the first clinician)
+        //this.data = groupData(this.state.data[0], this.state.searchParams);
+        
+        //This displays all the times - but they are not grouped into week properly
+        //this.data = this.state.data;
         
         return (
             <div className="view">

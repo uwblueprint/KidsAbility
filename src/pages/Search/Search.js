@@ -212,9 +212,7 @@ export default class Search extends Component {
     }
     
     return (
-        <div>
               <div className="row"> 
-                              <ScrollArea>
                 <h1> Find Available Times </h1>
                 <div className="column">
                   Clinician Name(s) or ID(s) <font color="red">[Required]</font>
@@ -275,8 +273,6 @@ export default class Search extends Component {
                   </form>
                   */}
                 </div>
-                          </ScrollArea>
-              </div>
       </div>
     );
   }
