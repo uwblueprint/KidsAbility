@@ -189,7 +189,7 @@ export default class View extends Component {
         this.clinicians = {};
         this.data = {};
         
-        
+        console.log("We are on the view page");
         //grab the id from the url
         let searchId = this.props.hidden.match.params.searchId;
         
@@ -200,20 +200,25 @@ export default class View extends Component {
             //For every name in the seach ->
             //  - Add the clinician name to the list of clinicians (dict)
             //  - Add the dates together
+            console.log("Greg 1");
             Promise.all(res[0].names.map((name, index) => {
                 
                 this.clinicians[name[0].label] = {
                     name: [name[0].label],
                     color: colors[index],
                 }
+                console.log("Greg 2");
                 
-                return this.props.getScheduleAPI(name[0].First, name[0].Last)
+                this.props.getScheduleAPI(name[0].First, name[0].Last)
                     .then((res) => {
+                        console.log(res);
                         const availableTimes = processData(res);
                         this.state.data.push(availableTimes);
+                        console.log("Greg 3");
                     });
             })).then(() => this.setState({ ready: true }));
         })
+        console.log("Greg 4");
     }
 
     toggleView = (e) => {
@@ -223,7 +228,11 @@ export default class View extends Component {
     render() {
             
         //We should return a spinner :P
-        if (!this.state.ready) return null;
+        if (!this.state.ready) {
+        return (
+                <h> Loading </h>
+            );
+        }
         
         
         let overlappingTimes = this.state.data[0];
