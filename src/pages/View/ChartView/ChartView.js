@@ -23,8 +23,6 @@ export default class ChartView extends Component {
 
     render() {
         
-        console.log(this.props.data)
-        
         return (
             <div>
             <div className="table">

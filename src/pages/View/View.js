@@ -62,7 +62,10 @@ const processData = (data) => {
 const getOverlappingTimes = (t1, t2) => {
     const overlappingTimes = [];
     for (let i = 0, j = 0, loops = 0; i < t1.length - 1 && j < t2.length - 1 && loops <= 100; ) {
-        if (loops === 100) console.log("We looping");
+        if (loops === 100) {
+            console.log("We looping");
+            break;
+        }
         if (moment(t1[i].Date) < moment(t2[j].Date)) i++
         else if (moment(t2[j].Date) < moment(t1[i].Date)) j++;
 
