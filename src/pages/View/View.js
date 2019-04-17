@@ -61,13 +61,13 @@ const processData = (data) => {
 // find overlapping times from two arrays of time slots
 const getOverlappingTimes = (t1, t2) => {
     const overlappingTimes = [];
-    for (let i = 0, j = 0; i < t1.length - 1 && j < t2.length - 1; ) {
-        console.log("We looping");
+    for (let i = 0, j = 0, loops = 0; i < t1.length - 1 && j < t2.length - 1 && loops <= 100; ) {
+        if (loops === 100) console.log("We looping");
         if (moment(t1[i].Date) < moment(t2[j].Date)) i++
         else if (moment(t2[j].Date) < moment(t1[i].Date)) j++;
 
-        else if (moment(t1[i].Start, 'h:mm') > moment(t2[j].End, 'h:mm')) j++;
-        else if (moment(t1[i].End, 'h:mm') < moment(t2[j].Start, 'h:mm')) i++;
+        else if (moment(t1[i].Start, 'h:mm') >= moment(t2[j].End, 'h:mm')) j++;
+        else if (moment(t1[i].End, 'h:mm') <= moment(t2[j].Start, 'h:mm')) i++;
 
         else if (moment(t1[i].End, 'h:mm') > moment(t2[j].Start, 'h:mm') && moment(t2[j].End, 'h:mm') > moment(t1[i].Start, 'h:mm')){
             overlappingTimes.push({
@@ -79,17 +79,18 @@ const getOverlappingTimes = (t1, t2) => {
             })
             if (moment(t1[i].End, 'h:mm') < moment(t2[j].End, 'h:mm')) i++;
             else j++;
+        } else {
+            loops++;
         }
-
     }
     return overlappingTimes;
 }
 
 const groupData = (data, searchParams) => {
-    console.log(data);
     const groupedData = {}
     data
         .filter(elem =>
+            moment().startOf('date').diff(elem.Date, 'days') <= 0 &&
             moment(elem.End, 'h:mm').diff(moment(elem.Start, 'h:mm'), 'minutes') > searchParams.time.value)
         .sort(compareFunction)
         .forEach(elem => {
@@ -211,12 +212,9 @@ export default class View extends Component {
                 
                 var result = this.props.getScheduleAPI(name[0].First, name[0].Last)
                     .then((res) => {
-                        console.log(res);
                         const availableTimes = processData(res);
-                        console.log(availableTimes);
                         this.state.data.push(availableTimes);
                     });
-                console.log(result);
                 return result;
             })).then(() => this.setState({ ready: true }));
         })
@@ -227,8 +225,6 @@ export default class View extends Component {
     }
 
     render() {
-        console.log(this.state.ready);
-        console.log(this.state.data);
             
         //We should return a spinner :P
         if (!this.state.ready) {
@@ -240,6 +236,7 @@ export default class View extends Component {
         
         //If there is more than 1 person - it hangs here
         let overlappingTimes = this.state.data[0];
+        console.log(this.state.data)
         for (let i = 1; i < this.state.data.length; i++) {
             overlappingTimes = getOverlappingTimes(overlappingTimes, this.state.data[i]);
         }
