@@ -124,11 +124,17 @@ export default class Search extends Component {
           this.props.getSearchAPI(searchId).then((res) => {
               console.log(res);
               console.log(res[0].names);
-              
-              let names = 
+              let names = [];
+              let services = [];
+              for (let i = 0; i < res[0].names.length; i++) {
+                  names.push(res[0].names[i][0]);
+              }
+              for (let i = 0; i < res[0].services.length; i++) {
+                  services.push(res[0].services[i][0]);
+              }
               this.setState({
-                  name: res[0].names[0],
-                  service: res[0].services[0],
+                  name: names,
+                  service: services,
                   location: res[0].location,
                   time: res[0].time,
                   sessions: res[0].numSessions,
