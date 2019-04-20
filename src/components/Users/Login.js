@@ -4,19 +4,6 @@ import './Login.css';
 import {Router, Route, Switch, Redirect, Link} from 'react-router';
 import CreatableSelect from 'react-select/lib/Creatable';
 
-const options5 = [
-  {value: "Rebecca", label: "1"},
-  {value: 2, label: '2'},
-  {value: 3, label: '3'},
-  {value: 4, label: '4'},
-  {value: 5, label: '5'},
-  {value: 6, label: '6'},
-  {value: 7, label: '7'},
-  {value: 8, label: '8'},
-  {value: 9, label: '9'},
-  {value: 10, label: '10'}
-]
-
 
 export default class Login extends Component {
     constructor(props) {
@@ -30,6 +17,13 @@ export default class Login extends Component {
     handleLogin = () => {
         console.log(this.state.user.value);
         localStorage.setItem('user', this.state.user.value);
+        
+        let Name = this.state.user.value;
+        let user = {
+            Name,
+        }
+        
+        this.props.postUserAPI(user);
         //this.props.handleUserUpdate();
         this.setState({redirect: true});
     }
@@ -42,7 +36,19 @@ export default class Login extends Component {
     
     
     componentWillMount = () => {
-        
+        let users = this.props.getUsersAPI().then((res) => {
+             let options = [];
+             res.forEach((user) => {
+                 let value = user.Name;
+                 let label = user.Name;
+                 let option = {
+                     value: value,
+                     label: label,
+                 }
+                 options.push(option);
+             });
+             this.setState({users: options});
+        });
     }
 
     render() {
@@ -57,14 +63,15 @@ export default class Login extends Component {
         
         return (
             <div className="loginbox">
-                Select User
+                Select/Create User 
                 <CreatableSelect
                     inputProps={{autoComplete: 'off', autoCorrect: 'off', spellCheck: 'off' }}
                     isSearchable={true}
                     className="dropdownlogin"
                     value={this.state.user}
                     onChange={this.handleUserChange}
-                    options={options5}
+                    options={this.state.users}
+                    placeholder="Type your name"
                 />
                 <button 
                     className="buttonlogin" 

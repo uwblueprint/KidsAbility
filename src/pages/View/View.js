@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ChartView from './ChartView/ChartView';
 import CalendarView from './CalendarView/CalendarView';
+import {Router, Route, Switch, Redirect, Link} from 'react-router';
 import moment from 'moment';
 import axios from 'axios';
 import './View.css';
@@ -191,6 +192,7 @@ export default class View extends Component {
             ready: false,
             index: 0,
             searchParams: {},
+            redirect: false,
         };
         this.clinicians = {};
         this.data = {};
@@ -198,7 +200,6 @@ export default class View extends Component {
         console.log("We are on the view page");
         //grab the id from the url
         let searchId = this.props.hidden.match.params.searchId;
-        
         //Use the id to get the search params
         this.props.getSearchAPI(searchId).then((res) => {
             this.setState({ searchParams: res[0] });
@@ -224,11 +225,26 @@ export default class View extends Component {
     }
 
     toggleView = (e) => {
-        this.setState({view: e.target.value});
+        if (this.state.view == "chart") {
+            this.setState({view: "calendar"});
+        }
+        else {
+            this.setState({view: "chart"});
+        }
+    }
+    
+    goBack = () => {
+        this.setState({redirect: true});
     }
 
     render() {
-            
+        console.log(this.state.searchId);
+        let renderRedirect;
+        if (this.state.redirect){
+            let path = "/edit-time/"+this.props.hidden.match.params.searchId;;
+            return <Redirect to={path}/>
+        }
+        
         //We should return a spinner :P
         if (!this.state.ready) {
             
@@ -236,6 +252,8 @@ export default class View extends Component {
                 <p> Loading </p>
             );
         }
+        
+        
         
         //If there is more than 1 person - it hangs here
         let overlappingTimes = this.state.data[0];
@@ -260,23 +278,20 @@ export default class View extends Component {
             <div className="view">
                 <div>
                     <div className="header">
-                        <h2 className="heading2">Available Times</h2>
+                        <div className="toggle-buttons-back">
+                            <button
+                                className="back-button"
+                                onClick={this.goBack}>
+                                Back
+                            </button>
+                        </div>
+                        <h2 className="heading">Available Times</h2>
                         <div className="toggle-buttons">
                             <button
                                 className="toggle-button"
                                 onClick={this.toggleView}
-                                data={this.props.data}
-                                disabled={this.state.view === 'chart'}
-                                value="chart">
-                                Chart View
-                            </button>
-                            <button
-                                className="toggle-button"
-                                onClick={this.toggleView}
-                                data={this.props.data}
-                                disabled={this.state.view === 'calendar'}
-                                value="calendar">
-                                Calendar View
+                                data={this.props.data}>
+                                {(this.state.view == 'chart') ? "Calendar View" : "Chart View"}
                             </button>
                         </div>
                     </div>

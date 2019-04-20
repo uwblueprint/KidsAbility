@@ -51,6 +51,13 @@ const options5 = [
   {value: 10, label: '10'}
 ]
 
+const recurrenceOptions = [
+    {value: "Any", "label": "Any"},
+    {value: "weekly", "label": "Weekly"},
+    {value: "bi-weekly", "label": "Bi-Weekly"},
+    {value: "monthly", "label": "Monthly"},
+]
+
 {/* does this need to be radio buttons? */}
 const TimeofDay = [
   {value: 'anytime', label: 'AnyTime'},
@@ -72,7 +79,7 @@ export default class Search extends Component {
       timeOfDay: TimeofDay[0],
       redirect: false,
       searchId: null,
-      reoccurence: options5[0],
+      reoccurence: recurrenceOptions[0],
     };
   }
   componentWillMount = () => {
@@ -83,6 +90,7 @@ export default class Search extends Component {
           locations.push({value: key, label: value.description});
       }   
       this.setState({locations: locations});
+      this.setState({location: locations[0]});
       
       //load in the programs
       let programs = [];
@@ -90,6 +98,7 @@ export default class Search extends Component {
           programs.push({value: key, label: value.description})
       }
       this.setState({programs: programs});
+      this.setState({service: programs[0]});
       
       //load in clinicians
       this.props.getCliniciansAPI().then((res) => {
@@ -107,8 +116,28 @@ export default class Search extends Component {
           this.setState({clinicians: clinicians});
       });
       //this.props.getScheduleAPI("RHONDA","MACKINNON").then(res => console.log(res)).catch(err => console.log(err));
+      
+      let searchId = this.props.hidden.match.params.searchId;
+      console.log(searchId);
+      //Use the id to get the search params
+      if (searchId) {
+          this.props.getSearchAPI(searchId).then((res) => {
+              console.log(res);
+              console.log(res[0].names);
+              
+              let names = 
+              this.setState({
+                  name: res[0].names[0],
+                  service: res[0].services[0],
+                  location: res[0].location,
+                  time: res[0].time,
+                  sessions: res[0].numSessions,
+                  timeOfDay: res[0].timeOfDay,
+              })
+        
+          });
+      }
   }
-  
   handleChange1 = (name) => {
     this.setState({name: name})
     console.log(`Option selected:`, name)
@@ -207,7 +236,7 @@ export default class Search extends Component {
     let renderRedirect;
     if (this.state.redirect && this.state.searchId){
         
-        let path = "view-search/"+this.state.searchId;
+        let path = "/view-search/"+this.state.searchId;
         return <Redirect to={path}/>
     }
     
@@ -236,11 +265,11 @@ export default class Search extends Component {
                     onChange={this.handleChange3}
                     options={this.state.locations}
                   />
-                  Reoccurence
+                  Recurrence
                   <Select className="dropdown"
                     value={reoccurence}
                     onChange={this.handleChange7}
-                    options={options5}
+                    options={recurrenceOptions}
                   />
                 </div>
                 <div className="column">

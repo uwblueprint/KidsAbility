@@ -8,7 +8,7 @@ const scheduleRoutes = require('./routes/schedules');
 const clinicianRoutes = require('./routes/clinicians');
 const savedRoutes = require('./routes/saved_times');
 const searchRoutes = require('./routes/searches');
-const userRoutes = require('/routes/users');
+const userRoutes = require('./routes/users');
 
 // allows us to access request body in a post or put
 app.use(cors());
@@ -27,6 +27,6 @@ app.use('/api/saved', savedRoutes);
 app.use('/api/search', searchRoutes);
 app.use('/api/users', userRoutes);
 
-app.listen(80, () =>
-	console.log("App on port " + 80)
+app.listen(4000, () =>
+	console.log("App on port " + 4000)
 );

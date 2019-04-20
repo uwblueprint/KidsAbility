@@ -1,12 +1,9 @@
 var mongoose = require('mongoose');
 	
 var userSchema = new mongoose.Schema({	
-	FirstName: {
+	Name: {
 		type: String
 	},
-	LastName: {
-		type: String
-	}
 }, { collection: 'Users' });
 
 	

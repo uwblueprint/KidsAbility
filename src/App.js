@@ -32,7 +32,7 @@ console.log(fire);
 
 var bodyParser = require('body-parser');
 
-const proxy = "https://gc-web-mitm.kidsability.org";
+const proxy = "http://localhost:4000";
 
 export default class App extends Component {
 
@@ -159,6 +159,39 @@ export default class App extends Component {
     getSearchAPI = async (id) => {
         const response = await fetch(proxy+'/api/search/'+id);
         const body = await response.json();
+                if (response.status !== 200) {
+            throw Error(body.message);
+        }
+        return body;
+    };
+    
+    
+    postUserAPI = async (databody) => {
+        console.log(databody);
+
+        const response = await fetch(proxy+'/api/users/post', {
+            method: 'POST', 
+            body: JSON.stringify(databody),
+            headers: {
+               'Accept': 'application/json',
+               'Content-Type': 'application/json',
+             },
+        })
+        
+        const body = await response.json();
+        
+        if (response.status !== 201) {
+            console.log(response);
+            console.log("Error with posting user");
+        }
+        
+        console.log(body);
+        return body;
+    };
+    
+    getUsersAPI = async (id) => {
+        const response = await fetch(proxy+'/api/users');
+        const body = await response.json();
         if (response.status !== 200) {
             throw Error(body.message);
         }
@@ -181,8 +214,10 @@ export default class App extends Component {
             return (
                 <Search
                     getScheduleAPI={this.getScheduleAPI}
+                    hidden={props}
                     getCliniciansAPI={this.getCliniciansAPI}
                     postSearchAPI={this.postSearchAPI}
+                    getSearchAPI={this.getSearchAPI} 
                 />
             )
         }
@@ -209,13 +244,11 @@ export default class App extends Component {
             return (
                 <Login
                     handleUserUpdate={this.handleUserUpdate}
+                    postUserAPI={this.postUserAPI}
+                    getUsersAPI={this.getUsersAPI}
                 />
             )
         }
-        
-        
-        //postUserAPI={this.postUserAPI}
-        //getUsersAPI={this.getUsersAPI}
 
         var db = firebase.firestore();
 
@@ -236,6 +269,7 @@ export default class App extends Component {
 
                                 <Route exact={true} path="/" component={Home}/>
                                 <Route path="/find-time" render={SearchPage}/>
+                                <Route path="/edit-time/:searchId" render={SearchPage}/>
                                 <Route path="/about" component={NotFound}/>
                                 <Route path="/saved" component={SavedPage}/>
                                 <Route path="/login" component={LoginPage}/>
