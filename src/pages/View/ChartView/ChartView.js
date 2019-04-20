@@ -7,7 +7,9 @@ import './ChartView.css';
 export default class ChartView extends Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            open: false
+        };
     }
 
     // welcome to unreadable, unfactored, and messy error handling
@@ -16,6 +18,7 @@ export default class ChartView extends Component {
     // this is temporary
     onClickSave = (e, param) => {
         if (e.target.innerHTML != "bookmark"){
+            this.setState({open: true})
             this.props.postSavedAPI(param);
             e.target.innerHTML = "bookmark";
         }
@@ -62,6 +65,10 @@ export default class ChartView extends Component {
                                             <Icon className="save-button" style={{color: "purple"}} onClick={(e) => this.onClickSave(e, elem)}>
                                                 bookmark_border
                                             </Icon>
+                                            <Modal
+                                                isOpen={this.state.open}
+                                            >
+                                            </Modal>
                                         </td>
                                     </tr>
                                 )
