@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Select from 'react-select';
 import './Login.css';
 import {Router, Route, Switch, Redirect, Link} from 'react-router';
-
+import CreatableSelect from 'react-select/lib/Creatable';
 
 const options5 = [
   {value: "Rebecca", label: "1"},
@@ -35,7 +35,14 @@ export default class Login extends Component {
     }
     
     handleUserChange = (user) => {
+        console.log("called");
+        console.log("user");
         this.setState({user: user});
+    }
+    
+    
+    componentWillMount = () => {
+        
     }
 
     render() {
@@ -43,6 +50,7 @@ export default class Login extends Component {
         let renderRedirect;
         if (this.state.redirect){
             
+            this.props.handleUserUpdate();
             let path = "/";
             return <Redirect to={path}/>
         }
@@ -50,11 +58,13 @@ export default class Login extends Component {
         return (
             <div className="loginbox">
                 Select User
-                <Select 
-                  className="dropdownlogin"
-                  value={this.state.user}
-                  onChange={this.handleUserChange}
-                  options={options5}
+                <CreatableSelect
+                    inputProps={{autoComplete: 'off', autoCorrect: 'off', spellCheck: 'off' }}
+                    isSearchable={true}
+                    className="dropdownlogin"
+                    value={this.state.user}
+                    onChange={this.handleUserChange}
+                    options={options5}
                 />
                 <button 
                     className="buttonlogin" 

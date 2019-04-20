@@ -1,6 +1,4 @@
-import User from './users';
 var mongoose = require('mongoose');
-	
 	
 var savedSchema = new mongoose.Schema({	
 	Date: {
@@ -22,7 +20,7 @@ var savedSchema = new mongoose.Schema({
 		type: String
 	},
 	User: {
-		type: User
+		type: String
 	}
 }, { collection: 'SavedTimes' });
 

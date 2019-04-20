@@ -1,4 +1,3 @@
-import 
 var mongoose = require('mongoose');
 	
 var userSchema = new mongoose.Schema({	
@@ -11,6 +10,6 @@ var userSchema = new mongoose.Schema({
 }, { collection: 'Users' });
 
 	
-var Saved = mongoose.model('User', userSchema);
+var User = mongoose.model('User', userSchema);
 
 module.exports = User;
