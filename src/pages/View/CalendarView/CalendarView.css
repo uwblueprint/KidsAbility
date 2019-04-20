@@ -1,12 +1,13 @@
 .box {
-  height: 60vh;
-  width: 70vw;
+  height: 65vh;
+  width: 100%;
   overflow: auto;
   background-color: white;
-  padding-top: 5%;
+  padding-top: 2%;
   padding-left: 5%;
   padding-right: 5%;
-  padding-bottom: 5%;
+  padding-bottom: 2%;
+  margin-bottom: 5%;
 }
 
 .rbc-calendar {

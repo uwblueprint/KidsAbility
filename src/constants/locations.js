@@ -15,6 +15,11 @@ const STATUSES = {
 }
 
 const LOCATIONS = {
+  'Any': {
+    description: 'Any',
+    city: CITIES.Null,
+    status: STATUSES.Active,
+  },
   'ALEXDC': {
     description: 'W-Alexandra Day Care',
     city: CITIES.Waterloo,

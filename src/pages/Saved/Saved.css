@@ -30,10 +30,12 @@
   max-width: 1300px;
   margin: auto;
   background-color: white;
-  padding-top: 5%;
+  padding-top: 1%;
   padding-left: 5%;
   padding-right: 5%;
-  padding-bottom: 5%;
+  padding-bottom: 1%;
+  margin-bottom: 5%;
+  margin-top: 5%;
 }
 
 #table-wrapper {

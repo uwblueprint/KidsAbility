@@ -3,6 +3,7 @@ import moment from 'moment';
 import Icon from '@material-ui/core/Icon';
 import Modal from 'react-responsive-modal';
 import './ChartView.css';
+import ReactDOM from 'react-dom';
 
 export default class ChartView extends Component {
     constructor(props) {
@@ -24,7 +25,7 @@ export default class ChartView extends Component {
             e.target.innerHTML = "bookmark";
         }
     }
-
+    
     handleSubmit(e) {
         e.preventDefault();
         var param = this.state.param;

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ChartView from './ChartView/ChartView';
 import CalendarView from './CalendarView/CalendarView';
+import {Router, Route, Switch, Redirect, Link} from 'react-router';
 import moment from 'moment';
 import axios from 'axios';
 import './View.css';
@@ -61,12 +62,16 @@ const processData = (data) => {
 // find overlapping times from two arrays of time slots
 const getOverlappingTimes = (t1, t2) => {
     const overlappingTimes = [];
-    for (let i = 0, j = 0; i < t1.length - 1 && j < t2.length - 1; ) {
+    for (let i = 0, j = 0, loops = 0; i < t1.length - 1 && j < t2.length - 1 && loops <= 100; ) {
+        if (loops === 100) {
+            console.log("We looping");
+            break;
+        }
         if (moment(t1[i].Date) < moment(t2[j].Date)) i++
         else if (moment(t2[j].Date) < moment(t1[i].Date)) j++;
 
-        else if (moment(t1[i].Start, 'h:mm') > moment(t2[j].End, 'h:mm')) j++;
-        else if (moment(t1[i].End, 'h:mm') < moment(t2[j].Start, 'h:mm')) i++;
+        else if (moment(t1[i].Start, 'h:mm') >= moment(t2[j].End, 'h:mm')) j++;
+        else if (moment(t1[i].End, 'h:mm') <= moment(t2[j].Start, 'h:mm')) i++;
 
         else if (moment(t1[i].End, 'h:mm') > moment(t2[j].Start, 'h:mm') && moment(t2[j].End, 'h:mm') > moment(t1[i].Start, 'h:mm')){
             overlappingTimes.push({
@@ -78,8 +83,9 @@ const getOverlappingTimes = (t1, t2) => {
             })
             if (moment(t1[i].End, 'h:mm') < moment(t2[j].End, 'h:mm')) i++;
             else j++;
+        } else {
+            loops++;
         }
-
     }
     return overlappingTimes;
 }
@@ -88,6 +94,7 @@ const groupData = (data, searchParams) => {
     const groupedData = {}
     data
         .filter(elem =>
+            moment().startOf('date').diff(elem.Date, 'days') <= 0 &&
             moment(elem.End, 'h:mm').diff(moment(elem.Start, 'h:mm'), 'minutes') > searchParams.time.value)
         .sort(compareFunction)
         .forEach(elem => {
@@ -185,14 +192,14 @@ export default class View extends Component {
             ready: false,
             index: 0,
             searchParams: {},
+            redirect: false,
         };
         this.clinicians = {};
         this.data = {};
         
-        
+        console.log("We are on the view page");
         //grab the id from the url
         let searchId = this.props.hidden.match.params.searchId;
-        
         //Use the id to get the search params
         this.props.getSearchAPI(searchId).then((res) => {
             this.setState({ searchParams: res[0] });
@@ -207,53 +214,84 @@ export default class View extends Component {
                     color: colors[index],
                 }
                 
-                return this.props.getScheduleAPI(name[0].First, name[0].Last)
+                var result = this.props.getScheduleAPI(name[0].First, name[0].Last)
                     .then((res) => {
                         const availableTimes = processData(res);
                         this.state.data.push(availableTimes);
                     });
+                return result;
             })).then(() => this.setState({ ready: true }));
         })
     }
 
     toggleView = (e) => {
-        this.setState({view: e.target.value});
+        if (this.state.view == "chart") {
+            this.setState({view: "calendar"});
+        }
+        else {
+            this.setState({view: "chart"});
+        }
+    }
+    
+    goBack = () => {
+        this.setState({redirect: true});
     }
 
     render() {
-            
+        console.log(this.state.searchId);
+        let renderRedirect;
+        if (this.state.redirect){
+            let path = "/edit-time/"+this.props.hidden.match.params.searchId;;
+            return <Redirect to={path}/>
+        }
+        
         //We should return a spinner :P
-        if (!this.state.ready) return null;
+        if (!this.state.ready) {
+            
+        return (
+                <p> Loading </p>
+            );
+        }
         
         
+        
+        //If there is more than 1 person - it hangs here
         let overlappingTimes = this.state.data[0];
+        console.log(this.state.data)
         for (let i = 1; i < this.state.data.length; i++) {
             overlappingTimes = getOverlappingTimes(overlappingTimes, this.state.data[i]);
         }
         
+        //In the case when overlappingTimes is empty - this hangs (add a check here or in groupdata itself)
         this.data = groupData(overlappingTimes, this.state.searchParams);
+        
+        
+        
+        
+        //This works (returns all available times for the first clinician)
+        //this.data = groupData(this.state.data[0], this.state.searchParams);
+        
+        //This displays all the times - but they are not grouped into week properly
+        //this.data = this.state.data;
         
         return (
             <div className="view">
                 <div>
                     <div className="header">
-                        <h2 className="heading2">Available Times</h2>
+                        <div className="toggle-buttons-back">
+                            <button
+                                className="back-button"
+                                onClick={this.goBack}>
+                                Back
+                            </button>
+                        </div>
+                        <h2 className="heading">Available Times</h2>
                         <div className="toggle-buttons">
                             <button
                                 className="toggle-button"
                                 onClick={this.toggleView}
-                                data={this.props.data}
-                                disabled={this.state.view === 'chart'}
-                                value="chart">
-                                Chart View
-                            </button>
-                            <button
-                                className="toggle-button"
-                                onClick={this.toggleView}
-                                data={this.props.data}
-                                disabled={this.state.view === 'calendar'}
-                                value="calendar">
-                                Calendar View
+                                data={this.props.data}>
+                                {(this.state.view == 'chart') ? "Calendar View" : "Chart View"}
                             </button>
                         </div>
                     </div>

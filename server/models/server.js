@@ -20,3 +20,4 @@ mongoose.Promise = Promise;
 module.exports.Schedule = require("./schedule");
 module.exports.Saved = require("./saved_time");
 module.exports.Search = require("./searches");
+module.exports.User = require("./users");

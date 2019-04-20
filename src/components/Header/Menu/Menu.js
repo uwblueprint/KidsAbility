@@ -10,21 +10,21 @@ export default class Menu extends Component {
 
     render() {
         return (
-            <nav class="navbar navbar-default">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>                        
+            <nav className="navbar navbar-default">
+                <div className="container-fluid">
+                    <div className="navbar-header">
+                        <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                            <span className="icon-bar"></span>
+                            <span className="icon-bar"></span>
+                            <span className="icon-bar"></span>                        
                             </button>
-                            <a class="navbar-brand" href="/"><font color="5F5FC4">RocketCare</font></a>
                     </div>
-                    <div class="collapse navbar-collapse" id="myNavbar">
-                        <ul class="nav navbar-nav mr-auto">
+                    <div className="collapse navbar-collapse" id="myNavbar">
+                        <ul className="nav navbar-nav mr-auto">
+                            <li><a className="navbar-brand" href="/"><font color="5F5FC4">RocketCare</font></a></li>
                             <li><a href="/find-time">Find Available Times</a></li>
                             <li><a href="/saved">View Saved Times</a></li>
-                            <li><a href="/log-out">Logout</a></li>
+                            <li><a href="/login">Switch User</a></li>
                             <li><a href="/help">Help</a></li>
                         </ul>
                     </div>
