@@ -1,13 +1,31 @@
 import React, {Component} from 'react';
 import moment from 'moment';
 import Icon from '@material-ui/core/Icon';
-import Modal from 'react-modal';
 import './ChartView.css';
+import ReactDOM from 'react-dom';
+import Modal from 'react-modal';
+
+const customStyles = {
+  content : {
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)'
+  }
+};
+
+
+
 
 export default class ChartView extends Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            modalIsOpen: false
+        };
+
     }
 
     // welcome to unreadable, unfactored, and messy error handling
@@ -16,14 +34,26 @@ export default class ChartView extends Component {
     // this is temporary
     onClickSave = (e, param) => {
         if (e.target.innerHTML != "bookmark"){
+            console.log(param);
             this.props.postSavedAPI(param);
+            this.setState({modalIsOpen: true});
             e.target.innerHTML = "bookmark";
         }
     }
+    
+    openModal = () => {
+    this.setState({modalIsOpen: true});
+  }
+
+  afterOpenModal = () => {
+    // references are now sync'd and can be accessed.
+  }
+
+  closeModal = () => {
+    this.setState({modalIsOpen: false});
+  }
 
     render() {
-        
-        console.log(this.props.data)
         
         return (
             <div>
@@ -70,6 +100,15 @@ export default class ChartView extends Component {
                     )) }
                 </tbody>
             </table>
+            <Modal
+                  isOpen={this.state.modalIsOpen}
+                  onAfterOpen={this.afterOpenModal}
+                  onRequestClose={this.closeModal}
+                  style={customStyles}
+                  contentLabel="Example Modal"
+                >
+                <p> Display the time and the notes section here </p>
+            </Modal>
         </div>
         </div>
 

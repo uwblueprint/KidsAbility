@@ -17,7 +17,7 @@ import Home from '../src/pages/Home/Home'
 import NotFound from '../src/pages/NotFound/NotFound'
 import Footer from '../src/components/Footer/Footer'
 import Header from '../src/components/Header/Header'
-
+import Login from '../src/components/Users/Login'
 import * as settings from '../src/constants/settings.json';
 import Search from '../src/pages/Search/Search'
 import View from '../src/pages/View/View'
@@ -32,7 +32,7 @@ console.log(fire);
 
 var bodyParser = require('body-parser');
 
-const proxy = "https://gc-web-mitm.kidsability.org";
+const proxy = "http://localhost:4000";
 
 export default class App extends Component {
 
@@ -52,7 +52,9 @@ export default class App extends Component {
 
         // This is where we declare the states for THIS component. The states can be
         // passed as props to components called within render
-        this.state = {};
+        this.state = {
+            user: false
+        };
     }
 
     // This is where handler functions and lifecycle methods/functions are declared
@@ -157,20 +159,65 @@ export default class App extends Component {
     getSearchAPI = async (id) => {
         const response = await fetch(proxy+'/api/search/'+id);
         const body = await response.json();
+                if (response.status !== 200) {
+            throw Error(body.message);
+        }
+        return body;
+    };
+    
+    
+    postUserAPI = async (databody) => {
+        console.log(databody);
+
+        const response = await fetch(proxy+'/api/users/post', {
+            method: 'POST', 
+            body: JSON.stringify(databody),
+            headers: {
+               'Accept': 'application/json',
+               'Content-Type': 'application/json',
+             },
+        })
+        
+        const body = await response.json();
+        
+        if (response.status !== 201) {
+            console.log(response);
+            console.log("Error with posting user");
+        }
+        
+        console.log(body);
+        return body;
+    };
+    
+    getUsersAPI = async (id) => {
+        const response = await fetch(proxy+'/api/users');
+        const body = await response.json();
         if (response.status !== 200) {
             throw Error(body.message);
         }
         return body;
     };
 
+    componentWillMount = () => {
+        this.handleUserUpdate();
+    }
+
+    handleUserUpdate = () => {
+        var user = localStorage.getItem('user');
+        console.log(user);
+        this.setState({user: user});
+    }
+    
     render() {
         
         const SearchPage = (props) => {
             return (
                 <Search
                     getScheduleAPI={this.getScheduleAPI}
+                    hidden={props}
                     getCliniciansAPI={this.getCliniciansAPI}
                     postSearchAPI={this.postSearchAPI}
+                    getSearchAPI={this.getSearchAPI} 
                 />
             )
         }
@@ -193,43 +240,52 @@ export default class App extends Component {
                 />
             )
         }
+        const LoginPage = (props) => {
+            return (
+                <Login
+                    handleUserUpdate={this.handleUserUpdate}
+                    postUserAPI={this.postUserAPI}
+                    getUsersAPI={this.getUsersAPI}
+                />
+            )
+        }
 
         var db = firebase.firestore();
 
         // This is where pre-render calculations happen These calculations can also be
         // done in lifecycle methods. The latter is probably better practice
 
+        console.log(this.state.user);
         return (
             <div className="App">
                 <header className="App-header">
-
-                    {/*
-                        We need the curly braces to write in-line comments inside
-                        return.
-
-                        We are calling the component "Router" below -
-                        which is imported from an npm package. We are passing the
-                        router a prop c)alled "history". The router has an opening
-                        and closing tag.
-
-                        The "<Header/>" component ends in a "/>"
-                        instead of a ">" so it doesn't need a closing tag
-                    */
-                    }
                     <Router history={browserHistory}>
                         <div>
                             <Header/>
                             <NotificationContainer/>
+                            { (this.state.user && this.state.user != "") 
+                                ?
                             <Switch>
 
                                 <Route exact={true} path="/" component={Home}/>
                                 <Route path="/find-time" render={SearchPage}/>
+                                <Route path="/edit-time/:searchId" render={SearchPage}/>
                                 <Route path="/about" component={NotFound}/>
                                 <Route path="/saved" component={SavedPage}/>
+                                <Route path="/login" component={LoginPage}/>
                                 <Route path="/view-search/:searchId" render={ViewSearch}/>
                                 <Route component={NotFound}/>
 
                             </Switch>
+                                :
+                            <Switch>
+                                
+                                <Route path="/login" component={LoginPage}/>
+                                <Route component={LoginPage}/>
+                                
+                            </Switch>
+                                
+                            }
 
                             <Footer db={db}></Footer>
                         </div>

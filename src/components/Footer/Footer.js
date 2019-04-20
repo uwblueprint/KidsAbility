@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import axios from 'axios';
 
 export default class Footer extends Component {
     constructor(props) {
@@ -7,13 +6,6 @@ export default class Footer extends Component {
         this.state = {
             views: 0
         };
-    }
-
-    //this is an example http request
-    handleClick = () => {
-        axios.get('https://www.googleapis.com/youtube/v3/subscriptions').then(
-            response => console.log(response)
-        )
     }
 
     addVisitor = () => {

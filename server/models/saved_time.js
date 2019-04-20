@@ -1,6 +1,5 @@
 var mongoose = require('mongoose');
 	
-	
 var savedSchema = new mongoose.Schema({	
 	Date: {
 		type: String
@@ -18,6 +17,9 @@ var savedSchema = new mongoose.Schema({
 		type: Number
 	},
 	Location: {
+		type: String
+	},
+	User: {
 		type: String
 	}
 }, { collection: 'SavedTimes' });

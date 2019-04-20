@@ -14,13 +14,13 @@
 
 .table {
   background-color: white;
-  padding-top: 5%;
+  padding-top: 1%;
   padding-left: 5%;
   padding-right: 5%;
   padding-bottom: 5%;
   width: 100%;
   max-width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: calc(5% + 1cm);
 }
 
 thead tr{
