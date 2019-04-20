@@ -67,7 +67,51 @@ tbody::-webkit-scrollbar-thumb {
     background-color: blue;
 }
 
+.customOverlay {
+  background: rgba(179, 179, 179, 0.07);
+}
 
+.customModal {
+  background: white;
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+  box-shadow: none;
+  border-radius: 5px;
+}
+
+.close-button {
+  width: 100%;
+  float: right;
+}
+
+.notebox {
+  margin: 5px 20px;
+  width: 90%;
+  resize: none;
+  border-radius: 3px;
+}
+
+.save-button-container{
+  padding: 5px 25px;
+  float: right;
+}
+
+.save-note {
+  border-radius: 3px;
+  color: white;
+  background: #00FF00;
+  border: #00FF00 2px solid;
+  box-shadow: 0 2px 4px 0 hsla(0, 0%, 0%, 0.2);
+  outline: none;
+}
+
+  .save-note:hover{
+    cursor: pointer;
+    color: #00FF00;
+    background: white;
+    box-shadow: none;
+  }
 
 .section-header {
   padding-top: 10px !important;
