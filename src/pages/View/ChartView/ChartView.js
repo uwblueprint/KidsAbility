@@ -1,59 +1,63 @@
 import React, {Component} from 'react';
 import moment from 'moment';
 import Icon from '@material-ui/core/Icon';
+import Modal from 'react-modal';
 import './ChartView.css';
 import ReactDOM from 'react-dom';
-import Modal from 'react-modal';
-
-const customStyles = {
-  content : {
-    top                   : '50%',
-    left                  : '50%',
-    right                 : 'auto',
-    bottom                : 'auto',
-    marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)'
-  }
-};
-
-
-
 
 export default class ChartView extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            modalIsOpen: false
+            open: false,
+            note: "",
+            param: {}
         };
 
+        this.close = this.close.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
 
-    // welcome to unreadable, unfactored, and messy error handling
-    // this will be fixed and factored later
-    // note that as discussed, the save does not persist on the view page
-    // this is temporary
     onClickSave = (e, param) => {
         if (e.target.innerHTML != "bookmark"){
-            console.log(param);
-            this.props.postSavedAPI(param);
-            this.setState({modalIsOpen: true});
+            this.setState({open: true, param: param})
             e.target.innerHTML = "bookmark";
         }
     }
     
-    openModal = () => {
-    this.setState({modalIsOpen: true});
-  }
+    handleSubmit(e) {
+        e.preventDefault();
+        var param = this.state.param;
+        var note = (this.state.note == "") ? "No note has been added for this time." : this.state.note;
+        console.log(note);
+        var save_obj = {
+            Name: param.Names,
+            Date: param. Date,
+            Start: param.Start,
+            End: param.End,
+            id: param.id,
+            Location: param.Location,
+            Note: note
+        }
+        this.props.postSavedAPI(save_obj);
+        this.setState({
+            open: false,
+            note: "",
+            param: {}
+        })
+    }
 
-  afterOpenModal = () => {
-    // references are now sync'd and can be accessed.
-  }
+    handleChange(e) {
+        this.setState({note: e.target.value})
+    }
 
-  closeModal = () => {
-    this.setState({modalIsOpen: false});
-  }
+    close = () => {
+        this.setState({open: false});
+    }
 
     render() {
+        const {open} = this.state;
         
         return (
             <div>
@@ -92,6 +96,26 @@ export default class ChartView extends Component {
                                             <Icon className="save-button" style={{color: "purple"}} onClick={(e) => this.onClickSave(e, elem)}>
                                                 bookmark_border
                                             </Icon>
+                                            <Modal
+                                                open = {open}
+                                                onClose={this.close}
+                                                center
+                                                classNames={{modal: "customModal", overlay: "customOverlay"}} 
+                                            >
+                                                <form onSubmit={this.handleSubmit}>
+                                                    <label>
+                                                        Clinician Notes:
+                                                    </label>
+                                                    <div>
+                                                        <textarea name="notes" value={this.state.note} 
+                                                            onChange={this.handleChange} className="notebox" rows="4" 
+                                                        />
+                                                    </div>
+                                                    <div className="save-button-container">
+                                                        <button type="submit" value="Submit" className="save-note">Save Time</button>
+                                                    </div>
+                                                </form>
+                                            </Modal>
                                         </td>
                                     </tr>
                                 )
@@ -100,15 +124,6 @@ export default class ChartView extends Component {
                     )) }
                 </tbody>
             </table>
-            <Modal
-                  isOpen={this.state.modalIsOpen}
-                  onAfterOpen={this.afterOpenModal}
-                  onRequestClose={this.closeModal}
-                  style={customStyles}
-                  contentLabel="Example Modal"
-                >
-                <p> Display the time and the notes section here </p>
-            </Modal>
         </div>
         </div>
 

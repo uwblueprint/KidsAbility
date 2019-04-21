@@ -115,7 +115,7 @@ export default class App extends Component {
     postSavedAPI = async (param) => {
         const response = await fetch(proxy+'/api/saved', {
             method: 'POST', 
-            body: JSON.stringify({Name: param.Names, Date: param.Date, Start: param.Start, End: param.End, id: param.id, Location: param.Location}),
+            body: JSON.stringify({Name: param.Name, Date: param.Date, Start: param.Start, End: param.End, id: param.id, Location: param.Location, Note: param.Note}),
             headers: {
                'Accept': 'application/json',
                'Content-Type': 'application/json',
