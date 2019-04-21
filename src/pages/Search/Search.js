@@ -79,7 +79,7 @@ export default class Search extends Component {
       timeOfDay: TimeofDay[0],
       redirect: false,
       searchId: null,
-      reoccurence: recurrenceOptions[0],
+      recurrence: recurrenceOptions[0],
     };
   }
   componentWillMount = () => {
@@ -175,7 +175,7 @@ export default class Search extends Component {
   }
   
   handleChange7 = (reoccurence) => {
-    this.setState({reoccurence: reoccurence})
+    this.setState({recurrence: reoccurence})
     console.log(`Option selected:`, reoccurence)
   }
 
