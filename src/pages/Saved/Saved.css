@@ -1,11 +1,11 @@
 #table-wrapper th { 
   padding: 5px 10px;
-  width: 200px !important; 
+  width: 200px;
 }
 
 #table-wrapper td { 
   padding: 5px 10px;
-  width: 200px !important; 
+  width: 200px;
 }
 
 .customOverlay {
@@ -38,10 +38,10 @@
   margin-top: 5%;
 }
 
-#table-wrapper {
+.table-wrapper {
   position:relative;
 }
 
-#table-wrapper table {
+.table-wrapper table {
   width:100%;
 }

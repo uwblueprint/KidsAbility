@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import moment from 'moment';
 import Icon from '@material-ui/core/Icon';
-import Modal from 'react-responsive-modal';
+import Modal from 'react-modal';
 import './ChartView.css';
 import ReactDOM from 'react-dom';
 
