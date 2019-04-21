@@ -19,7 +19,7 @@ var searchSchema = new mongoose.Schema({
 	},
 	numSessions: {
 		type: {numSession}
-	}
+	},
 	recurrence: {
 		type: String
 	}
