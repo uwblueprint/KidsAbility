@@ -32,7 +32,7 @@ console.log(fire);
 
 var bodyParser = require('body-parser');
 
-const proxy = "http://gc-web-mitm.kidsability.org"
+const proxy = "https://gc-web-mitm.kidsability.org"
 
 export default class App extends Component {
 
