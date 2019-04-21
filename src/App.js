@@ -32,7 +32,7 @@ console.log(fire);
 
 var bodyParser = require('body-parser');
 
-const proxy = "http://localhost:4000";
+const proxy = "http://gc-web-mitm.kidsability.org/"
 
 export default class App extends Component {
 
@@ -94,8 +94,8 @@ export default class App extends Component {
         return body;
     };
     
-    getSavedAPI = async () => {
-        const response = await fetch(proxy+'/api/saved', {
+    getSavedAPI = async (user) => {
+        const response = await fetch(proxy+'/api/saved/'+user, {
             method: 'GET',
             headers : { 
                 'Content-Type': 'application/json',
@@ -115,7 +115,7 @@ export default class App extends Component {
     postSavedAPI = async (param) => {
         const response = await fetch(proxy+'/api/saved', {
             method: 'POST', 
-            body: JSON.stringify({Name: param.Name, Date: param.Date, Start: param.Start, End: param.End, id: param.id, Location: param.Location, Note: param.Note}),
+            body: JSON.stringify({Name: param.Name, Date: param.Date, Start: param.Start, End: param.End, id: param.id, Location: param.Location, Note: param.Note, User: param.User}),
             headers: {
                'Accept': 'application/json',
                'Content-Type': 'application/json',
@@ -165,6 +165,25 @@ export default class App extends Component {
         return body;
     };
     
+    deleteSavedAPI = async (id) => {
+        const response = await fetch(proxy+'/api/saved/delete/'+id, {
+            method: 'DELETE', 
+            headers: {
+               'Accept': 'application/json',
+               'Content-Type': 'application/json',
+             },
+        })
+        const body = await response.json();
+        
+        if (response.status !== 201) {
+            console.log(response);
+            console.log("Error with posting user");
+        }
+        
+        console.log(body);
+        return body;   
+    };
+    
     
     postUserAPI = async (databody) => {
         console.log(databody);
@@ -189,8 +208,17 @@ export default class App extends Component {
         return body;
     };
     
-    getUsersAPI = async (id) => {
+    getUsersAPI = async () => {
         const response = await fetch(proxy+'/api/users');
+        const body = await response.json();
+        if (response.status !== 200) {
+            throw Error(body.message);
+        }
+        return body;
+    };
+    
+    getUserAPI = async (user) => {
+        const response = await fetch(proxy+'/api/users/'+user);
         const body = await response.json();
         if (response.status !== 200) {
             throw Error(body.message);
@@ -237,6 +265,7 @@ export default class App extends Component {
             return (
                 <Saved 
                     getSavedAPI={this.getSavedAPI}
+                    deleteSavedAPI={this.deleteSavedAPI}
                 />
             )
         }
@@ -246,6 +275,7 @@ export default class App extends Component {
                     handleUserUpdate={this.handleUserUpdate}
                     postUserAPI={this.postUserAPI}
                     getUsersAPI={this.getUsersAPI}
+                    getUserAPI={this.getUserAPI}
                 />
             )
         }

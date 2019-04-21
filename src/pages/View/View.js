@@ -9,7 +9,7 @@ import './View.css';
 const DAY_START = '8:00';
 const DAY_END = '20:00';
 
-const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
+const colors = ['darkgreen', 'blue', "gold", 'orangered', 'pink', 'midnightblue', 'purple', 'silver', 'grey', 'green'];
 
 // compare function to sort time slots
 const compareFunction = (a, b) => {

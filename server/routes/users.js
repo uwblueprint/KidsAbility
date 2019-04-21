@@ -17,6 +17,19 @@ router.get('/', function(req, res){
 	})
 });
 
+router.get('/:user', function(req, res){
+	console.log(req.params);
+	db.User.find({Name: req.params.user})
+
+	.then(function(user){
+		res.json(user);
+	})
+
+	.catch(function(err){
+		res.send(err);
+	})
+});
+
 router.post('/post', function(req, res){
 	
 	//console.log(req.body);

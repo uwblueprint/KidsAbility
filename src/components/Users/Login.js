@@ -22,8 +22,13 @@ export default class Login extends Component {
         let user = {
             Name,
         }
-        
-        this.props.postUserAPI(user);
+        this.props.getUserAPI(Name).then((res) => {
+            console.log(res);
+            console.log(res.length);
+            if (res.length == 0){
+                this.props.postUserAPI(user);
+            }
+        })
         //this.props.handleUserUpdate();
         this.setState({redirect: true});
     }

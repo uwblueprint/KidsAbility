@@ -5,8 +5,8 @@ const router = express.Router();
 const db = require('../models/server.js');
 
 // route for returning all entries
-router.get('/', function(req, res){
-	db.Saved.find()
+router.get('/:user', function(req, res){
+	db.Saved.find({User: req.params.user})
 
 	.then(function(saved){
 		res.json(saved);
@@ -32,7 +32,7 @@ router.post('/', function(req, res){
 	
 });
 
-router.delete('/:id', function(req, res){
+router.delete('/delete/:id', function(req, res){
 	//res.send(req.body.id);
 	db.Saved.deleteOne({_id: req.params.id})
 

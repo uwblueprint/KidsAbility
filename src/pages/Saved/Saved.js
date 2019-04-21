@@ -11,17 +11,21 @@ export default class Saved extends Component {
         super(props);
         this.state = {
             open: false,
-            saved: []
+            saved: [],
+            currentNote: "No note found",
         };
     }
     componentWillMount(){
-        this.props.getSavedAPI().then((res) => {
+        var user = localStorage.getItem('user');
+        console.log(user);
+        this.setState({user: user});
+        this.props.getSavedAPI(user).then((res) => {
             this.setState({saved: res});
         });
     }
 
-    openNotes = () => {
-        this.setState({open: true})
+    openNotes = (e, elem) => {
+        this.setState({currentNote: elem.Note, open: true});
     }
 
     closeNotes = () => {
@@ -29,10 +33,7 @@ export default class Saved extends Component {
     }
 
     onClickUnsave = (event, id) => {
-        fetch("https://gc-web-mitm.kidsability.org/api/saved/"+id, {
-            method: 'delete'
-        })
-        .then(resp => {
+        this.props.deleteSavedAPI(id).then(resp => {
           if(!resp.ok) {
             if(resp.status >=400 && resp.status < 500) {
               return resp.json().then(data => {
@@ -44,18 +45,19 @@ export default class Saved extends Component {
               throw err;
             }
           }
-          return resp.json();
+          return resp;
         });
-        event.target.innerHTML = (event.target.innerHTML === "bookmark") ? "bookmark_border" : "bookmark";
+        //event.target.innerHTML = (event.target.innerHTML === "bookmark") ? "bookmark_border" : "bookmark";
         const saved = this.state.saved.filter(saved => saved._id !== id);
+        this.setState({saved: saved});
     }
 
     render() {
-        const { open } = this.state;
         const saved = this.state.saved;
+        console.log(saved);
         return (
-            <div class="content">
-                <h1>Saved Times</h1>
+            <div className="content">
+                <h1>{"Saved Times (" + this.state.user + ")"}</h1>
                 <div id="table-wrapper">
                     <table>
                         <thead>
@@ -72,8 +74,8 @@ export default class Saved extends Component {
                         <tbody>
                             {
                                 
-                                saved.map((elem) =>
-                                <tr key={elem._id}>
+                                saved.map((elem, index) =>
+                                <tr key={index}>
                                     <td>{elem.Name}</td>
                                     <td>{elem.id}</td>
                                     <td>{elem.Date}</td>
@@ -83,14 +85,9 @@ export default class Saved extends Component {
                                         <Icon style={{color:'#000051'}}>
                                             event_note
                                         </Icon>
-                                        <Icon style={{color:'#000051'}} onClick={this.openNotes}>
+                                        <Icon style={{color:'#000051'}} onClick={(e) => this.openNotes(e, elem)}>
                                             keyboard_arrow_down
                                         </Icon>
-                                        <Modal open = {open} onClose={this.closeNotes} center classNames={{modal: "customModal", overlay: "customOverlay"}} >
-                                            <p>
-												{elem.Note}
-                                            </p>
-                                        </Modal>
                                     </td>
                                     <td>
                                         <Icon style={{color:'#E8BF31'}} onClick={(e) => this.onClickUnsave(e, elem._id)}> 
@@ -101,6 +98,9 @@ export default class Saved extends Component {
                             }
                         </tbody>
                     </table>
+                    <Modal open={this.state.open} onClose={this.closeNotes} center classNames={{modal: "customModal", overlay: "customOverlay"}} >
+                        <p>{this.state.currentNote}</p>
+                    </Modal>
                 </div>
                 
                 <Paper className="reminder">
