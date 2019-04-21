@@ -21,7 +21,7 @@ export default class Menu extends Component {
                     </div>
                     <div className="collapse navbar-collapse" id="myNavbar">
                         <ul className="nav navbar-nav mr-auto">
-                            <li><a className="navbar-brand" href="/"><font color="5F5FC4">RocketCare</font></a></li>
+                            <li><a href="/"><font color="5F5FC4">RocketCare</font></a></li>
                             <li><a href="/find-time">Find Available Times</a></li>
                             <li><a href="/saved">View Saved Times</a></li>
                             <li><a href="/login">Switch User</a></li>

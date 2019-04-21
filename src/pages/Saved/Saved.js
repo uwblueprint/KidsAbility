@@ -48,13 +48,11 @@ export default class Saved extends Component {
         });
         event.target.innerHTML = (event.target.innerHTML === "bookmark") ? "bookmark_border" : "bookmark";
         const saved = this.state.saved.filter(saved => saved._id !== id);
-        this.setState({saved: saved});
     }
 
     render() {
         const { open } = this.state;
         const saved = this.state.saved;
-
         return (
             <div class="content">
                 <h1>Saved Times</h1>
@@ -90,7 +88,7 @@ export default class Saved extends Component {
                                         </Icon>
                                         <Modal open = {open} onClose={this.closeNotes} center classNames={{modal: "customModal", overlay: "customOverlay"}} >
                                             <p>
-                                                There is no notes for this save
+												{elem.Note}
                                             </p>
                                         </Modal>
                                     </td>

@@ -19,6 +19,9 @@ var savedSchema = new mongoose.Schema({
 	Location: {
 		type: String
 	},
+	Note: {
+		type: String
+	},
 	User: {
 		type: String
 	}

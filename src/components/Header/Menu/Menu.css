@@ -21,6 +21,7 @@
 .navbar-collapse {
   background: white !important;
   z-index: 1000000000;
+  min-width: 100px;
 }
 
 .navbar-brand {
