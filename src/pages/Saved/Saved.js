@@ -76,7 +76,7 @@ export default class Saved extends Component {
                                 
                                 saved.map((elem, index) =>
                                 <tr key={index}>
-                                    <td>{elem.Name}</td>
+                                    <td>{elem.Name + ""}</td>
                                     <td>{elem.id}</td>
                                     <td>{elem.Date}</td>
                                     <td>{elem.Start} - {elem.End}</td>

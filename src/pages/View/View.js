@@ -6,8 +6,8 @@ import moment from 'moment';
 import axios from 'axios';
 import './View.css';
 
-const DAY_START = '8:00';
-const DAY_END = '20:00';
+let DAY_START = '8:00';
+let DAY_END = '20:00';
 
 const colors = ['darkgreen', 'blue', "gold", 'orangered', 'pink', 'midnightblue', 'purple', 'silver', 'grey', 'green'];
 
@@ -204,6 +204,16 @@ export default class View extends Component {
         this.props.getSearchAPI(searchId).then((res) => {
             this.setState({ searchParams: res[0] });
             
+            if (res[0].timeOfDay.value == "afternoon"){
+                DAY_START = '13:00';
+                DAY_END = '20:00';
+            } 
+            
+            if (res[0].timeOfDay.value == "morning"){
+                DAY_START = '8:00';
+                DAY_END = '13:00';
+            } 
+            
             //For every name in the seach ->
             //  - Add the clinician name to the list of clinicians (dict)
             //  - Add the dates together
@@ -267,16 +277,25 @@ export default class View extends Component {
         
         console.log(this.data);
         console.log(this.state.searchParams);
-        if (this.state.searchParams && this.state.searchParams.recurrence == "Bi-Weekly"){
-            console.log("Biweekly");
-            let biweekly = []
-            for (let i = 0; i < this.data.length; i++){
-                if (i % 2 == 1) {
-                    biweekly.push(this.data[i]);
-                }
+        //This handles bi-weekly and monthly
+        if (this.state.searchParams){
+            let i = 0;
+            if (this.state.searchParams.recurrence.value == "bi-weekly"){
+                i = 2;
             }
-            this.data = biweekly;
+            if (this.state.searchParams.recurrence.value == "monthly"){
+                i = 4;
+            }
+            if (i != 0){
+                for (const [key, value] of Object.entries(this.data)) {
+                    if (key % i != 0) {
+                        console.log("changing data");
+                        delete this.data[key];
+                    }
+                } 
+            }  
         }
+        console.log(this.data);
         
         
         

@@ -22,8 +22,15 @@ export default class CalendarView extends Component {
         Object.values(data).map((week, index) => {
             for (var j = 0; j < week.length; j++) {
                 let elem = week[j];
+                let title = ""
+                for (let i = 0; i < elem.Names.length; i++){
+                    title += elem.Names[i];
+                    if (i != elem.Names.lenth -1){
+                        title += ", ";
+                    }
+                }
                 Events.push({
-                    title: elem.Names,
+                    title: title,
                     start: moment(elem.Date).hour(elem.Start.split(":")[0]).minute(elem.Start.split(":")[1]).toDate(),
                     end: moment(elem.Date).hour(elem.End.split(":")[0]).minute(elem.End.split(":")[1]).toDate(),
                     "allDay?": false,

@@ -20,6 +20,10 @@
   font-size: 14px;
 }
 
+.rbc-day-slot .rbc-event-content {
+  font-size: calc(0.1vh + 0.2vw + 10px);
+}
+
 
 .rbc-time-view .rbc-row {
     box-sizing: border-box;
