@@ -1,6 +1,6 @@
 .box {
   height: 65vh;
-  width: 90vw;
+  width: calc(70vw);
   overflow: auto;
   background-color: white;
   padding-top: 2%;

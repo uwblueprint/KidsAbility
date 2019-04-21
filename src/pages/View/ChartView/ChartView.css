@@ -10,6 +10,10 @@
   text-align: left;
 }
 
+.time-heading {
+  margin-right: 50px;
+}
+
 .table {
   background-color: white;
   padding-top: 1%;
@@ -38,10 +42,10 @@ tbody{
 }
 
 .dot {
-  width: 20px;
-  height: 20px;
+  width: calc(0.1vh + 0.1vw + 15px);
+  height: calc(0.1vh + 0.1vw + 15px);
   border-radius: 50%;
-  margin-right: 3%;
+  margin-right: 2%;
 }
 
 .section-header {

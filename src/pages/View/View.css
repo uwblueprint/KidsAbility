@@ -17,7 +17,7 @@
 }
 
 .toggle-button {
-  width: calc(0.5vh+0.5vw);
+  width: calc(2vh + 5vw + 100px);
   background-color: blue;
   color: white;
   border-color: transparent;
@@ -30,7 +30,7 @@
 }
 
 .back-button {
-  width: calc(0.5vh+0.5vw);
+  width: calc(2vh + 5vw + 50px);
   background-color: blue;
   color: white;
   border-color: transparent;
