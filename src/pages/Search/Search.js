@@ -241,8 +241,8 @@ export default class Search extends Component {
     
     let renderRedirect;
     if (this.state.redirect && this.state.searchId){
-        
         let path = "/view-search/"+this.state.searchId;
+        this.props.history.push("/edit-time/"+this.state.searchId);
         return <Redirect to={path}/>
     }
     

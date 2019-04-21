@@ -246,6 +246,7 @@ export default class App extends Component {
                     getCliniciansAPI={this.getCliniciansAPI}
                     postSearchAPI={this.postSearchAPI}
                     getSearchAPI={this.getSearchAPI} 
+                    history={browserHistory}
                 />
             )
         }
