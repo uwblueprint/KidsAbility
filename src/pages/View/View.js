@@ -265,6 +265,19 @@ export default class View extends Component {
         //In the case when overlappingTimes is empty - this hangs (add a check here or in groupdata itself)
         this.data = groupData(overlappingTimes, this.state.searchParams);
         
+        console.log(this.data);
+        console.log(this.state.searchParams);
+        if (this.state.searchParams && this.state.searchParams.recurrence == "Bi-Weekly"){
+            console.log("Biweekly");
+            let biweekly = []
+            for (let i = 0; i < this.data.length; i++){
+                if (i % 2 == 1) {
+                    biweekly.push(this.data[i]);
+                }
+            }
+            this.data = biweekly;
+        }
+        
         
         
         

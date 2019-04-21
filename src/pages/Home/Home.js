@@ -85,7 +85,7 @@ export default class Home extends Component {
                         <h> Find Available Times </h>
                     </button>
                     <button className="button-save" onClick={this.savedTimes}>
-                        <img src="https://img.icons8.com/material-outlined/100/000000/edit-property.png"/>
+                        <img src="https://img.icons8.com/ios/100/000000/planner.png"/>
                         <h> View Saved Times</h>
                     </button>
                 </div>

@@ -20,6 +20,9 @@ var searchSchema = new mongoose.Schema({
 	numSessions: {
 		type: {numSession}
 	}
+	recurrence: {
+		type: String
+	}
 }, { collection: 'searches' });
 
 var name = new mongoose.Schema({

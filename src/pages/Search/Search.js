@@ -186,8 +186,9 @@ export default class Search extends Component {
     let services = this.state.service;
     let location = this.state.location;
     let time = this.state.time;
-    let numSessions = this.state.sessions
-    let timeOfDay = this.state.timeOfDay
+    let numSessions = this.state.sessions;
+    let timeOfDay = this.state.timeOfDay;
+    let recurrence = this.state.recurrence;
     
     let info = {
         names,
@@ -196,6 +197,7 @@ export default class Search extends Component {
         time,
         numSessions,
         timeOfDay,
+        recurrence,
     }
     
     //Do some basic error checking

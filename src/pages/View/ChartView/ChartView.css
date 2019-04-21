@@ -6,12 +6,8 @@
 
 .table th {
   padding: 5px calc(4vh - 10px);
-  width: auto;
+  width: calc(5vw + 100px);
   text-align: left;
-}
-
-.time-heading {
-  margin-right: 50px;
 }
 
 .table {
@@ -23,6 +19,10 @@
   width: %;
   max-width: 100%;
   margin-bottom: calc(5% + 1cm);
+}
+
+.time-heading {
+  min-width: calc(11vw + 100px) !important;
 }
 
 thead tr{

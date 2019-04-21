@@ -86,7 +86,7 @@ export default class ChartView extends Component {
                 <thead>
                     <tr>
                         <th>Date</th>
-                        <th className="wide">Time</th>
+                        <th>Time</th>
                         <th>Location</th>
                         <th>Availability</th>
                         <th>Save</th>
@@ -104,7 +104,7 @@ export default class ChartView extends Component {
                                         <td>
                                             {moment(elem.Date).format('MMM D')}
                                         </td>
-                                        <td className="wide">{moment(elem.Start, 'h:mm').format('h:mm a')} - {moment(elem.End, 'h:mm').format('h:mm a')}</td>
+                                        <td className="time-heading">{moment(elem.Start, 'h:mm').format('h:mm a')} - {moment(elem.End, 'h:mm').format('h:mm a')}</td>
                                         <td>{elem.Location.charAt(0) + elem.Location.substr(1).toLowerCase()}</td>
                                         <td>
                                             <div className="dots">
