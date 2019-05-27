@@ -9,6 +9,7 @@ Project Members (Please add your name)!
   - Yifei Ren
   - Joshua Allum
   - Kevin Chan
+  - Wasiq Mohammad
   
   
   
