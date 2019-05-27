@@ -8,6 +8,7 @@ Project Members (Please add your name)!
   - Monica Iyer
   - Yifei Ren
   - Joshua Allum
+  - Kevin Chan
   
   
   
