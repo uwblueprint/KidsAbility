@@ -25,9 +25,14 @@ const options3 = [
 ]
 
 const options4 = [
+  {value: 15, label: '15 mins'},
   {value: 30, label: '30 mins'},
   {value: 45, label: '45 mins'},
-  {value: 60, label: '60 mins'}  
+  {value: 60, label: '60 mins'},
+  {value: 120, label: '2 hours'},
+  {value: 180, label: '3 hours'},
+  {value: 240, label: '4 hours'},
+  {value: 480, label: '8 hours'}
 ]
 
 {/*
@@ -74,7 +79,7 @@ export default class Search extends Component {
       name: null,
       service: PROGRAMS[0],
       location: LOCATIONS[0],   
-      time: options4[0],
+      time: options4[1],
       sessions: options5[0],
       timeOfDay: TimeofDay[0],
       redirect: false,
