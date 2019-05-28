@@ -11,6 +11,7 @@ Project Members (Please add your name)!
   - Kevin Chan
   - Ru Li
   - Wasiq Mohammad
+  - Karolina Xin
   
   
   ## Available Scripts
