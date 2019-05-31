@@ -12,6 +12,7 @@ Project Members (Please add your name)!
   - Ru Li
   - Wasiq Mohammad
   - Matthew Follegot
+  - Karolina Xin
   
   
   ## Available Scripts
