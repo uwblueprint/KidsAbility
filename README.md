@@ -41,4 +41,6 @@ Project Members (Please add your name)!
   Installs nodejs and npm
   Installs/Updates all npm modules outlined in package.json for the project in the current directory
   
-
+## Seeding the Database
+  Ask Greg or Karissa for the Schedules csv file.
+  ### `script/updateSchedules`
