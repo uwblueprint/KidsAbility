@@ -70,6 +70,14 @@ const TimeofDay = [
   {value: 'afternoon', label: 'Afternoon'}
 ]
 
+const daysOfWeek = [
+  {value: 'Monday', label: 'Monday'},
+  {value: 'Tuesday', label: 'Tuesday'},
+  {value: 'Wednesday', label: 'Wednesday'},
+  {value: 'Thursday', label: 'Thursday'},
+  {value: 'Friday', label: 'Friday'},
+]
+
 let clin = [];
 
 export default class Search extends Component {
