@@ -28,5 +28,5 @@ app.use('/api/search', searchRoutes);
 app.use('/api/users', userRoutes);
 
 app.listen(4000, () =>
-	console.log("App on port " + 4000)
+	console.log("App on port " + 4000);
 );
