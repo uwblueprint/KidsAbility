@@ -14,7 +14,7 @@
     "firebase-tools": "^6.5.1",
     "fullcalendar": "^3.10.0",
     "history": "^4.7.2",
-    "jquery": "^3.3.1",
+    "jquery": "^3.4.0",
     "moment": "^2.24.0",
     "mongodb": "^3.1.13",
     "mongoose": "^5.4.18",
