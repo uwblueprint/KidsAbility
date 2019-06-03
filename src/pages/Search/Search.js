@@ -147,6 +147,7 @@ export default class Search extends Component {
                   time: res[0].time,
                   sessions: res[0].numSessions,
                   timeOfDay: res[0].timeOfDay,
+                  //TODO: add recurrence
                   //do we add something here for daysOfWeek?
               })
         
