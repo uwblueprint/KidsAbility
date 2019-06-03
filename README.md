@@ -42,5 +42,5 @@ Project Members (Please add your name)!
   Installs/Updates all npm modules outlined in package.json for the project in the current directory
   
 ## Seeding the Database
-  Ask Greg or Karissa for the Schedules csv file.
-  ### `script/updateSchedules`
+  Ask Greg or Karissa for the Schedules csv file and Mongo db credentials
+  ### `script/updateSchedules <username> <password>`
