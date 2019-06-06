@@ -144,8 +144,12 @@ export default class Search extends Component {
       }
   }
   handleChange1 = (name) => {
-    this.setState({name: name})
-    console.log(`Option selected:`, name)
+      if (name.length === 0){
+          this.setState({name: null});
+      } else {
+          this.setState({name: name});
+      }
+      console.log(`Option selected name:`, name)
   }
 
   handleChange2 = (service) => {
