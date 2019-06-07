@@ -116,18 +116,20 @@ export default class Search extends Component {
       
       //load in clinicians
       this.props.getCliniciansAPI().then((res) => {
-           let clinicians = [];
-           res.forEach((name) => {
-               let value = name._id.First + " " + name._id.Last;
-               let option = {
-                   value: value,
-                   label: value,
-                   First: name._id.First,
-                   Last: name._id.Last,
-               }
-               clinicians.push(option);
-           });
-          this.setState({clinicians: clinicians});
+        let clinicians = [];
+        res.forEach((name) => {
+            let value = name._id.First + " " + name._id.Last;
+            let option = {
+                value: value,
+                label: value,
+                First: name._id.First,
+                Last: name._id.Last,
+            }
+            if (name._id.First)
+                clinicians.push(option);
+        });
+        clinicians.sort((a, b) => a.value.localeCompare(b.value));
+        this.setState({clinicians: clinicians });
       });
       //this.props.getScheduleAPI("RHONDA","MACKINNON").then(res => console.log(res)).catch(err => console.log(err));
       
