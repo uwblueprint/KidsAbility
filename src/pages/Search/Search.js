@@ -6,24 +6,6 @@ import PROGRAMS from '../../constants/programs'
 import {Router, Route, Switch, Redirect, Link} from 'react-router';
 import ScrollArea from 'react-scrollbar'
 
-const options1 = [
-  {value: 'bob', label: 'Bob'},
-  {value: 'joe', label: 'Joe'},
-  {value: 'billy', label: 'Billy'}
-]
-
-const options2 = [
-  {value: 'blue', label: 'Blue'},
-  {value: 'yellow', label: 'Yellow'},
-  {value: 'red', label: 'Red'}
-]
-
-const options3 = [
-  {value: 'blue', label: 'Blue'},
-  {value: 'yellow', label: 'Yellow'},
-  {value: 'red', label: 'Red'}
-]
-
 const options4 = [
   {value: 15, label: '15 mins'},
   {value: 30, label: '30 mins'},
@@ -70,15 +52,13 @@ const TimeofDay = [
   {value: 'afternoon', label: 'Afternoon'}
 ]
 
-let clin = [];
-
 export default class Search extends Component {
   constructor(props) {
     super(props);
     this.state = {
       name: null,
       service: PROGRAMS[0],
-      location: LOCATIONS[0],   
+      location: LOCATIONS[0],
       time: options4[1],
       sessions: options5[0],
       timeOfDay: TimeofDay[0],
@@ -120,7 +100,6 @@ export default class Search extends Component {
            });
           this.setState({clinicians: clinicians});
       });
-      //this.props.getScheduleAPI("RHONDA","MACKINNON").then(res => console.log(res)).catch(err => console.log(err));
       
       let searchId = this.props.hidden.match.params.searchId;
       console.log(searchId);
