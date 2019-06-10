@@ -22,6 +22,7 @@ import * as settings from '../src/constants/settings.json';
 import Search from '../src/pages/Search/Search'
 import View from '../src/pages/View/View'
 import Saved from '../src/pages/Saved/Saved'
+import Client from '../src/pages/Client/Client'
 
 
 
@@ -66,7 +67,7 @@ export default class App extends Component {
             //.then(res => this.setState({response: res.express}))
         //    .catch(err => console.log("Error: " + err))
     }
-    
+
     getScheduleAPI = async (firstName, lastName) => {
         const response = await fetch(proxy+'/api/schedules/'+firstName+"/"+lastName);
         const body = await response.json();
@@ -75,11 +76,11 @@ export default class App extends Component {
         }
         return body;
     };
-        
+
     getCliniciansAPI = async () => {
         const response = await fetch(proxy+'/api/clinicians', {
             method: 'GET',
-            headers : { 
+            headers : {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             }
@@ -93,11 +94,11 @@ export default class App extends Component {
         }
         return body;
     };
-    
+
     getSavedAPI = async () => {
         const response = await fetch(proxy+'/api/saved', {
             method: 'GET',
-            headers : { 
+            headers : {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             }
@@ -111,51 +112,51 @@ export default class App extends Component {
         }
         return body;
     }
-    
+
     postSavedAPI = async (param) => {
         const response = await fetch(proxy+'/api/saved', {
-            method: 'POST', 
+            method: 'POST',
             body: JSON.stringify({Name: param.Name, Date: param.Date, Start: param.Start, End: param.End, id: param.id, Location: param.Location, Note: param.Note}),
             headers: {
                'Accept': 'application/json',
                'Content-Type': 'application/json',
              },
         })
-        
+
         const body = await response.json();
-        
+
         if (response.status !== 201) {
             console.log(response);
             console.log("Error with posting saved-times");
         }
-        
+
         console.log(body);
         return body;
     }
-    
+
     postSearchAPI = async (databody) => {
         console.log(databody);
 
         const response = await fetch(proxy+'/api/search/post', {
-            method: 'POST', 
+            method: 'POST',
             body: JSON.stringify(databody),
             headers: {
                'Accept': 'application/json',
                'Content-Type': 'application/json',
              },
         })
-        
+
         const body = await response.json();
-        
+
         if (response.status !== 201) {
             console.log(response);
             console.log("Error with posting saved-times");
         }
-        
+
         console.log(body);
         return body;
     };
-    
+
     getSearchAPI = async (id) => {
         const response = await fetch(proxy+'/api/search/'+id);
         const body = await response.json();
@@ -164,31 +165,31 @@ export default class App extends Component {
         }
         return body;
     };
-    
-    
+
+
     postUserAPI = async (databody) => {
         console.log(databody);
 
         const response = await fetch(proxy+'/api/users/post', {
-            method: 'POST', 
+            method: 'POST',
             body: JSON.stringify(databody),
             headers: {
                'Accept': 'application/json',
                'Content-Type': 'application/json',
              },
         })
-        
+
         const body = await response.json();
-        
+
         if (response.status !== 201) {
             console.log(response);
             console.log("Error with posting user");
         }
-        
+
         console.log(body);
         return body;
     };
-    
+
     getUsersAPI = async (id) => {
         const response = await fetch(proxy+'/api/users');
         const body = await response.json();
@@ -207,9 +208,9 @@ export default class App extends Component {
         console.log(user);
         this.setState({user: user});
     }
-    
+
     render() {
-        
+
         const SearchPage = (props) => {
             return (
                 <Search
@@ -217,25 +218,25 @@ export default class App extends Component {
                     hidden={props}
                     getCliniciansAPI={this.getCliniciansAPI}
                     postSearchAPI={this.postSearchAPI}
-                    getSearchAPI={this.getSearchAPI} 
+                    getSearchAPI={this.getSearchAPI}
                 />
             )
         }
-        
+
         const ViewSearch = (props) => {
             return (
                 <View
                     postSavedAPI={this.postSavedAPI}
                     hidden={props}
                     getScheduleAPI={this.getScheduleAPI}
-                    getSearchAPI={this.getSearchAPI}        
+                    getSearchAPI={this.getSearchAPI}
                 />
             )
         }
-        
+
         const SavedPage = (props) => {
             return (
-                <Saved 
+                <Saved
                     getSavedAPI={this.getSavedAPI}
                 />
             )
@@ -250,8 +251,14 @@ export default class App extends Component {
             )
         }
 
-        var db = firebase.firestore();
+        const ClientPage = (props) => {
+            return (
+                <Client
+                />
+            )
+        }
 
+        var db = firebase.firestore();
         // This is where pre-render calculations happen These calculations can also be
         // done in lifecycle methods. The latter is probably better practice
 
@@ -263,7 +270,7 @@ export default class App extends Component {
                         <div>
                             <Header/>
                             <NotificationContainer/>
-                            { (this.state.user && this.state.user != "") 
+                            { (this.state.user && this.state.user != "")
                                 ?
                             <Switch>
 
@@ -274,17 +281,18 @@ export default class App extends Component {
                                 <Route path="/saved" component={SavedPage}/>
                                 <Route path="/login" component={LoginPage}/>
                                 <Route path="/view-search/:searchId" render={ViewSearch}/>
+                                <Route path="/client" component={ClientPage}/>
                                 <Route component={NotFound}/>
 
                             </Switch>
                                 :
                             <Switch>
-                                
+
                                 <Route path="/login" component={LoginPage}/>
                                 <Route component={LoginPage}/>
-                                
+
                             </Switch>
-                                
+
                             }
 
                             <Footer db={db}></Footer>
