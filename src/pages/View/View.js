@@ -204,7 +204,7 @@ export default class View extends Component {
         this.props.getSearchAPI(searchId).then((res) => {
             this.setState({ searchParams: res[0] });
             
-            //For every name in the seach ->
+            //For every name in the search ->
             //  - Add the clinician name to the list of clinicians (dict)
             //  - Add the dates together
             Promise.all(res[0].names.map((name, index) => {
