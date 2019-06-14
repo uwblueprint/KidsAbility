@@ -189,7 +189,7 @@ export default class Search extends Component {
     //alert('Search criteria was submitted')
     
     let names = this.state.name
-    if (this.state.name.map(a => a.value).includes("Any")) {
+    if (names != null && this.state.name.map(a => a.value).includes("Any")) {
       //get all names from clinician name drop down except the 1st one ("Any")
       names = this.state.clinicians.slice(1);
     }
