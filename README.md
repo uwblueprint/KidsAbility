@@ -7,7 +7,12 @@ Project Members (Please add your name)!
   - Christina Liu
   - Monica Iyer
   - Yifei Ren
-  
+  - Joshua Allum
+  - Kevin Chan
+  - Ru Li
+  - Wasiq Mohammad
+  - Matthew Follegot
+  - Karolina Xin
   
   
   ## Available Scripts
