@@ -39,7 +39,7 @@ const options4 = [
 should this NOT be a dropdown? 
 i.e. can the clinician put in ANYTHING?
 do clinicians ever book an extremely large number of sessions at once?
-  or is the max they ever do like 10 or something?
+or is the max they ever do like 10 or something?
 pro for using dropdown: restricts input to only valid inputs
 con: limited range
 */}
@@ -65,7 +65,7 @@ const recurrenceOptions = [
 
 {/* does this need to be radio buttons? */}
 const TimeofDay = [
-  {value: 'anytime', label: 'AnyTime'},
+  {value: 'anytime', label: 'Anytime'},
   {value: 'morning', label: 'Morning'},
   {value: 'afternoon', label: 'Afternoon'}
 ]
@@ -117,6 +117,13 @@ export default class Search extends Component {
       //load in clinicians
       this.props.getCliniciansAPI().then((res) => {
            let clinicians = [];
+           let any_option = {
+                value: "Any",
+                label: "Any",
+                First: "Any",
+                Last: "",
+              }
+               clinicians.push(any_option);
            res.forEach((name) => {
                let value = name._id.First + " " + name._id.Last;
                let option = {
@@ -201,7 +208,11 @@ export default class Search extends Component {
   handleSubmit = () => {
     //alert('Search criteria was submitted')
     
-    let names = this.state.name;
+    let names = this.state.name
+    if (names != null && this.state.name.map(a => a.value).includes("Any")) {
+      //get all names from clinician name drop down except the 1st one ("Any")
+      names = this.state.clinicians.slice(1);
+    }
     let services = this.state.service;
     let location = this.state.location;
     let time = this.state.time;
@@ -276,7 +287,7 @@ export default class Search extends Component {
                      Clinician Name(s) or ID(s) <font color="red">[Required]</font > 
                   </div>
                   <Select className="dropdown"
-                    name="Clincian"
+                    name="Clinician"
                     isMulti
                     value={name}
                     onChange={this.handleChange1}
