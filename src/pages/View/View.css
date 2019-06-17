@@ -52,3 +52,14 @@
   color: #5862AB;
   font-weight: bold;
 }
+
+.schedule-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.no-result {
+  position: absolute;
+  z-index: 10;
+}

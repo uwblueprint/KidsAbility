@@ -18,7 +18,6 @@ import NotFound from '../src/pages/NotFound/NotFound'
 import Footer from '../src/components/Footer/Footer'
 import Header from '../src/components/Header/Header'
 import Login from '../src/components/Users/Login'
-import * as settings from '../src/constants/settings.json';
 import Search from '../src/pages/Search/Search'
 import View from '../src/pages/View/View'
 import Saved from '../src/pages/Saved/Saved'
@@ -27,8 +26,6 @@ import Saved from '../src/pages/Saved/Saved'
 
 //Create an instance of browserHistory
 const browserHistory = createBrowserHistory();
-const fire = settings.firebase;
-console.log(fire);
 
 var bodyParser = require('body-parser');
 

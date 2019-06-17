@@ -207,7 +207,7 @@ export default class View extends Component {
         this.props.getSearchAPI(searchId).then((res) => {
             this.setState({ searchParams: res[0] });
             
-            //For every name in the seach ->
+            //For every name in the search ->
             //  - Add the clinician name to the list of clinicians (dict)
             //  - Add the dates together
             Promise.all(res[0].names.map((name, index) => {
@@ -288,6 +288,13 @@ export default class View extends Component {
         //This displays all the times - but they are not grouped into week properly
         //this.data = this.state.data;
         
+        const noResultOverlay = (
+          <div className="no-result">
+            <p>No times found for these clinicians.</p>
+            <button onClick={this.goBack}> Go back to Search Page </button>
+          </div>
+        )
+
         return (
             <div className="view">
                 <div>
@@ -326,11 +333,14 @@ export default class View extends Component {
                             </label>
                         </div>)}
                     </div>
+                    <div className="schedule-container">
+                    { Object.keys(this.data).length === 0 && noResultOverlay }
                     {
                         this.state.view === 'chart'
                             ? <ChartView data={this.data} postSavedAPI={this.props.postSavedAPI} clinicians={this.clinicians} />
                             : <CalendarView data={this.data} clinicians={this.clinicians}/>
                     }
+                    </div>
                 </div>
             </div>
         );
