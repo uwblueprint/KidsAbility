@@ -21,7 +21,7 @@ const options4 = [
 should this NOT be a dropdown? 
 i.e. can the clinician put in ANYTHING?
 do clinicians ever book an extremely large number of sessions at once?
-  or is the max they ever do like 10 or something?
+or is the max they ever do like 10 or something?
 pro for using dropdown: restricts input to only valid inputs
 con: limited range
 */}
@@ -47,9 +47,17 @@ const recurrenceOptions = [
 
 {/* does this need to be radio buttons? */}
 const TimeofDay = [
-  {value: 'anytime', label: 'AnyTime'},
+  {value: 'anytime', label: 'Anytime'},
   {value: 'morning', label: 'Morning'},
   {value: 'afternoon', label: 'Afternoon'}
+]
+
+const daysOfWeekOptions = [
+  {value: 'Monday', label: 'Monday'},
+  {value: 'Tuesday', label: 'Tuesday'},
+  {value: 'Wednesday', label: 'Wednesday'},
+  {value: 'Thursday', label: 'Thursday'},
+  {value: 'Friday', label: 'Friday'},
 ]
 
 export default class Search extends Component {
@@ -64,7 +72,8 @@ export default class Search extends Component {
       timeOfDay: TimeofDay[0],
       redirect: false,
       searchId: null,
-      reoccurence: recurrenceOptions[0],
+      reccurence: recurrenceOptions[0],
+      daysOfWeek: daysOfWeekOptions[0],
     };
   }
   componentWillMount = () => {
@@ -88,6 +97,13 @@ export default class Search extends Component {
       //load in clinicians
       this.props.getCliniciansAPI().then((res) => {
            let clinicians = [];
+           let any_option = {
+                value: "Any",
+                label: "Any",
+                First: "Any",
+                Last: "",
+              }
+               clinicians.push(any_option);
            res.forEach((name) => {
                let value = name._id.First + " " + name._id.Last;
                let option = {
@@ -117,14 +133,20 @@ export default class Search extends Component {
                   time: res[0].time,
                   sessions: res[0].numSessions,
                   timeOfDay: res[0].timeOfDay,
+                  //TODO: add recurrence
+                  //do we add something here for daysOfWeek?
               })
         
           });
       }
   }
   handleChange1 = (name) => {
-    this.setState({name: name})
-    console.log(`Option selected:`, name)
+      if (name.length === 0){
+          this.setState({name: null});
+      } else {
+          this.setState({name: name});
+      }
+      console.log(`Option selected name:`, name)
   }
 
   handleChange2 = (service) => {
@@ -152,20 +174,30 @@ export default class Search extends Component {
     console.log(`Option selected:`, timeOfDay)
   }
   
-  handleChange7 = (reoccurence) => {
-    this.setState({reoccurence: reoccurence})
-    console.log(`Option selected:`, reoccurence)
+  handleChange7 = (reccurence) => {
+    this.setState({reccurence: reccurence})
+    console.log(`Option selected:`, reccurence)
+  }
+
+  handleChange8 = (daysOfWeek) => {
+    this.setState({daysOfWeek: daysOfWeek})
+    console.log(`Option selected:`, daysOfWeek)
   }
 
   handleSubmit = () => {
     //alert('Search criteria was submitted')
     
-    let names = this.state.name;
+    let names = this.state.name
+    if (names != null && this.state.name.map(a => a.value).includes("Any")) {
+      //get all names from clinician name drop down except the 1st one ("Any")
+      names = this.state.clinicians.slice(1);
+    }
     let services = this.state.service;
     let location = this.state.location;
     let time = this.state.time;
-    let numSessions = this.state.sessions
-    let timeOfDay = this.state.timeOfDay
+    let numSessions = this.state.sessions;
+    let timeOfDay = this.state.timeOfDay;
+    let daysOfWeek = this.state.daysOfWeek;
     
     let info = {
         names,
@@ -174,10 +206,11 @@ export default class Search extends Component {
         time,
         numSessions,
         timeOfDay,
+        daysOfWeek,
     }
     
     //Do some basic error checking
-    if (!names || !services || !location || !time || !numSessions || !timeOfDay){
+    if (!names || !services || !location || !time || !numSessions || !timeOfDay || !daysOfWeek){
         console.log("Please fill out all fields")
     }
     else {
@@ -212,7 +245,8 @@ export default class Search extends Component {
       time,
       sessions,
       timeOfDay,
-      reoccurence
+      reccurence,
+      daysOfWeek,
     } = this.state;
     
     console.log(this.state.searchId);
@@ -228,48 +262,56 @@ export default class Search extends Component {
               <div className="row"> 
                 <h1> Find Available Times </h1>
                 <div className="column">
-                  Clinician Name(s) or ID(s) <font color="red">[Required]</font>
+                  <div className="headingRow">
+                     Clinician Name(s) or ID(s) <font color="red">[Required]</font > 
+                  </div>
                   <Select className="dropdown"
-                    name="Clincian"
+                    name="Clinician"
                     isMulti
                     value={name}
                     onChange={this.handleChange1}
                     options={this.state.clinicians}
                   />
-                  Service/Program
+                  <div className="headingRow"> Service Type </div>
                   <Select className="dropdown"
                     isMulti
                     value={service}
                     onChange={this.handleChange2}
                     options={this.state.programs}
                   />
-                  Location
-                  <Select className="dropdown"
-                    value={location}
-                    onChange={this.handleChange3}
-                    options={this.state.locations}
-                  />
-                  Recurrence
-                  <Select className="dropdown"
-                    value={reoccurence}
-                    onChange={this.handleChange7}
-                    options={recurrenceOptions}
-                  />
-                </div>
-                <div className="column">
-                  Min. Time Required
-                  <Select className="dropdown"
-                    value={time}
-                    onChange={this.handleChange4}
-                    options={options4}
-                  />
-                  Number of Sessions
+                   <div className="headingRow"> Number of Sessions </div>
                   <Select className="dropdown"
                     value={sessions}
                     onChange={this.handleChange5}
                     options={options5}
                   />
-                  Time of Day
+                  <div className="headingRow"> Day of the Week </div> 
+                  <Select className="dropdown"
+                    value={daysOfWeek}
+                    onChange={this.handleChange8}
+                    options={daysOfWeekOptions}
+                  />
+                </div>
+                <div className="column">
+                  <div className="headingColumn"> Min. Time Required </div>
+                  <Select className="dropdown"
+                    value={time}
+                    onChange={this.handleChange4}
+                    options={options4}
+                  />
+                  <div className="headingColumn"> Location </div>
+                  <Select className="dropdown"
+                    value={location}
+                    onChange={this.handleChange3}
+                    options={this.state.locations}
+                  />
+                  <div className="headingColumn"> Recurrence </div>
+                  <Select className="dropdown"
+                    value={reccurence}
+                    onChange={this.handleChange7}
+                    options={recurrenceOptions}
+                  />
+                  <div className="headingColumn"> Time of Day </div>
                   <Select className="dropdown"
                     value={timeOfDay}
                     onChange={this.handleChange6}
