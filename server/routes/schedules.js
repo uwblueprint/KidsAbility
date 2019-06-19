@@ -36,7 +36,6 @@ router.post('/', function(req, res){
 // will probably refactor route to make less ugly
 router.get('/:firstName/:lastName', function(req, res){
 	db.Schedule.find({FirstName: req.params.firstName, LastName: req.params.lastName})
-
 	.then(function(foundSchedule){
 		res.json(foundSchedule);
 	})

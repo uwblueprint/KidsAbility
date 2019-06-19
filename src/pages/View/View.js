@@ -200,7 +200,6 @@ export default class View extends Component {
         this.clinicians = {};
         this.data = {};
         
-        console.log("We are on the view page");
         //grab the id from the url
         let searchId = this.props.hidden.match.params.searchId;
         //Use the id to get the search params
@@ -278,15 +277,6 @@ export default class View extends Component {
 
         //In the case when overlappingTimes is empty - this hangs (add a check here or in groupdata itself)
         this.data = groupData(overlappingTimes, this.state.searchParams);
-        
-        
-        
-        
-        //This works (returns all available times for the first clinician)
-        //this.data = groupData(this.state.data[0], this.state.searchParams);
-        
-        //This displays all the times - but they are not grouped into week properly
-        //this.data = this.state.data;
         
         const noResultOverlay = (
           <div className="no-result">
