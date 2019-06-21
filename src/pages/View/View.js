@@ -321,9 +321,6 @@ export default class View extends Component {
                         <div className="clinician" key={index+"(3 clinicial hours)"}>
                             <Checkbox
                                 id={`clinician-checkbox-${index}`}
-                                labelStyle={{ color: elem.color }}
-                                iconStyle={{ fill: elem.color }}
-                                inputStyle={{ color: elem.color }}
                                 style={{ color: elem.color }}
                                 checked={this.state.cliniciansFilter[elem.name]}
                                 onChange={() => this.toggleClinicianFilter(elem.name)}
