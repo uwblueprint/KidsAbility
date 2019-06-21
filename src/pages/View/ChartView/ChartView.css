@@ -28,7 +28,7 @@ thead tr{
     border-bottom: 1px solid blue;
 }
 
-tbody{
+.table-content {
   display:block;
   overflow:auto;
   height:50vh;

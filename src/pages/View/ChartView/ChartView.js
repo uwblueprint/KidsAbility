@@ -72,9 +72,9 @@ export default class ChartView extends Component {
                         <th>Save</th>
                     </tr>
                 </thead>
-                <tbody>
+                <div className="table-content">
                     { Object.keys(this.props.data).map((key, index) => (
-                        <tr>
+                        <tbody key={key}>
                             <tr>
                                 <td className="section-header">{key == 0 ? 'This week' : `In ${key} week${key == 1 ? '' : 's'}`}</td>
                             </tr>
@@ -120,9 +120,9 @@ export default class ChartView extends Component {
                                     </tr>
                                 )
                             }
-                        </tr>
+                        </tbody>
                     )) }
-                </tbody>
+                </div>
             </table>
         </div>
         </div>
