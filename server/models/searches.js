@@ -2,86 +2,25 @@ var mongoose = require('mongoose');
 	
 	
 var searchSchema = new mongoose.Schema({	
-    names: {
-		type: [[name]]
+    ids: {
+		type: [String]
 	},
 	services: { 
-		type: [[service]]
+		type: [String]
 	},
 	location: {
-		type: {locationSchema}
+		type: String
 	},
 	time: {
-		type: {time}
+		type: String
 	},
 	timeOfDay: {
-		type: {timeOfDay}
+		type: String
 	},
 	numSessions: {
-		type: {numSession}
+		type: String
 	}
 }, { collection: 'searches' });
-
-var name = new mongoose.Schema({
-	first: {
-		type: String
-	},
-	last: {
-		type: String
-	},
-	label: {
-		type: String
-	},
-	value: {
-		type: String
-	}
-});
-
-var service = new mongoose.Schema({
-	label: {
-		type: String
-	},
-	value: {
-		type: String
-	}
-});
-
-var locationSchema = new mongoose.Schema({
-	label: {
-		type: String
-	},
-	value: {
-		type: String
-	}
-});
-
-var numSession = new mongoose.Schema({
-	label: {
-		type: Number
-	},
-	value: {
-		type: String
-	}
-});
-
-var time = new mongoose.Schema({
-	label: {
-		type: Number
-	},
-	value: {
-		type: String
-	}
-});
-
-var timeOfDay = new mongoose.Schema({
-	label: {
-		type: String
-	},
-	value: {
-		type: String
-	}
-});
-
 
 var Search = mongoose.model('Search', searchSchema);
 
