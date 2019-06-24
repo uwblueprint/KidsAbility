@@ -23,13 +23,9 @@ import View from '../src/pages/View/View'
 import Saved from '../src/pages/Saved/Saved'
 
 
-
 //Create an instance of browserHistory
 const browserHistory = createBrowserHistory();
-
-var bodyParser = require('body-parser');
-
-const proxy = "http://localhost:4000";
+const proxy = process.env.NODE_ENV == "production" ? process.env.REACT_APP_SERVER : "http://localhost:4000";
 
 export default class App extends Component {
 
