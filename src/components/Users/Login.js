@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import Select from 'react-select';
 import './Login.css';
 import {Router, Route, Switch, Redirect, Link} from 'react-router';
 import CreatableSelect from 'react-select/lib/Creatable';
@@ -36,7 +35,7 @@ export default class Login extends Component {
     
     
     componentWillMount = () => {
-        let users = this.props.getUsersAPI().then((res) => {
+        this.props.getUsersAPI().then((res) => {
              let options = [];
              res.forEach((user) => {
                  let value = user.Name;
@@ -52,10 +51,7 @@ export default class Login extends Component {
     }
 
     render() {
-        
-        let renderRedirect;
         if (this.state.redirect){
-            
             this.props.handleUserUpdate();
             let path = "/";
             return <Redirect to={path}/>

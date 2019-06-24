@@ -17,14 +17,14 @@ const options4 = [
   {value: 480, label: '8 hours'}
 ]
 
-{/*
+/*
 should this NOT be a dropdown? 
 i.e. can the clinician put in ANYTHING?
 do clinicians ever book an extremely large number of sessions at once?
 or is the max they ever do like 10 or something?
 pro for using dropdown: restricts input to only valid inputs
 con: limited range
-*/}
+*/
 const options5 = [
   {value: 1, label: '1'},
   {value: 2, label: '2'},
@@ -45,7 +45,7 @@ const recurrenceOptions = [
     {value: "monthly", "label": "Monthly"},
 ]
 
-{/* does this need to be radio buttons? */}
+/* does this need to be radio buttons? */
 const TimeofDay = [
   {value: 'anytime', label: 'Anytime'},
   {value: 'morning', label: 'Morning'},
@@ -125,7 +125,6 @@ export default class Search extends Component {
               console.log(res);
               console.log(res[0].names);
               
-              let names = 
               this.setState({
                   name: res[0].names[0],
                   service: res[0].services[0],
@@ -251,9 +250,7 @@ export default class Search extends Component {
     
     console.log(this.state.searchId);
     
-    let renderRedirect;
     if (this.state.redirect && this.state.searchId){
-        
         let path = "/view-search/"+this.state.searchId;
         return <Redirect to={path}/>
     }
