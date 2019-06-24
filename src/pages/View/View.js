@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import ChartView from './ChartView/ChartView';
 import CalendarView from './CalendarView/CalendarView';
-import {Router, Route, Switch, Redirect, Link} from 'react-router';
+import { Redirect } from 'react-router';
+import { Checkbox } from '@material-ui/core';
 import moment from 'moment';
 import axios from 'axios';
 import './View.css';
@@ -193,11 +194,12 @@ export default class View extends Component {
             index: 0,
             searchParams: {},
             redirect: false,
+            availableTimes: {},
+            cliniciansFilter: {},
         };
         this.clinicians = {};
         this.data = {};
         
-        console.log("We are on the view page");
         //grab the id from the url
         let searchId = this.props.hidden.match.params.searchId;
         //Use the id to get the search params
@@ -213,11 +215,15 @@ export default class View extends Component {
                     name: [name[0].label],
                     color: colors[index],
                 }
+
+                this.state.availableTimes[name[0].label] = [];
+                this.state.cliniciansFilter[name[0].label] = true;
                 
                 var result = this.props.getScheduleAPI(name[0].First, name[0].Last)
                     .then((res) => {
                         const availableTimes = processData(res);
                         this.state.data.push(availableTimes);
+                        this.state.availableTimes[name[0].label].push(availableTimes);
                     });
                 return result;
             })).then(() => this.setState({ ready: true }));
@@ -237,6 +243,13 @@ export default class View extends Component {
         this.setState({redirect: true});
     }
 
+    toggleClinicianFilter = (name) => {
+        this.setState(state => ({ cliniciansFilter: {
+            ...state.cliniciansFilter,
+            [name]: !state.cliniciansFilter[name],
+        } }));
+    }
+
     render() {
         console.log(this.state.searchId);
         let renderRedirect;
@@ -252,28 +265,26 @@ export default class View extends Component {
                 <p> Loading </p>
             );
         }
-        
-        
-        
-        //If there is more than 1 person - it hangs here
-        let overlappingTimes = this.state.data[0];
-        console.log(this.state.data)
-        for (let i = 1; i < this.state.data.length; i++) {
-            overlappingTimes = getOverlappingTimes(overlappingTimes, this.state.data[i]);
+
+
+        let overlappingTimes = [];
+        for (let clinician in this.state.cliniciansFilter) {
+            if (this.state.cliniciansFilter[clinician]) {
+                if (overlappingTimes.length === 0) overlappingTimes = this.state.availableTimes[clinician][0];
+                else overlappingTimes = getOverlappingTimes(overlappingTimes, this.state.availableTimes[clinician][0]);
+            }
         }
-        
+
         //In the case when overlappingTimes is empty - this hangs (add a check here or in groupdata itself)
         this.data = groupData(overlappingTimes, this.state.searchParams);
         
-        
-        
-        
-        //This works (returns all available times for the first clinician)
-        //this.data = groupData(this.state.data[0], this.state.searchParams);
-        
-        //This displays all the times - but they are not grouped into week properly
-        //this.data = this.state.data;
-        
+        const noResultOverlay = (
+          <div className="no-result">
+            <p>No times found for these clinicians.</p>
+            <button onClick={this.goBack}> Go back to Search Page </button>
+          </div>
+        )
+
         return (
             <div className="view">
                 <div>
@@ -298,15 +309,25 @@ export default class View extends Component {
                     <div className="clinicians-list">
                         {Object.values(this.clinicians).map((elem, index) =>
                         <div className="clinician" key={index+"(3 clinicial hours)"}>
-                            <div className="dot" style={{ backgroundColor: elem.color }}></div>
-                            {elem.name}
+                            <Checkbox
+                                id={`clinician-checkbox-${index}`}
+                                style={{ color: elem.color }}
+                                checked={this.state.cliniciansFilter[elem.name]}
+                                onChange={() => this.toggleClinicianFilter(elem.name)}
+                                value={elem.name} />
+                                <label htmlFor={`clinician-checkbox-${index}`}>
+                                <span className="clinician-name">{ elem.name } </span>
+                            </label>
                         </div>)}
                     </div>
+                    <div className="schedule-container">
+                    { Object.keys(this.data).length === 0 && noResultOverlay }
                     {
                         this.state.view === 'chart'
                             ? <ChartView data={this.data} postSavedAPI={this.props.postSavedAPI} clinicians={this.clinicians} />
                             : <CalendarView data={this.data} clinicians={this.clinicians}/>
                     }
+                    </div>
                 </div>
             </div>
         );

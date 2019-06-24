@@ -6,24 +6,6 @@ import PROGRAMS from '../../constants/programs'
 import {Router, Route, Switch, Redirect, Link} from 'react-router';
 import ScrollArea from 'react-scrollbar'
 
-const options1 = [
-  {value: 'bob', label: 'Bob'},
-  {value: 'joe', label: 'Joe'},
-  {value: 'billy', label: 'Billy'}
-]
-
-const options2 = [
-  {value: 'blue', label: 'Blue'},
-  {value: 'yellow', label: 'Yellow'},
-  {value: 'red', label: 'Red'}
-]
-
-const options3 = [
-  {value: 'blue', label: 'Blue'},
-  {value: 'yellow', label: 'Yellow'},
-  {value: 'red', label: 'Red'}
-]
-
 const options4 = [
   {value: 15, label: '15 mins'},
   {value: 30, label: '30 mins'},
@@ -70,7 +52,13 @@ const TimeofDay = [
   {value: 'afternoon', label: 'Afternoon'}
 ]
 
-let clin = [];
+const daysOfWeekOptions = [
+  {value: 'Monday', label: 'Monday'},
+  {value: 'Tuesday', label: 'Tuesday'},
+  {value: 'Wednesday', label: 'Wednesday'},
+  {value: 'Thursday', label: 'Thursday'},
+  {value: 'Friday', label: 'Friday'},
+]
 
 export default class Search extends Component {
   constructor(props) {
@@ -78,13 +66,14 @@ export default class Search extends Component {
     this.state = {
       name: null,
       service: PROGRAMS[0],
-      location: LOCATIONS[0],   
+      location: LOCATIONS[0],
       time: options4[1],
       sessions: options5[0],
       timeOfDay: TimeofDay[0],
       redirect: false,
       searchId: null,
-      reoccurence: recurrenceOptions[0],
+      reccurence: recurrenceOptions[0],
+      daysOfWeek: daysOfWeekOptions[0],
     };
   }
   componentWillMount = () => {
@@ -127,7 +116,6 @@ export default class Search extends Component {
            });
           this.setState({clinicians: clinicians});
       });
-      //this.props.getScheduleAPI("RHONDA","MACKINNON").then(res => console.log(res)).catch(err => console.log(err));
       
       let searchId = this.props.hidden.match.params.searchId;
       console.log(searchId);
@@ -145,14 +133,20 @@ export default class Search extends Component {
                   time: res[0].time,
                   sessions: res[0].numSessions,
                   timeOfDay: res[0].timeOfDay,
+                  //TODO: add recurrence
+                  //do we add something here for daysOfWeek?
               })
         
           });
       }
   }
   handleChange1 = (name) => {
-    this.setState({name: name})
-    console.log(`Option selected:`, name)
+      if (name.length === 0){
+          this.setState({name: null});
+      } else {
+          this.setState({name: name});
+      }
+      console.log(`Option selected name:`, name)
   }
 
   handleChange2 = (service) => {
@@ -180,9 +174,14 @@ export default class Search extends Component {
     console.log(`Option selected:`, timeOfDay)
   }
   
-  handleChange7 = (reoccurence) => {
-    this.setState({reoccurence: reoccurence})
-    console.log(`Option selected:`, reoccurence)
+  handleChange7 = (reccurence) => {
+    this.setState({reccurence: reccurence})
+    console.log(`Option selected:`, reccurence)
+  }
+
+  handleChange8 = (daysOfWeek) => {
+    this.setState({daysOfWeek: daysOfWeek})
+    console.log(`Option selected:`, daysOfWeek)
   }
 
   handleSubmit = () => {
@@ -196,8 +195,9 @@ export default class Search extends Component {
     let services = this.state.service;
     let location = this.state.location;
     let time = this.state.time;
-    let numSessions = this.state.sessions
-    let timeOfDay = this.state.timeOfDay
+    let numSessions = this.state.sessions;
+    let timeOfDay = this.state.timeOfDay;
+    let daysOfWeek = this.state.daysOfWeek;
     
     let info = {
         names,
@@ -206,10 +206,11 @@ export default class Search extends Component {
         time,
         numSessions,
         timeOfDay,
+        daysOfWeek,
     }
     
     //Do some basic error checking
-    if (!names || !services || !location || !time || !numSessions || !timeOfDay){
+    if (!names || !services || !location || !time || !numSessions || !timeOfDay || !daysOfWeek){
         console.log("Please fill out all fields")
     }
     else {
@@ -244,7 +245,8 @@ export default class Search extends Component {
       time,
       sessions,
       timeOfDay,
-      reoccurence
+      reccurence,
+      daysOfWeek,
     } = this.state;
     
     console.log(this.state.searchId);
@@ -260,7 +262,9 @@ export default class Search extends Component {
               <div className="row"> 
                 <h1> Find Available Times </h1>
                 <div className="column">
-                  Clinician Name(s) or ID(s) <font color="red">[Required]</font>
+                  <div className="headingRow">
+                     Clinician Name(s) or ID(s) <font color="red">[Required]</font > 
+                  </div>
                   <Select className="dropdown"
                     name="Clinician"
                     isMulti
@@ -268,40 +272,46 @@ export default class Search extends Component {
                     onChange={this.handleChange1}
                     options={this.state.clinicians}
                   />
-                  Service/Program
+                  <div className="headingRow"> Service Type </div>
                   <Select className="dropdown"
                     isMulti
                     value={service}
                     onChange={this.handleChange2}
                     options={this.state.programs}
                   />
-                  Location
-                  <Select className="dropdown"
-                    value={location}
-                    onChange={this.handleChange3}
-                    options={this.state.locations}
-                  />
-                  Recurrence
-                  <Select className="dropdown"
-                    value={reoccurence}
-                    onChange={this.handleChange7}
-                    options={recurrenceOptions}
-                  />
-                </div>
-                <div className="column">
-                  Min. Time Required
-                  <Select className="dropdown"
-                    value={time}
-                    onChange={this.handleChange4}
-                    options={options4}
-                  />
-                  Number of Sessions
+                   <div className="headingRow"> Number of Sessions </div>
                   <Select className="dropdown"
                     value={sessions}
                     onChange={this.handleChange5}
                     options={options5}
                   />
-                  Time of Day
+                  <div className="headingRow"> Day of the Week </div> 
+                  <Select className="dropdown"
+                    value={daysOfWeek}
+                    onChange={this.handleChange8}
+                    options={daysOfWeekOptions}
+                  />
+                </div>
+                <div className="column">
+                  <div className="headingColumn"> Min. Time Required </div>
+                  <Select className="dropdown"
+                    value={time}
+                    onChange={this.handleChange4}
+                    options={options4}
+                  />
+                  <div className="headingColumn"> Location </div>
+                  <Select className="dropdown"
+                    value={location}
+                    onChange={this.handleChange3}
+                    options={this.state.locations}
+                  />
+                  <div className="headingColumn"> Recurrence </div>
+                  <Select className="dropdown"
+                    value={reccurence}
+                    onChange={this.handleChange7}
+                    options={recurrenceOptions}
+                  />
+                  <div className="headingColumn"> Time of Day </div>
                   <Select className="dropdown"
                     value={timeOfDay}
                     onChange={this.handleChange6}
