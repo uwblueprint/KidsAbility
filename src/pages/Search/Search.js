@@ -6,7 +6,19 @@ import PROGRAMS from '../../constants/programs'
 import {Router, Route, Switch, Redirect, Link} from 'react-router';
 import ScrollArea from 'react-scrollbar'
 
-const options4 = [
+/* Array of { value: location_key, label: location_label } objects */
+let LOCATION_OPTIONS = []
+for (const [key, value] of Object.entries(LOCATIONS)) {
+    LOCATION_OPTIONS.push({value: key, label: value.description})
+}
+
+/* Array of { value: program_key, label: program_label } objects */
+let PROGRAM_OPTIONS = []
+for (const [key, value] of Object.entries(PROGRAMS)) {
+    PROGRAM_OPTIONS.push({value: key, label: value.description})
+}
+
+const TIME_REQUIRED = [
   {value: 15, label: '15 mins'},
   {value: 30, label: '30 mins'},
   {value: 45, label: '45 mins'},
@@ -25,7 +37,7 @@ or is the max they ever do like 10 or something?
 pro for using dropdown: restricts input to only valid inputs
 con: limited range
 */}
-const options5 = [
+const NUM_SESSIONS = [
   {value: 1, label: '1'},
   {value: 2, label: '2'},
   {value: 3, label: '3'},
@@ -39,10 +51,10 @@ const options5 = [
 ]
 
 const recurrenceOptions = [
-    {value: "Any", "label": "Any"},
-    {value: "weekly", "label": "Weekly"},
-    {value: "bi-weekly", "label": "Bi-Weekly"},
-    {value: "monthly", "label": "Monthly"},
+    {value: "Any", label: "Any"},
+    {value: "weekly", label: "Weekly"},
+    {value: "bi-weekly", label: "Bi-Weekly"},
+    {value: "monthly", label: "Monthly"},
 ]
 
 {/* does this need to be radio buttons? */}
@@ -63,62 +75,45 @@ const daysOfWeekOptions = [
 export default class Search extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       name: null,
-      service: PROGRAMS[0],
-      location: LOCATIONS[0],
-      time: options4[1],
-      sessions: options5[0],
+      service: PROGRAM_OPTIONS[0],
+      location: LOCATION_OPTIONS[0],
+      time: TIME_REQUIRED[1],
+      sessions: NUM_SESSIONS[0],
       timeOfDay: TimeofDay[0],
-      redirect: false,
-      searchId: null,
       reccurence: recurrenceOptions[0],
       daysOfWeek: daysOfWeekOptions[0],
+      redirect: false,
+      searchId: null,
     };
   }
   componentWillMount = () => {
-      
-      //load in the locations
-      let locations = [];
-      for (const [key, value] of Object.entries(LOCATIONS)) {
-          locations.push({value: key, label: value.description});
-      }   
-      this.setState({locations: locations});
-      this.setState({location: locations[0]});
-      
-      //load in the programs
-      let programs = [];
-      for (const [key, value] of Object.entries(PROGRAMS)) {
-          programs.push({value: key, label: value.description})
-      }
-      this.setState({programs: programs});
-      this.setState({service: programs[0]});
-      
       //load in clinicians
       this.props.getCliniciansAPI().then((res) => {
-           let clinicians = [];
-           let any_option = {
-                value: "Any",
-                label: "Any",
-                First: "Any",
-                Last: "",
+          const any_option = {
+              value: "Any",
+              label: "Any",
+              First: "Any",
+              Last: "",
+          }
+          let clinicians = [any_option];
+          res.forEach((name) => {
+              let value = name._id.First + " " + name._id.Last;
+              let option = {
+                  value: value,
+                  label: value,
+                  First: name._id.First,
+                  Last: name._id.Last,
               }
-               clinicians.push(any_option);
-           res.forEach((name) => {
-               let value = name._id.First + " " + name._id.Last;
-               let option = {
-                   value: value,
-                   label: value,
-                   First: name._id.First,
-                   Last: name._id.Last,
-               }
-               clinicians.push(option);
-           });
-          this.setState({clinicians: clinicians});
+              clinicians.push(option);
+          });
+          this.setState({ clinicians: clinicians });
       });
       
       let searchId = this.props.hidden.match.params.searchId;
-      console.log(searchId);
+
       //Use the id to get the search params
       if (searchId) {
           this.props.getSearchAPI(searchId).then((res) => {
@@ -136,7 +131,6 @@ export default class Search extends Component {
                   //TODO: add recurrence
                   //do we add something here for daysOfWeek?
               })
-        
           });
       }
   }
@@ -185,8 +179,6 @@ export default class Search extends Component {
   }
 
   handleSubmit = () => {
-    //alert('Search criteria was submitted')
-    
     let names = this.state.name
     if (names != null && this.state.name.map(a => a.value).includes("Any")) {
       //get all names from clinician name drop down except the 1st one ("Any")
@@ -277,13 +269,13 @@ export default class Search extends Component {
                     isMulti
                     value={service}
                     onChange={this.handleChange2}
-                    options={this.state.programs}
+                    options={PROGRAM_OPTIONS}
                   />
                    <div className="headingRow"> Number of Sessions </div>
                   <Select className="dropdown"
                     value={sessions}
                     onChange={this.handleChange5}
-                    options={options5}
+                    options={NUM_SESSIONS}
                   />
                   <div className="headingRow"> Day of the Week </div> 
                   <Select className="dropdown"
@@ -297,13 +289,13 @@ export default class Search extends Component {
                   <Select className="dropdown"
                     value={time}
                     onChange={this.handleChange4}
-                    options={options4}
+                    options={TIME_REQUIRED}
                   />
                   <div className="headingColumn"> Location </div>
                   <Select className="dropdown"
                     value={location}
                     onChange={this.handleChange3}
-                    options={this.state.locations}
+                    options={LOCATION_OPTIONS}
                   />
                   <div className="headingColumn"> Recurrence </div>
                   <Select className="dropdown"
@@ -322,11 +314,6 @@ export default class Search extends Component {
                       onClick={this.handleSubmit}>
                       Search
                   </button>
-                  {/*}
-                  <form ref="form" onSubmit={this.handleSubmit}>
-                    <button className="button">Search</button>
-                  </form>
-                  */}
                 </div>
       </div>
     );
