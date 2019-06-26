@@ -1551,11 +1551,6 @@ const LOCATIONS = {
     city: CITIES.Waterloo,
     status: STATUSES.Active,
   },
-  'YMCA-BRIGA': {
-    description: 'K-YMCA-Brigadoon Day Care',
-    city: CITIES.Kitchener,
-    status: STATUSES.Active,
-  },
   'YMCA-JWGER': {
     description: 'K-YMCA-J.W. Gerth Child Care',
     city: CITIES.Kitchener,

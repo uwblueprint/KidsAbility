@@ -47,7 +47,6 @@ export default class Saved extends Component {
           return resp.json();
         });
         event.target.innerHTML = (event.target.innerHTML === "bookmark") ? "bookmark_border" : "bookmark";
-        const saved = this.state.saved.filter(saved => saved._id !== id);
     }
 
     render() {
