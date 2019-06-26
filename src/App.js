@@ -7,7 +7,7 @@ import React, {Component} from 'react';
 
 //These are all npm packages
 import firebase from 'firebase';
-import {Router, Route, Switch, Redirect} from 'react-router';
+import {Router, Route, Switch} from 'react-router';
 import {NotificationContainer} from 'react-notifications';
 import {NotificationManager} from 'react-notifications';
 import createBrowserHistory from 'history/createBrowserHistory';
@@ -25,12 +25,10 @@ import Saved from '../src/pages/Saved/Saved'
 
 //Create an instance of browserHistory
 const browserHistory = createBrowserHistory();
-const proxy = process.env.NODE_ENV == "production" ? process.env.REACT_APP_SERVER : "http://localhost:4000";
+const proxy = process.env.NODE_ENV === "production" ? process.env.REACT_APP_SERVER : "http://localhost:4000";
 
 export default class App extends Component {
 
-    // This is an empty contructor - please see the other classes for a used
-    // constructor
     constructor(props) {
         super(props);
 
@@ -48,16 +46,6 @@ export default class App extends Component {
         this.state = {
             user: false
         };
-    }
-
-    // This is where handler functions and lifecycle methods/functions are declared
-    // You can pass handler functions as props to another components Those
-    // components can call the handler functions which could, for example, update
-    // the states in this component
-    componentDidMount() {
-        //this.callAPI()
-            //.then(res => this.setState({response: res.express}))
-        //    .catch(err => console.log("Error: " + err))
     }
 
     /**
@@ -137,9 +125,6 @@ export default class App extends Component {
                 'Accept': 'application/json'
             }
         });
-        console.log(response);
-        //const body = await response.text();
-        //console.log(body);
         const body = await response.json();
         if (response.status !== 200) {
             throw Error(body.message);
@@ -151,34 +136,28 @@ export default class App extends Component {
         const response = await fetch(proxy+'/api/saved', {
             method: 'POST', 
             body: JSON.stringify({
-              Name: param.Name,
-              Date: param.Date,
-              Start: param.Start,
-              End: param.End,
-              id: param.id,
-              Location: param.Location,
-              Note: param.Note
+                Name: param.Name,
+                Date: param.Date,
+                Start: param.Start,
+                End: param.End,
+                id: param.id,
+                Location: param.Location,
+                Note: param.Note
             }),
             headers: {
                'Accept': 'application/json',
                'Content-Type': 'application/json',
-             },
+            },
         })
-        
         const body = await response.json();
-        
         if (response.status !== 201) {
             console.log(response);
             console.log("Error with posting saved-times");
         }
-        
-        console.log(body);
         return body;
     }
     
     postSearchAPI = async (databody) => {
-        console.log(databody);
-
         const response = await fetch(proxy+'/api/search/post', {
             method: 'POST', 
             body: JSON.stringify(databody),
@@ -187,15 +166,11 @@ export default class App extends Component {
                'Content-Type': 'application/json',
              },
         })
-        
         const body = await response.json();
-        
         if (response.status !== 201) {
             console.log(response);
             console.log("Error with posting saved-times");
         }
-        
-        console.log(body);
         return body;
     };
     
@@ -210,8 +185,6 @@ export default class App extends Component {
     
     
     postUserAPI = async (databody) => {
-        console.log(databody);
-
         const response = await fetch(proxy+'/api/users/post', {
             method: 'POST', 
             body: JSON.stringify(databody),
@@ -220,15 +193,11 @@ export default class App extends Component {
                'Content-Type': 'application/json',
              },
         })
-        
         const body = await response.json();
-        
         if (response.status !== 201) {
             console.log(response);
             console.log("Error with posting user");
         }
-        
-        console.log(body);
         return body;
     };
     
@@ -247,7 +216,6 @@ export default class App extends Component {
 
     handleUserUpdate = () => {
         var user = localStorage.getItem('user');
-        console.log(user);
         this.setState({user: user});
     }
     
@@ -298,7 +266,6 @@ export default class App extends Component {
         // This is where pre-render calculations happen These calculations can also be
         // done in lifecycle methods. The latter is probably better practice
 
-        console.log(this.state.user);
         return (
             <div className="App">
                 <header className="App-header">
@@ -306,7 +273,7 @@ export default class App extends Component {
                         <div>
                             <Header/>
                             <NotificationContainer/>
-                            { (this.state.user && this.state.user != "") 
+                            { (this.state.user && this.state.user !== "")
                                 ?
                             <Switch>
 
