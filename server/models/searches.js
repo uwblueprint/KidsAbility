@@ -5,6 +5,14 @@ var searchSchema = new mongoose.Schema({
     ids: {
 		type: [String]
 	},
+    names: {
+		type: {
+			value: String,
+    		label: String,
+    		First: String,
+    		Last: String,
+		},
+	},
 	services: { 
 		type: [String]
 	},
@@ -19,7 +27,10 @@ var searchSchema = new mongoose.Schema({
 	},
 	numSessions: {
 		type: String
-	}
+	},
+	daysOfWeek: {
+		type: String
+	},
 }, { collection: 'searches' });
 
 var Search = mongoose.model('Search', searchSchema);
