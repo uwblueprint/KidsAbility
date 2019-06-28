@@ -4,7 +4,6 @@ import CalendarView from './CalendarView/CalendarView';
 import { Redirect } from 'react-router';
 import { Checkbox } from '@material-ui/core';
 import moment from 'moment';
-import axios from 'axios';
 import './View.css';
 
 const DAY_START = '8:00';
@@ -14,14 +13,15 @@ const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
 
 // compare function to sort time slots
 const compareFunction = (a, b) => {
-    
     if (moment(a.Date).hour(a.Start.split(":")[0]).minute(a.Start.split(":")[1]) < 
-        moment(b.Date).hour(b.Start.split(":")[0]).minute(b.Start.split(":")[1])) 
-    return -1;
+        moment(b.Date).hour(b.Start.split(":")[0]).minute(b.Start.split(":")[1])) {
+        return -1;
+    }
     
     if (moment(a.Date).hour(a.Start.split(":")[0]).minute(a.Start.split(":")[1]) > 
-        moment(b.Date).hour(b.Start.split(":")[0]).minute(b.Start.split(":")[1])) 
-    return 1;
+        moment(b.Date).hour(b.Start.split(":")[0]).minute(b.Start.split(":")[1])) {
+        return 1;
+    }
     
     if (a.Start < b.Start) return 1;
     if (b.Start < a.Start) return -1;
@@ -41,13 +41,11 @@ const compareTime = (a, b) => {
     if (hourA > hourB) {
         return -1;
     } 
-    else if (hourA == hourB) {
-        if (minA < minB){
-            return 1;
-        }
-        if (minA > minB){
-            return -1;
-        }
+    if (minA < minB) {
+        return 1;
+    }
+    if (minA > minB) {
+        return -1;
     }
     return 0;
 }
@@ -168,7 +166,7 @@ const getAvailableTimes = (sortedData) => {
         // add full day time slots between today and next booked slot (excluding weekends)
         let currentDay = moment(elem.Date).add(1, 'days');
         while (moment(sortedData[index + 1].Date).diff(currentDay, 'days') > 0) {
-            if (currentDay.day() != 0 && currentDay.day() != 6) {
+            if (currentDay.day() !== 0 && currentDay.day() !== 6) {
                 availableTimes.push({
                     id: elem.ID,
                     Names: [`${elem.FirstName} ${elem.LastName}`],
@@ -233,7 +231,7 @@ export default class View extends Component {
     }
 
     toggleView = (e) => {
-        if (this.state.view == "chart") {
+        if (this.state.view === "chart") {
             this.setState({view: "calendar"});
         }
         else {
@@ -254,7 +252,6 @@ export default class View extends Component {
 
     render() {
         console.log(this.state.searchId);
-        let renderRedirect;
         if (this.state.redirect){
             let path = "/edit-time/"+this.props.hidden.match.params.searchId;;
             return <Redirect to={path}/>
@@ -304,7 +301,7 @@ export default class View extends Component {
                                 className="toggle-button"
                                 onClick={this.toggleView}
                                 data={this.props.data}>
-                                {(this.state.view == 'chart') ? "Calendar View" : "Chart View"}
+                                {(this.state.view === 'chart') ? "Calendar View" : "Chart View"}
                             </button>
                         </div>
                     </div>
