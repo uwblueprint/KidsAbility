@@ -36,7 +36,7 @@ do clinicians ever book an extremely large number of sessions at once?
 or is the max they ever do like 10 or something?
 pro for using dropdown: restricts input to only valid inputs
 con: limited range
-*/}
+*/
 const NUM_SESSIONS = [
   {value: 1, label: '1'},
   {value: 2, label: '2'},
