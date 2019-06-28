@@ -4,7 +4,16 @@ import './Search.css';
 import LOCATIONS from '../../constants/locations';
 import PROGRAMS from '../../constants/programs'
 import {Router, Route, Switch, Redirect, Link} from 'react-router';
-import ScrollArea from 'react-scrollbar'
+import ScrollArea from 'react-scrollbar';
+// these imports are for the calendars
+//import {LinkedCalendar, DayPicker, DatePicker} from 'rb-datepicker';
+import MultiDayCalendar from 'react-calendar-multiday';
+import DayPicker, {DateUtils} from 'react-day-picker';
+import 'react-day-picker/lib/style.css';
+import Popup from "reactjs-popup";
+//import DatePicker from 'react-datepicker';
+//import "react-datepicker/dist/react-datepicker.css";
+//import 'bootstrap-daterangepicker/daterangepicker.css';
 
 const options4 = [
   {value: 15, label: '15 mins'},
@@ -60,6 +69,12 @@ const daysOfWeekOptions = [
   {value: 'Friday', label: 'Friday'},
 ]
 
+const selectDatesOptions = [
+  {value: 'dayOfWeek', label: 'By Day Of Week'},
+  {value: 'individualDates', label: 'By Individual Dates'},
+  {value: 'dateRange', label: 'By Date Range (i.e. consecutive days)'},
+]
+
 export default class Search extends Component {
   constructor(props) {
     super(props);
@@ -74,8 +89,13 @@ export default class Search extends Component {
       searchId: null,
       reccurence: recurrenceOptions[0],
       daysOfWeek: daysOfWeekOptions[0],
+      selectDates: selectDatesOptions[0],
+      selectedDates:[],
+      from: undefined,
+      to: undefined,
     };
   }
+
   componentWillMount = () => {
       
       //load in the locations
@@ -85,6 +105,9 @@ export default class Search extends Component {
       }   
       this.setState({locations: locations});
       this.setState({location: locations[0]});
+      this.setState({selectedDates: []});
+      this.setState({from: undefined});
+      this.setState({to: undefined});
       
       //load in the programs
       let programs = [];
@@ -140,6 +163,53 @@ export default class Search extends Component {
           });
       }
   }
+  handleDateOptionDisplay = (selectedDateValue) => {
+    console.log("YOLO");
+    console.log('selectDateObject ' + selectedDateValue);
+    console.log(typeof selectedDateValue);
+    const {from, to} = this.state;
+    const modifiers = {start: from, end: to};
+    if (selectedDateValue === undefined) return;
+    console.log('dateOption Choice ' + selectedDateValue);
+    //trigger={<button> Trigger</button>}
+    if (selectedDateValue === 'dayOfWeek') {
+        return (
+            <>
+              <div className="headingRow"> Day of the Week </div>
+              <Popup open = {selectedDateValue === 'dayOfWeek'} position="right center">
+                  <Select className="dropdown"
+                    value={this.state.daysOfWeek}
+                    onChange={this.handleChange8}
+                    options={daysOfWeekOptions}
+                  />
+              </Popup>
+
+            </>
+        );
+      } else if (selectedDateValue === 'individualDates') {
+        return (
+              <Popup open = {selectedDateValue === 'individualDates'} position="right center">
+                  <DayPicker selectedDays={this.state.selectedDates} onDayClick={this.onIndividualDatesChange} />
+                  <button className="link" onClick={this.onResetRangeDatesClick}>
+                    Reset Dates
+                  </button>
+              </Popup>
+
+        );
+      } else {
+        return (
+            <>
+                <DayPicker className = "Selectable" selectedDays={[from, {from, to}]}
+                modifiers={modifiers} onDayClick = {this.onRangeDatesChange} />
+                <button className="link" onClick={this.onResetRangeDatesClick}>
+                    Reset Range
+                </button>
+            </>
+            //<LinkedCalendar onDatesChange={this.onDatesChange} showDropdowns={false} />
+        );
+      }
+  }
+
   handleChange1 = (name) => {
       if (name.length === 0){
           this.setState({name: null});
@@ -184,9 +254,42 @@ export default class Search extends Component {
     console.log(`Option selected:`, daysOfWeek)
   }
 
+  //for calendars
+  onRangeDatesChange = (day) => {
+    const dateRange = DateUtils.addDayToRange(day, this.state);
+    this.setState(dateRange);
+  }
+  onResetRangeDatesClick = () => {
+    console.log('Potatoes');
+    console.log(this.state);
+    this.setState({selectedDates: []});
+  }
+  onResetIndividualDatesClick = () => {
+      console.log(this.state);
+      this.setState({from: undefined, to: undefined});
+    }
+  onIndividualDatesChange = (day, {selected}) => {
+      console.log('individual day selection');
+      console.log(day, {selected});
+      const { selectedDates } = this.state;
+          if (selected) {
+            const selectedIndex = selectedDates.findIndex(selectedDate =>
+              DateUtils.isSameDay(selectedDate, day)
+            );
+            selectedDates.splice(selectedIndex, 1);
+          } else {
+            selectedDates.push(day);
+          }
+          this.setState({ selectedDates });
+  }
+  //selects which date selection type you want i.e. the type of calendar
+  // stores it in selectDates
+  handleDateOptionSelection = (selectDates) => {
+    this.setState({selectDates: selectDates});
+    console.log('Date option selection: ', selectDates.value);
+  }
+
   handleSubmit = () => {
-    //alert('Search criteria was submitted')
-    
     let names = this.state.name
     if (names != null && this.state.name.map(a => a.value).includes("Any")) {
       //get all names from clinician name drop down except the 1st one ("Any")
@@ -198,6 +301,10 @@ export default class Search extends Component {
     let numSessions = this.state.sessions;
     let timeOfDay = this.state.timeOfDay;
     let daysOfWeek = this.state.daysOfWeek;
+    let selectDates = this.state.selectDates;
+    let selectedDates = this.state.selectedDates;
+    let from = this.state.from;
+    let to = this.state.to;
     
     let info = {
         names,
@@ -207,7 +314,13 @@ export default class Search extends Component {
         numSessions,
         timeOfDay,
         daysOfWeek,
+        selectDates,
+        selectedDates,
+        from,
+        to,
     }
+
+    console.log(info);
     
     //Do some basic error checking
     if (!names || !services || !location || !time || !numSessions || !timeOfDay || !daysOfWeek){
@@ -218,8 +331,7 @@ export default class Search extends Component {
         console.log(this.state.info);
     }
   }
-  
-  
+
   componentDidUpdate = () => {
       console.log("Component Updating");
       console.log(this.state.redirect);
@@ -247,6 +359,10 @@ export default class Search extends Component {
       timeOfDay,
       reccurence,
       daysOfWeek,
+      selectDates,
+      selectedDates,
+      from,
+      to,
     } = this.state;
     
     console.log(this.state.searchId);
@@ -279,18 +395,21 @@ export default class Search extends Component {
                     onChange={this.handleChange2}
                     options={this.state.programs}
                   />
-                   <div className="headingRow"> Number of Sessions </div>
+                  <div className="headingRow"> Number of Sessions </div>
                   <Select className="dropdown"
                     value={sessions}
                     onChange={this.handleChange5}
                     options={options5}
                   />
-                  <div className="headingRow"> Day of the Week </div> 
+                  <div>
+                  <div className="headingRow"> Select Method to select dates </div>
                   <Select className="dropdown"
-                    value={daysOfWeek}
-                    onChange={this.handleChange8}
-                    options={daysOfWeekOptions}
+                    value={selectDates}
+                    onChange={this.handleDateOptionSelection}
+                    options={selectDatesOptions}
                   />
+                  </div>
+                  {this.handleDateOptionDisplay(selectDates.value)}
                 </div>
                 <div className="column">
                   <div className="headingColumn"> Min. Time Required </div>
