@@ -91,25 +91,24 @@ export default class Search extends Component {
   }
   componentWillMount = () => {
       //load in clinicians
-      this.props.getCliniciansAPI().then((res) => {
-          const any_option = {
+      this.props.getCliniciansAPI().then(clinicians => {
+        this.setState({
+          clinicians: [
+            {
               value: "Any",
               label: "Any",
               First: "Any",
               Last: "",
-          }
-          let clinicians = [any_option];
-          res.forEach((name) => {
-              let value = name._id.First + " " + name._id.Last;
-              let option = {
-                  value: value,
-                  label: value,
-                  First: name._id.First,
-                  Last: name._id.Last,
-              }
-              clinicians.push(option);
-          });
-          this.setState({ clinicians: clinicians });
+            },
+            ...clinicians.map(c => ({
+              value: `${c.FirstName} ${c.LastName}`,
+              label: `${c.FirstName} ${c.LastName}`,
+              First: c.FirstName,
+              Last: c.LastName,
+              ID: c.ID,
+            })),
+          ]
+        });
       });
       
       let searchId = this.props.hidden.match.params.searchId;
@@ -118,15 +117,15 @@ export default class Search extends Component {
       if (searchId) {
           this.props.getSearchAPI(searchId).then((res) => {
               console.log(res);
-              console.log(res[0].names);
               
               this.setState({
-                  name: res[0].names[0],
-                  service: res[0].services[0],
-                  location: res[0].location,
-                  time: res[0].time,
-                  sessions: res[0].numSessions,
-                  timeOfDay: res[0].timeOfDay,
+                  name: res.names,
+                  service: res.services.map(s => ({ label: PROGRAMS[s].description, value: s })),
+                  location: { label: LOCATIONS[res.location].description, value: res.location },
+                  time: TIME_REQUIRED.find(o => o.value == res.time),
+                  sessions: NUM_SESSIONS.find(o => o.value == res.numSessions),
+                  timeOfDay: TimeofDay.find(t => t.value === res.timeOfDay),
+                  daysOfWeek: daysOfWeekOptions.find(d => d.value === res.daysOfWeek),
                   //TODO: add recurrence
                   //do we add something here for daysOfWeek?
               })
@@ -203,6 +202,7 @@ export default class Search extends Component {
     //Do some basic error checking
     if (!names || !services || !location || !time || !numSessions || !timeOfDay || !daysOfWeek){
         console.log("Please fill out all fields")
+        console.log(info);
     }
     else {
         this.setState({info: info, redirect: true});
@@ -212,17 +212,22 @@ export default class Search extends Component {
   
   
   componentDidUpdate = () => {
-      console.log("Component Updating");
-      console.log(this.state.redirect);
-      if (this.state.info && this.state.redirect){
-          console.log("posting search");
-          this.props.postSearchAPI(this.state.info).then((res) => {
-              console.log(res);
-              console.log(res._id);
-              this.setState({searchId: res._id});
-              console.log(this.state.searchId);
-          });
+    if (this.state.info && this.state.redirect){
+      const search = {};
+      for (let key in this.state.info) {
+        if (key === 'names') {
+          search['ids'] = this.state.info['names'].map(item => item.ID);
+          search['names'] = this.state.info['names'];
+        } else if (Array.isArray(this.state.info[key])) {
+          search[key] = this.state.info[key].map(item => item.value);
+        } else {
+          search[key] = this.state.info[key].value;
+        }
       }
+      this.props.postSearchAPI(search).then((res) => {
+        this.setState({searchId: res._id});
+      });
+    }
   }
 
   render() {

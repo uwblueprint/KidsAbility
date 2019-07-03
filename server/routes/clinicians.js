@@ -4,21 +4,13 @@ const express = require('express');
 const router = express.Router();
 const db = require('../models/server.js');
 
-router.get('/', function(req, res){
-	
-	//get all unique clinicians
-	//treats entire object as a dictionary key
-	db.Schedule.aggregate([
-		{ $group: { _id: {First: "$FirstName", Last: "$LastName"}}}
-	])
-	
-	.then(function(found){
-		//console.log(res);
-		res.json(found);
-	})
-	.catch(function(err){
-		//res.send(err);
-	})
+router.get('/', async (req, res, next) => {
+	try {
+		const clinicians = await db.Clinicians.find({}, 'ID FirstName LastName', { lean: true }).sort('FirstName LastName');
+		res.send(clinicians);
+	} catch (err) {
+		next(err);
+	}
 });
 
 

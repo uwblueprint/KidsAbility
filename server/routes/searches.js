@@ -20,7 +20,7 @@ router.get('/', function(req, res){
 
 router.get('/:searchId', function(req, res){
     console.log(req.params.searchId)
-	db.Search.find({_id: req.params.searchId})
+	db.Search.findById(req.params.searchId)
 
 	.then(function(foundSearch){
 		res.json(foundSearch);

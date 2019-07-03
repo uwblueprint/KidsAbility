@@ -94,7 +94,7 @@ const groupData = (data, searchParams) => {
     data
         .filter(elem =>
             moment().startOf('date').diff(elem.Date, 'days') <= 0 &&
-            moment(elem.End, 'h:mm').diff(moment(elem.Start, 'h:mm'), 'minutes') > searchParams.time.value)
+            moment(elem.End, 'h:mm').diff(moment(elem.Start, 'h:mm'), 'minutes') > searchParams.time)
         .sort(compareFunction)
         .forEach(elem => {
             let key = (moment().diff(elem.Date, 'weeks')) * -1;
@@ -202,26 +202,28 @@ export default class View extends Component {
         let searchId = this.props.hidden.match.params.searchId;
         //Use the id to get the search params
         this.props.getSearchAPI(searchId).then((res) => {
-            this.setState({ searchParams: res[0] });
+            this.setState({ searchParams: res });
+            console.log(res);
             
             //For every name in the search ->
             //  - Add the clinician name to the list of clinicians (dict)
             //  - Add the dates together
-            Promise.all(res[0].names.map((name, index) => {
+            Promise.all(res.names.map((name, index) => {
                 
-                this.clinicians[name[0].label] = {
-                    name: [name[0].label],
+                this.clinicians[name.label] = {
+                    name: [name.label],
                     color: colors[index],
                 }
 
-                this.state.availableTimes[name[0].label] = [];
-                this.state.cliniciansFilter[name[0].label] = true;
+                this.state.availableTimes[name.label] = [];
+                this.state.cliniciansFilter[name.label] = true;
                 
-                var result = this.props.getScheduleAPI(name[0].First, name[0].Last)
+                var result = this.props.getScheduleAPI(name.First, name.Last)
                     .then((res) => {
+                        console.log(res);
                         const availableTimes = processData(res);
                         this.state.data.push(availableTimes);
-                        this.state.availableTimes[name[0].label].push(availableTimes);
+                        this.state.availableTimes[name.label].push(availableTimes);
                     });
                 return result;
             })).then(() => this.setState({ ready: true }));
