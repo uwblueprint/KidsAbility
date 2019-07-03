@@ -6,12 +6,12 @@ var searchSchema = new mongoose.Schema({
 		type: [String]
 	},
     names: {
-		type: {
+		type: [{
 			value: String,
     		label: String,
     		First: String,
     		Last: String,
-		},
+		}],
 	},
 	services: { 
 		type: [String]
