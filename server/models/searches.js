@@ -26,7 +26,7 @@ var searchSchema = new mongoose.Schema({
 		type: String
 	},
 	numSessions: {
-		type: String
+		type: Number
 	},
 	daysOfWeek: {
 		type: String
