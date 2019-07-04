@@ -4,7 +4,6 @@ import CalendarView from './CalendarView/CalendarView';
 import { Redirect } from 'react-router';
 import { Checkbox } from '@material-ui/core';
 import palette from 'google-palette';
-import { Redirect } from 'react-router';
 import moment from 'moment';
 import './View.css';
 
