@@ -11,50 +11,30 @@ const DAY_END = '20:00';
 
 const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
 
+// Moment object with KidsAbility specific date format
+const mnt = (date) => moment(date, 'DD-MMM-YY')
+
 // compare function to sort time slots
 const compareFunction = (a, b) => {
-    if (moment(a.Date).hour(a.Start.split(":")[0]).minute(a.Start.split(":")[1]) < 
-        moment(b.Date).hour(b.Start.split(":")[0]).minute(b.Start.split(":")[1])) {
+    const aTime = mnt(a.Date)
+        .hour(a.Start.split(":")[0])
+        .minute(a.Start.split(":")[1])
+    const bTime = mnt(b.Date)
+        .hour(b.Start.split(":")[0])
+        .minute(b.Start.split(":")[1])
+    // TODO: isAfter, isBefore?
+    if (aTime < bTime) {
         return -1;
-    }
-    
-    if (moment(a.Date).hour(a.Start.split(":")[0]).minute(a.Start.split(":")[1]) > 
-        moment(b.Date).hour(b.Start.split(":")[0]).minute(b.Start.split(":")[1])) {
+    } else if (aTime > bTime) {
         return 1;
+    } else {
+      return 0;
     }
-    
-    if (a.Start < b.Start) return 1;
-    if (b.Start < a.Start) return -1;
-    
-    return 0;
-}
-
-//compare function for time "h:mm"
-const compareTime = (a, b) => {
-    let hourA = parseInt(a.split(":")[0])
-    let hourB = parseInt(b.split(":")[0]);
-    let minA = parseInt(a.split(":")[1])
-    let minB = parseInt(b.split(":")[1])
-    if (hourA < hourB){
-        return 1;
-    }
-    if (hourA > hourB) {
-        return -1;
-    } 
-    if (minA < minB) {
-        return 1;
-    }
-    if (minA > minB) {
-        return -1;
-    }
-    return 0;
 }
 
 // create an array of available times grouped by weeks
 const processData = (data) => {
-    const sortedData = data
-        .flatMap(x => x)
-        .sort(compareFunction);
+    const sortedData = data.sort(compareFunction);
     return getAvailableTimes(sortedData);
 }
 
@@ -66,8 +46,8 @@ const getOverlappingTimes = (t1, t2) => {
             console.log("We looping");
             break;
         }
-        if (moment(t1[i].Date) < moment(t2[j].Date)) i++
-        else if (moment(t2[j].Date) < moment(t1[i].Date)) j++;
+        if (mnt(t1[i].Date) < mnt(t2[j].Date)) i++
+        else if (mnt(t2[j].Date) < mnt(t1[i].Date)) j++;
 
         else if (moment(t1[i].Start, 'h:mm') >= moment(t2[j].End, 'h:mm')) j++;
         else if (moment(t1[i].End, 'h:mm') <= moment(t2[j].Start, 'h:mm')) i++;
@@ -93,11 +73,11 @@ const groupData = (data, searchParams) => {
     const groupedData = {}
     data
         .filter(elem =>
-            moment().startOf('date').diff(elem.Date, 'days') <= 0 &&
+            moment().startOf('date').diff(mnt(elem.Date), 'days') <= 0 &&
             moment(elem.End, 'h:mm').diff(moment(elem.Start, 'h:mm'), 'minutes') > searchParams.time.value)
         .sort(compareFunction)
         .forEach(elem => {
-            let key = (moment().diff(elem.Date, 'weeks')) * -1;
+            let key = (moment().diff(mnt(elem.Date), 'weeks')) * -1;
             if (groupedData[key]) {
                 groupedData[key].push(elem);
             } else {
@@ -164,13 +144,13 @@ const getAvailableTimes = (sortedData) => {
             })
         }
         // add full day time slots between today and next booked slot (excluding weekends)
-        let currentDay = moment(elem.Date).add(1, 'days');
-        while (moment(sortedData[index + 1].Date).diff(currentDay, 'days') > 0) {
+        let currentDay = mnt(elem.Date).add(1, 'days');
+        while (mnt(sortedData[index + 1].Date).diff(currentDay, 'days') > 0) {
             if (currentDay.day() !== 0 && currentDay.day() !== 6) {
                 availableTimes.push({
                     id: elem.ID,
                     Names: [`${elem.FirstName} ${elem.LastName}`],
-                    Date: currentDay.format('D-MMM-YY'),
+                    Date: currentDay.format('DD-MMM-YY'),
                     Start: DAY_START,
                     End: DAY_END,
                     Location: elem.Location,
@@ -217,14 +197,14 @@ export default class View extends Component {
                 this.state.availableTimes[name[0].label] = [];
                 this.state.cliniciansFilter[name[0].label] = true;
                 
-                var result = this.props.getScheduleAPI(name[0].First, name[0].Last)
+                return this.props.getScheduleAPI(name[0].First, name[0].Last)
                     .then((res) => {
                         const availableTimes = processData(res);
                         this.state.data.push(availableTimes);
                         this.state.availableTimes[name[0].label].push(availableTimes);
                     });
-                return result;
-            })).then(() => this.setState({ ready: true }));
+            }))
+            .then(() => this.setState({ ready: true }));
         })
     }
 
@@ -257,10 +237,7 @@ export default class View extends Component {
         
         //We should return a spinner :P
         if (!this.state.ready) {
-            
-        return (
-                <p> Loading </p>
-            );
+            return (<p> Loading </p>);
         }
 
 
