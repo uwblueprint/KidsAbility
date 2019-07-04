@@ -4,7 +4,7 @@ import CalendarView from './CalendarView/CalendarView';
 import { Redirect } from 'react-router';
 import { Checkbox } from '@material-ui/core';
 import palette from 'google-palette';
-import {Router, Route, Switch, Redirect, Link} from 'react-router';
+import { Redirect } from 'react-router';
 import moment from 'moment';
 import './View.css';
 
@@ -211,10 +211,11 @@ export default class View extends Component {
                 
                 // the mpn65 palette is better (more distinct colours) but tol-rainbow has more colours
                 var palette_type = (res[0].names.length <= 65) ? ('mpn65') : ('tol-rainbow')
+                var colors_list = palette(palette_type, res[0].names.length)
 
                 this.clinicians[name[0].label] = {
                     name: [name[0].label],
-                    color: '#'.concat(palette(palette_type, res[0].names.length)[index])
+                    color: '#'.concat(colors_list[index])
                 }
 
                 this.state.availableTimes[name[0].label] = [];
