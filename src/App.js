@@ -135,7 +135,7 @@ export default class App extends Component {
         }
         return body;
     }
-    
+
     postSavedAPI = async (param) => {
         const response = await fetch(proxy+'/api/saved', {
             method: 'POST', 
@@ -160,7 +160,17 @@ export default class App extends Component {
         }
         return body;
     }
-    
+
+    deleteSavedAPI = async (id) => {
+        const response = await fetch(proxy + '/api/saved/' + id, {
+            method: 'DELETE',
+        })
+        if (!response.ok) {
+            console.log(response)
+            console.log("Error with deleting saved-times")
+        }
+    }
+
     postSearchAPI = async (databody) => {
         const response = await fetch(proxy+'/api/search/post', {
             method: 'POST', 
@@ -252,6 +262,7 @@ export default class App extends Component {
             return (
                 <Saved 
                     getSavedAPI={this.getSavedAPI}
+                    deleteSavedAPI={this.deleteSavedAPI}
                 />
             )
         }
