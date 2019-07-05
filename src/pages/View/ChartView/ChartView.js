@@ -81,7 +81,7 @@ export default class ChartView extends Component {
                                 this.props.data[key].map((elem, index) =>
                                     <tr key={index}>
                                         <td>
-                                            {moment(elem.Date).format('MMM D')}
+                                            {moment(elem.Date, 'DD-MMM-YY').format('MMM D')}
                                         </td>
                                         <td className="wide">{moment(elem.Start, 'h:mm').format('h:mm a')} - {moment(elem.End, 'h:mm').format('h:mm a')}</td>
                                         <td>{elem.Location.charAt(0) + elem.Location.substr(1).toLowerCase()}</td>

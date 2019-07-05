@@ -24,8 +24,8 @@ export default class CalendarView extends Component {
                 let elem = week[j];
                 Events.push({
                     title: elem.Names,
-                    start: moment(elem.Date).hour(elem.Start.split(":")[0]).minute(elem.Start.split(":")[1]).toDate(),
-                    end: moment(elem.Date).hour(elem.End.split(":")[0]).minute(elem.End.split(":")[1]).toDate(),
+                    start: moment(elem.Date, 'DD-MMM-YY').hour(elem.Start.split(":")[0]).minute(elem.Start.split(":")[1]).toDate(),
+                    end: moment(elem.Date, 'DD-MMM-YY').hour(elem.End.split(":")[0]).minute(elem.End.split(":")[1]).toDate(),
                     "allDay?": false,
                     "resource?": "Hello"
                 })

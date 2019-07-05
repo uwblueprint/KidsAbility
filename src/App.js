@@ -78,7 +78,11 @@ export default class App extends Component {
      *    }
      */
     getScheduleAPI = async (firstName, lastName) => {
-        const response = await fetch(proxy+'/api/schedules/'+firstName+"/"+lastName);
+        const response = await fetch(proxy+'/api/schedules/'+firstName+"/"+lastName, {
+            headers : {
+                'Cache-Control': 'no-cache'
+            }
+        });
         const body = await response.json();
         if (response.status !== 200) {
             throw Error(body.message);
