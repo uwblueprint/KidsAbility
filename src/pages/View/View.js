@@ -3,13 +3,12 @@ import ChartView from './ChartView/ChartView';
 import CalendarView from './CalendarView/CalendarView';
 import { Redirect } from 'react-router';
 import { Checkbox } from '@material-ui/core';
+import palette from 'google-palette';
 import moment from 'moment';
 import './View.css';
 
 const DAY_START = '8:00';
 const DAY_END = '20:00';
-
-const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
 
 // Moment object with KidsAbility specific date format
 const mnt = (date) => moment(date, 'DD-MMM-YY')
@@ -189,9 +188,13 @@ export default class View extends Component {
             //  - Add the dates together
             Promise.all(res[0].names.map((name, index) => {
                 
+                // the mpn65 palette is better (more distinct colours) but tol-rainbow has more colours
+                var palette_type = (res[0].names.length <= 65) ? ('mpn65') : ('tol-rainbow')
+                var colors_list = palette(palette_type, res[0].names.length)
+
                 this.clinicians[name[0].label] = {
                     name: [name[0].label],
-                    color: colors[index],
+                    color: '#'.concat(colors_list[index])
                 }
 
                 this.state.availableTimes[name[0].label] = [];
