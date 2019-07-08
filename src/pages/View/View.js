@@ -202,16 +202,15 @@ export default class View extends Component {
         //Use the id to get the search params
         this.props.getSearchAPI(searchId).then((res) => {
             this.setState({ searchParams: res[0] });
-            
+        
+            // the mpn65 palette is better (more distinct colours) but tol-rainbow has more colours
+            var palette_type = (res[0].names.length <= 65) ? ('mpn65') : ('tol-rainbow')
+            var colors_list = palette(palette_type, res[0].names.length)
+
             //For every name in the search ->
             //  - Add the clinician name to the list of clinicians (dict)
             //  - Add the dates together
             Promise.all(res[0].names.map((name, index) => {
-                
-                // the mpn65 palette is better (more distinct colours) but tol-rainbow has more colours
-                var palette_type = (res[0].names.length <= 65) ? ('mpn65') : ('tol-rainbow')
-                var colors_list = palette(palette_type, res[0].names.length)
-
                 this.clinicians[name[0].label] = {
                     name: [name[0].label],
                     color: '#'.concat(colors_list[index])
