@@ -29,23 +29,7 @@ export default class Saved extends Component {
     }
 
     onClickUnsave = (event, id) => {
-        fetch("https://gc-web-mitm.kidsability.org/api/saved/"+id, {
-            method: 'delete'
-        })
-        .then(resp => {
-          if(!resp.ok) {
-            if(resp.status >=400 && resp.status < 500) {
-              return resp.json().then(data => {
-                let err = {errorMessage: data.message};
-                throw err;
-              })
-            } else {
-              let err = {errorMessage: 'Please try again later, server is not responding'};
-              throw err;
-            }
-          }
-          return resp.json();
-        });
+        this.props.deleteSavedAPI(id)
         event.target.innerHTML = (event.target.innerHTML === "bookmark") ? "bookmark_border" : "bookmark";
     }
 
