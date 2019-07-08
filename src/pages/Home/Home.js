@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Router, Route, Switch, Redirect} from 'react-router';
 import './Home.css';
-import '../Cancel.svg';
+//import '../Cancel.svg';
 import { View, Text, Image } from 'react-native';
 import { Card, ListItem, Button, Icon } from 'react-native-elements';
 
