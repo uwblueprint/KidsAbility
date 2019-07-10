@@ -3,7 +3,7 @@ import Select from 'react-select';
 import './Search.css';
 import LOCATIONS from '../../constants/locations';
 import PROGRAMS from '../../constants/programs'
-import {Router, Route, Switch, Redirect, Link} from 'react-router';
+import {Router, Route, Switch, Redirect, Link} from 'react-router-dom';
 import ScrollArea from 'react-scrollbar'
 
 /* Array of { value: location_key, label: location_label } objects */

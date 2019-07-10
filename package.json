@@ -31,6 +31,7 @@
     "react-notifications": "^1.4.3",
     "react-responsive-modal": "^3.6.0",
     "react-router": "^4.3.1",
+    "react-router-dom": "^5.0.1",
     "react-scripts": "^2.1.8",
     "react-scrollbar": "^0.5.4",
     "react-select": "^2.4.1",
