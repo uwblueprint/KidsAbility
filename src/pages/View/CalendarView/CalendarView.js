@@ -15,7 +15,7 @@ export default class CalendarView extends Component {
         super(props);
         this.state = {};
     }
-    
+
     componentWillMount = () => {
         let data = this.props.data;
         let Events = [];
@@ -30,27 +30,21 @@ export default class CalendarView extends Component {
                     }
                 }
                 Events.push({
-<<<<<<< HEAD
-                    title: title,
-                    start: moment(elem.Date).hour(elem.Start.split(":")[0]).minute(elem.Start.split(":")[1]).toDate(),
-                    end: moment(elem.Date).hour(elem.End.split(":")[0]).minute(elem.End.split(":")[1]).toDate(),
-=======
                     title: elem.Names,
                     start: moment(elem.Date, 'DD-MMM-YY').hour(elem.Start.split(":")[0]).minute(elem.Start.split(":")[1]).toDate(),
                     end: moment(elem.Date, 'DD-MMM-YY').hour(elem.End.split(":")[0]).minute(elem.End.split(":")[1]).toDate(),
->>>>>>> master
                     "allDay?": false,
                     "resource?": "Hello"
                 })
             }
         });
         this.setState({events: Events})
-        
+
     }
 
     render() {
         let myEventsList = this.state.events;
-        
+
         return (
             <div>
                 <ScrollArea>

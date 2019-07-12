@@ -31,27 +31,18 @@ export default class ChartView extends Component {
     }
 
     onClickSave = (e, param) => {
-<<<<<<< HEAD
         if (e.target.innerHTML != "bookmark"){
             this.setState({modalIsOpen: true, param: param})
-=======
-        if (e.target.innerHTML !== "bookmark"){
-            this.setState({open: true, param: param})
->>>>>>> master
             e.target.innerHTML = "bookmark";
         }
 
     }
-    
+
     handleSubmit = (e) => {
         e.preventDefault();
         var param = this.state.param;
-<<<<<<< HEAD
         var note = (this.state.note == "") ? "No note has been added for this time." : this.state.note;
         var user = localStorage.getItem('user');
-=======
-        var note = (this.state.note === "") ? "No note has been added for this time." : this.state.note;
->>>>>>> master
         console.log(note);
         var save_obj = {
             Name: param.Names,
@@ -86,7 +77,7 @@ export default class ChartView extends Component {
 
     render() {
         const {open} = this.state;
-        
+
         return (
             <div>
             <div className="table">
@@ -145,8 +136,8 @@ export default class ChartView extends Component {
                     Clinician Notes:
                 </label>
                 <div>
-                    <textarea name="notes" value={this.state.note} 
-                        onChange={this.handleChange} className="notebox" rows="4" 
+                    <textarea name="notes" value={this.state.note}
+                        onChange={this.handleChange} className="notebox" rows="4"
                     />
                 </div>
                 <div className="save-button-container">
