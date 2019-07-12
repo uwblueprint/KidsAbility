@@ -73,7 +73,7 @@ export default class Saved extends Component {
                         </thead>
                         <tbody>
                             {
-                                
+
                                 saved.map((elem, index) =>
                                 <tr key={index}>
                                     <td>{elem.Name + ""}</td>
@@ -90,7 +90,7 @@ export default class Saved extends Component {
                                         </Icon>
                                     </td>
                                     <td>
-                                        <Icon style={{color:'#E8BF31'}} onClick={(e) => this.onClickUnsave(e, elem._id)}> 
+                                        <Icon style={{color:'#E8BF31'}} onClick={(e) => this.onClickUnsave(e, elem._id)}>
                                             bookmark
                                         </Icon>
                                     </td>
@@ -102,12 +102,12 @@ export default class Saved extends Component {
                         <p>{this.state.currentNote}</p>
                     </Modal>
                 </div>
-                
+
                 <Paper className="reminder">
                     <Typography style={{color:'rgba(0,0,0,0.6)'}} variant="h5" component="h3">
                         <p>
                         <b>Reminder:</b> Please do not include a
-                        client's name, birthdate, and/or any 
+                        client's name, birthdate, and/or any
                         personal identifiers in your notes.
                         </p>
                     </Typography>

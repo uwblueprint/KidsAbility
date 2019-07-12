@@ -14,7 +14,7 @@ const userRoutes = require('./routes/users');
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.json()); 
+app.use(express.json());
 
 app.get('/', function(req, res){
 	res.send("root");
@@ -27,6 +27,6 @@ app.use('/api/saved', savedRoutes);
 app.use('/api/search', searchRoutes);
 app.use('/api/users', userRoutes);
 
-app.listen(80, () =>
-	console.log("App on port " + 80)
+app.listen(4000, () =>
+	console.log("App on port " + 4000)
 );

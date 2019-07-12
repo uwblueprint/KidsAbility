@@ -30,9 +30,15 @@ export default class CalendarView extends Component {
                     }
                 }
                 Events.push({
+<<<<<<< HEAD
                     title: title,
                     start: moment(elem.Date).hour(elem.Start.split(":")[0]).minute(elem.Start.split(":")[1]).toDate(),
                     end: moment(elem.Date).hour(elem.End.split(":")[0]).minute(elem.End.split(":")[1]).toDate(),
+=======
+                    title: elem.Names,
+                    start: moment(elem.Date, 'DD-MMM-YY').hour(elem.Start.split(":")[0]).minute(elem.Start.split(":")[1]).toDate(),
+                    end: moment(elem.Date, 'DD-MMM-YY').hour(elem.End.split(":")[0]).minute(elem.End.split(":")[1]).toDate(),
+>>>>>>> master
                     "allDay?": false,
                     "resource?": "Hello"
                 })

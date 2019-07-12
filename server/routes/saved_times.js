@@ -18,10 +18,10 @@ router.get('/:user', function(req, res){
 });
 
 router.post('/', function(req, res){
-	
+
 	//console.log(req.body);
 	db.Saved.create(req.body)
-	
+
 	// status code 201 means created
 	.then(function(saved){
 		res.status(201).json(saved);
@@ -29,7 +29,7 @@ router.post('/', function(req, res){
 	.catch(function(err){
 		res.send(err);
 	})
-	
+
 });
 
 router.delete('/delete/:id', function(req, res){
