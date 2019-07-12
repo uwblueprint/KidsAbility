@@ -2,7 +2,8 @@
 	display: flex;
 	justify-content: space-between;
 	padding: 1em;
-	background-color: #E1E7EC;
+	background-color: #F8F9FA;
+	border-bottom: 1px solid #E1E7EC;
 }
 
 .Header__logo {
