@@ -30,7 +30,7 @@ const TIME_REQUIRED = [
 ]
 
 /*
-should this NOT be a dropdown? 
+should this NOT be a dropdown?
 i.e. can the clinician put in ANYTHING?
 do clinicians ever book an extremely large number of sessions at once?
 or is the max they ever do like 10 or something?
@@ -87,10 +87,7 @@ export default class Search extends Component {
       daysOfWeek: daysOfWeekOptions[0],
       redirect: false,
       searchId: null,
-<<<<<<< HEAD
       recurrence: recurrenceOptions[0],
-=======
->>>>>>> master
     };
   }
   componentWillMount = () => {
@@ -115,7 +112,7 @@ export default class Search extends Component {
           });
           this.setState({ clinicians: clinicians });
       });
-      
+
       let searchId = this.props.hidden.match.params.searchId;
 
       //Use the id to get the search params
@@ -123,7 +120,6 @@ export default class Search extends Component {
           this.props.getSearchAPI(searchId).then((res) => {
               console.log(res);
               console.log(res[0].names);
-<<<<<<< HEAD
               let names = [];
               let services = [];
               for (let i = 0; i < res[0].names.length; i++) {
@@ -132,9 +128,6 @@ export default class Search extends Component {
               for (let i = 0; i < res[0].services.length; i++) {
                   services.push(res[0].services[i][0]);
               }
-=======
-              
->>>>>>> master
               this.setState({
                   name: names,
                   service: services,
@@ -142,12 +135,9 @@ export default class Search extends Component {
                   time: res[0].time,
                   sessions: res[0].numSessions,
                   timeOfDay: res[0].timeOfDay,
-<<<<<<< HEAD
                   recurrence: res[0].recurrence,
-=======
                   //TODO: add recurrence
                   //do we add something here for daysOfWeek?
->>>>>>> master
               })
           });
       }
@@ -185,12 +175,7 @@ export default class Search extends Component {
     this.setState({timeOfDay: timeOfDay})
     console.log(`Option selected:`, timeOfDay)
   }
-  
-<<<<<<< HEAD
-  handleChange7 = (recurrence) => {
-    this.setState({recurrence: recurrence})
-    console.log(`Option selected:`, recurrence)
-=======
+
   handleChange7 = (reccurence) => {
     this.setState({reccurence: reccurence})
     console.log(`Option selected:`, reccurence)
@@ -199,7 +184,6 @@ export default class Search extends Component {
   handleChange8 = (daysOfWeek) => {
     this.setState({daysOfWeek: daysOfWeek})
     console.log(`Option selected:`, daysOfWeek)
->>>>>>> master
   }
 
   handleSubmit = () => {
@@ -213,12 +197,9 @@ export default class Search extends Component {
     let time = this.state.time;
     let numSessions = this.state.sessions;
     let timeOfDay = this.state.timeOfDay;
-<<<<<<< HEAD
     let recurrence = this.state.recurrence;
-=======
     let daysOfWeek = this.state.daysOfWeek;
->>>>>>> master
-    
+
     let info = {
         names,
         services,
@@ -226,13 +207,10 @@ export default class Search extends Component {
         time,
         numSessions,
         timeOfDay,
-<<<<<<< HEAD
         recurrence,
-=======
         daysOfWeek,
->>>>>>> master
     }
-    
+
     //Do some basic error checking
     if (!names || !services || !location || !time || !numSessions || !timeOfDay || !daysOfWeek){
         console.log("Please fill out all fields")
@@ -242,8 +220,8 @@ export default class Search extends Component {
         console.log(this.state.info);
     }
   }
-  
-  
+
+
   componentDidUpdate = () => {
       console.log("Component Updating");
       console.log(this.state.redirect);
@@ -259,38 +237,34 @@ export default class Search extends Component {
   }
 
   render() {
-    
+
     console.log(this.state.clinicians);
-    
-    const { 
+
+    const {
       name,
       service,
       location,
       time,
       sessions,
       timeOfDay,
-<<<<<<< HEAD
-      recurrence
-=======
       reccurence,
       daysOfWeek,
->>>>>>> master
     } = this.state;
-    
+
     console.log(this.state.searchId);
-    
+
     if (this.state.redirect && this.state.searchId){
         let path = "/view-search/"+this.state.searchId;
         this.props.history.push("/edit-time/"+this.state.searchId);
         return <Redirect to={path}/>
     }
-    
+
     return (
-              <div className="row"> 
+              <div className="row">
                 <h1> Find Available Times </h1>
                 <div className="column">
                   <div className="headingRow">
-                     Clinician Name(s) or ID(s) <font color="red">[Required]</font > 
+                     Clinician Name(s) or ID(s) <font color="red">[Required]</font >
                   </div>
                   <Select className="dropdown"
                     name="Clinician"
@@ -312,17 +286,11 @@ export default class Search extends Component {
                     onChange={this.handleChange5}
                     options={NUM_SESSIONS}
                   />
-                  <div className="headingRow"> Day of the Week </div> 
+                  <div className="headingRow"> Day of the Week </div>
                   <Select className="dropdown"
-<<<<<<< HEAD
-                    value={recurrence}
-                    onChange={this.handleChange7}
-                    options={recurrenceOptions}
-=======
                     value={daysOfWeek}
                     onChange={this.handleChange8}
                     options={daysOfWeekOptions}
->>>>>>> master
                   />
                 </div>
                 <div className="column">
@@ -350,8 +318,8 @@ export default class Search extends Component {
                     onChange={this.handleChange6}
                     options={TimeofDay}
                   />
-                  <button 
-                      className="button" 
+                  <button
+                      className="button"
                       onClick={this.handleSubmit}>
                       Search
                   </button>
