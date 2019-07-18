@@ -243,75 +243,115 @@ export default class Search extends Component {
     console.log(this.state.searchId);
     
     if (this.state.redirect && this.state.searchId){
-        let path = "/view-search/"+this.state.searchId;
-        return <Redirect to={path}/>
+      let path = "/view-search/"+this.state.searchId;
+      return <Redirect to={path}/>
     }
     
     return (
-              <div className="row"> 
-                <h1> Find Available Times </h1>
-                <div className="column">
-                  <div className="headingRow">
-                     Clinician Name(s) or ID(s) <font color="red">[Required]</font > 
-                  </div>
-                  <Select className="dropdown"
-                    name="Clinician"
-                    isMulti
-                    value={name}
-                    onChange={this.handleChange1}
-                    options={this.state.clinicians}
-                  />
-                  <div className="headingRow"> Service Type </div>
-                  <Select className="dropdown"
-                    isMulti
-                    value={service}
-                    onChange={this.handleChange2}
-                    options={PROGRAM_OPTIONS}
-                  />
-                   <div className="headingRow"> Number of Sessions </div>
-                  <Select className="dropdown"
-                    value={sessions}
-                    onChange={this.handleChange5}
-                    options={NUM_SESSIONS}
-                  />
-                  <div className="headingRow"> Day of the Week </div> 
-                  <Select className="dropdown"
-                    value={daysOfWeek}
-                    onChange={this.handleChange8}
-                    options={daysOfWeekOptions}
-                  />
+      <div className="Search">
+        <div className="Search__title-wrapper">
+          <h1 className="Search__title">Find Available Times</h1>
+          <img src="/icons/find.svg" alt="Find"/>
+        </div>
+        <div className="Section">
+          <div className="Section__header">Service Details</div>
+          <div className="Section__form">
+            <div className="Section__form-field">
+              <label htmlFor="clinician" className="Section__form-label">Clinician Name</label>
+              <Select
+                name="clinician"
+                id="clinician"
+                isMulti
+                value={name}
+                onChange={this.handleChange1}
+                options={this.state.clinicians}
+              />
+            </div>
+            <div className="Section__form-field">
+              <label htmlFor="service-type" className="Section__form-label">Service or program</label>
+              <Select
+                name="service-type"
+                id="service-type"
+                isMulti
+                value={service}
+                onChange={this.handleChange2}
+                options={PROGRAM_OPTIONS}
+              />
+            </div>
+            <div className="Section__form-field">
+              <label htmlFor="location" className="Section__form-label">Location</label>
+              <Select
+                name="location"
+                id="location"
+                value={location}
+                onChange={this.handleChange3}
+                options={LOCATION_OPTIONS}
+              />
+            </div>
+            <div className="Section__form-field">
+              <label htmlFor="location" className="Section__form-label">Minimum time</label>
+              <div className="Section__form-rocker">
+                <img className="Section__form-rocker-input" src="/icons/minus.svg" alt="Minus"/>
+                <div className="Section__form-rocker-value">
+                  { time.value } mins
                 </div>
-                <div className="column">
-                  <div className="headingColumn"> Min. Time Required </div>
-                  <Select className="dropdown"
-                    value={time}
-                    onChange={this.handleChange4}
-                    options={TIME_REQUIRED}
-                  />
-                  <div className="headingColumn"> Location </div>
-                  <Select className="dropdown"
-                    value={location}
-                    onChange={this.handleChange3}
-                    options={LOCATION_OPTIONS}
-                  />
-                  <div className="headingColumn"> Recurrence </div>
-                  <Select className="dropdown"
-                    value={reccurence}
-                    onChange={this.handleChange7}
-                    options={recurrenceOptions}
-                  />
-                  <div className="headingColumn"> Time of Day </div>
-                  <Select className="dropdown"
-                    value={timeOfDay}
-                    onChange={this.handleChange6}
-                    options={TimeofDay}
-                  />
-                  <button 
-                      className="button" 
-                      onClick={this.handleSubmit}>
-                      Search
-                  </button>
-                </div>
+                <img className="Section__form-rocker-input" src="/icons/plus.svg" alt="Plus"/>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="Section">
+          <div className="Section__header">Date and Time Range</div>
+          <div className="Section__form">
+            <div className="Section__split-form-field">
+              <div className="Section__form-field">
+                <label htmlFor="start-date" className="Section__form-label">Start date</label>
+                <Select
+                  name="start-date"
+                  id="start-date"
+                  onChange={this.handleChange6}
+                  options={TimeofDay}
+                />
+              </div>
+              <div className="Section__split-form-field-divider" />
+              <div className="Section__form-field">
+                <label htmlFor="start-date" className="Section__form-label">End date</label>
+                <Select
+                  name="start-date"
+                  id="start-date"
+                  onChange={this.handleChange6}
+                  options={TimeofDay}
+                />
+              </div>
+            </div>
+            <div className="Section__split-form-field">
+              <div className="Section__form-field">
+                <label htmlFor="start-date" className="Section__form-label">Start time</label>
+                <Select
+                  name="start-date"
+                  id="start-date"
+                  onChange={this.handleChange6}
+                  options={TimeofDay}
+                />
+              </div>
+              <div className="Section__split-form-field-divider" />
+              <div className="Section__form-field">
+                <label htmlFor="start-date" className="Section__form-label">End time</label>
+                <Select
+                  name="start-date"
+                  id="start-date"
+                  onChange={this.handleChange6}
+                  options={TimeofDay}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <button 
+            className="Search__submit" 
+            onClick={this.handleSubmit}>
+            Search
+        </button>
       </div>
     );
   }
