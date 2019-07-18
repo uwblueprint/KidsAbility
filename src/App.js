@@ -7,7 +7,7 @@ import React, {Component} from 'react';
 
 //These are all npm packages
 import firebase from 'firebase';
-import {Router, Route, Switch} from 'react-router';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import {NotificationContainer} from 'react-notifications';
 import {NotificationManager} from 'react-notifications';
 import createBrowserHistory from 'history/createBrowserHistory';
@@ -282,41 +282,37 @@ export default class App extends Component {
         // done in lifecycle methods. The latter is probably better practice
 
         return (
-            <div className="App">
-                <header className="App-header">
-                    <Router history={browserHistory}>
-                        <div>
-                            <Header/>
-                            <NotificationContainer/>
-                            { (this.state.user && this.state.user !== "")
-                                ?
-                            <Switch>
+            <Router history={browserHistory}>
+                <div className="App">
+                    <Header user={this.state.user} />
+                    <NotificationContainer/>
+                    { (this.state.user && this.state.user !== "")
+                        ?
+                    <Switch>
 
-                                <Route exact={true} path="/" component={Home}/>
-                                <Route path="/find-time" render={SearchPage}/>
-                                <Route path="/edit-time/:searchId" render={SearchPage}/>
-                                <Route path="/about" component={NotFound}/>
-                                <Route path="/saved" component={SavedPage}/>
-                                <Route path="/login" component={LoginPage}/>
-                                <Route path="/view-search/:searchId" render={ViewSearch}/>
-                                <Route component={NotFound}/>
+                        <Route exact={true} path="/" component={Home}/>
+                        <Route path="/find-time" render={SearchPage}/>
+                        <Route path="/edit-time/:searchId" render={SearchPage}/>
+                        <Route path="/about" component={NotFound}/>
+                        <Route path="/saved" component={SavedPage}/>
+                        <Route path="/login" component={LoginPage}/>
+                        <Route path="/view-search/:searchId" render={ViewSearch}/>
+                        <Route component={NotFound}/>
 
-                            </Switch>
-                                :
-                            <Switch>
-                                
-                                <Route path="/login" component={LoginPage}/>
-                                <Route component={LoginPage}/>
-                                
-                            </Switch>
-                                
-                            }
+                    </Switch>
+                        :
+                    <Switch>
+                        
+                        <Route path="/login" component={LoginPage}/>
+                        <Route component={LoginPage}/>
+                        
+                    </Switch>
+                        
+                    }
 
-                            <Footer db={db}></Footer>
-                        </div>
-                    </Router>
-                </header>
-            </div>
+                    <Footer db={db}></Footer>
+                </div>
+            </Router>
         );
     }
 }

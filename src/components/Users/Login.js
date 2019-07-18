@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './Login.css';
-import {Router, Route, Switch, Redirect, Link} from 'react-router';
+import {Router, Route, Switch, Redirect, Link} from 'react-router-dom';
 import CreatableSelect from 'react-select/lib/Creatable';
 
 

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import ChartView from './ChartView/ChartView';
 import CalendarView from './CalendarView/CalendarView';
-import { Redirect } from 'react-router';
+import { Redirect } from 'react-router-dom';
 import { Checkbox } from '@material-ui/core';
 import palette from 'google-palette';
 import moment from 'moment';
