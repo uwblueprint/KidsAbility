@@ -47,7 +47,17 @@ export default class App extends Component {
         this.state = {
             user: false
         };
-    };
+    }
+
+    // This is where handler functions and lifecycle methods/functions are declared
+    // You can pass handler functions as props to another components Those
+    // components can call the handler functions which could, for example, update
+    // the states in this component
+    componentDidMount() {
+        //this.callAPI()
+            //.then(res => this.setState({response: res.express}))
+        //    .catch(err => console.log("Error: " + err))
+    }
 
     /**
      * Gets a list of scheduled events for a clinician.
@@ -78,6 +88,7 @@ export default class App extends Component {
      *      _id: "123456789abcdef"
      *    }
      */
+
     getScheduleAPI = async (firstName, lastName) => {
         const response = await fetch(proxy+'/api/schedules/'+firstName+"/"+lastName, {
             headers : {
@@ -90,7 +101,6 @@ export default class App extends Component {
         }
         return body;
     };
-
     /**
      * Gets a list of clinician names.
      * e.g.
@@ -107,6 +117,7 @@ export default class App extends Component {
      *      }
      *    }
      */
+
     getCliniciansAPI = async () => {
         const response = await fetch(proxy+'/api/clinicians', {
             method: 'GET',
@@ -154,6 +165,7 @@ export default class App extends Component {
                'Content-Type': 'application/json',
             },
         })
+
         const body = await response.json();
         if (response.status !== 201) {
             console.log(response);
@@ -166,6 +178,8 @@ export default class App extends Component {
 
     postSearchAPI = async (databody) => {
         console.log(databody);
+        return databody;
+    }
 
     deleteSavedAPI = async (id) => {
         const response = await fetch(proxy + '/api/saved/' + id, {
@@ -186,7 +200,9 @@ export default class App extends Component {
                'Content-Type': 'application/json',
              },
         })
+
         const body = await response.json();
+
         if (response.status !== 201) {
             console.log(response);
             console.log("Error with posting saved-times");
@@ -213,7 +229,9 @@ export default class App extends Component {
                'Content-Type': 'application/json',
              },
         })
+
         const body = await response.json();
+
         if (response.status !== 201) {
             console.log(response);
             console.log("Error with posting user");
@@ -232,12 +250,12 @@ export default class App extends Component {
 
     componentWillMount = () => {
         this.handleUserUpdate();
-    };
+    }
 
     handleUserUpdate = () => {
         var user = localStorage.getItem('user');
         this.setState({user: user});
-    };
+    }
 
     render() {
 
@@ -331,5 +349,5 @@ export default class App extends Component {
                 </header>
             </div>
         );
-    };
+    }
 }
