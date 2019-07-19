@@ -30,7 +30,7 @@ const TIME_REQUIRED = [
 ]
 
 /*
-should this NOT be a dropdown? 
+should this NOT be a dropdown?
 i.e. can the clinician put in ANYTHING?
 do clinicians ever book an extremely large number of sessions at once?
 or is the max they ever do like 10 or something?
@@ -90,6 +90,24 @@ export default class Search extends Component {
     };
   }
   componentWillMount = () => {
+
+      //load in the locations
+      let locations = [];
+      for (const [key, value] of Object.entries(LOCATIONS)) {
+          locations.push({value: key, label: value.description});
+      }
+      this.setState({locations: locations});
+      this.setState({location: locations[0]});
+
+      //load in the programs
+      let programs = [];
+      for (const [key, value] of Object.entries(PROGRAMS)) {
+          programs.push({value: key, label: value.description})
+      }
+      this.setState({programs: programs});
+      this.setState({service: programs[0]});
+      this.setState({redirect: false});
+
       //load in clinicians
       this.props.getCliniciansAPI().then((res) => {
           const any_option = {
@@ -111,7 +129,8 @@ export default class Search extends Component {
           });
           this.setState({ clinicians: clinicians });
       });
-      
+      //this.props.getScheduleAPI("RHONDA","MACKINNON").then(res => console.log(res)).catch(err => console.log(err));
+
       let searchId = this.props.hidden.match.params.searchId;
 
       //Use the id to get the search params
@@ -119,7 +138,7 @@ export default class Search extends Component {
           this.props.getSearchAPI(searchId).then((res) => {
               console.log(res);
               console.log(res[0].names);
-              
+
               this.setState({
                   name: res[0].names[0],
                   service: res[0].services[0],
@@ -166,7 +185,7 @@ export default class Search extends Component {
     this.setState({timeOfDay: timeOfDay})
     console.log(`Option selected:`, timeOfDay)
   }
-  
+
   handleChange7 = (reccurence) => {
     this.setState({reccurence: reccurence})
     console.log(`Option selected:`, reccurence)
@@ -189,7 +208,7 @@ export default class Search extends Component {
     let numSessions = this.state.sessions;
     let timeOfDay = this.state.timeOfDay;
     let daysOfWeek = this.state.daysOfWeek;
-    
+
     let info = {
         names,
         services,
@@ -199,7 +218,7 @@ export default class Search extends Component {
         timeOfDay,
         daysOfWeek,
     }
-    
+
     //Do some basic error checking
     if (!names || !services || !location || !time || !numSessions || !timeOfDay || !daysOfWeek){
         console.log("Please fill out all fields")
@@ -209,8 +228,8 @@ export default class Search extends Component {
         console.log(this.state.info);
     }
   }
-  
-  
+
+
   componentDidUpdate = () => {
       console.log("Component Updating");
       console.log(this.state.redirect);
@@ -226,10 +245,10 @@ export default class Search extends Component {
   }
 
   render() {
-    
+
     console.log(this.state.clinicians);
-    
-    const { 
+
+    const {
       name,
       service,
       location,
@@ -239,20 +258,22 @@ export default class Search extends Component {
       reccurence,
       daysOfWeek,
     } = this.state;
-    
+
     console.log(this.state.searchId);
-    
+
+    let renderRedirect;
     if (this.state.redirect && this.state.searchId){
+
         let path = "/view-search/"+this.state.searchId;
         return <Redirect to={path}/>
     }
-    
+
     return (
-              <div className="row"> 
+              <div className="row">
                 <h1> Find Available Times </h1>
                 <div className="column">
                   <div className="headingRow">
-                     Clinician Name(s) or ID(s) <font color="red">[Required]</font > 
+                     Clinician Name(s) or ID(s) <font color="red">[Required]</font >
                   </div>
                   <Select className="dropdown"
                     name="Clinician"
@@ -274,7 +295,7 @@ export default class Search extends Component {
                     onChange={this.handleChange5}
                     options={NUM_SESSIONS}
                   />
-                  <div className="headingRow"> Day of the Week </div> 
+                  <div className="headingRow"> Day of the Week </div>
                   <Select className="dropdown"
                     value={daysOfWeek}
                     onChange={this.handleChange8}
@@ -306,8 +327,8 @@ export default class Search extends Component {
                     onChange={this.handleChange6}
                     options={TimeofDay}
                   />
-                  <button 
-                      className="button" 
+                  <button
+                      className="button"
                       onClick={this.handleSubmit}>
                       Search
                   </button>
