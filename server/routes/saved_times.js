@@ -33,7 +33,6 @@ router.post('/', function(req, res){
 });
 
 router.delete('/:id', function(req, res){
-	//res.send(req.body.id);
 	db.Saved.deleteOne({_id: req.params.id})
 
 	.then(function(deleted){

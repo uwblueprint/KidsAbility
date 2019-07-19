@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import {Modal} from 'react-bootstrap';
-import {NavDropdown, Navbar, Nav, NavItem, Collapse} from 'react-bootstrap';
 
 export default class Menu extends Component {
     constructor(props) {

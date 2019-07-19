@@ -1,61 +1,39 @@
 import React, {Component} from 'react';
 import ChartView from './ChartView/ChartView';
 import CalendarView from './CalendarView/CalendarView';
-import {Router, Route, Switch, Redirect, Link} from 'react-router';
+import { Redirect } from 'react-router';
+import { Checkbox } from '@material-ui/core';
+import palette from 'google-palette';
 import moment from 'moment';
-import axios from 'axios';
 import './View.css';
 
 const DAY_START = '8:00';
 const DAY_END = '20:00';
 
-const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
+// Moment object with KidsAbility specific date format
+const mnt = (date) => moment(date, 'DD-MMM-YY')
 
 // compare function to sort time slots
 const compareFunction = (a, b) => {
-    
-    if (moment(a.Date).hour(a.Start.split(":")[0]).minute(a.Start.split(":")[1]) < 
-        moment(b.Date).hour(b.Start.split(":")[0]).minute(b.Start.split(":")[1])) 
-    return -1;
-    
-    if (moment(a.Date).hour(a.Start.split(":")[0]).minute(a.Start.split(":")[1]) > 
-        moment(b.Date).hour(b.Start.split(":")[0]).minute(b.Start.split(":")[1])) 
-    return 1;
-    
-    if (a.Start < b.Start) return 1;
-    if (b.Start < a.Start) return -1;
-    
-    return 0;
-}
-
-//compare function for time "h:mm"
-const compareTime = (a, b) => {
-    let hourA = parseInt(a.split(":")[0])
-    let hourB = parseInt(b.split(":")[0]);
-    let minA = parseInt(a.split(":")[1])
-    let minB = parseInt(b.split(":")[1])
-    if (hourA < hourB){
-        return 1;
-    }
-    if (hourA > hourB) {
+    const aTime = mnt(a.Date)
+        .hour(a.Start.split(":")[0])
+        .minute(a.Start.split(":")[1])
+    const bTime = mnt(b.Date)
+        .hour(b.Start.split(":")[0])
+        .minute(b.Start.split(":")[1])
+    // TODO: isAfter, isBefore?
+    if (aTime < bTime) {
         return -1;
-    } 
-    else if (hourA == hourB) {
-        if (minA < minB){
-            return 1;
-        }
-        if (minA > minB){
-            return -1;
-        }
+    } else if (aTime > bTime) {
+        return 1;
+    } else {
+      return 0;
     }
-    return 0;
 }
 
 // create an array of available times grouped by weeks
 const processData = (data) => {
-    const sortedData = data
-        .flatMap(x => x)
-        .sort(compareFunction);
+    const sortedData = data.sort(compareFunction);
     return getAvailableTimes(sortedData);
 }
 
@@ -67,8 +45,8 @@ const getOverlappingTimes = (t1, t2) => {
             console.log("We looping");
             break;
         }
-        if (moment(t1[i].Date) < moment(t2[j].Date)) i++
-        else if (moment(t2[j].Date) < moment(t1[i].Date)) j++;
+        if (mnt(t1[i].Date) < mnt(t2[j].Date)) i++
+        else if (mnt(t2[j].Date) < mnt(t1[i].Date)) j++;
 
         else if (moment(t1[i].Start, 'h:mm') >= moment(t2[j].End, 'h:mm')) j++;
         else if (moment(t1[i].End, 'h:mm') <= moment(t2[j].Start, 'h:mm')) i++;
@@ -94,11 +72,11 @@ const groupData = (data, searchParams) => {
     const groupedData = {}
     data
         .filter(elem =>
-            moment().startOf('date').diff(elem.Date, 'days') <= 0 &&
+            moment().startOf('date').diff(mnt(elem.Date), 'days') <= 0 &&
             moment(elem.End, 'h:mm').diff(moment(elem.Start, 'h:mm'), 'minutes') > searchParams.time.value)
         .sort(compareFunction)
         .forEach(elem => {
-            let key = (moment().diff(elem.Date, 'weeks')) * -1;
+            let key = (moment().diff(mnt(elem.Date), 'weeks')) * -1;
             if (groupedData[key]) {
                 groupedData[key].push(elem);
             } else {
@@ -165,13 +143,13 @@ const getAvailableTimes = (sortedData) => {
             })
         }
         // add full day time slots between today and next booked slot (excluding weekends)
-        let currentDay = moment(elem.Date).add(1, 'days');
-        while (moment(sortedData[index + 1].Date).diff(currentDay, 'days') > 0) {
-            if (currentDay.day() != 0 && currentDay.day() != 6) {
+        let currentDay = mnt(elem.Date).add(1, 'days');
+        while (mnt(sortedData[index + 1].Date).diff(currentDay, 'days') > 0) {
+            if (currentDay.day() !== 0 && currentDay.day() !== 6) {
                 availableTimes.push({
                     id: elem.ID,
                     Names: [`${elem.FirstName} ${elem.LastName}`],
-                    Date: currentDay.format('D-MMM-YY'),
+                    Date: currentDay.format('DD-MMM-YY'),
                     Start: DAY_START,
                     End: DAY_END,
                     Location: elem.Location,
@@ -193,39 +171,47 @@ export default class View extends Component {
             index: 0,
             searchParams: {},
             redirect: false,
+            availableTimes: {},
+            cliniciansFilter: {},
         };
         this.clinicians = {};
         this.data = {};
         
-        console.log("We are on the view page");
         //grab the id from the url
         let searchId = this.props.hidden.match.params.searchId;
         //Use the id to get the search params
         this.props.getSearchAPI(searchId).then((res) => {
             this.setState({ searchParams: res[0] });
-            
-            //For every name in the seach ->
+        
+            // the mpn65 palette is better (more distinct colours) but tol-rainbow has more colours
+            var palette_type = (res[0].names.length <= 65) ? ('mpn65') : ('tol-rainbow')
+            var colors_list = palette(palette_type, res[0].names.length)
+
+            //For every name in the search ->
             //  - Add the clinician name to the list of clinicians (dict)
             //  - Add the dates together
             Promise.all(res[0].names.map((name, index) => {
-                
                 this.clinicians[name[0].label] = {
                     name: [name[0].label],
-                    color: colors[index],
+                    color: '#'.concat(colors_list[index])
                 }
+
+                this.state.availableTimes[name[0].label] = [];
+                this.state.cliniciansFilter[name[0].label] = true;
                 
-                var result = this.props.getScheduleAPI(name[0].First, name[0].Last)
+                return this.props.getScheduleAPI(name[0].First, name[0].Last)
                     .then((res) => {
                         const availableTimes = processData(res);
                         this.state.data.push(availableTimes);
+                        this.state.availableTimes[name[0].label].push(availableTimes);
                     });
-                return result;
-            })).then(() => this.setState({ ready: true }));
+            }))
+            .then(() => this.setState({ ready: true }));
         })
     }
 
     toggleView = (e) => {
-        if (this.state.view == "chart") {
+        if (this.state.view === "chart") {
             this.setState({view: "calendar"});
         }
         else {
@@ -237,9 +223,15 @@ export default class View extends Component {
         this.setState({redirect: true});
     }
 
+    toggleClinicianFilter = (name) => {
+        this.setState(state => ({ cliniciansFilter: {
+            ...state.cliniciansFilter,
+            [name]: !state.cliniciansFilter[name],
+        } }));
+    }
+
     render() {
         console.log(this.state.searchId);
-        let renderRedirect;
         if (this.state.redirect){
             let path = "/edit-time/"+this.props.hidden.match.params.searchId;;
             return <Redirect to={path}/>
@@ -247,33 +239,28 @@ export default class View extends Component {
         
         //We should return a spinner :P
         if (!this.state.ready) {
-            
-        return (
-                <p> Loading </p>
-            );
+            return (<p> Loading </p>);
         }
-        
-        
-        
-        //If there is more than 1 person - it hangs here
-        let overlappingTimes = this.state.data[0];
-        console.log(this.state.data)
-        for (let i = 1; i < this.state.data.length; i++) {
-            overlappingTimes = getOverlappingTimes(overlappingTimes, this.state.data[i]);
+
+
+        let overlappingTimes = [];
+        for (let clinician in this.state.cliniciansFilter) {
+            if (this.state.cliniciansFilter[clinician]) {
+                if (overlappingTimes.length === 0) overlappingTimes = this.state.availableTimes[clinician][0];
+                else overlappingTimes = getOverlappingTimes(overlappingTimes, this.state.availableTimes[clinician][0]);
+            }
         }
-        
+
         //In the case when overlappingTimes is empty - this hangs (add a check here or in groupdata itself)
         this.data = groupData(overlappingTimes, this.state.searchParams);
         
-        
-        
-        
-        //This works (returns all available times for the first clinician)
-        //this.data = groupData(this.state.data[0], this.state.searchParams);
-        
-        //This displays all the times - but they are not grouped into week properly
-        //this.data = this.state.data;
-        
+        const noResultOverlay = (
+          <div className="no-result">
+            <p>No times found for these clinicians.</p>
+            <button onClick={this.goBack}> Go back to Search Page </button>
+          </div>
+        )
+
         return (
             <div className="view">
                 <div>
@@ -291,22 +278,32 @@ export default class View extends Component {
                                 className="toggle-button"
                                 onClick={this.toggleView}
                                 data={this.props.data}>
-                                {(this.state.view == 'chart') ? "Calendar View" : "Chart View"}
+                                {(this.state.view === 'chart') ? "Calendar View" : "Chart View"}
                             </button>
                         </div>
                     </div>
                     <div className="clinicians-list">
                         {Object.values(this.clinicians).map((elem, index) =>
                         <div className="clinician" key={index+"(3 clinicial hours)"}>
-                            <div className="dot" style={{ backgroundColor: elem.color }}></div>
-                            {elem.name}
+                            <Checkbox
+                                id={`clinician-checkbox-${index}`}
+                                style={{ color: elem.color }}
+                                checked={this.state.cliniciansFilter[elem.name]}
+                                onChange={() => this.toggleClinicianFilter(elem.name)}
+                                value={elem.name} />
+                                <label htmlFor={`clinician-checkbox-${index}`}>
+                                <span className="clinician-name">{ elem.name } </span>
+                            </label>
                         </div>)}
                     </div>
+                    <div className="schedule-container">
+                    { Object.keys(this.data).length === 0 && noResultOverlay }
                     {
                         this.state.view === 'chart'
                             ? <ChartView data={this.data} postSavedAPI={this.props.postSavedAPI} clinicians={this.clinicians} />
                             : <CalendarView data={this.data} clinicians={this.clinicians}/>
                     }
+                    </div>
                 </div>
             </div>
         );

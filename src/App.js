@@ -7,7 +7,7 @@ import React, {Component} from 'react';
 
 //These are all npm packages
 import firebase from 'firebase';
-import {Router, Route, Switch, Redirect} from 'react-router';
+import {Router, Route, Switch} from 'react-router';
 import {NotificationContainer} from 'react-notifications';
 import {NotificationManager} from 'react-notifications';
 import createBrowserHistory from 'history/createBrowserHistory';
@@ -18,27 +18,18 @@ import NotFound from '../src/pages/NotFound/NotFound'
 import Footer from '../src/components/Footer/Footer'
 import Header from '../src/components/Header/Header'
 import Login from '../src/components/Users/Login'
-import * as settings from '../src/constants/settings.json';
 import Search from '../src/pages/Search/Search'
 import View from '../src/pages/View/View'
 import Saved from '../src/pages/Saved/Saved'
 import Client from '../src/pages/Client/Client'
 
 
-
 //Create an instance of browserHistory
 const browserHistory = createBrowserHistory();
-const fire = settings.firebase;
-console.log(fire);
-
-var bodyParser = require('body-parser');
-
-const proxy = "http://localhost:4000";
+const proxy = process.env.NODE_ENV === "production" ? process.env.REACT_APP_SERVER : "http://localhost:4000";
 
 export default class App extends Component {
 
-    // This is an empty contructor - please see the other classes for a used
-    // constructor
     constructor(props) {
         super(props);
 
@@ -56,20 +47,43 @@ export default class App extends Component {
         this.state = {
             user: false
         };
-    }
+    };
 
-    // This is where handler functions and lifecycle methods/functions are declared
-    // You can pass handler functions as props to another components Those
-    // components can call the handler functions which could, for example, update
-    // the states in this component
-    componentDidMount() {
-        //this.callAPI()
-            //.then(res => this.setState({response: res.express}))
-        //    .catch(err => console.log("Error: " + err))
-    }
-
+    /**
+     * Gets a list of scheduled events for a clinician.
+     * e.g.
+     *  Request:
+     *    GET /api/schedules/CYNTHIA/LENNON
+     *  Response:
+     *    Json: [ appointment objects ]
+     *
+     *  Appointment objects:
+     *    {
+     *      ID: 123
+     *      ClientFirst: "firstname"
+     *      ClientID: "123456"
+     *      ClientLast: "lastname"
+     *      Date: "11-Apr-19"
+     *      Duration: 1.5
+     *      Email: "clennon@kidsability.ca"
+     *      Start: "9:00"
+     *      End: "10:30"
+     *      FirstName: "CYNTHIA"
+     *      LastName: "LENNON"
+     *      ServiceDescription: "Details"
+     *      Treatment: "ABC"
+     *      field16: ""
+     *      field17: ""
+     *      field18: ""
+     *      _id: "123456789abcdef"
+     *    }
+     */
     getScheduleAPI = async (firstName, lastName) => {
-        const response = await fetch(proxy+'/api/schedules/'+firstName+"/"+lastName);
+        const response = await fetch(proxy+'/api/schedules/'+firstName+"/"+lastName, {
+            headers : {
+                'Cache-Control': 'no-cache'
+            }
+        });
         const body = await response.json();
         if (response.status !== 200) {
             throw Error(body.message);
@@ -77,6 +91,22 @@ export default class App extends Component {
         return body;
     };
 
+    /**
+     * Gets a list of clinician names.
+     * e.g.
+     *  Request:
+     *    GET /api/clinicians
+     *  Response:
+     *    Json: [ Clinician name objects ]
+     *
+     *  Clinician name objects:
+     *    {
+     *      _id: {
+     *        First: "FirstName",
+     *        Last: "LastName"
+     *      }
+     *    }
+     */
     getCliniciansAPI = async () => {
         const response = await fetch(proxy+'/api/clinicians', {
             method: 'GET',
@@ -85,9 +115,6 @@ export default class App extends Component {
                 'Accept': 'application/json'
             }
         });
-        console.log(response);
-        //const body = await response.text();
-        //console.log(body);
         const body = await response.json();
         if (response.status !== 200) {
             throw Error(body.message);
@@ -103,9 +130,6 @@ export default class App extends Component {
                 'Accept': 'application/json'
             }
         });
-        console.log(response);
-        //const body = await response.text();
-        //console.log(body);
         const body = await response.json();
         if (response.status !== 200) {
             throw Error(body.message);
@@ -116,15 +140,21 @@ export default class App extends Component {
     postSavedAPI = async (param) => {
         const response = await fetch(proxy+'/api/saved', {
             method: 'POST',
-            body: JSON.stringify({Name: param.Name, Date: param.Date, Start: param.Start, End: param.End, id: param.id, Location: param.Location, Note: param.Note}),
+            body: JSON.stringify({
+                Name: param.Name,
+                Date: param.Date,
+                Start: param.Start,
+                End: param.End,
+                id: param.id,
+                Location: param.Location,
+                Note: param.Note
+            }),
             headers: {
                'Accept': 'application/json',
                'Content-Type': 'application/json',
-             },
+            },
         })
-
         const body = await response.json();
-
         if (response.status !== 201) {
             console.log(response);
             console.log("Error with posting saved-times");
@@ -137,6 +167,17 @@ export default class App extends Component {
     postSearchAPI = async (databody) => {
         console.log(databody);
 
+    deleteSavedAPI = async (id) => {
+        const response = await fetch(proxy + '/api/saved/' + id, {
+            method: 'DELETE',
+        })
+        if (!response.ok) {
+            console.log(response)
+            console.log("Error with deleting saved-times")
+        }
+    }
+
+    postSearchAPI = async (databody) => {
         const response = await fetch(proxy+'/api/search/post', {
             method: 'POST',
             body: JSON.stringify(databody),
@@ -145,22 +186,18 @@ export default class App extends Component {
                'Content-Type': 'application/json',
              },
         })
-
         const body = await response.json();
-
         if (response.status !== 201) {
             console.log(response);
             console.log("Error with posting saved-times");
         }
-
-        console.log(body);
         return body;
     };
 
     getSearchAPI = async (id) => {
         const response = await fetch(proxy+'/api/search/'+id);
         const body = await response.json();
-                if (response.status !== 200) {
+        if (response.status !== 200) {
             throw Error(body.message);
         }
         return body;
@@ -168,8 +205,6 @@ export default class App extends Component {
 
 
     postUserAPI = async (databody) => {
-        console.log(databody);
-
         const response = await fetch(proxy+'/api/users/post', {
             method: 'POST',
             body: JSON.stringify(databody),
@@ -178,15 +213,11 @@ export default class App extends Component {
                'Content-Type': 'application/json',
              },
         })
-
         const body = await response.json();
-
         if (response.status !== 201) {
             console.log(response);
             console.log("Error with posting user");
         }
-
-        console.log(body);
         return body;
     };
 
@@ -201,13 +232,12 @@ export default class App extends Component {
 
     componentWillMount = () => {
         this.handleUserUpdate();
-    }
+    };
 
     handleUserUpdate = () => {
         var user = localStorage.getItem('user');
-        console.log(user);
         this.setState({user: user});
-    }
+    };
 
     render() {
 
@@ -238,6 +268,7 @@ export default class App extends Component {
             return (
                 <Saved
                     getSavedAPI={this.getSavedAPI}
+                    deleteSavedAPI={this.deleteSavedAPI}
                 />
             )
         }
@@ -262,7 +293,6 @@ export default class App extends Component {
         // This is where pre-render calculations happen These calculations can also be
         // done in lifecycle methods. The latter is probably better practice
 
-        console.log(this.state.user);
         return (
             <div className="App">
                 <header className="App-header">
@@ -270,7 +300,7 @@ export default class App extends Component {
                         <div>
                             <Header/>
                             <NotificationContainer/>
-                            { (this.state.user && this.state.user != "")
+                            { (this.state.user && this.state.user !== "")
                                 ?
                             <Switch>
 
@@ -301,5 +331,5 @@ export default class App extends Component {
                 </header>
             </div>
         );
-    }
+    };
 }

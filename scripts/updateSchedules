@@ -2,12 +2,21 @@
 
 # Seeds mongo database
 # Expects file Waterloo.csv in the same directory. Ask Greg or Karissa for this file.
+# Argument
+#   ${1} - Mongo db username
+#   ${2} - Mongo db password
+# Ask Greg or Karissa for Mongo db credentials
+
+if [ "$#" -ne 2 ]; then
+  echo "Illegal number of arguments. Expects 2 arguments: username and password"
+  exit 1
+fi
 
 mongoimport \
   --host kidsability-shard-0/kidsability-shard-00-00-vswng.mongodb.net:27017,kidsability-shard-00-01-vswng.mongodb.net:27017,kidsability-shard-00-02-vswng.mongodb.net:27017 \
   --ssl \
-  --username greg \
-  --password kidsability \
+  --username ${1} \
+  --password ${2} \
   --authenticationDatabase admin \
   --db ClientData \
   --collection KidsAbility \

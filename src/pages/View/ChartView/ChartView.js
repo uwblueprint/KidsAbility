@@ -3,7 +3,6 @@ import moment from 'moment';
 import Icon from '@material-ui/core/Icon';
 import Modal from 'react-modal';
 import './ChartView.css';
-import ReactDOM from 'react-dom';
 
 export default class ChartView extends Component {
     constructor(props) {
@@ -20,7 +19,7 @@ export default class ChartView extends Component {
     }
 
     onClickSave = (e, param) => {
-        if (e.target.innerHTML != "bookmark"){
+        if (e.target.innerHTML !== "bookmark"){
             this.setState({open: true, param: param})
             e.target.innerHTML = "bookmark";
         }
@@ -29,7 +28,7 @@ export default class ChartView extends Component {
     handleSubmit(e) {
         e.preventDefault();
         var param = this.state.param;
-        var note = (this.state.note == "") ? "No note has been added for this time." : this.state.note;
+        var note = (this.state.note === "") ? "No note has been added for this time." : this.state.note;
         console.log(note);
         var save_obj = {
             Name: param.Names,
@@ -72,17 +71,17 @@ export default class ChartView extends Component {
                         <th>Save</th>
                     </tr>
                 </thead>
-                <tbody>
+                <div className="table-content">
                     { Object.keys(this.props.data).map((key, index) => (
-                        <tr>
+                        <tbody key={key}>
                             <tr>
-                                <td className="section-header">{key == 0 ? 'This week' : `In ${key} week${key == 1 ? '' : 's'}`}</td>
+                                <td className="section-header">{key === 0 ? 'This week' : `In ${key} week${key === 1 ? '' : 's'}`}</td>
                             </tr>
                             {
                                 this.props.data[key].map((elem, index) =>
                                     <tr key={index}>
                                         <td>
-                                            {moment(elem.Date).format('MMM D')}
+                                            {moment(elem.Date, 'DD-MMM-YY').format('MMM D')}
                                         </td>
                                         <td className="wide">{moment(elem.Start, 'h:mm').format('h:mm a')} - {moment(elem.End, 'h:mm').format('h:mm a')}</td>
                                         <td>{elem.Location.charAt(0) + elem.Location.substr(1).toLowerCase()}</td>
@@ -120,9 +119,9 @@ export default class ChartView extends Component {
                                     </tr>
                                 )
                             }
-                        </tr>
+                        </tbody>
                     )) }
-                </tbody>
+                </div>
             </table>
         </div>
         </div>
