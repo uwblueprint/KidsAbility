@@ -91,6 +91,24 @@ export default class Search extends Component {
     };
   }
   componentWillMount = () => {
+
+      //load in the locations
+      let locations = [];
+      for (const [key, value] of Object.entries(LOCATIONS)) {
+          locations.push({value: key, label: value.description});
+      }
+      this.setState({locations: locations});
+      this.setState({location: locations[0]});
+
+      //load in the programs
+      let programs = [];
+      for (const [key, value] of Object.entries(PROGRAMS)) {
+          programs.push({value: key, label: value.description})
+      }
+      this.setState({programs: programs});
+      this.setState({service: programs[0]});
+      this.setState({redirect: false});
+
       //load in clinicians
       this.props.getCliniciansAPI().then((res) => {
           const any_option = {
@@ -112,6 +130,7 @@ export default class Search extends Component {
           });
           this.setState({ clinicians: clinicians });
       });
+      //this.props.getScheduleAPI("RHONDA","MACKINNON").then(res => console.log(res)).catch(err => console.log(err));
 
       let searchId = this.props.hidden.match.params.searchId;
 
@@ -253,7 +272,9 @@ export default class Search extends Component {
 
     console.log(this.state.searchId);
 
+    let renderRedirect;
     if (this.state.redirect && this.state.searchId){
+
         let path = "/view-search/"+this.state.searchId;
         this.props.history.push("/edit-time/"+this.state.searchId);
         return <Redirect to={path}/>

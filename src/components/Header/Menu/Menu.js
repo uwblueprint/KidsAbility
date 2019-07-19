@@ -14,7 +14,7 @@ export default class Menu extends Component {
                         <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
                             <span className="icon-bar"></span>
                             <span className="icon-bar"></span>
-                            <span className="icon-bar"></span>                        
+                            <span className="icon-bar"></span>
                             </button>
                     </div>
                     <div className="collapse navbar-collapse" id="myNavbar">
@@ -24,6 +24,7 @@ export default class Menu extends Component {
                             <li><a href="/saved">View Saved Times</a></li>
                             <li><a href="/login">Switch User</a></li>
                             <li><a href="/help">Help</a></li>
+                            <li><a href="/client">Client</a></li>
                         </ul>
                     </div>
                 </div>

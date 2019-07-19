@@ -21,6 +21,7 @@ import Login from '../src/components/Users/Login'
 import Search from '../src/pages/Search/Search'
 import View from '../src/pages/View/View'
 import Saved from '../src/pages/Saved/Saved'
+import Client from '../src/pages/Client/Client'
 
 
 //Create an instance of browserHistory
@@ -46,6 +47,16 @@ export default class App extends Component {
         this.state = {
             user: false
         };
+    }
+
+    // This is where handler functions and lifecycle methods/functions are declared
+    // You can pass handler functions as props to another components Those
+    // components can call the handler functions which could, for example, update
+    // the states in this component
+    componentDidMount() {
+        //this.callAPI()
+            //.then(res => this.setState({response: res.express}))
+        //    .catch(err => console.log("Error: " + err))
     }
 
     /**
@@ -77,6 +88,7 @@ export default class App extends Component {
      *      _id: "123456789abcdef"
      *    }
      */
+
     getScheduleAPI = async (firstName, lastName) => {
         const response = await fetch(proxy+'/api/schedules/'+firstName+"/"+lastName, {
             headers : {
@@ -89,7 +101,6 @@ export default class App extends Component {
         }
         return body;
     };
-
     /**
      * Gets a list of clinician names.
      * e.g.
@@ -106,6 +117,7 @@ export default class App extends Component {
      *      }
      *    }
      */
+
     getCliniciansAPI = async () => {
         const response = await fetch(proxy+'/api/clinicians', {
             method: 'GET',
@@ -139,18 +151,34 @@ export default class App extends Component {
     postSavedAPI = async (param) => {
         const response = await fetch(proxy+'/api/saved', {
             method: 'POST',
-            body: JSON.stringify({Name: param.Name, Date: param.Date, Start: param.Start, End: param.End, id: param.id, Location: param.Location, Note: param.Note, User: param.User}),
+            body: JSON.stringify({
+                Name: param.Name,
+                Date: param.Date,
+                Start: param.Start,
+                End: param.End,
+                id: param.id,
+                Location: param.Location,
+                Note: param.Note
+            }),
             headers: {
                'Accept': 'application/json',
                'Content-Type': 'application/json',
             },
         })
+
         const body = await response.json();
         if (response.status !== 201) {
             console.log(response);
             console.log("Error with posting saved-times");
         }
+
+        console.log(body);
         return body;
+    }
+
+    postSearchAPI = async (databody) => {
+        console.log(databody);
+        return databody;
     }
 
     deleteSavedAPI = async (id) => {
@@ -172,7 +200,9 @@ export default class App extends Component {
                'Content-Type': 'application/json',
              },
         })
+
         const body = await response.json();
+
         if (response.status !== 201) {
             console.log(response);
             console.log("Error with posting saved-times");
@@ -218,7 +248,9 @@ export default class App extends Component {
                'Content-Type': 'application/json',
              },
         })
+
         const body = await response.json();
+
         if (response.status !== 201) {
             console.log(response);
             console.log("Error with posting user");
@@ -226,7 +258,7 @@ export default class App extends Component {
         return body;
     };
 
-    getUsersAPI = async () => {
+    getUsersAPI = async (id) => {
         const response = await fetch(proxy+'/api/users');
         const body = await response.json();
         if (response.status !== 200) {
@@ -298,8 +330,14 @@ export default class App extends Component {
             )
         }
 
-        var db = firebase.firestore();
+        const ClientPage = (props) => {
+            return (
+                <Client
+                />
+            )
+        }
 
+        var db = firebase.firestore();
         // This is where pre-render calculations happen These calculations can also be
         // done in lifecycle methods. The latter is probably better practice
 
@@ -321,6 +359,7 @@ export default class App extends Component {
                                 <Route path="/saved" component={SavedPage}/>
                                 <Route path="/login" component={LoginPage}/>
                                 <Route path="/view-search/:searchId" render={ViewSearch}/>
+                                <Route path="/client" component={ClientPage}/>
                                 <Route component={NotFound}/>
 
                             </Switch>
