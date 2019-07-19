@@ -31,7 +31,7 @@ export default class ChartView extends Component {
     }
 
     onClickSave = (e, param) => {
-        if (e.target.innerHTML != "bookmark"){
+        if (e.target.innerHTML !== "bookmark"){
             this.setState({modalIsOpen: true, param: param})
             e.target.innerHTML = "bookmark";
         }
@@ -41,9 +41,8 @@ export default class ChartView extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         var param = this.state.param;
-        var note = (this.state.note == "") ? "No note has been added for this time." : this.state.note;
+        var note = (this.state.note === "") ? "No note has been added for this time." : this.state.note;
         var user = localStorage.getItem('user');
-        console.log(note);
         var save_obj = {
             Name: param.Names,
             Date: param. Date,
@@ -54,13 +53,13 @@ export default class ChartView extends Component {
             Note: note,
             User: user,
         }
+
         this.props.postSavedAPI(save_obj);
         this.setState({
-            open: false,
+            modalIsOpen: false,
             note: "",
             param: {}
         })
-        this.setState({modalIsOpen: false});
     }
 
     handleChange = (e) => {

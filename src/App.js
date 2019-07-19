@@ -235,7 +235,7 @@ export default class App extends Component {
         return body;
     };
 
-    getUserAPI = async (user) => {
+    getUserAPI = async (user = "") => {
         const response = await fetch(proxy+'/api/users/'+user);
         const body = await response.json();
         if (response.status !== 200) {

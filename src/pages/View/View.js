@@ -10,8 +10,6 @@ import './View.css';
 let DAY_START = '8:00';
 let DAY_END = '20:00';
 
-const colors = ['darkgreen', 'blue', "gold", 'orangered', 'pink', 'midnightblue', 'purple', 'silver', 'grey', 'green'];
-
 // Moment object with KidsAbility specific date format
 const mnt = (date) => moment(date, 'DD-MMM-YY')
 
