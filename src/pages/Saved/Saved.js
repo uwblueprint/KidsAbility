@@ -33,20 +33,7 @@ export default class Saved extends Component {
     }
 
     onClickUnsave = (event, id) => {
-        this.props.deleteSavedAPI(id).then(resp => {
-          if(!resp.ok) {
-            if(resp.status >=400 && resp.status < 500) {
-              return resp.json().then(data => {
-                let err = {errorMessage: data.message};
-                throw err;
-              })
-            } else {
-              let err = {errorMessage: 'Please try again later, server is not responding'};
-              throw err;
-            }
-          }
-          return resp;
-        });
+        this.props.deleteSavedAPI(id);
         //event.target.innerHTML = (event.target.innerHTML === "bookmark") ? "bookmark_border" : "bookmark";
         const saved = this.state.saved.filter(saved => saved._id !== id);
         this.setState({saved: saved});
@@ -106,9 +93,7 @@ export default class Saved extends Component {
                 <Paper className="reminder">
                     <Typography style={{color:'rgba(0,0,0,0.6)'}} variant="h5" component="h3">
                         <p>
-                        <b>Reminder:</b> Please do not include a
-                        client's name, birthdate, and/or any
-                        personal identifiers in your notes.
+                        <b>Reminder:</b> "Please do not include a client's name, birthdate, and/or any personal identifiers in your notes."
                         </p>
                     </Typography>
                 </Paper>

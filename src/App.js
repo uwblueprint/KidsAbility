@@ -158,7 +158,8 @@ export default class App extends Component {
                 End: param.End,
                 id: param.id,
                 Location: param.Location,
-                Note: param.Note
+                Note: param.Note,
+                User: param.User
             }),
             headers: {
                'Accept': 'application/json',
@@ -258,7 +259,7 @@ export default class App extends Component {
         return body;
     };
 
-    getUsersAPI = async (id) => {
+    getUsersAPI = async () => {
         const response = await fetch(proxy+'/api/users');
         const body = await response.json();
         if (response.status !== 200) {

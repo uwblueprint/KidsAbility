@@ -66,9 +66,12 @@ export default class ChartView extends Component {
         this.setState({note: e.target.value})
     }
 
+    //Not currently being used
+    /*
     openModal = () => {
        this.setState({modalIsOpen: true});
      }
+     */
 
     closeModal = () => {
        this.setState({modalIsOpen: false});
