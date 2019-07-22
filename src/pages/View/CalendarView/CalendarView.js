@@ -44,7 +44,7 @@ export default class CalendarView extends Component {
                     <div className="box">
                 <BigCalendar
                     events={myEventsList}
-                    views={["week", "day", "agenda"]}
+                    views={["week"]}
                     min={new Date(2018, 10, 0, 8, 0, 0)}
                     max={new Date(2018, 10, 0, 20, 0, 0)}
                     step={30}
@@ -52,7 +52,7 @@ export default class CalendarView extends Component {
                     showMultiDayTimes={true}
                     defaultDate={new Date()}
                     localizer={localizer}
-                    defaultView={BigCalendar.Views.DAY} />
+                    defaultView={BigCalendar.Views.WEEK} />
                 </div>
                 </ScrollArea>
             </div>
