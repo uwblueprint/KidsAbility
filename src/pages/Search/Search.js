@@ -83,7 +83,6 @@ export default class Search extends Component {
       time: TIME_REQUIRED[1],
       sessions: NUM_SESSIONS[0],
       timeOfDay: TimeofDay[0],
-      reccurence: recurrenceOptions[0],
       daysOfWeek: daysOfWeekOptions[0],
       redirect: false,
       searchId: null,
@@ -195,9 +194,9 @@ export default class Search extends Component {
     console.log(`Option selected:`, timeOfDay)
   }
 
-  handleChange7 = (reccurence) => {
-    this.setState({reccurence: reccurence})
-    console.log(`Option selected:`, reccurence)
+  handleChange7 = (recurrence) => {
+    this.setState({recurrence: recurrence})
+    console.log(`Option selected:`, recurrence)
   }
 
   handleChange8 = (daysOfWeek) => {
@@ -266,7 +265,7 @@ export default class Search extends Component {
       time,
       sessions,
       timeOfDay,
-      reccurence,
+      recurrence,
       daysOfWeek,
     } = this.state;
 
@@ -329,7 +328,7 @@ export default class Search extends Component {
                   />
                   <div className="headingColumn"> Recurrence </div>
                   <Select className="dropdown"
-                    value={reccurence}
+                    value={recurrence}
                     onChange={this.handleChange7}
                     options={recurrenceOptions}
                   />
