@@ -59,19 +59,18 @@ export default class Search extends Component {
       //Use the id to get the search params
       if (searchId) {
           this.props.getSearchAPI(searchId).then((res) => {
-              console.log(res);
-              console.log(res[0].names);
-              
-              this.setState({
-                  name: res[0].names[0],
-                  service: res[0].services[0],
-                  location: res[0].location,
-                  time: res[0].time,
-                  sessions: res[0].numSessions,
-                  timeOfDay: res[0].timeOfDay,
+              this.setState(state => ({
+                  clinicians: res.names,
+                  services: res.services,
+                  location: res.location,
+                  minTime: res.minTime,
+                  startDate: new Date(res.startDate),
+                  endDate: res.endDate,
+                  startTime: res.startTime ? new Date(res.startTime) : state.startTime,
+                  endTime: res.endTime,
                   //TODO: add recurrence
                   //do we add something here for daysOfWeek?
-              })
+              }))
           });
       }
   }
@@ -132,27 +131,24 @@ export default class Search extends Component {
     let names = this.state.clinicians;
     let services = this.state.services;
     let location = this.state.location;
-    let time = { value: this.state.minTime, label: 'Min Time Required' };
-    let numSessions = this.state.sessions;
-    let timeOfDay = this.state.timeOfDay;
-    let daysOfWeek = this.state.daysOfWeek;
     
     let info = {
         names,
         services,
         location,
-        time,
-        numSessions,
-        timeOfDay,
-        daysOfWeek,
+        minTime: this.state.minTime,
+        startDate: this.state.startDate,
+        endDate: this.state.endDate,
+        startTime: this.state.startTime,
+        endTime: this.state.endTime,
     }
     
     //Do some basic error checking
-    if (!names || !services || !time){
+    if (!this.state.clinicians){
         console.log("Please fill out all fields")
     }
     else {
-        this.setState({info: info, redirect: true});
+        this.setState({ info: info, redirect: true });
         console.log(this.state.info);
     }
   }
