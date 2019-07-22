@@ -68,7 +68,7 @@ var searchSchema = new mongoose.Schema({
 	},
 	minTime: Number,
 	startDate: Date,
-	endtDate: Date,
+	endDate: Date,
 	startTime: Date,
 	endTime: Date,
 }, { collection: 'searches' });
