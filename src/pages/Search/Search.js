@@ -65,9 +65,9 @@ export default class Search extends Component {
                   location: res.location,
                   minTime: res.minTime,
                   startDate: new Date(res.startDate),
-                  endDate: res.endDate,
-                  startTime: res.startTime ? new Date(res.startTime) : state.startTime,
-                  endTime: res.endTime,
+                  endDate: res.endDate ? new Date(res.endDate) : null,
+                  startTime: res.startTime ? new Date(res.startTime) : new Date(state.startTime),
+                  endTime: res.endTime ? new Date(res.endTime) : null,
                   //TODO: add recurrence
                   //do we add something here for daysOfWeek?
               }))
