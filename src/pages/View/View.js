@@ -72,7 +72,8 @@ const groupData = (data, searchParams) => {
     const groupedData = {}
     data
         .filter(elem =>
-            moment().startOf('date').diff(mnt(elem.Date), 'days') <= 0 &&
+            moment(searchParams.startDate).diff(mnt(elem.Date), 'days') <= 0 &&
+            (!searchParams.endDate || mnt(elem.Date).diff(moment(searchParams.endDate), 'days') <= 0) &&
             moment(elem.End, 'h:mm').diff(moment(elem.Start, 'h:mm'), 'minutes') > searchParams.minTime)
         .sort(compareFunction)
         .forEach(elem => {
