@@ -46,11 +46,6 @@ const GROUPS = {
 };
 
 const PROGRAMS = {
-  'Any': {
-    description: 'Any',
-    groups: [],
-    status: STATUSES.Active,
-   },
   'ABA-ABA': {
     description: 'ABA-ABA',
     groups: [GROUPS.ABA, GROUPS.SPECIAL, GROUPS.AS],
