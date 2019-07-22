@@ -32,9 +32,9 @@ const compareFunction = (a, b) => {
 }
 
 // create an array of available times grouped by weeks
-const processData = (data) => {
+const processData = (data, searchParams) => {
     const sortedData = data.sort(compareFunction);
-    return getAvailableTimes(sortedData);
+    return getAvailableTimes(sortedData, searchParams);
 }
 
 // find overlapping times from two arrays of time slots
@@ -89,7 +89,7 @@ const groupData = (data, searchParams) => {
 }
 
 // find available times from booked times returned from mongo
-const getAvailableTimes = (sortedData) => {
+const getAvailableTimes = (sortedData, searchParams) => {
     const availableTimes = [];
     sortedData.forEach((elem, index) => {
         if (index === sortedData.length - 1) return;
@@ -111,12 +111,12 @@ const getAvailableTimes = (sortedData) => {
             // }
         }
         // add time slots between DAY_START and first booked slot of the day
-        if ((index === 0 || sortedData[index - 1].Date !== elem.Date) && elem.Start !== DAY_START) {
+        if ((index === 0 || sortedData[index - 1].Date !== elem.Date) && elem.Start !== moment(searchParams.startTime).format('h:mm')) {
             availableTimes.push({
                 id: elem.ID,
                 Names: [`${elem.FirstName} ${elem.LastName}`],
                 Date: elem.Date,
-                Start: DAY_START,
+                Start: moment(searchParams.startTime).format('h:mm'),
                 End: elem.Start,
                 Location: elem.Location,
             });
@@ -151,7 +151,7 @@ const getAvailableTimes = (sortedData) => {
                     id: elem.ID,
                     Names: [`${elem.FirstName} ${elem.LastName}`],
                     Date: currentDay.format('DD-MMM-YY'),
-                    Start: DAY_START,
+                    Start: searchParams.startTime ? moment(searchParams.startTime).format('h:mm') : DAY_START,
                     End: DAY_END,
                     Location: elem.Location,
                 });
@@ -182,6 +182,7 @@ export default class View extends Component {
         let searchId = this.props.hidden.match.params.searchId;
         //Use the id to get the search params
         this.props.getSearchAPI(searchId).then((res) => {
+            const searchParams = res;
             this.setState({ searchParams: res });
         
             // the mpn65 palette is better (more distinct colours) but tol-rainbow has more colours
@@ -205,7 +206,7 @@ export default class View extends Component {
                 return this.props.getScheduleAPI(firstName, lastName)
                     .then((res) => {
                         console.log(name);
-                        const availableTimes = processData(res);
+                        const availableTimes = processData(res, searchParams);
                         this.state.data.push(availableTimes);
                         this.state.availableTimes[name.label].push(availableTimes);
                     });
