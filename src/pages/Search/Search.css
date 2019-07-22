@@ -80,6 +80,17 @@
   border: none;
 }
 
+.react-datepicker-wrapper, .react-datepicker__input-container {
+  display: block;
+}
+
+.DatePicker {
+  width: 100%;
+  padding: 0.5em;
+  border: 1px solid #c4c4c4;
+  border-radius: 4px;
+}
+
 .dropdown {
     width: calc(100%);
     color: black;
