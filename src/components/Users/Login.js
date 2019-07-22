@@ -12,28 +12,33 @@ export default class Login extends Component {
             redirect: false
         };
     }
-    
+
     handleLogin = () => {
         console.log(this.state.user.value);
         localStorage.setItem('user', this.state.user.value);
-        
+
         let Name = this.state.user.value;
         let user = {
             Name,
         }
-        
-        this.props.postUserAPI(user);
+        this.props.getUserAPI(Name).then((res) => {
+            console.log(res);
+            console.log(res.length);
+            if (res.length === 0){
+                this.props.postUserAPI(user);
+            }
+        })
         //this.props.handleUserUpdate();
         this.setState({redirect: true});
     }
-    
+
     handleUserChange = (user) => {
         console.log("called");
         console.log("user");
         this.setState({user: user});
     }
-    
-    
+
+
     componentWillMount = () => {
         this.props.getUsersAPI().then((res) => {
              let options = [];
@@ -56,10 +61,10 @@ export default class Login extends Component {
             let path = "/";
             return <Redirect to={path}/>
         }
-        
+
         return (
             <div className="loginbox">
-                Select/Create User 
+                Select/Create User
                 <CreatableSelect
                     inputProps={{autoComplete: 'off', autoCorrect: 'off', spellCheck: 'off' }}
                     isSearchable={true}
@@ -69,8 +74,8 @@ export default class Login extends Component {
                     options={this.state.users}
                     placeholder="Type your name"
                 />
-                <button 
-                    className="buttonlogin" 
+                <button
+                    className="buttonlogin"
                     onClick={this.handleLogin}>
                     Login
                 </button>

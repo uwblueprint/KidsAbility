@@ -14,7 +14,7 @@ const userRoutes = require('./routes/users');
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.json()); 
+app.use(express.json());
 
 app.get('/', function(req, res){
 	res.send("root");

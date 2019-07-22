@@ -1,28 +1,29 @@
 .button-find{
-    background-color: blue;
+    background-color: white;
     border: none;
-    color: white;
     padding: 15px 10px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
     font-size: 16px;
     margin: 20px 10px;
     cursor: pointer;
-    width: 7cm;
+    padding: 5%;
     
 }
 
 .button-save {
   border: none;
-  color: white;
   padding: 15px 10px;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
   font-size: 16px;
   margin: 20px 10px;
   cursor: pointer;
-  width: 7cm;
-  background-color: lightsalmon;
+  background-color: white;
+  padding: 5%;
+}
+
+.buttons-homepage {
+  display: inline-block;
+  width: 100%;
 }

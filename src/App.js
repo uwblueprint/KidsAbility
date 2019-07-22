@@ -133,8 +133,8 @@ export default class App extends Component {
         return body;
     };
 
-    getSavedAPI = async () => {
-        const response = await fetch(proxy+'/api/saved', {
+    getSavedAPI = async (user) => {
+        const response = await fetch(proxy+'/api/saved/'+user, {
             method: 'GET',
             headers : {
                 'Content-Type': 'application/json',
@@ -158,7 +158,8 @@ export default class App extends Component {
                 End: param.End,
                 id: param.id,
                 Location: param.Location,
-                Note: param.Note
+                Note: param.Note,
+                User: param.User
             }),
             headers: {
                'Accept': 'application/json',
@@ -219,6 +220,25 @@ export default class App extends Component {
         return body;
     };
 
+    deleteSavedAPI = async (id) => {
+        const response = await fetch(proxy+'/api/saved/delete/'+id, {
+            method: 'DELETE',
+            headers: {
+               'Accept': 'application/json',
+               'Content-Type': 'application/json',
+             },
+        })
+        const body = await response.json();
+
+        if (response.status !== 201) {
+            console.log(response);
+            console.log("Error with posting user");
+        }
+
+        console.log(body);
+        return body;
+    };
+
 
     postUserAPI = async (databody) => {
         const response = await fetch(proxy+'/api/users/post', {
@@ -239,8 +259,17 @@ export default class App extends Component {
         return body;
     };
 
-    getUsersAPI = async (id) => {
+    getUsersAPI = async () => {
         const response = await fetch(proxy+'/api/users');
+        const body = await response.json();
+        if (response.status !== 200) {
+            throw Error(body.message);
+        }
+        return body;
+    };
+
+    getUserAPI = async (user = "") => {
+        const response = await fetch(proxy+'/api/users/'+user);
         const body = await response.json();
         if (response.status !== 200) {
             throw Error(body.message);
@@ -267,6 +296,7 @@ export default class App extends Component {
                     getCliniciansAPI={this.getCliniciansAPI}
                     postSearchAPI={this.postSearchAPI}
                     getSearchAPI={this.getSearchAPI}
+                    history={browserHistory}
                 />
             )
         }
@@ -296,6 +326,7 @@ export default class App extends Component {
                     handleUserUpdate={this.handleUserUpdate}
                     postUserAPI={this.postUserAPI}
                     getUsersAPI={this.getUsersAPI}
+                    getUserAPI={this.getUserAPI}
                 />
             )
         }
