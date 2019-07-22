@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import Select from 'react-select';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import './Search.css';
 import LOCATIONS from '../../constants/locations';
 import PROGRAMS from '../../constants/programs'
-import {Router, Route, Switch, Redirect, Link} from 'react-router-dom';
-import ScrollArea from 'react-scrollbar'
+import { setHours, setMinutes } from 'date-fns';
+import { Redirect } from 'react-router-dom';
 
 /* Array of { value: location_key, label: location_label } objects */
 let LOCATION_OPTIONS = []
@@ -18,73 +20,19 @@ for (const [key, value] of Object.entries(PROGRAMS)) {
     PROGRAM_OPTIONS.push({value: key, label: value.description})
 }
 
-const TIME_REQUIRED = [
-  {value: 15, label: '15 mins'},
-  {value: 30, label: '30 mins'},
-  {value: 45, label: '45 mins'},
-  {value: 60, label: '60 mins'},
-  {value: 120, label: '2 hours'},
-  {value: 180, label: '3 hours'},
-  {value: 240, label: '4 hours'},
-  {value: 480, label: '8 hours'}
-]
-
-/*
-should this NOT be a dropdown? 
-i.e. can the clinician put in ANYTHING?
-do clinicians ever book an extremely large number of sessions at once?
-or is the max they ever do like 10 or something?
-pro for using dropdown: restricts input to only valid inputs
-con: limited range
-*/
-const NUM_SESSIONS = [
-  {value: 1, label: '1'},
-  {value: 2, label: '2'},
-  {value: 3, label: '3'},
-  {value: 4, label: '4'},
-  {value: 5, label: '5'},
-  {value: 6, label: '6'},
-  {value: 7, label: '7'},
-  {value: 8, label: '8'},
-  {value: 9, label: '9'},
-  {value: 10, label: '10'}
-]
-
-const recurrenceOptions = [
-    {value: "Any", label: "Any"},
-    {value: "weekly", label: "Weekly"},
-    {value: "bi-weekly", label: "Bi-Weekly"},
-    {value: "monthly", label: "Monthly"},
-]
-
-/* does this need to be radio buttons? */
-const TimeofDay = [
-  {value: 'anytime', label: 'Anytime'},
-  {value: 'morning', label: 'Morning'},
-  {value: 'afternoon', label: 'Afternoon'}
-]
-
-const daysOfWeekOptions = [
-  {value: 'Monday', label: 'Monday'},
-  {value: 'Tuesday', label: 'Tuesday'},
-  {value: 'Wednesday', label: 'Wednesday'},
-  {value: 'Thursday', label: 'Thursday'},
-  {value: 'Friday', label: 'Friday'},
-]
-
 export default class Search extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      name: null,
-      service: PROGRAM_OPTIONS[0],
-      location: LOCATION_OPTIONS[0],
-      time: TIME_REQUIRED[1],
-      sessions: NUM_SESSIONS[0],
-      timeOfDay: TimeofDay[0],
-      reccurence: recurrenceOptions[0],
-      daysOfWeek: daysOfWeekOptions[0],
+      clinicians: [],
+      services: [],
+      location: null,
+      minTime: 30,
+      startDate: new Date(),
+      endDate: null,
+      startTime: setHours(setMinutes(new Date(), 0), 8),
+      endTime: null,
       redirect: false,
       searchId: null,
     };
@@ -92,13 +40,7 @@ export default class Search extends Component {
   componentWillMount = () => {
       //load in clinicians
       this.props.getCliniciansAPI().then((res) => {
-          const any_option = {
-              value: "Any",
-              label: "Any",
-              First: "Any",
-              Last: "",
-          }
-          let clinicians = [any_option];
+          let clinicians = [];
           res.forEach((name) => {
               let value = name._id.First + " " + name._id.Last;
               let option = {
@@ -109,7 +51,7 @@ export default class Search extends Component {
               }
               clinicians.push(option);
           });
-          this.setState({ clinicians: clinicians });
+          this.setState({ allClinicians: clinicians });
       });
       
       let searchId = this.props.hidden.match.params.searchId;
@@ -133,59 +75,64 @@ export default class Search extends Component {
           });
       }
   }
-  handleChange1 = (name) => {
-      if (name.length === 0){
-          this.setState({name: null});
-      } else {
-          this.setState({name: name});
-      }
-      console.log(`Option selected name:`, name)
-  }
-
-  handleChange2 = (service) => {
-    this.setState({service: service})
-    console.log(`Option selected:`, service)
-  }
-
-  handleChange3 = (location) => {
-    this.setState({location: location})
-    console.log(`Option selected:`, location)
-  }
-
-  handleChange4 = (time) => {
-    this.setState({time: time})
-    console.log(`Option selected:`, time)
-  }
-
-  handleChange5 = (sessions) => {
-    this.setState({sessions: sessions})
-    console.log(`Option selected:`, sessions)
-  }
-
-  handleChange6 = (timeOfDay) => {
-    this.setState({timeOfDay: timeOfDay})
-    console.log(`Option selected:`, timeOfDay)
-  }
   
-  handleChange7 = (reccurence) => {
-    this.setState({reccurence: reccurence})
-    console.log(`Option selected:`, reccurence)
+  updateClinicians = (name) => {
+    if (name.length === 0) {
+      this.setState({ clinicians: [] });
+    } else {
+      this.setState({ clinicians: name });
+    }
   }
 
-  handleChange8 = (daysOfWeek) => {
-    this.setState({daysOfWeek: daysOfWeek})
-    console.log(`Option selected:`, daysOfWeek)
+  updateServices = (services) => {
+    this.setState({ services });
+  }
+
+  changeLocation = (location) => {
+    this.setState({ location });
+  }
+
+  increaseMinTime = () => {
+    if (this.state.minTime < 270) {
+      this.setState(state => ({ minTime: state.minTime + 15 }));
+    }
+  }
+
+  decreaseMinTime = () => {
+    if (this.state.minTime > 0) {
+      this.setState(state => ({ minTime: state.minTime - 15 }));
+    }
+  }
+
+  changeStartDate = (date) => {
+    this.setState({
+      startDate: date,
+    });
+  }
+
+  changeEndDate = (date) => {
+    this.setState({
+      endDate: date,
+    });
+  }
+
+  changeStartTime = (time) => {
+    this.setState({
+      startTime: time,
+    });
+  }
+
+  changeEndTime = (time) => {
+    this.setState({
+      endTime: time,
+    });
   }
 
   handleSubmit = () => {
-    let names = this.state.name
-    if (names != null && this.state.name.map(a => a.value).includes("Any")) {
-      //get all names from clinician name drop down except the 1st one ("Any")
-      names = this.state.clinicians.slice(1);
-    }
-    let services = this.state.service;
+    let names = this.state.clinicians;
+    let services = this.state.services;
     let location = this.state.location;
-    let time = this.state.time;
+    let time = { value: this.state.minTime, label: 'Min Time Required' };
     let numSessions = this.state.sessions;
     let timeOfDay = this.state.timeOfDay;
     let daysOfWeek = this.state.daysOfWeek;
@@ -201,7 +148,7 @@ export default class Search extends Component {
     }
     
     //Do some basic error checking
-    if (!names || !services || !location || !time || !numSessions || !timeOfDay || !daysOfWeek){
+    if (!names || !services || !time){
         console.log("Please fill out all fields")
     }
     else {
@@ -226,27 +173,17 @@ export default class Search extends Component {
   }
 
   render() {
-    
-    console.log(this.state.clinicians);
-    
     const { 
-      name,
-      service,
+      clinicians,
+      services,
       location,
-      time,
-      sessions,
-      timeOfDay,
-      reccurence,
-      daysOfWeek,
     } = this.state;
-    
-    console.log(this.state.searchId);
     
     if (this.state.redirect && this.state.searchId){
       let path = "/view-search/"+this.state.searchId;
       return <Redirect to={path}/>
     }
-    
+
     return (
       <div className="Search">
         <div className="Search__title-wrapper">
@@ -262,9 +199,11 @@ export default class Search extends Component {
                 name="clinician"
                 id="clinician"
                 isMulti
-                value={name}
-                onChange={this.handleChange1}
-                options={this.state.clinicians}
+                placeholder="Any clinician"
+                styles={{ placeholder: () => ({ color: 'black' }) }}
+                value={clinicians}
+                onChange={this.updateClinicians}
+                options={this.state.allClinicians}
               />
             </div>
             <div className="Section__form-field">
@@ -273,8 +212,10 @@ export default class Search extends Component {
                 name="service-type"
                 id="service-type"
                 isMulti
-                value={service}
-                onChange={this.handleChange2}
+                placeholder="Any program or service"
+                styles={{ placeholder: () => ({ color: 'black' }) }}
+                value={services}
+                onChange={this.updateServices}
                 options={PROGRAM_OPTIONS}
               />
             </div>
@@ -283,19 +224,29 @@ export default class Search extends Component {
               <Select
                 name="location"
                 id="location"
+                placeholder="Any location"
+                styles={{ placeholder: () => ({ color: 'black' }) }}
                 value={location}
-                onChange={this.handleChange3}
+                onChange={this.changeLocation}
                 options={LOCATION_OPTIONS}
               />
             </div>
             <div className="Section__form-field">
               <label htmlFor="location" className="Section__form-label">Minimum time</label>
               <div className="Section__form-rocker">
-                <img className="Section__form-rocker-input" src="/icons/minus.svg" alt="Minus"/>
+                <img
+                  className="Section__form-rocker-input"
+                  onClick={this.decreaseMinTime}
+                  src="/icons/minus.svg"
+                  alt="Minus"/>
                 <div className="Section__form-rocker-value">
-                  { time.value } mins
+                  { this.state.minTime } mins
                 </div>
-                <img className="Section__form-rocker-input" src="/icons/plus.svg" alt="Plus"/>
+                <img
+                  className="Section__form-rocker-input"
+                  onClick={this.increaseMinTime}
+                  src="/icons/plus.svg"
+                  alt="Plus"/>
               </div>
             </div>
           </div>
@@ -306,42 +257,65 @@ export default class Search extends Component {
             <div className="Section__split-form-field">
               <div className="Section__form-field">
                 <label htmlFor="start-date" className="Section__form-label">Start date</label>
-                <Select
+                <DatePicker
                   name="start-date"
                   id="start-date"
-                  onChange={this.handleChange6}
-                  options={TimeofDay}
+                  className="DatePicker"
+                  selected={this.state.startDate}
+                  onChange={this.changeStartDate}
+                  maxDate={this.state.endDate}
                 />
               </div>
               <div className="Section__split-form-field-divider" />
               <div className="Section__form-field">
-                <label htmlFor="start-date" className="Section__form-label">End date</label>
-                <Select
-                  name="start-date"
-                  id="start-date"
-                  onChange={this.handleChange6}
-                  options={TimeofDay}
+                <label htmlFor="end-date" className="Section__form-label">End date</label>
+                <DatePicker
+                  name="end-date"
+                  id="end-date"
+                  className="DatePicker"
+                  selected={this.state.endDate}
+                  onChange={this.changeEndDate}
+                  minDate={this.state.startDate}
                 />
               </div>
             </div>
             <div className="Section__split-form-field">
               <div className="Section__form-field">
-                <label htmlFor="start-date" className="Section__form-label">Start time</label>
-                <Select
-                  name="start-date"
-                  id="start-date"
-                  onChange={this.handleChange6}
-                  options={TimeofDay}
+                <label htmlFor="start-time" className="Section__form-label">Start time</label>
+                <DatePicker
+                  name="start-time"
+                  id="start-time"
+                  className="DatePicker"
+                  selected={this.state.startTime}
+                  onChange={this.changeStartTime}
+                  showTimeSelect
+                  showTimeSelectOnly
+                  timeIntervals={15}
+                  dateFormat="h:mm aa"
+                  timeCaption="Time"
+                  minTime={setHours(setMinutes(new Date(), 0), 8)}
+                  maxTime={this.state.endTime ?
+                      this.state.endTime - (15 * 60000)
+                    : setHours(setMinutes(new Date(), 45), 19)
+                  }
                 />
               </div>
               <div className="Section__split-form-field-divider" />
               <div className="Section__form-field">
-                <label htmlFor="start-date" className="Section__form-label">End time</label>
-                <Select
-                  name="start-date"
-                  id="start-date"
-                  onChange={this.handleChange6}
-                  options={TimeofDay}
+                <label htmlFor="end-time" className="Section__form-label">End time</label>
+                <DatePicker
+                  name="end-time"
+                  id="end-time"
+                  className="DatePicker"
+                  selected={this.state.endTime}
+                  onChange={this.changeEndTime}
+                  showTimeSelect
+                  showTimeSelectOnly
+                  timeIntervals={15}
+                  dateFormat="h:mm aa"
+                  timeCaption="Time"
+                  minTime={new Date(this.state.startTime.getTime() + (15 * 60000))}
+                  maxTime={setHours(setMinutes(new Date(), 0), 20)}
                 />
               </div>
             </div>
