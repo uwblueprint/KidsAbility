@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import './Login.css';
-import {Router, Route, Switch, Redirect, Link} from 'react-router';
+import {Redirect} from 'react-router';
+import SignInDesk from './sign_in_desk.png';
+import KidsabilityLogo from './kidsability_logo.png';
 import CreatableSelect from 'react-select/lib/Creatable';
 
 
@@ -12,7 +14,7 @@ export default class Login extends Component {
             redirect: false
         };
     }
-    
+  
     handleLogin = () => {
         console.log(this.state.user.value);
         localStorage.setItem('user', this.state.user.value);
@@ -58,22 +60,32 @@ export default class Login extends Component {
         }
         
         return (
-            <div className="loginbox">
-                Select/Create User 
-                <CreatableSelect
-                    inputProps={{autoComplete: 'off', autoCorrect: 'off', spellCheck: 'off' }}
-                    isSearchable={true}
-                    className="dropdownlogin"
-                    value={this.state.user}
-                    onChange={this.handleUserChange}
-                    options={this.state.users}
-                    placeholder="Type your name"
-                />
-                <button 
-                    className="buttonlogin" 
-                    onClick={this.handleLogin}>
-                    Login
-                </button>
+            <div className="title-page">
+                <div className="loginimage">
+                    <img className="title-image" src={SignInDesk} alt=""/>
+                </div>
+                <div className="loginbox">
+                    <img src={KidsabilityLogo} alt="" align="left"/>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <h1 align="left"> Select User </h1>
+                    <h4 align="left"> Choose your profile to search for and save times </h4>
+                    <CreatableSelect
+                        inputProps={{autoComplete: 'off', autoCorrect: 'off', spellCheck: 'off' }}
+                        isSearchable={true}
+                        className="dropdownlogin"
+
+                        onChange={this.handleUserChange}
+                        options={this.state.users}
+                        placeholder="Type your name or select from dropdown"
+                    />
+                    <button 
+                        className="buttonlogin" 
+                        onClick={this.handleLogin}>
+                        Sign In
+                    </button>
+                </div>
             </div>
         );
     }

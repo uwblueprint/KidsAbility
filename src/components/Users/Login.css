@@ -4,29 +4,56 @@
     margin: 20px 10px;
 }
 
+.loginimage {
+  width: 50%;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.loginimage img {
+  vertical-align: top;
+  min-width: 100%;
+  object-fit: cover;
+  height: 93.75vh;
+}
+
+.title-page {
+  margin-top: 50px;
+}
+
 .loginbox {
-  margin-left: 25%;
-  margin-right: 25%;
   background-color: white;
-  margin-top: calc(5% + 1cm);
-  margin-bottom: calc(5% + 1cm);
-  padding-left: 10%;
-  padding-right: 10%;
-  padding-top: 2%;
-  padding-bottom: 2%;
+  width: 50%;
+  display: inline-block;
+  height: 93.75vh;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 12%;
 }
 
 .buttonlogin {
-    background-color: blue;
     border: none;
     margin: 20px 10px;
     color: white;
-    padding: 10px 10px;
+    padding: 12px 24px;
     text-align: center;
+    float: right;
     text-decoration: none;
-    display: inline-block;
     font-size: 16px;
     position: relative;
     cursor: pointer;
-    width: 100%
+    background-color: #5F5FC4;
+    border-radius: 4px;
+}
+
+.column {
+  float: left;
+  width: 50%;
+  padding: 5px;
+}
+
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
 }
