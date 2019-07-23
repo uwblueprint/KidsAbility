@@ -27,7 +27,7 @@ export default class ChartView extends Component {
 
     onClickSave = (e, param) => {
         if (e.target.innerHTML !== "bookmark"){
-            this.setState({modalIsOpen: true, param: param})
+            this.setState({modalIsOpen: true, param: param});
             e.target.innerHTML = "bookmark";
         }
     }
@@ -46,18 +46,18 @@ export default class ChartView extends Component {
             Location: param.Location,
             Note: note,
             User: user,
-        }
+        };
 
         this.props.postSavedAPI(save_obj);
         this.setState({
             modalIsOpen: false,
             note: "",
             param: {}
-        })
+        });
     }
 
     handleChange = (e) => {
-        this.setState({note: e.target.value})
+        this.setState({note: e.target.value});
     }
 
     closeModal = () => {
@@ -75,9 +75,9 @@ export default class ChartView extends Component {
                         {key === "0" ? "This week" : `In ${key} week${key === "1" ? "" : "s"}`}
                     </td>
                 </tr>
-            )
+            );
             for (let i in this.props.data[key]) {
-                const elem = this.props.data[key][i]
+                const elem = this.props.data[key][i];
                 rows.push(
                     <tr key={"" + key + i}>
                         <td>{moment(elem.Date, 'DD-MMM-YY').format('MMM D')}</td>
@@ -95,7 +95,7 @@ export default class ChartView extends Component {
                             </Icon>
                         </td>
                     </tr>
-                )
+                );
             }
         }
 
