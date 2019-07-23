@@ -91,6 +91,12 @@ const groupData = (data, searchParams) => {
 // find available times from booked times returned from mongo
 const getAvailableTimes = (sortedData, searchParams) => {
     const availableTimes = [];
+    const dayEnd = searchParams.endTime ?
+            moment(searchParams.endTime).format('H:mm')
+        :   DAY_END;
+    const dayStart = searchParams.startTime ?
+            moment(searchParams.startTime).format('H:mm')
+        :   DAY_START;
     sortedData.forEach((elem, index) => {
         if (index === sortedData.length - 1) return;
         // add full day time slots between today and first booked slot (excluding weekends)
@@ -111,12 +117,12 @@ const getAvailableTimes = (sortedData, searchParams) => {
             // }
         }
         // add time slots between DAY_START and first booked slot of the day
-        if ((index === 0 || sortedData[index - 1].Date !== elem.Date) && elem.Start !== moment(searchParams.startTime).format('h:mm')) {
+        if ((index === 0 || sortedData[index - 1].Date !== elem.Date) && elem.Start !== dayStart) {
             availableTimes.push({
                 id: elem.ID,
                 Names: [`${elem.FirstName} ${elem.LastName}`],
                 Date: elem.Date,
-                Start: moment(searchParams.startTime).format('h:mm'),
+                Start: dayStart,
                 End: elem.Start,
                 Location: elem.Location,
             });
@@ -133,13 +139,13 @@ const getAvailableTimes = (sortedData, searchParams) => {
             });
         }
         // add time slots between the last booked slot of the day and DAY_END 
-        if (sortedData[index + 1].Date !== elem.Date && elem.end !== DAY_END) {
+        if (sortedData[index + 1].Date !== elem.Date && elem.end !== dayEnd) {
             availableTimes.push({
                 id: elem.ID,
                 Names: [`${elem.FirstName} ${elem.LastName}`],
                 Date: elem.Date,
                 Start: elem.End,
-                End: DAY_END,
+                End: dayEnd,
                 Location: elem.Location,
             })
         }
@@ -151,8 +157,8 @@ const getAvailableTimes = (sortedData, searchParams) => {
                     id: elem.ID,
                     Names: [`${elem.FirstName} ${elem.LastName}`],
                     Date: currentDay.format('DD-MMM-YY'),
-                    Start: searchParams.startTime ? moment(searchParams.startTime).format('h:mm') : DAY_START,
-                    End: DAY_END,
+                    Start: dayStart,
+                    End: dayEnd,
                     Location: elem.Location,
                 });
             }
