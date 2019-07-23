@@ -1,11 +1,19 @@
-#table-wrapper th { 
-  padding: 5px 10px;
-  width: 200px;
+.table-wrapper tbody {
+  display: block;
+  overflow: auto;
+  width: 100%;
+  height: 450px;
 }
 
-#table-wrapper td { 
+.table-wrapper thead tr {
+  display: block;
+  border-bottom: 1px solid blue;
+}
+
+.table-wrapper th, td {
   padding: 5px 10px;
-  width: 200px;
+  width: 160px;
+  text-align: left;
 }
 
 .customOverlay {
@@ -36,12 +44,4 @@
   padding-bottom: 1%;
   margin-bottom: 5%;
   margin-top: 5%;
-}
-
-.table-wrapper {
-  position:relative;
-}
-
-.table-wrapper table {
-  width:100%;
 }
