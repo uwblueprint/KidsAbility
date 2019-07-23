@@ -10,7 +10,7 @@ const customStyles = {
     left        : '50%',
     right       : 'auto',
     bottom      : 'auto',
-    marginRigh  : '-50%',
+    marginRight : '-50%',
     transform   : 'translate(-50%, -50%)'
   }
 };
@@ -67,7 +67,7 @@ export default class ChartView extends Component {
     render() {
         const {open} = this.state;
 
-        let rows = []
+        let rows = [];
         for (let key in this.props.data) {
             rows.push(
                 <tr key={key * 1000}>

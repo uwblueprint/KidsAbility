@@ -80,8 +80,7 @@ tbody::-webkit-scrollbar-thumb {
 }
 
 .notebox {
-  margin: 5px 20px;
-  width: 90%;
+  width: 100%;
   resize: none;
   border-radius: 3px;
 }
