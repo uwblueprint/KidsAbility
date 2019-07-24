@@ -4,8 +4,7 @@ import './Home.css';
 import { ReactComponent as CancelIcon } from './Cancel.svg';
 import { ReactComponent as SavedIcon } from './SavedTimes.svg';
 import { ReactComponent as SearchIcon } from './Search.svg';
-import { Container, Card, Col, Row,  CardImg, CardText, CardBody,
-                                      CardTitle, CardSubtitle } from 'reactstrap';
+import { Card, CardText, CardBody} from 'reactstrap';
 
 export default class Home extends Component {
 
