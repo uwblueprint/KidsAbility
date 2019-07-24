@@ -131,7 +131,7 @@ export default class Search extends Component {
     let names = this.state.clinicians;
     let services = this.state.services;
     let location = this.state.location;
-    
+
     let info = {
         names,
         services,
@@ -143,14 +143,7 @@ export default class Search extends Component {
         endTime: this.state.endTime,
     }
     
-    //Do some basic error checking
-    if (!this.state.clinicians){
-        console.log("Please fill out all fields")
-    }
-    else {
-        this.setState({ info: info, redirect: true });
-        console.log(this.state.info);
-    }
+    this.setState({ info: info, redirect: true });
   }
   
   
