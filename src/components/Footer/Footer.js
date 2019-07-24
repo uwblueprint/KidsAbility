@@ -44,7 +44,6 @@ export default class Footer extends Component {
                     <div className="tagline"> {madeby}
                         <a href="https://uwblueprint.org/">UW Blueprint</a>
                     </div>
-                    <div className="tagline">Copyright????</div>
                 </div>
             </header>
         );

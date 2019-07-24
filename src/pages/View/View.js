@@ -3,58 +3,38 @@ import ChartView from './ChartView/ChartView';
 import CalendarView from './CalendarView/CalendarView';
 import { Redirect } from 'react-router';
 import { Checkbox } from '@material-ui/core';
+import palette from 'google-palette';
 import moment from 'moment';
 import './View.css';
 
-const DAY_START = '8:00';
-const DAY_END = '20:00';
+let DAY_START = '8:00';
+let DAY_END = '20:00';
 
-const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
+// Moment object with KidsAbility specific date format
+const mnt = (date) => moment(date, 'DD-MMM-YY')
+
 
 // compare function to sort time slots
 const compareFunction = (a, b) => {
-    if (moment(a.Date).hour(a.Start.split(":")[0]).minute(a.Start.split(":")[1]) < 
-        moment(b.Date).hour(b.Start.split(":")[0]).minute(b.Start.split(":")[1])) {
+    const aTime = mnt(a.Date)
+        .hour(a.Start.split(":")[0])
+        .minute(a.Start.split(":")[1])
+    const bTime = mnt(b.Date)
+        .hour(b.Start.split(":")[0])
+        .minute(b.Start.split(":")[1])
+    // TODO: isAfter, isBefore?
+    if (aTime < bTime) {
         return -1;
-    }
-    
-    if (moment(a.Date).hour(a.Start.split(":")[0]).minute(a.Start.split(":")[1]) > 
-        moment(b.Date).hour(b.Start.split(":")[0]).minute(b.Start.split(":")[1])) {
+    } else if (aTime > bTime) {
         return 1;
+    } else {
+      return 0;
     }
-    
-    if (a.Start < b.Start) return 1;
-    if (b.Start < a.Start) return -1;
-    
-    return 0;
-}
-
-//compare function for time "h:mm"
-const compareTime = (a, b) => {
-    let hourA = parseInt(a.split(":")[0])
-    let hourB = parseInt(b.split(":")[0]);
-    let minA = parseInt(a.split(":")[1])
-    let minB = parseInt(b.split(":")[1])
-    if (hourA < hourB){
-        return 1;
-    }
-    if (hourA > hourB) {
-        return -1;
-    } 
-    if (minA < minB) {
-        return 1;
-    }
-    if (minA > minB) {
-        return -1;
-    }
-    return 0;
 }
 
 // create an array of available times grouped by weeks
 const processData = (data) => {
-    const sortedData = data
-        .flatMap(x => x)
-        .sort(compareFunction);
+    const sortedData = data.sort(compareFunction);
     return getAvailableTimes(sortedData);
 }
 
@@ -66,8 +46,8 @@ const getOverlappingTimes = (t1, t2) => {
             console.log("We looping");
             break;
         }
-        if (moment(t1[i].Date) < moment(t2[j].Date)) i++
-        else if (moment(t2[j].Date) < moment(t1[i].Date)) j++;
+        if (mnt(t1[i].Date) < mnt(t2[j].Date)) i++
+        else if (mnt(t2[j].Date) < mnt(t1[i].Date)) j++;
 
         else if (moment(t1[i].Start, 'h:mm') >= moment(t2[j].End, 'h:mm')) j++;
         else if (moment(t1[i].End, 'h:mm') <= moment(t2[j].Start, 'h:mm')) i++;
@@ -93,11 +73,11 @@ const groupData = (data, searchParams) => {
     const groupedData = {}
     data
         .filter(elem =>
-            moment().startOf('date').diff(elem.Date, 'days') <= 0 &&
+            moment().startOf('date').diff(mnt(elem.Date), 'days') <= 0 &&
             moment(elem.End, 'h:mm').diff(moment(elem.Start, 'h:mm'), 'minutes') > searchParams.time.value)
         .sort(compareFunction)
         .forEach(elem => {
-            let key = (moment().diff(elem.Date, 'weeks')) * -1;
+            let key = (moment().diff(mnt(elem.Date), 'weeks')) * -1;
             if (groupedData[key]) {
                 groupedData[key].push(elem);
             } else {
@@ -115,7 +95,7 @@ const getAvailableTimes = (sortedData) => {
         if (index === sortedData.length - 1) return;
         // add full day time slots between today and first booked slot (excluding weekends)
         if (index === 0) {
-            // commented out for now since all the dates in the current data are before today 
+            // commented out for now since all the dates in the current data are before today
 
             // let currentDay = moment();
             // while (moment(elem.Date).diff(currentDay, 'days')) {
@@ -152,7 +132,7 @@ const getAvailableTimes = (sortedData) => {
                 Location: elem.Location,
             });
         }
-        // add time slots between the last booked slot of the day and DAY_END 
+        // add time slots between the last booked slot of the day and DAY_END
         if (sortedData[index + 1].Date !== elem.Date && elem.end !== DAY_END) {
             availableTimes.push({
                 id: elem.ID,
@@ -164,13 +144,13 @@ const getAvailableTimes = (sortedData) => {
             })
         }
         // add full day time slots between today and next booked slot (excluding weekends)
-        let currentDay = moment(elem.Date).add(1, 'days');
-        while (moment(sortedData[index + 1].Date).diff(currentDay, 'days') > 0) {
+        let currentDay = mnt(elem.Date).add(1, 'days');
+        while (mnt(sortedData[index + 1].Date).diff(currentDay, 'days') > 0) {
             if (currentDay.day() !== 0 && currentDay.day() !== 6) {
                 availableTimes.push({
                     id: elem.ID,
                     Names: [`${elem.FirstName} ${elem.LastName}`],
-                    Date: currentDay.format('D-MMM-YY'),
+                    Date: currentDay.format('DD-MMM-YY'),
                     Start: DAY_START,
                     End: DAY_END,
                     Location: elem.Location,
@@ -197,34 +177,49 @@ export default class View extends Component {
         };
         this.clinicians = {};
         this.data = {};
-        
+
         //grab the id from the url
         let searchId = this.props.hidden.match.params.searchId;
         //Use the id to get the search params
         this.props.getSearchAPI(searchId).then((res) => {
             this.setState({ searchParams: res[0] });
-            
+
+            if (res[0].timeOfDay.value == "afternoon"){
+                DAY_START = '13:00';
+                DAY_END = '20:00';
+            }
+
+            if (res[0].timeOfDay.value == "morning"){
+                DAY_START = '8:00';
+                DAY_END = '13:00';
+            }
+
+            //For every name in the seach ->
+
+            // the mpn65 palette is better (more distinct colours) but tol-rainbow has more colours
+            var palette_type = (res[0].names.length <= 65) ? ('mpn65') : ('tol-rainbow')
+            var colors_list = palette(palette_type, res[0].names.length)
+
             //For every name in the search ->
             //  - Add the clinician name to the list of clinicians (dict)
             //  - Add the dates together
             Promise.all(res[0].names.map((name, index) => {
-                
                 this.clinicians[name[0].label] = {
                     name: [name[0].label],
-                    color: colors[index],
+                    color: '#'.concat(colors_list[index])
                 }
 
                 this.state.availableTimes[name[0].label] = [];
                 this.state.cliniciansFilter[name[0].label] = true;
-                
-                var result = this.props.getScheduleAPI(name[0].First, name[0].Last)
+
+                return this.props.getScheduleAPI(name[0].First, name[0].Last)
                     .then((res) => {
                         const availableTimes = processData(res);
                         this.state.data.push(availableTimes);
                         this.state.availableTimes[name[0].label].push(availableTimes);
                     });
-                return result;
-            })).then(() => this.setState({ ready: true }));
+            }))
+            .then(() => this.setState({ ready: true }));
         })
     }
 
@@ -236,7 +231,7 @@ export default class View extends Component {
             this.setState({view: "chart"});
         }
     }
-    
+
     goBack = () => {
         this.setState({redirect: true});
     }
@@ -254,13 +249,10 @@ export default class View extends Component {
             let path = "/edit-time/"+this.props.hidden.match.params.searchId;;
             return <Redirect to={path}/>
         }
-        
+
         //We should return a spinner :P
         if (!this.state.ready) {
-            
-        return (
-                <p> Loading </p>
-            );
+            return (<p> Loading </p>);
         }
 
 
@@ -274,7 +266,39 @@ export default class View extends Component {
 
         //In the case when overlappingTimes is empty - this hangs (add a check here or in groupdata itself)
         this.data = groupData(overlappingTimes, this.state.searchParams);
-        
+
+
+        console.log(this.data);
+        console.log(this.state.searchParams);
+        //This handles bi-weekly and monthly
+        if (this.state.searchParams){
+            let i = 0;
+            if (this.state.searchParams.recurrence.value == "bi-weekly"){
+                i = 2;
+            }
+            if (this.state.searchParams.recurrence.value == "monthly"){
+                i = 4;
+            }
+            if (i != 0){
+                for (const [key, value] of Object.entries(this.data)) {
+                    if (key % i != 0) {
+                        console.log("changing data");
+                        delete this.data[key];
+                    }
+                }
+            }
+        }
+        console.log(this.data);
+
+
+
+
+        //This works (returns all available times for the first clinician)
+        //this.data = groupData(this.state.data[0], this.state.searchParams);
+
+        //This displays all the times - but they are not grouped into week properly
+        //this.data = this.state.data;
+
         const noResultOverlay = (
           <div className="no-result">
             <p>No times found for these clinicians.</p>
