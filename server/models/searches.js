@@ -1,5 +1,14 @@
 var mongoose = require('mongoose');
 
+var recurrenceSchema = new mongoose.Schema({
+	label: {
+		type: String
+	},
+	value: {
+		type: String
+	}
+});
+
 var name = new mongoose.Schema({
 	first: {
 		type: String

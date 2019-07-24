@@ -7,11 +7,12 @@ import palette from 'google-palette';
 import moment from 'moment';
 import './View.css';
 
-const DAY_START = '8:00';
-const DAY_END = '20:00';
+let DAY_START = '8:00';
+let DAY_END = '20:00';
 
 // Moment object with KidsAbility specific date format
 const mnt = (date) => moment(date, 'DD-MMM-YY')
+
 
 // compare function to sort time slots
 const compareFunction = (a, b) => {
@@ -101,7 +102,7 @@ const getAvailableTimes = (sortedData, searchParams) => {
         if (index === sortedData.length - 1) return;
         // add full day time slots between today and first booked slot (excluding weekends)
         if (index === 0) {
-            // commented out for now since all the dates in the current data are before today 
+            // commented out for now since all the dates in the current data are before today
 
             // let currentDay = moment();
             // while (moment(elem.Date).diff(currentDay, 'days')) {
@@ -183,14 +184,15 @@ export default class View extends Component {
         };
         this.clinicians = {};
         this.data = {};
-        
+
         //grab the id from the url
         let searchId = this.props.hidden.match.params.searchId;
         //Use the id to get the search params
         this.props.getSearchAPI(searchId).then((res) => {
             const searchParams = res;
             this.setState({ searchParams: res });
-        
+            //For every name in the seach ->
+
             // the mpn65 palette is better (more distinct colours) but tol-rainbow has more colours
             var palette_type = (res.names.length <= 65) ? ('mpn65') : ('tol-rainbow')
             var colors_list = palette(palette_type, res.names.length)
@@ -229,7 +231,7 @@ export default class View extends Component {
             this.setState({view: "chart"});
         }
     }
-    
+
     goBack = () => {
         this.setState({redirect: true});
     }
@@ -247,7 +249,7 @@ export default class View extends Component {
             let path = "/edit-time/"+this.props.hidden.match.params.searchId;;
             return <Redirect to={path}/>
         }
-        
+
         //We should return a spinner :P
         if (!this.state.ready) {
             return (<p> Loading </p>);
@@ -264,7 +266,39 @@ export default class View extends Component {
 
         //In the case when overlappingTimes is empty - this hangs (add a check here or in groupdata itself)
         this.data = groupData(overlappingTimes, this.state.searchParams);
-        
+
+
+        console.log(this.data);
+        console.log(this.state.searchParams);
+        //This handles bi-weekly and monthly
+        if (this.state.searchParams){
+            let i = 0;
+            if (this.state.searchParams.recurrence.value == "bi-weekly"){
+                i = 2;
+            }
+            if (this.state.searchParams.recurrence.value == "monthly"){
+                i = 4;
+            }
+            if (i != 0){
+                for (const [key, value] of Object.entries(this.data)) {
+                    if (key % i != 0) {
+                        console.log("changing data");
+                        delete this.data[key];
+                    }
+                }
+            }
+        }
+        console.log(this.data);
+
+
+
+
+        //This works (returns all available times for the first clinician)
+        //this.data = groupData(this.state.data[0], this.state.searchParams);
+
+        //This displays all the times - but they are not grouped into week properly
+        //this.data = this.state.data;
+
         const noResultOverlay = (
           <div className="no-result">
             <p>No times found for these clinicians.</p>

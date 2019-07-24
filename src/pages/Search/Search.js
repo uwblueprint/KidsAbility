@@ -37,9 +37,11 @@ export default class Search extends Component {
       searchId: null,
     };
   }
-  componentWillMount = () => {
+  componentDidMount = () => {
+
       //load in clinicians
       this.props.getCliniciansAPI().then((res) => {
+        console.log(res);
           let clinicians = [];
           res.forEach((name) => {
               let value = name._id.First + " " + name._id.Last;
@@ -53,7 +55,8 @@ export default class Search extends Component {
           });
           this.setState({ allClinicians: clinicians });
       });
-      
+      //this.props.getScheduleAPI("RHONDA","MACKINNON").then(res => console.log(res)).catch(err => console.log(err));
+
       let searchId = this.props.hidden.match.params.searchId;
 
       //Use the id to get the search params
@@ -145,8 +148,8 @@ export default class Search extends Component {
     
     this.setState({ info: info, redirect: true });
   }
-  
-  
+
+
   componentDidUpdate = () => {
       console.log("Component Updating");
       console.log(this.state.redirect);

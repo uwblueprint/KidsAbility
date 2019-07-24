@@ -1,6 +1,6 @@
 .box {
   height: 65vh;
-  width: 100%;
+  width: calc(70vw);
   overflow: auto;
   background-color: white;
   padding-top: 2%;
@@ -18,4 +18,14 @@
 .rbc-calendar button {
   max-width: 70px;
   font-size: 14px;
+}
+
+.rbc-day-slot .rbc-event-content {
+  font-size: calc(0.1vh + 0.2vw + 10px);
+}
+
+
+.rbc-time-view .rbc-row {
+    box-sizing: border-box;
+    min-height: 30px;
 }

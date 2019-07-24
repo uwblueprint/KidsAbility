@@ -15,13 +15,20 @@ export default class CalendarView extends Component {
         super(props);
         this.state = {};
     }
-    
+
     componentWillMount = () => {
         let data = this.props.data;
         let Events = [];
         Object.values(data).map((week, index) => {
             for (var j = 0; j < week.length; j++) {
                 let elem = week[j];
+                let title = ""
+                for (let i = 0; i < elem.Names.length; i++){
+                    title += elem.Names[i];
+                    if (i != elem.Names.lenth -1){
+                        title += ", ";
+                    }
+                }
                 Events.push({
                     title: elem.Names,
                     start: moment(elem.Date, 'DD-MMM-YY').hour(elem.Start.split(":")[0]).minute(elem.Start.split(":")[1]).toDate(),
@@ -32,27 +39,27 @@ export default class CalendarView extends Component {
             }
         });
         this.setState({events: Events})
-        
+
     }
 
     render() {
         let myEventsList = this.state.events;
-        
+
         return (
             <div>
                 <ScrollArea>
                     <div className="box">
-                <BigCalendar
-                    events={myEventsList}
-                    views={["week", "day", "agenda"]}
-                    min={new Date(2018, 10, 0, 8, 0, 0)}
-                    max={new Date(2018, 10, 0, 20, 0, 0)}
-                    step={30}
-                    timeslots={1}
-                    showMultiDayTimes={true}
-                    defaultDate={new Date()}
-                    localizer={localizer}
-                    defaultView={BigCalendar.Views.DAY} />
+                        <BigCalendar
+                        events={myEventsList}
+                        views={["work_week"]}
+                        min={new Date(2018, 10, 0, 8, 0, 0)}
+                        max={new Date(2018, 10, 0, 20, 0, 0)}
+                        step={30}
+                        timeslots={1}
+                        showMultiDayTimes={true}
+                        defaultDate={new Date()}
+                        localizer={localizer}
+                        defaultView={BigCalendar.Views.WORK_WEEK} />
                 </div>
                 </ScrollArea>
             </div>

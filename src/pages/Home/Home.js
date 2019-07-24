@@ -40,9 +40,16 @@ export default class Home extends Component {
                 <h2>Welcome
                     <b>{" " + this.state.user}</b>
                 </h2>
-                <button className="button-find" onClick={this.availTimes}>Find Available Time</button>
-                <br></br>
-                <button className="button-save" onClick={this.savedTimes}>View Saved Times</button>
+                <div className="buttons-homepage">
+                    <button className="button-find" onClick={this.availTimes}>
+                        <img src="https://img.icons8.com/ios/100/000000/overtime.png"/>
+                        <h> Find Available Times </h>
+                    </button>
+                    <button className="button-save" onClick={this.savedTimes}>
+                        <img src="https://img.icons8.com/ios/100/000000/planner.png"/>
+                        <h> View Saved Times</h>
+                    </button>
+                </div>
                 {
                     this.state.redirect
                         ? <Redirect to={(this.state.redirectTo)}/>
