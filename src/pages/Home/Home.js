@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {Router, Route, Switch, Redirect} from 'react-router';
 import './Home.css';
-import { ReactComponent as CancelIcon } from './Cancel.svg';
-import { ReactComponent as SavedIcon } from './SavedTimes.svg';
-import { ReactComponent as SearchIcon } from './Search.svg';
-import { Card, CardText, CardBody} from 'reactstrap';
+import {ReactComponent as CancelIcon} from './Cancel.svg';
+import {ReactComponent as SavedIcon} from './SavedTimes.svg';
+import {ReactComponent as SearchIcon} from './Search.svg';
+import {Card, CardText, CardBody} from 'reactstrap';
 
 export default class Home extends Component {
 
