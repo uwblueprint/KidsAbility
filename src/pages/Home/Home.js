@@ -7,21 +7,10 @@ import { ReactComponent as SearchIcon } from './Search.svg';
 import { Container, Card, Col, Row,  CardImg, CardText, CardBody,
                                       CardTitle, CardSubtitle } from 'reactstrap';
 
-//import { Card, ListItem, Button, Icon } from 'react-native-elements';
-
-/*
-Plan: Use Card to have the image and text stored in it and make it clickable
-      Then use the Division for Row and Column to make three Cards for the three options
-      And in row above it, have the Hello, NAME text
-*/
 export default class Home extends Component {
 
-    //This is a constructor
     constructor(props) {
-        // This is allowing us to use any props that might have been passed from our
-        // parent
         super(props);
-
         this.state = {
             redirect: false,
             redirectTo: "/"
@@ -37,6 +26,7 @@ export default class Home extends Component {
             this.setState({user: "beautiful"})
         }
     }
+
     // each Card contains the card block, and stretched-link is used to make the whole card clickable
     render() {
         return (
