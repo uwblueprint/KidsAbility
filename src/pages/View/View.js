@@ -268,27 +268,27 @@ export default class View extends Component {
         this.data = groupData(overlappingTimes, this.state.searchParams);
 
 
-        console.log(this.data);
-        console.log(this.state.searchParams);
-        //This handles bi-weekly and monthly
-        if (this.state.searchParams){
-            let i = 0;
-            if (this.state.searchParams.recurrence.value == "bi-weekly"){
-                i = 2;
-            }
-            if (this.state.searchParams.recurrence.value == "monthly"){
-                i = 4;
-            }
-            if (i != 0){
-                for (const [key, value] of Object.entries(this.data)) {
-                    if (key % i != 0) {
-                        console.log("changing data");
-                        delete this.data[key];
-                    }
-                }
-            }
-        }
-        console.log(this.data);
+        // console.log(this.data);
+        // console.log(this.state.searchParams);
+        // //This handles bi-weekly and monthly
+        // if (this.state.searchParams){
+        //     let i = 0;
+        //     if (this.state.searchParams.recurrence.value == "bi-weekly"){
+        //         i = 2;
+        //     }
+        //     if (this.state.searchParams.recurrence.value == "monthly"){
+        //         i = 4;
+        //     }
+        //     if (i != 0){
+        //         for (const [key, value] of Object.entries(this.data)) {
+        //             if (key % i != 0) {
+        //                 console.log("changing data");
+        //                 delete this.data[key];
+        //             }
+        //         }
+        //     }
+        // }
+        // console.log(this.data);
 
 
 
