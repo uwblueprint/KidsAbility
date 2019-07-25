@@ -34,6 +34,7 @@
     "react-scripts": "^2.1.8",
     "react-scrollbar": "^0.5.4",
     "react-select": "^2.4.1",
+    "reactstrap": "^8.0.1",
     "redux": "^4.0.1"
   },
   "scripts": {
