@@ -1,40 +1,41 @@
-.table td {
-  padding: 5px calc(1.5vh + 1vw);
-  width: auto;
-  text-align: left;
-}
-
-.table th {
-  padding: 5px calc(4vh - 10px);
-  width: calc(5vw + 100px);
-  text-align: left;
-}
-
 .table {
   background-color: white;
   padding-top: 1%;
   padding-left: 5%;
   padding-right: 5%;
   padding-bottom: 5%;
-  width: %;
   max-width: 100%;
   margin-bottom: calc(5% + 1cm);
 }
 
-.time-heading {
-  min-width: calc(11vw + 100px) !important;
+.table tbody {
+  display: block;
+  overflow: auto;
+  height: 50vh;
+  width: 100%;
 }
 
-thead tr{
-    display: block;
-    border-bottom: 1px solid blue;
+.table thead tr {
+  display: block;
+  border-bottom: 1px solid blue;
 }
 
-.table-content {
-  display:block;
-  overflow:auto;
-  height:50vh;
-  width:100%;
+.table td, th {
+  padding: 5px;
+  width: 150px;
+  text-align: left;
+}
+
+.table td:nth-child(2), th:nth-child(2) {
+  width: 250px;
+}
+.table td:nth-child(5), th:nth-child(5) {
+  width: 100px;
+}
+
+.table .section-header {
+  padding-top: 10px;
+  color: purple;
 }
 
 .dots {
@@ -47,12 +48,6 @@ thead tr{
   border-radius: 50%;
   margin-right: 2%;
 }
-
-.section-header {
-  padding-top: 10px;
-  color: purple;
-}
-
 
 tbody::-webkit-scrollbar {
     width: 0.5em;
@@ -85,8 +80,7 @@ tbody::-webkit-scrollbar-thumb {
 }
 
 .notebox {
-  margin: 5px 20px;
-  width: 90%;
+  width: 100%;
   resize: none;
   border-radius: 3px;
 }
@@ -105,16 +99,11 @@ tbody::-webkit-scrollbar-thumb {
   outline: none;
 }
 
-  .save-note:hover{
-    cursor: pointer;
-    color: #00FF00;
-    background: white;
-    box-shadow: none;
-  }
-
-.section-header {
-  padding-top: 10px !important;
-  color: purple;
+.save-note:hover{
+  cursor: pointer;
+  color: #00FF00;
+  background: white;
+  box-shadow: none;
 }
 
 .save-button:hover {
