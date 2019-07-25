@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import Select from 'react-select';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import './Search.css';
 import LOCATIONS from '../../constants/locations';
 import PROGRAMS from '../../constants/programs'
-import {Router, Route, Switch, Redirect, Link} from 'react-router';
-import ScrollArea from 'react-scrollbar'
+import { setHours, setMinutes } from 'date-fns';
+import { Redirect } from 'react-router-dom';
 
 /* Array of { value: location_key, label: location_label } objects */
 let LOCATION_OPTIONS = []
@@ -18,105 +20,28 @@ for (const [key, value] of Object.entries(PROGRAMS)) {
     PROGRAM_OPTIONS.push({value: key, label: value.description})
 }
 
-const TIME_REQUIRED = [
-  {value: 15, label: '15 mins'},
-  {value: 30, label: '30 mins'},
-  {value: 45, label: '45 mins'},
-  {value: 60, label: '60 mins'},
-  {value: 120, label: '2 hours'},
-  {value: 180, label: '3 hours'},
-  {value: 240, label: '4 hours'},
-  {value: 480, label: '8 hours'}
-]
-
-/*
-should this NOT be a dropdown?
-i.e. can the clinician put in ANYTHING?
-do clinicians ever book an extremely large number of sessions at once?
-or is the max they ever do like 10 or something?
-pro for using dropdown: restricts input to only valid inputs
-con: limited range
-*/
-const NUM_SESSIONS = [
-  {value: 1, label: '1'},
-  {value: 2, label: '2'},
-  {value: 3, label: '3'},
-  {value: 4, label: '4'},
-  {value: 5, label: '5'},
-  {value: 6, label: '6'},
-  {value: 7, label: '7'},
-  {value: 8, label: '8'},
-  {value: 9, label: '9'},
-  {value: 10, label: '10'}
-]
-
-const recurrenceOptions = [
-    {value: "Any", label: "Any"},
-    {value: "weekly", label: "Weekly"},
-    {value: "bi-weekly", label: "Bi-Weekly"},
-    {value: "monthly", label: "Monthly"},
-]
-
-/* does this need to be radio buttons? */
-const TimeofDay = [
-  {value: 'anytime', label: 'Anytime'},
-  {value: 'morning', label: 'Morning'},
-  {value: 'afternoon', label: 'Afternoon'}
-]
-
-const daysOfWeekOptions = [
-  {value: 'Monday', label: 'Monday'},
-  {value: 'Tuesday', label: 'Tuesday'},
-  {value: 'Wednesday', label: 'Wednesday'},
-  {value: 'Thursday', label: 'Thursday'},
-  {value: 'Friday', label: 'Friday'},
-]
-
 export default class Search extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      name: null,
-      service: PROGRAM_OPTIONS[0],
-      location: LOCATION_OPTIONS[0],
-      time: TIME_REQUIRED[1],
-      sessions: NUM_SESSIONS[0],
-      timeOfDay: TimeofDay[0],
-      daysOfWeek: daysOfWeekOptions[0],
+      clinicians: [],
+      services: [],
+      location: null,
+      minTime: 30,
+      startDate: new Date(),
+      endDate: null,
+      startTime: setHours(setMinutes(new Date(), 0), 8),
+      endTime: null,
       redirect: false,
       searchId: null,
-      recurrence: recurrenceOptions[0],
     };
   }
-  componentWillMount = () => {
-
-      //load in the locations
-      let locations = [];
-      for (const [key, value] of Object.entries(LOCATIONS)) {
-          locations.push({value: key, label: value.description});
-      }
-      this.setState({locations: locations});
-      this.setState({location: locations[0]});
-
-      //load in the programs
-      let programs = [];
-      for (const [key, value] of Object.entries(PROGRAMS)) {
-          programs.push({value: key, label: value.description})
-      }
-      this.setState({programs: programs});
-      this.setState({service: programs[0]});
-      this.setState({redirect: false});
+  componentDidMount = () => {
 
       //load in clinicians
       this.props.getCliniciansAPI().then((res) => {
-          const any_option = {
-              value: "Any",
-              label: "Any",
-              First: "Any",
-              Last: "",
-          }
-          let clinicians = [any_option];
+          let clinicians = [];
           res.forEach((name) => {
               let value = name._id.First + " " + name._id.Last;
               let option = {
@@ -127,116 +52,99 @@ export default class Search extends Component {
               }
               clinicians.push(option);
           });
-          this.setState({ clinicians: clinicians });
+          this.setState({ allClinicians: clinicians });
       });
-      //this.props.getScheduleAPI("RHONDA","MACKINNON").then(res => console.log(res)).catch(err => console.log(err));
 
       let searchId = this.props.hidden.match.params.searchId;
 
       //Use the id to get the search params
       if (searchId) {
           this.props.getSearchAPI(searchId).then((res) => {
-              console.log(res);
-              console.log(res[0].names);
-              let names = [];
-              let services = [];
-              for (let i = 0; i < res[0].names.length; i++) {
-                  names.push(res[0].names[i][0]);
-              }
-              for (let i = 0; i < res[0].services.length; i++) {
-                  services.push(res[0].services[i][0]);
-              }
-              this.setState({
-                  name: names,
-                  service: services,
-                  location: res[0].location,
-                  time: res[0].time,
-                  sessions: res[0].numSessions,
-                  timeOfDay: res[0].timeOfDay,
-                  recurrence: res[0].recurrence,
+              this.setState(state => ({
+                  clinicians: res.names,
+                  services: res.services,
+                  location: res.location,
+                  minTime: res.minTime,
+                  startDate: new Date(res.startDate),
+                  endDate: res.endDate ? new Date(res.endDate) : null,
+                  startTime: res.startTime ? new Date(res.startTime) : new Date(state.startTime),
+                  endTime: res.endTime ? new Date(res.endTime) : null,
                   //TODO: add recurrence
                   //do we add something here for daysOfWeek?
-              })
+              }))
           });
       }
   }
-  handleChange1 = (name) => {
-      if (name.length === 0){
-          this.setState({name: null});
-      } else {
-          this.setState({name: name});
-      }
-      console.log(`Option selected name:`, name)
+  
+  updateClinicians = (name) => {
+    if (name.length === 0) {
+      this.setState({ clinicians: [] });
+    } else {
+      this.setState({ clinicians: name });
+    }
   }
 
-  handleChange2 = (service) => {
-    this.setState({service: service})
-    console.log(`Option selected:`, service)
+  updateServices = (services) => {
+    this.setState({ services });
   }
 
-  handleChange3 = (location) => {
-    this.setState({location: location})
-    console.log(`Option selected:`, location)
+  changeLocation = (location) => {
+    this.setState({ location });
   }
 
-  handleChange4 = (time) => {
-    this.setState({time: time})
-    console.log(`Option selected:`, time)
+  increaseMinTime = () => {
+    if (this.state.minTime < 270) {
+      this.setState(state => ({ minTime: state.minTime + 15 }));
+    }
   }
 
-  handleChange5 = (sessions) => {
-    this.setState({sessions: sessions})
-    console.log(`Option selected:`, sessions)
+  decreaseMinTime = () => {
+    if (this.state.minTime > 0) {
+      this.setState(state => ({ minTime: state.minTime - 15 }));
+    }
   }
 
-  handleChange6 = (timeOfDay) => {
-    this.setState({timeOfDay: timeOfDay})
-    console.log(`Option selected:`, timeOfDay)
+  changeStartDate = (date) => {
+    this.setState({
+      startDate: date,
+    });
   }
 
-  handleChange7 = (recurrence) => {
-    this.setState({recurrence: recurrence})
-    console.log(`Option selected:`, recurrence)
+  changeEndDate = (date) => {
+    this.setState({
+      endDate: date,
+    });
   }
 
-  handleChange8 = (daysOfWeek) => {
-    this.setState({daysOfWeek: daysOfWeek})
-    console.log(`Option selected:`, daysOfWeek)
+  changeStartTime = (time) => {
+    this.setState({
+      startTime: time,
+    });
+  }
+
+  changeEndTime = (time) => {
+    this.setState({
+      endTime: time,
+    });
   }
 
   handleSubmit = () => {
-    let names = this.state.name
-    if (names != null && this.state.name.map(a => a.value).includes("Any")) {
-      //get all names from clinician name drop down except the 1st one ("Any")
-      names = this.state.clinicians.slice(1);
-    }
-    let services = this.state.service;
+    let names = this.state.clinicians;
+    let services = this.state.services;
     let location = this.state.location;
-    let time = this.state.time;
-    let numSessions = this.state.sessions;
-    let timeOfDay = this.state.timeOfDay;
-    let recurrence = this.state.recurrence;
-    let daysOfWeek = this.state.daysOfWeek;
 
     let info = {
         names,
         services,
         location,
-        time,
-        numSessions,
-        timeOfDay,
-        recurrence,
-        daysOfWeek,
+        minTime: this.state.minTime,
+        startDate: this.state.startDate,
+        endDate: this.state.endDate,
+        startTime: this.state.startTime,
+        endTime: this.state.endTime,
     }
-
-    //Do some basic error checking
-    if (!names || !services || !location || !time || !numSessions || !timeOfDay || !daysOfWeek){
-        console.log("Please fill out all fields")
-    }
-    else {
-        this.setState({info: info, redirect: true});
-        console.log(this.state.info);
-    }
+    
+    this.setState({ info: info, redirect: true });
   }
 
 
@@ -255,95 +163,159 @@ export default class Search extends Component {
   }
 
   render() {
-
-    console.log(this.state.clinicians);
-
-    const {
-      name,
-      service,
+    const { 
+      clinicians,
+      services,
       location,
-      time,
-      sessions,
-      timeOfDay,
-      recurrence,
-      daysOfWeek,
     } = this.state;
-
-    console.log(this.state.searchId);
-
-    let renderRedirect;
+    
     if (this.state.redirect && this.state.searchId){
-
-        let path = "/view-search/"+this.state.searchId;
-        this.props.history.push("/edit-time/"+this.state.searchId);
-        return <Redirect to={path}/>
+      let path = "/view-search/"+this.state.searchId;
+      return <Redirect to={path}/>
     }
 
     return (
-              <div className="row">
-                <h1> Find Available Times </h1>
-                <div className="column">
-                  <div className="headingRow">
-                     Clinician Name(s) or ID(s) <font color="red">[Required]</font >
-                  </div>
-                  <Select className="dropdown"
-                    name="Clinician"
-                    isMulti
-                    value={name}
-                    onChange={this.handleChange1}
-                    options={this.state.clinicians}
-                  />
-                  <div className="headingRow"> Service Type </div>
-                  <Select className="dropdown"
-                    isMulti
-                    value={service}
-                    onChange={this.handleChange2}
-                    options={PROGRAM_OPTIONS}
-                  />
-                   <div className="headingRow"> Number of Sessions </div>
-                  <Select className="dropdown"
-                    value={sessions}
-                    onChange={this.handleChange5}
-                    options={NUM_SESSIONS}
-                  />
-                  <div className="headingRow"> Day of the Week </div>
-                  <Select className="dropdown"
-                    value={daysOfWeek}
-                    onChange={this.handleChange8}
-                    options={daysOfWeekOptions}
-                  />
+      <div className="Search">
+        <div className="Search__title-wrapper">
+          <h1 className="Search__title">Find Available Times</h1>
+          <img src="/icons/find.svg" alt="Find"/>
+        </div>
+        <div className="Section">
+          <div className="Section__header">Service Details</div>
+          <div className="Section__form">
+            <div className="Section__form-field">
+              <label htmlFor="clinician" className="Section__form-label">Clinician Name</label>
+              <Select
+                name="clinician"
+                id="clinician"
+                isMulti
+                placeholder="Any clinician"
+                styles={{ placeholder: () => ({ color: 'black' }) }}
+                value={clinicians}
+                onChange={this.updateClinicians}
+                options={this.state.allClinicians}
+              />
+            </div>
+            <div className="Section__form-field">
+              <label htmlFor="service-type" className="Section__form-label">Service or program</label>
+              <Select
+                name="service-type"
+                id="service-type"
+                isMulti
+                placeholder="Any program or service"
+                styles={{ placeholder: () => ({ color: 'black' }) }}
+                value={services}
+                onChange={this.updateServices}
+                options={PROGRAM_OPTIONS}
+              />
+            </div>
+            <div className="Section__form-field">
+              <label htmlFor="location" className="Section__form-label">Location</label>
+              <Select
+                name="location"
+                id="location"
+                placeholder="Any location"
+                styles={{ placeholder: () => ({ color: 'black' }) }}
+                value={location}
+                onChange={this.changeLocation}
+                options={LOCATION_OPTIONS}
+              />
+            </div>
+            <div className="Section__form-field">
+              <label htmlFor="location" className="Section__form-label">Minimum time</label>
+              <div className="Section__form-rocker">
+                <img
+                  className="Section__form-rocker-input"
+                  onClick={this.decreaseMinTime}
+                  src="/icons/minus.svg"
+                  alt="Minus"/>
+                <div className="Section__form-rocker-value">
+                  { this.state.minTime } mins
                 </div>
-                <div className="column">
-                  <div className="headingColumn"> Min. Time Required </div>
-                  <Select className="dropdown"
-                    value={time}
-                    onChange={this.handleChange4}
-                    options={TIME_REQUIRED}
-                  />
-                  <div className="headingColumn"> Location </div>
-                  <Select className="dropdown"
-                    value={location}
-                    onChange={this.handleChange3}
-                    options={LOCATION_OPTIONS}
-                  />
-                  <div className="headingColumn"> Recurrence </div>
-                  <Select className="dropdown"
-                    value={recurrence}
-                    onChange={this.handleChange7}
-                    options={recurrenceOptions}
-                  />
-                  <div className="headingColumn"> Time of Day </div>
-                  <Select className="dropdown"
-                    value={timeOfDay}
-                    onChange={this.handleChange6}
-                    options={TimeofDay}
-                  />
-                  <button
-                      className="button"
-                      onClick={this.handleSubmit}>
-                      Search
-                  </button>
-                </div>
+                <img
+                  className="Section__form-rocker-input"
+                  onClick={this.increaseMinTime}
+                  src="/icons/plus.svg"
+                  alt="Plus"/>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="Section">
+          <div className="Section__header">Date and Time Range</div>
+          <div className="Section__form">
+            <div className="Section__split-form-field">
+              <div className="Section__form-field">
+                <label htmlFor="start-date" className="Section__form-label">Start date</label>
+                <DatePicker
+                  name="start-date"
+                  id="start-date"
+                  className="DatePicker"
+                  selected={this.state.startDate}
+                  onChange={this.changeStartDate}
+                  maxDate={this.state.endDate}
+                />
+              </div>
+              <div className="Section__split-form-field-divider" />
+              <div className="Section__form-field">
+                <label htmlFor="end-date" className="Section__form-label">End date</label>
+                <DatePicker
+                  name="end-date"
+                  id="end-date"
+                  className="DatePicker"
+                  selected={this.state.endDate}
+                  onChange={this.changeEndDate}
+                  minDate={this.state.startDate}
+                />
+              </div>
+            </div>
+            <div className="Section__split-form-field">
+              <div className="Section__form-field">
+                <label htmlFor="start-time" className="Section__form-label">Start time</label>
+                <DatePicker
+                  name="start-time"
+                  id="start-time"
+                  className="DatePicker"
+                  selected={this.state.startTime}
+                  onChange={this.changeStartTime}
+                  showTimeSelect
+                  showTimeSelectOnly
+                  timeIntervals={15}
+                  dateFormat="h:mm aa"
+                  timeCaption="Time"
+                  minTime={setHours(setMinutes(new Date(), 0), 8)}
+                  maxTime={this.state.endTime ?
+                      this.state.endTime - (15 * 60000)
+                    : setHours(setMinutes(new Date(), 45), 19)
+                  }
+                />
+              </div>
+              <div className="Section__split-form-field-divider" />
+              <div className="Section__form-field">
+                <label htmlFor="end-time" className="Section__form-label">End time</label>
+                <DatePicker
+                  name="end-time"
+                  id="end-time"
+                  className="DatePicker"
+                  selected={this.state.endTime}
+                  onChange={this.changeEndTime}
+                  showTimeSelect
+                  showTimeSelectOnly
+                  timeIntervals={15}
+                  dateFormat="h:mm aa"
+                  timeCaption="Time"
+                  minTime={new Date(this.state.startTime.getTime() + (15 * 60000))}
+                  maxTime={setHours(setMinutes(new Date(), 0), 20)}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <button 
+            className="Search__submit" 
+            onClick={this.handleSubmit}>
+            Search
+        </button>
       </div>
     );
   }

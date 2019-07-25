@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import ChartView from './ChartView/ChartView';
 import CalendarView from './CalendarView/CalendarView';
-import { Redirect } from 'react-router';
+import { Redirect } from 'react-router-dom';
 import { Checkbox } from '@material-ui/core';
 import palette from 'google-palette';
 import moment from 'moment';
@@ -33,9 +33,9 @@ const compareFunction = (a, b) => {
 }
 
 // create an array of available times grouped by weeks
-const processData = (data) => {
+const processData = (data, searchParams) => {
     const sortedData = data.sort(compareFunction);
-    return getAvailableTimes(sortedData);
+    return getAvailableTimes(sortedData, searchParams);
 }
 
 // find overlapping times from two arrays of time slots
@@ -73,8 +73,9 @@ const groupData = (data, searchParams) => {
     const groupedData = {}
     data
         .filter(elem =>
-            moment().startOf('date').diff(mnt(elem.Date), 'days') <= 0 &&
-            moment(elem.End, 'h:mm').diff(moment(elem.Start, 'h:mm'), 'minutes') > searchParams.time.value)
+            moment(searchParams.startDate).diff(mnt(elem.Date), 'days') <= 0 &&
+            (!searchParams.endDate || mnt(elem.Date).diff(moment(searchParams.endDate), 'days') <= 0) &&
+            moment(elem.End, 'h:mm').diff(moment(elem.Start, 'h:mm'), 'minutes') > searchParams.minTime)
         .sort(compareFunction)
         .forEach(elem => {
             let key = (moment().diff(mnt(elem.Date), 'weeks')) * -1;
@@ -89,8 +90,14 @@ const groupData = (data, searchParams) => {
 }
 
 // find available times from booked times returned from mongo
-const getAvailableTimes = (sortedData) => {
+const getAvailableTimes = (sortedData, searchParams) => {
     const availableTimes = [];
+    const dayEnd = searchParams.endTime ?
+            moment(searchParams.endTime).format('H:mm')
+        :   DAY_END;
+    const dayStart = searchParams.startTime ?
+            moment(searchParams.startTime).format('H:mm')
+        :   DAY_START;
     sortedData.forEach((elem, index) => {
         if (index === sortedData.length - 1) return;
         // add full day time slots between today and first booked slot (excluding weekends)
@@ -111,12 +118,12 @@ const getAvailableTimes = (sortedData) => {
             // }
         }
         // add time slots between DAY_START and first booked slot of the day
-        if ((index === 0 || sortedData[index - 1].Date !== elem.Date) && elem.Start !== DAY_START) {
+        if ((index === 0 || sortedData[index - 1].Date !== elem.Date) && elem.Start !== dayStart) {
             availableTimes.push({
                 id: elem.ID,
                 Names: [`${elem.FirstName} ${elem.LastName}`],
                 Date: elem.Date,
-                Start: DAY_START,
+                Start: dayStart,
                 End: elem.Start,
                 Location: elem.Location,
             });
@@ -132,14 +139,14 @@ const getAvailableTimes = (sortedData) => {
                 Location: elem.Location,
             });
         }
-        // add time slots between the last booked slot of the day and DAY_END
-        if (sortedData[index + 1].Date !== elem.Date && elem.end !== DAY_END) {
+        // add time slots between the last booked slot of the day and DAY_END 
+        if (sortedData[index + 1].Date !== elem.Date && elem.end !== dayEnd) {
             availableTimes.push({
                 id: elem.ID,
                 Names: [`${elem.FirstName} ${elem.LastName}`],
                 Date: elem.Date,
                 Start: elem.End,
-                End: DAY_END,
+                End: dayEnd,
                 Location: elem.Location,
             })
         }
@@ -151,8 +158,8 @@ const getAvailableTimes = (sortedData) => {
                     id: elem.ID,
                     Names: [`${elem.FirstName} ${elem.LastName}`],
                     Date: currentDay.format('DD-MMM-YY'),
-                    Start: DAY_START,
-                    End: DAY_END,
+                    Start: dayStart,
+                    End: dayEnd,
                     Location: elem.Location,
                 });
             }
@@ -182,41 +189,34 @@ export default class View extends Component {
         let searchId = this.props.hidden.match.params.searchId;
         //Use the id to get the search params
         this.props.getSearchAPI(searchId).then((res) => {
-            this.setState({ searchParams: res[0] });
-
-            if (res[0].timeOfDay.value == "afternoon"){
-                DAY_START = '13:00';
-                DAY_END = '20:00';
-            }
-
-            if (res[0].timeOfDay.value == "morning"){
-                DAY_START = '8:00';
-                DAY_END = '13:00';
-            }
-
+            const searchParams = res;
+            this.setState({ searchParams: res });
             //For every name in the seach ->
 
             // the mpn65 palette is better (more distinct colours) but tol-rainbow has more colours
-            var palette_type = (res[0].names.length <= 65) ? ('mpn65') : ('tol-rainbow')
-            var colors_list = palette(palette_type, res[0].names.length)
+            var palette_type = (res.names.length <= 65) ? ('mpn65') : ('tol-rainbow')
+            var colors_list = palette(palette_type, res.names.length)
 
             //For every name in the search ->
             //  - Add the clinician name to the list of clinicians (dict)
             //  - Add the dates together
-            Promise.all(res[0].names.map((name, index) => {
-                this.clinicians[name[0].label] = {
-                    name: [name[0].label],
+            Promise.all(res.names.map((name, index) => {
+                this.clinicians[name.label] = {
+                    name: [name.label],
                     color: '#'.concat(colors_list[index])
                 }
 
-                this.state.availableTimes[name[0].label] = [];
-                this.state.cliniciansFilter[name[0].label] = true;
+                this.state.availableTimes[name.label] = [];
+                this.state.cliniciansFilter[name.label] = true;
 
-                return this.props.getScheduleAPI(name[0].First, name[0].Last)
+                const [ firstName, lastName ] = name.value.split(' ');
+                
+                return this.props.getScheduleAPI(firstName, lastName)
                     .then((res) => {
-                        const availableTimes = processData(res);
+                        console.log(name);
+                        const availableTimes = processData(res, searchParams);
                         this.state.data.push(availableTimes);
-                        this.state.availableTimes[name[0].label].push(availableTimes);
+                        this.state.availableTimes[name.label].push(availableTimes);
                     });
             }))
             .then(() => this.setState({ ready: true }));
@@ -268,27 +268,27 @@ export default class View extends Component {
         this.data = groupData(overlappingTimes, this.state.searchParams);
 
 
-        console.log(this.data);
-        console.log(this.state.searchParams);
-        //This handles bi-weekly and monthly
-        if (this.state.searchParams){
-            let i = 0;
-            if (this.state.searchParams.recurrence.value == "bi-weekly"){
-                i = 2;
-            }
-            if (this.state.searchParams.recurrence.value == "monthly"){
-                i = 4;
-            }
-            if (i != 0){
-                for (const [key, value] of Object.entries(this.data)) {
-                    if (key % i != 0) {
-                        console.log("changing data");
-                        delete this.data[key];
-                    }
-                }
-            }
-        }
-        console.log(this.data);
+        // console.log(this.data);
+        // console.log(this.state.searchParams);
+        // //This handles bi-weekly and monthly
+        // if (this.state.searchParams){
+        //     let i = 0;
+        //     if (this.state.searchParams.recurrence.value == "bi-weekly"){
+        //         i = 2;
+        //     }
+        //     if (this.state.searchParams.recurrence.value == "monthly"){
+        //         i = 4;
+        //     }
+        //     if (i != 0){
+        //         for (const [key, value] of Object.entries(this.data)) {
+        //             if (key % i != 0) {
+        //                 console.log("changing data");
+        //                 delete this.data[key];
+        //             }
+        //         }
+        //     }
+        // }
+        // console.log(this.data);
 
 
 

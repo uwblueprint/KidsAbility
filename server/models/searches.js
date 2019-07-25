@@ -1,30 +1,4 @@
 var mongoose = require('mongoose');
-	
-	
-var searchSchema = new mongoose.Schema({	
-    names: {
-		type: [[name]]
-	},
-	services: { 
-		type: [[service]]
-	},
-	location: {
-		type: {locationSchema}
-	},
-	time: {
-		type: {time}
-	},
-	timeOfDay: {
-		type: {timeOfDay}
-	},
-	numSessions: {
-		type: {numSession}
-	},
-	recurrence: {
-		type: {recurrenceSchema}
-	}
-}, { collection: 'searches' });
-
 
 var recurrenceSchema = new mongoose.Schema({
 	label: {
@@ -94,6 +68,19 @@ var timeOfDay = new mongoose.Schema({
 		type: String
 	}
 });
+	
+var searchSchema = new mongoose.Schema({	
+    names: [name],
+	services: [service],
+	location: {
+		type: {locationSchema}
+	},
+	minTime: Number,
+	startDate: Date,
+	endDate: Date,
+	startTime: Date,
+	endTime: Date,
+}, { collection: 'searches' });
 
 
 var Search = mongoose.model('Search', searchSchema);

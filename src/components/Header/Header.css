@@ -1,17 +1,41 @@
-.header-container {
-	position: absolute;
-	top: 0;
-	text-align: left;
-	width: 100%;
-	background: rgb(255, 255, 255);
-	min-height: 2em;
-	max-height: 35px;
+.Header {
+	display: flex;
+	justify-content: space-between;
+	padding: 1em;
+	background-color: #F8F9FA;
+	border-bottom: 1px solid #E1E7EC;
 }
 
-.logo-container {
-	float: left;
-	display: inline-block;
+.Header__logo {
+	color: #5F5FC4;
+	font-weight: bold;
+	font-size: 1.25em;
+}
+.Header__logo:hover, .Header__logo:focus {
+	color: #5F5FC4;
+	text-decoration: none;
 }
 
-.menu-container {
+.Header__links {
+	display: flex;
+}
+
+.Header__link {
+	color: inherit;
+	margin-left: 16px;
+	margin-right: 16px;
+}
+.Header__link:hover, .Header__link:focus {
+	text-decoration: none;
+}
+
+.Header__link > img {
+	margin-right: 8px;
+}
+
+.Header__links-divider {
+	width: 2px;
+	margin-left: 16px;
+	margin-right: 16px;
+	background-color: #CBCBEC;
 }

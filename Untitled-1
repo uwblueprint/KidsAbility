@@ -1,0 +1,3193 @@
+{
+    "_id" : ObjectId("5d0810b2561abe7849106eca"),
+    "Locations" : [ 
+        "WATERLOO"
+    ],
+    "Services" : [ 
+        "BEN"
+    ],
+    "Treatments" : [ 
+        "CLOSE"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 43,
+    "FirstName" : "JEAN",
+    "LastName" : "MALLORY DUNSMORE",
+    "Email" : "jmacleod@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106eae"),
+    "Locations" : [ 
+        "WATERLOO", 
+        "GUELPHIMP"
+    ],
+    "Services" : [ 
+        "BEN", 
+        "ASSESS"
+    ],
+    "Treatments" : [ 
+        "STATHOL", 
+        "NA"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 764,
+    "FirstName" : "CAROLYN",
+    "LastName" : "STEINMAN",
+    "Email" : "asinnaeve@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106ec2"),
+    "Locations" : [ 
+        "WATERLOO", 
+        ""
+    ],
+    "Services" : [ 
+        "BEN", 
+        "RESERVED", 
+        ""
+    ],
+    "Treatments" : [ 
+        "PPL", 
+        "STATHOL", 
+        "NA", 
+        ""
+    ],
+    "Programs" : [ 
+        "NA", 
+        ""
+    ],
+    "ID" : 78,
+    "FirstName" : "DIANA",
+    "LastName" : "MOLLOY",
+    "Email" : "",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106eda"),
+    "Locations" : [ 
+        "CAMBRIDGE"
+    ],
+    "Services" : [ 
+        "BEN", 
+        "SLP-CTI"
+    ],
+    "Treatments" : [ 
+        "STATHOL", 
+        "HP"
+    ],
+    "Programs" : [ 
+        "NA", 
+        "SLP-GEN"
+    ],
+    "ID" : 27,
+    "FirstName" : "KAREN",
+    "LastName" : "BELANGER",
+    "Email" : "aandres@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106eb2"),
+    "Locations" : [ 
+        "WATERLOO", 
+        ""
+    ],
+    "Services" : [ 
+        "MEET", 
+        "DOC"
+    ],
+    "Treatments" : [ 
+        "NA"
+    ],
+    "Programs" : [ 
+        "SW-INTAKE", 
+        "OT-GEN"
+    ],
+    "ID" : 1523,
+    "FirstName" : "RANA",
+    "LastName" : "SHAMI",
+    "Email" : "eset@kidsabiliy.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106ead"),
+    "Locations" : [ 
+        ""
+    ],
+    "Services" : [ 
+        "VAC"
+    ],
+    "Treatments" : [ 
+        "NA"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 1547,
+    "FirstName" : "MARIA",
+    "LastName" : "TAYLOR",
+    "Email" : "msteinman@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106eab"),
+    "Locations" : [ 
+        "KITCHENER", 
+        "ARTHUR"
+    ],
+    "Services" : [ 
+        "LEAVE", 
+        "A-CL-LUNCH"
+    ],
+    "Treatments" : [ 
+        "MLOA", 
+        "NA"
+    ],
+    "Programs" : [ 
+        "NA", 
+        "OAP"
+    ],
+    "ID" : 1538,
+    "FirstName" : "AMY",
+    "LastName" : "WETTLAUFER",
+    "Email" : "",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106ec8"),
+    "Locations" : [ 
+        "GUELPHIMP"
+    ],
+    "Services" : [ 
+        "ASSESS"
+    ],
+    "Treatments" : [ 
+        "NA"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 1280,
+    "FirstName" : "ADRIANA",
+    "LastName" : "GEORGE",
+    "Email" : "",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106eaa"),
+    "Locations" : [ 
+        "WATERLOO", 
+        "OTHER"
+    ],
+    "Services" : [ 
+        "MEET"
+    ],
+    "Treatments" : [ 
+        "NA"
+    ],
+    "Programs" : [ 
+        "SLP-GEN"
+    ],
+    "ID" : 56,
+    "FirstName" : "NORMA",
+    "LastName" : "WISEMAN",
+    "Email" : "nwilliams@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106eb3"),
+    "Locations" : [ 
+        "WATERLOO"
+    ],
+    "Services" : [ 
+        "MEET"
+    ],
+    "Treatments" : [ 
+        "NA"
+    ],
+    "Programs" : [ 
+        "SW-INTAKE"
+    ],
+    "ID" : 1266,
+    "FirstName" : "BRAD",
+    "LastName" : "SINNAEVE",
+    "Email" : "rshami@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106eb7"),
+    "Locations" : [ 
+        "NA"
+    ],
+    "Services" : [ 
+        "RESERVED", 
+        "BEN"
+    ],
+    "Treatments" : [ 
+        "NA", 
+        "STATHOL"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 1282,
+    "FirstName" : "MEAGHAN",
+    "LastName" : "RODRIGUEZ",
+    "Email" : "",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106ec0"),
+    "Locations" : [ 
+        ""
+    ],
+    "Services" : [ 
+        "LEAVE"
+    ],
+    "Treatments" : [ 
+        "MLOA"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 1413,
+    "FirstName" : "KAROLINA",
+    "LastName" : "EASTER",
+    "Email" : "",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106ee6"),
+    "Locations" : [ 
+        "", 
+        "GUELPHIMP", 
+        "WATERLOO"
+    ],
+    "Services" : [ 
+        "VAC", 
+        "INTAKE-V", 
+        "BEN"
+    ],
+    "Treatments" : [ 
+        "NA", 
+        "ENHANCED", 
+        "STATHOL"
+    ],
+    "Programs" : [ 
+        "INTAKE", 
+        "NA"
+    ],
+    "ID" : 132,
+    "FirstName" : "MARIA",
+    "LastName" : "STEINMAN",
+    "Email" : "CSlomka@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106ee7"),
+    "Locations" : [ 
+        "WATERLOO"
+    ],
+    "Services" : [ 
+        "MEET"
+    ],
+    "Treatments" : [ 
+        "NA"
+    ],
+    "Programs" : [ 
+        "SW-INTAKE"
+    ],
+    "ID" : 1266,
+    "FirstName" : "RANA",
+    "LastName" : "SIMPSON",
+    "Email" : "rshami@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106eb6"),
+    "Locations" : [ 
+        "", 
+        "CAMBZEBRA", 
+        "NA"
+    ],
+    "Services" : [ 
+        "VAC", 
+        "RESERVED", 
+        "SLP-BTI", 
+        "CI", 
+        "BEN"
+    ],
+    "Treatments" : [ 
+        "IT", 
+        "STATHOL", 
+        "NA"
+    ],
+    "Programs" : [ 
+        "SLP-GEN", 
+        "NA"
+    ],
+    "ID" : 1282,
+    "FirstName" : "SHEILA",
+    "LastName" : "RODRIGUEZ",
+    "Email" : "",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106eb9"),
+    "Locations" : [ 
+        "WATERLOO"
+    ],
+    "Services" : [ 
+        "BEN", 
+        "RESERVED"
+    ],
+    "Treatments" : [ 
+        "STATHOL", 
+        "NA"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 1013,
+    "FirstName" : "MICHELLE",
+    "LastName" : "REITZEL",
+    "Email" : "mreed@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106ebd"),
+    "Locations" : [ 
+        "NA"
+    ],
+    "Services" : [ 
+        "BEN"
+    ],
+    "Treatments" : [ 
+        "CLOSE", 
+        "STATHOL"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 1380,
+    "FirstName" : "ALYSSA",
+    "LastName" : "PUDDIFORD",
+    "Email" : "apolley@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106edf"),
+    "Locations" : [ 
+        "KITCHENER"
+    ],
+    "Services" : [ 
+        "BEN"
+    ],
+    "Treatments" : [ 
+        "CLOSE"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 1031,
+    "FirstName" : "JENNA",
+    "LastName" : "KOEHLER",
+    "Email" : "",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106ee9"),
+    "Locations" : [ 
+        ""
+    ],
+    "Services" : [ 
+        "LEAVE"
+    ],
+    "Treatments" : [ 
+        "MLOA"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 1413,
+    "FirstName" : "KAROLINA",
+    "LastName" : "DZELME",
+    "Email" : "",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106eb8"),
+    "Locations" : [ 
+        ""
+    ],
+    "Services" : [ 
+        "RESERVED"
+    ],
+    "Treatments" : [ 
+        "NA"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 1437,
+    "FirstName" : "MEAGHAN",
+    "LastName" : "REITZEL",
+    "Email" : "kreitzel@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106ebb"),
+    "Locations" : [ 
+        ""
+    ],
+    "Services" : [ 
+        ""
+    ],
+    "Treatments" : [ 
+        ""
+    ],
+    "Programs" : [ 
+        ""
+    ],
+    "ID" : 1542,
+    "FirstName" : "HEATHER",
+    "LastName" : "RAJASRI",
+    "Email" : "",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106ede"),
+    "Locations" : [ 
+        "WATERLOO", 
+        ""
+    ],
+    "Services" : [ 
+        "THERAPY", 
+        "CI"
+    ],
+    "Treatments" : [ 
+        "NA"
+    ],
+    "Programs" : [ 
+        "NA", 
+        "OT-GEN"
+    ],
+    "ID" : 117,
+    "FirstName" : "NATALIE",
+    "LastName" : "DEDMAN",
+    "Email" : "cconyard@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106ee8"),
+    "Locations" : [ 
+        "KITCHENER", 
+        "WATERLOO"
+    ],
+    "Services" : [ 
+        "LEAVE", 
+        "MEET"
+    ],
+    "Treatments" : [ 
+        "MLOA", 
+        "NA"
+    ],
+    "Programs" : [ 
+        "NA", 
+        "CDA-GEN"
+    ],
+    "ID" : 29,
+    "FirstName" : "HILLARY",
+    "LastName" : "BEUERMANN",
+    "Email" : "abenest@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106ee3"),
+    "Locations" : [ 
+        "", 
+        "WATERLOO"
+    ],
+    "Services" : [ 
+        "RESERVED", 
+        "CLINIC"
+    ],
+    "Treatments" : [ 
+        "NA"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 1013,
+    "FirstName" : "KELLY",
+    "LastName" : "REITZEL",
+    "Email" : "mreed@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106eb5"),
+    "Locations" : [ 
+        ""
+    ],
+    "Services" : [ 
+        "BEN"
+    ],
+    "Treatments" : [ 
+        "STATHOL"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 750,
+    "FirstName" : "SHEILA",
+    "LastName" : "RUTLEDGE",
+    "Email" : "srodriguez@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106ebe"),
+    "Locations" : [ 
+        ""
+    ],
+    "Services" : [ 
+        "RESERVED"
+    ],
+    "Treatments" : [ 
+        "NA"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 52,
+    "FirstName" : "ALYSSA",
+    "LastName" : "POLLEY",
+    "Email" : "mplienegger@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106eb0"),
+    "Locations" : [ 
+        "GUELPHIMP"
+    ],
+    "Services" : [ 
+        "ASSESS"
+    ],
+    "Treatments" : [ 
+        "NA"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 764,
+    "FirstName" : "ALISHA",
+    "LastName" : "SLOMKA",
+    "Email" : "asinnaeve@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106ec9"),
+    "Locations" : [ 
+        "", 
+        "NA"
+    ],
+    "Services" : [ 
+        "LEAVE", 
+        "BEN"
+    ],
+    "Treatments" : [ 
+        "MLOA", 
+        "STATHOL"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 111,
+    "FirstName" : "LINDSAY",
+    "LastName" : "HARTMAN",
+    "Email" : "sgibson@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106ece"),
+    "Locations" : [ 
+        "GUELPHIMP"
+    ],
+    "Services" : [ 
+        "ASSESS"
+    ],
+    "Treatments" : [ 
+        "NA"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 1280,
+    "FirstName" : "ANDREA",
+    "LastName" : "GARCIA RUIZ",
+    "Email" : "",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106edc"),
+    "Locations" : [ 
+        ""
+    ],
+    "Services" : [ 
+        "CI"
+    ],
+    "Treatments" : [ 
+        "NA"
+    ],
+    "Programs" : [ 
+        "SLP-GEN"
+    ],
+    "ID" : 27,
+    "FirstName" : "ALLISON",
+    "LastName" : "BELANGER",
+    "Email" : "aandres@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106ec5"),
+    "Locations" : [ 
+        "WATERLOO", 
+        "K-CLIENT", 
+        "KITCHENER", 
+        ""
+    ],
+    "Services" : [ 
+        "VISIT-IND", 
+        "GROUP", 
+        "ASSESS", 
+        "KITCHENER", 
+        "ADMIN", 
+        "VAC", 
+        "DOC", 
+        "EY-AX"
+    ],
+    "Treatments" : [ 
+        "TX-IND", 
+        "NA", 
+        "SPOT", 
+        "SINGLE-EY", 
+        "SY-GEN"
+    ],
+    "Programs" : [ 
+        "OT-GEN", 
+        "NA"
+    ],
+    "ID" : 131,
+    "FirstName" : "EMILY",
+    "LastName" : "SET",
+    "Email" : "DRutledge@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106ed2"),
+    "Locations" : [ 
+        "NA"
+    ],
+    "Services" : [ 
+        "LEAVE"
+    ],
+    "Treatments" : [ 
+        "MLOA"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 1276,
+    "FirstName" : "SARA",
+    "LastName" : "MENALDO",
+    "Email" : "",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106ee1"),
+    "Locations" : [ 
+        "NA"
+    ],
+    "Services" : [ 
+        "RESERVED"
+    ],
+    "Treatments" : [ 
+        "NA"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 110,
+    "FirstName" : "SHERYL",
+    "LastName" : "DENOMME",
+    "Email" : "sdedman@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106eaf"),
+    "Locations" : [ 
+        "KITCHENER"
+    ],
+    "Services" : [ 
+        "LEAVE"
+    ],
+    "Treatments" : [ 
+        "MLOA"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 143,
+    "FirstName" : "AMY",
+    "LastName" : "WILLIAMS",
+    "Email" : "",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106ec1"),
+    "Locations" : [ 
+        "GUELPHIMP", 
+        "KITCHENER"
+    ],
+    "Services" : [ 
+        "ASSESS", 
+        "RESERVED"
+    ],
+    "Treatments" : [ 
+        "NA"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 122,
+    "FirstName" : "AMY",
+    "LastName" : "HUBER",
+    "Email" : "lhill@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106eac"),
+    "Locations" : [ 
+        ""
+    ],
+    "Services" : [ 
+        "VAC"
+    ],
+    "Treatments" : [ 
+        "NA"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 1105,
+    "FirstName" : "JILL",
+    "LastName" : "VILLAR",
+    "Email" : "JTaylor@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106ec3"),
+    "Locations" : [ 
+        "GUELPHIMP", 
+        "OTHER"
+    ],
+    "Services" : [ 
+        "ASSESS", 
+        "MEET"
+    ],
+    "Treatments" : [ 
+        "NA"
+    ],
+    "Programs" : [ 
+        "NA", 
+        "KIN-SPOT"
+    ],
+    "ID" : 1161,
+    "FirstName" : "ALISHA",
+    "LastName" : "SINNAEVE",
+    "Email" : "bjsimpson@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106ed1"),
+    "Locations" : [ 
+        ""
+    ],
+    "Services" : [ 
+        "BEN"
+    ],
+    "Treatments" : [ 
+        "CLOSE"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 1393,
+    "FirstName" : "KATHRINE",
+    "LastName" : "MCGRAW",
+    "Email" : "kamartin@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106ec7"),
+    "Locations" : [ 
+        "KITCHENER"
+    ],
+    "Services" : [ 
+        "RESERVED"
+    ],
+    "Treatments" : [ 
+        "NA"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 122,
+    "FirstName" : "LORI",
+    "LastName" : "HUBER",
+    "Email" : "lhill@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106eb1"),
+    "Locations" : [ 
+        "WATERLOO", 
+        "OTHER"
+    ],
+    "Services" : [ 
+        "MEET"
+    ],
+    "Treatments" : [ 
+        "NA"
+    ],
+    "Programs" : [ 
+        "SW-INTAKE"
+    ],
+    "ID" : 1266,
+    "FirstName" : "RANA",
+    "LastName" : "SINNAEVE",
+    "Email" : "rshami@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106eb4"),
+    "Locations" : [ 
+        "FERGLARGE", 
+        ""
+    ],
+    "Services" : [ 
+        "ASSESS"
+    ],
+    "Treatments" : [ 
+        "NA"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 131,
+    "FirstName" : "DAWNA",
+    "LastName" : "SET",
+    "Email" : "DRutledge@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106eba"),
+    "Locations" : [ 
+        ""
+    ],
+    "Services" : [ 
+        "THERAPY", 
+        ""
+    ],
+    "Treatments" : [ 
+        "NA", 
+        ""
+    ],
+    "Programs" : [ 
+        "NA", 
+        ""
+    ],
+    "ID" : 1542,
+    "FirstName" : "CYNTHIA",
+    "LastName" : "REED",
+    "Email" : "",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106ecc"),
+    "Locations" : [ 
+        "GUELPHIMP"
+    ],
+    "Services" : [ 
+        "ASSESS"
+    ],
+    "Treatments" : [ 
+        "NA"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 765,
+    "FirstName" : "AMY",
+    "LastName" : "HUNTER",
+    "Email" : "AHuber@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106ed6"),
+    "Locations" : [ 
+        "KITCHENER"
+    ],
+    "Services" : [ 
+        "LEAVE"
+    ],
+    "Treatments" : [ 
+        "MLOA"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 1258,
+    "FirstName" : "HILLARY",
+    "LastName" : "CHAN",
+    "Email" : "hbeuermann@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106edb"),
+    "Locations" : [ 
+        "OTHER", 
+        "WATERLOO", 
+        "KITCHENER"
+    ],
+    "Services" : [ 
+        "TRAVEL", 
+        "BEN", 
+        "MEET", 
+        "LEAVE"
+    ],
+    "Treatments" : [ 
+        "CLOSE", 
+        "STATHOL", 
+        "NA", 
+        "MLOA"
+    ],
+    "Programs" : [ 
+        "SLP-GEN", 
+        "NA"
+    ],
+    "ID" : 143,
+    "FirstName" : "NORMA",
+    "LastName" : "WILLIAMS",
+    "Email" : "",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106ee0"),
+    "Locations" : [ 
+        "OTHER"
+    ],
+    "Services" : [ 
+        "BEN"
+    ],
+    "Treatments" : [ 
+        "STATHOL", 
+        "CLOSE"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 42,
+    "FirstName" : "RHONDA",
+    "LastName" : "MACLEOD",
+    "Email" : "rmackinnon@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106ee4"),
+    "Locations" : [ 
+        ""
+    ],
+    "Services" : [ 
+        "BEN"
+    ],
+    "Treatments" : [ 
+        "CLOSE"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 1467,
+    "FirstName" : "KATYA",
+    "LastName" : "NYMAN",
+    "Email" : "",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106ec4"),
+    "Locations" : [ 
+        "WATERLOO", 
+        "NA"
+    ],
+    "Services" : [ 
+        "RESERVED"
+    ],
+    "Treatments" : [ 
+        "NA"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 110,
+    "FirstName" : "SHERYL",
+    "LastName" : "DEDMAN",
+    "Email" : "sdedman@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106ec6"),
+    "Locations" : [ 
+        "KITCHENER"
+    ],
+    "Services" : [ 
+        "BEN"
+    ],
+    "Treatments" : [ 
+        "STATHOL"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 103,
+    "FirstName" : "JENNIFER",
+    "LastName" : "MACKINNON",
+    "Email" : "JLee@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106ecd"),
+    "Locations" : [ 
+        "WATERLOO"
+    ],
+    "Services" : [ 
+        "BEN", 
+        "MEET"
+    ],
+    "Treatments" : [ 
+        "NA", 
+        "STATHOL", 
+        ""
+    ],
+    "Programs" : [ 
+        "OT-SPOT", 
+        "NA", 
+        "SLP-ACS"
+    ],
+    "ID" : 1481,
+    "FirstName" : "KATIE",
+    "LastName" : "GEORGE",
+    "Email" : "agarciaruiz@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106ed3"),
+    "Locations" : [ 
+        "GUELIMPOTH", 
+        ""
+    ],
+    "Services" : [ 
+        "RESERVED", 
+        "ASSESS"
+    ],
+    "Treatments" : [ 
+        "NA"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 101,
+    "FirstName" : "KATY",
+    "LastName" : "IEROPOLI",
+    "Email" : "dhunter@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106ed5"),
+    "Locations" : [ 
+        ""
+    ],
+    "Services" : [ 
+        "VAC"
+    ],
+    "Treatments" : [ 
+        "NA"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 1105,
+    "FirstName" : "JILL",
+    "LastName" : "WETTLAUFER",
+    "Email" : "JTaylor@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106ed7"),
+    "Locations" : [ 
+        ""
+    ],
+    "Services" : [ 
+        "LEAVE"
+    ],
+    "Treatments" : [ 
+        "MLOA"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 1413,
+    "FirstName" : "KAROLINA",
+    "LastName" : "ENDICOTT",
+    "Email" : "",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106ee2"),
+    "Locations" : [ 
+        "KITCHENER"
+    ],
+    "Services" : [ 
+        "LEAVE"
+    ],
+    "Treatments" : [ 
+        "MLOA"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 1258,
+    "FirstName" : "SUSAN",
+    "LastName" : "CHAN",
+    "Email" : "hbeuermann@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106ee5"),
+    "Locations" : [ 
+        ""
+    ],
+    "Services" : [ 
+        "BEN"
+    ],
+    "Treatments" : [ 
+        "CLOSE", 
+        "STATHOL"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 1464,
+    "FirstName" : "KRISTA",
+    "LastName" : "GALE",
+    "Email" : "kfeltmate@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106ebc"),
+    "Locations" : [ 
+        "KITCHENER", 
+        "WATEMP130", 
+        "NA", 
+        "", 
+        "WATERLOO", 
+        "CAMBELEPHA"
+    ],
+    "Services" : [ 
+        "INTAKE", 
+        "INTAKE-V", 
+        "GROUP", 
+        "INTAKE-T", 
+        "PREP", 
+        "SLP-CU", 
+        "BEN", 
+        "CI", 
+        "EY-AX", 
+        "CTI", 
+        "VAC", 
+        "CR", 
+        "KITCHENER", 
+        "WATERLOO", 
+        "BTIJ"
+    ],
+    "Treatments" : [ 
+        "READINESS", 
+        "IT", 
+        "SPECIAL", 
+        "STATHOL", 
+        "EY-GEN", 
+        "ISW-INTAKE", 
+        "NA", 
+        "SINGLE-EY"
+    ],
+    "Programs" : [ 
+        "INTAKE", 
+        "NA", 
+        "PT-GEN", 
+        "OT-GEN", 
+        "SLP-GEN"
+    ],
+    "ID" : 1380,
+    "FirstName" : "HEATHER",
+    "LastName" : "PUDDIFORD",
+    "Email" : "apolley@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106ebf"),
+    "Locations" : [ 
+        ""
+    ],
+    "Services" : [ 
+        "WATERLOO", 
+        "ADMIN"
+    ],
+    "Treatments" : [ 
+        "EY-GEN", 
+        "NA"
+    ],
+    "Programs" : [ 
+        "NA", 
+        "SLP-GEN"
+    ],
+    "ID" : 52,
+    "FirstName" : "MARTHA",
+    "LastName" : "POLLEY",
+    "Email" : "mplienegger@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106ed0"),
+    "Locations" : [ 
+        ""
+    ],
+    "Services" : [ 
+        "LEAVE"
+    ],
+    "Treatments" : [ 
+        "MLOA"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 1413,
+    "FirstName" : "KATIE",
+    "LastName" : "FELDKAMP",
+    "Email" : "",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106ed4"),
+    "Locations" : [ 
+        "", 
+        "NA"
+    ],
+    "Services" : [ 
+        "LEAVE", 
+        "RESERVED"
+    ],
+    "Treatments" : [ 
+        "MLOA", 
+        "NA"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 110,
+    "FirstName" : "KAROLINA",
+    "LastName" : "DENOMME",
+    "Email" : "sdedman@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106ecb"),
+    "Locations" : [ 
+        "NA", 
+        "WATERLOO"
+    ],
+    "Services" : [ 
+        "BEN"
+    ],
+    "Treatments" : [ 
+        "STATHOL"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 120,
+    "FirstName" : "SUZANNE",
+    "LastName" : "GIBSON",
+    "Email" : "KGeorge@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106ecf"),
+    "Locations" : [ 
+        "FERGUS"
+    ],
+    "Services" : [ 
+        "MEET", 
+        "TRAVEL"
+    ],
+    "Treatments" : [ 
+        "NA"
+    ],
+    "Programs" : [ 
+        "SLP-GEN"
+    ],
+    "ID" : 1332,
+    "FirstName" : "EMMA",
+    "LastName" : "BEUERMANN",
+    "Email" : "ebelanger@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106ed8"),
+    "Locations" : [ 
+        "WATERLOO"
+    ],
+    "Services" : [ 
+        "BEN"
+    ],
+    "Treatments" : [ 
+        "STATHOL"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 43,
+    "FirstName" : "NICKY",
+    "LastName" : "MALLORY DUNSMORE",
+    "Email" : "jmacleod@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106edd"),
+    "Locations" : [ 
+        "CAMBRIDGE"
+    ],
+    "Services" : [ 
+        "MEET"
+    ],
+    "Treatments" : [ 
+        "NA"
+    ],
+    "Programs" : [ 
+        "SW-GEN"
+    ],
+    "ID" : 59,
+    "FirstName" : "EMMA",
+    "LastName" : "BENEST",
+    "Email" : "kandrews@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106ed9"),
+    "Locations" : [ 
+        "KITCHENER"
+    ],
+    "Services" : [ 
+        "LEAVE"
+    ],
+    "Treatments" : [ 
+        "MLOA"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 1258,
+    "FirstName" : "HILLARY",
+    "LastName" : "BUTLER",
+    "Email" : "hbeuermann@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106ef6"),
+    "Locations" : [ 
+        "", 
+        "FERGLARGE", 
+        "GUELPHIMP"
+    ],
+    "Services" : [ 
+        "ASSESS"
+    ],
+    "Treatments" : [ 
+        "NA"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 765,
+    "FirstName" : "DOREEN",
+    "LastName" : "HUNTER",
+    "Email" : "AHuber@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106eea"),
+    "Locations" : [ 
+        ""
+    ],
+    "Services" : [ 
+        "VAC", 
+        "RESERVED", 
+        "MEET"
+    ],
+    "Treatments" : [ 
+        "NA"
+    ],
+    "Programs" : [ 
+        "NA", 
+        "OT-GEN"
+    ],
+    "ID" : 1523,
+    "FirstName" : "EMILY",
+    "LastName" : "SHAMI",
+    "Email" : "eset@kidsabiliy.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106f1a"),
+    "Locations" : [ 
+        "NA", 
+        "KITCHENER"
+    ],
+    "Services" : [ 
+        "LEAVE", 
+        "BEN"
+    ],
+    "Treatments" : [ 
+        "MLOA", 
+        "CLOSE"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 691,
+    "FirstName" : "SARA",
+    "LastName" : "MCKEE",
+    "Email" : "CMcGraw@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106ef1"),
+    "Locations" : [ 
+        "", 
+        "WATERLOO", 
+        "NA"
+    ],
+    "Services" : [ 
+        "EDUC", 
+        "MEET", 
+        "BEN", 
+        "LEAVE"
+    ],
+    "Treatments" : [ 
+        "CLOSE", 
+        "REC", 
+        "STATHOL", 
+        "MLOA", 
+        "NA", 
+        "CAD"
+    ],
+    "Programs" : [ 
+        "SW-GEN", 
+        "NA"
+    ],
+    "ID" : 1276,
+    "FirstName" : "HEATHER",
+    "LastName" : "MENALDO",
+    "Email" : "",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106f01"),
+    "Locations" : [ 
+        ""
+    ],
+    "Services" : [ 
+        "VAC", 
+        "SLP-COMM"
+    ],
+    "Treatments" : [ 
+        "NA"
+    ],
+    "Programs" : [ 
+        "NA", 
+        "SLP-GEN"
+    ],
+    "ID" : 1538,
+    "FirstName" : "EDDY",
+    "LastName" : "WETTLAUFER",
+    "Email" : "",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106eeb"),
+    "Locations" : [ 
+        ""
+    ],
+    "Services" : [ 
+        "THERAPY", 
+        "BEN", 
+        "MEET", 
+        "WATERLOO", 
+        "ADMIN", 
+        "RESERVED"
+    ],
+    "Treatments" : [ 
+        "NA", 
+        "EY-GEN", 
+        "STATHOL"
+    ],
+    "Programs" : [ 
+        "SLP-GEN", 
+        "NA"
+    ],
+    "ID" : 1386,
+    "FirstName" : "MARTHA",
+    "LastName" : "PLIENEGGER",
+    "Email" : "tpetrosoniak@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106f29"),
+    "Locations" : [ 
+        "KITCHENER"
+    ],
+    "Services" : [ 
+        "MEET", 
+        "BEN"
+    ],
+    "Treatments" : [ 
+        "NA", 
+        "PL", 
+        "CLOSE"
+    ],
+    "Programs" : [ 
+        "PT-GEN", 
+        "NA"
+    ],
+    "ID" : 105,
+    "FirstName" : "CATHERINE",
+    "LastName" : "PANDYA",
+    "Email" : "cnyman@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106efc"),
+    "Locations" : [ 
+        "", 
+        "FERGLARGE"
+    ],
+    "Services" : [ 
+        "BEN", 
+        "ASSESS"
+    ],
+    "Treatments" : [ 
+        "STATHOL", 
+        "NA"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 131,
+    "FirstName" : "DAWNA",
+    "LastName" : "RUTLEDGE",
+    "Email" : "DRutledge@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106f17"),
+    "Locations" : [ 
+        ""
+    ],
+    "Services" : [ 
+        ""
+    ],
+    "Treatments" : [ 
+        ""
+    ],
+    "Programs" : [ 
+        ""
+    ],
+    "ID" : 130,
+    "FirstName" : "SHELAGH",
+    "LastName" : "MARTIN",
+    "Email" : "",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106f1d"),
+    "Locations" : [ 
+        ""
+    ],
+    "Services" : [ 
+        ""
+    ],
+    "Treatments" : [ 
+        ""
+    ],
+    "Programs" : [ 
+        ""
+    ],
+    "ID" : 78,
+    "FirstName" : "BONNIE",
+    "LastName" : "MOLLOY",
+    "Email" : "",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106f28"),
+    "Locations" : [ 
+        "KITCHENER", 
+        "WATERLOO", 
+        "WATEMP127", 
+        ""
+    ],
+    "Services" : [ 
+        "RESERVED", 
+        "MEET", 
+        "BEN"
+    ],
+    "Treatments" : [ 
+        "STATHOL", 
+        "NA", 
+        "PL", 
+        "CLOSE"
+    ],
+    "Programs" : [ 
+        "PT-GEN", 
+        "NA"
+    ],
+    "ID" : 1467,
+    "FirstName" : "CATHERINE",
+    "LastName" : "NYMAN",
+    "Email" : "",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106ef8"),
+    "Locations" : [ 
+        "NA"
+    ],
+    "Services" : [ 
+        "BEN"
+    ],
+    "Treatments" : [ 
+        "STATHOL", 
+        "CLOSE"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 111,
+    "FirstName" : "SUZANNE",
+    "LastName" : "HARTMAN",
+    "Email" : "sgibson@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106f0c"),
+    "Locations" : [ 
+        "KITCHENER"
+    ],
+    "Services" : [ 
+        "BEN"
+    ],
+    "Treatments" : [ 
+        "STATHOL"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 1031,
+    "FirstName" : "HEATHER",
+    "LastName" : "KOEHLER",
+    "Email" : "",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106f0f"),
+    "Locations" : [ 
+        "OTHER", 
+        "WATERLOO", 
+        "KITCHENER"
+    ],
+    "Services" : [ 
+        "BEN", 
+        "MEET", 
+        "WATERLOO", 
+        "RESERVED", 
+        "ADMIN"
+    ],
+    "Treatments" : [ 
+        "CLOSE", 
+        "STATHOL", 
+        "EY-GEN", 
+        "NA", 
+        "BREAK"
+    ],
+    "Programs" : [ 
+        "SLP-GEN", 
+        "NA"
+    ],
+    "ID" : 103,
+    "FirstName" : "RHONDA",
+    "LastName" : "MACKINNON",
+    "Email" : "JLee@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106f21"),
+    "Locations" : [ 
+        "WATERLOO"
+    ],
+    "Services" : [ 
+        "BEN"
+    ],
+    "Treatments" : [ 
+        "CLOSE", 
+        "STATHOL"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 129,
+    "FirstName" : "DIANA",
+    "LastName" : "MOSES",
+    "Email" : "DMolloy@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106f22"),
+    "Locations" : [ 
+        "KITCHENER", 
+        "WATERLOO"
+    ],
+    "Services" : [ 
+        "VAC", 
+        "EDUC", 
+        "BEN", 
+        "ASSESS", 
+        "THERAPY", 
+        "MEET"
+    ],
+    "Treatments" : [ 
+        "CLOSE", 
+        "REC", 
+        "NA", 
+        "STATHOL"
+    ],
+    "Programs" : [ 
+        "CDA-GEN", 
+        "NA"
+    ],
+    "ID" : 129,
+    "FirstName" : "BLAIR",
+    "LastName" : "MOSES",
+    "Email" : "DMolloy@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106f07"),
+    "Locations" : [ 
+        "KITCHENER"
+    ],
+    "Services" : [ 
+        "BEN"
+    ],
+    "Treatments" : [ 
+        "CLOSE", 
+        "STATHOL"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 1031,
+    "FirstName" : "JENNA",
+    "LastName" : "JUTZI",
+    "Email" : "",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106efa"),
+    "Locations" : [ 
+        ""
+    ],
+    "Services" : [ 
+        ""
+    ],
+    "Treatments" : [ 
+        ""
+    ],
+    "Programs" : [ 
+        ""
+    ],
+    "ID" : 130,
+    "FirstName" : "ANDREA",
+    "LastName" : "FELTMATE",
+    "Email" : "",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106f14"),
+    "Locations" : [ 
+        "WATERLOO", 
+        ""
+    ],
+    "Services" : [ 
+        "MEET", 
+        "PREP"
+    ],
+    "Treatments" : [ 
+        "PL", 
+        "NA"
+    ],
+    "Programs" : [ 
+        "SLP-GEN", 
+        "OT-GEN"
+    ],
+    "ID" : 1539,
+    "FirstName" : "SHAWNA",
+    "LastName" : "MALNERICH",
+    "Email" : "nmajaury@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106f26"),
+    "Locations" : [ 
+        "KITCHENER", 
+        ""
+    ],
+    "Services" : [ 
+        "ADMIN", 
+        "BEN"
+    ],
+    "Treatments" : [ 
+        "PL", 
+        "CLOSE"
+    ],
+    "Programs" : [ 
+        "SW-GEN", 
+        "NA"
+    ],
+    "ID" : 255,
+    "FirstName" : "CHUCK",
+    "LastName" : "NALBANDIAN",
+    "Email" : "lmoses@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106efb"),
+    "Locations" : [ 
+        "KITCHENER", 
+        "WATEMP130", 
+        "", 
+        "WATERLOO"
+    ],
+    "Services" : [ 
+        "ADMIN", 
+        "VISIT-IND", 
+        "VAC", 
+        "CTI", 
+        "DOC", 
+        "MEET", 
+        "BTIJ", 
+        "FULL", 
+        "WATERLOO", 
+        "KITCHENER", 
+        "LEAVE", 
+        "BTI", 
+        "CU"
+    ],
+    "Treatments" : [ 
+        "SY-GEN", 
+        "NA", 
+        "LOA", 
+        "TX-IND", 
+        "EY-GEN", 
+        "SPOT"
+    ],
+    "Programs" : [ 
+        "PT-GEN", 
+        "OT-GEN", 
+        "NA", 
+        "SW-GEN"
+    ],
+    "ID" : 1352,
+    "FirstName" : "BONNIE",
+    "LastName" : "MENSCH",
+    "Email" : "hmenaldo@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106efd"),
+    "Locations" : [ 
+        "OTHER", 
+        "WATERLOO"
+    ],
+    "Services" : [ 
+        "MEET", 
+        "BEN"
+    ],
+    "Treatments" : [ 
+        "NA", 
+        "STATHOL"
+    ],
+    "Programs" : [ 
+        "SLP-GEN", 
+        "NA"
+    ],
+    "ID" : 57,
+    "FirstName" : "LAURIE",
+    "LastName" : "WISEMAN",
+    "Email" : "lwiseman@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106f0e"),
+    "Locations" : [ 
+        "KITCHENER", 
+        "WATERLOO"
+    ],
+    "Services" : [ 
+        "RESERVED", 
+        "BEN"
+    ],
+    "Treatments" : [ 
+        "PPL", 
+        "NA", 
+        "STATHOL"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 119,
+    "FirstName" : "JENNIFER",
+    "LastName" : "LEE",
+    "Email" : "",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106f03"),
+    "Locations" : [ 
+        ""
+    ],
+    "Services" : [ 
+        "VAC"
+    ],
+    "Treatments" : [ 
+        "NA"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 1546,
+    "FirstName" : "GABRIELLA",
+    "LastName" : "JOHNSON",
+    "Email" : "gieropoli@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106f20"),
+    "Locations" : [ 
+        "WATERLOO"
+    ],
+    "Services" : [ 
+        "OFFERED"
+    ],
+    "Treatments" : [ 
+        "NA"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 1540,
+    "FirstName" : "CAROLYN",
+    "LastName" : "DEDMAN",
+    "Email" : "kconran@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106eed"),
+    "Locations" : [ 
+        "", 
+        "FERGLARGE"
+    ],
+    "Services" : [ 
+        "ASSESS"
+    ],
+    "Treatments" : [ 
+        "NA"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 101,
+    "FirstName" : "DOREEN",
+    "LastName" : "HURST",
+    "Email" : "dhunter@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106ef5"),
+    "Locations" : [ 
+        ""
+    ],
+    "Services" : [ 
+        "VAC", 
+        "INTAKE", 
+        "INTAKE-T", 
+        "RESERVED"
+    ],
+    "Treatments" : [ 
+        "ENHANCED", 
+        "ISW-INTAKE", 
+        "NA"
+    ],
+    "Programs" : [ 
+        "INTAKE", 
+        "NA"
+    ],
+    "ID" : 1387,
+    "FirstName" : "GABRIELLA",
+    "LastName" : "IEROPOLI",
+    "Email" : "lhutchinson@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106ef7"),
+    "Locations" : [ 
+        "", 
+        "KITCHENER"
+    ],
+    "Services" : [ 
+        "ASSESS", 
+        "", 
+        "RESERVED", 
+        "MEET"
+    ],
+    "Treatments" : [ 
+        "NA", 
+        "", 
+        "PL"
+    ],
+    "Programs" : [ 
+        "NA", 
+        "", 
+        "OT-GEN", 
+        "PT-GEN"
+    ],
+    "ID" : 105,
+    "FirstName" : "HERDIP",
+    "LastName" : "PANDYA",
+    "Email" : "cnyman@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106ef9"),
+    "Locations" : [ 
+        "", 
+        "NA"
+    ],
+    "Services" : [ 
+        "", 
+        "RESERVED"
+    ],
+    "Treatments" : [ 
+        "", 
+        "NA"
+    ],
+    "Programs" : [ 
+        "", 
+        "NA"
+    ],
+    "ID" : 1302,
+    "FirstName" : "ANDREA",
+    "LastName" : "FELDKAMP",
+    "Email" : "lendicott@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106f08"),
+    "Locations" : [ 
+        "WATERLOO"
+    ],
+    "Services" : [ 
+        "BEN"
+    ],
+    "Treatments" : [ 
+        "STATHOL", 
+        "CLOSE"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 119,
+    "FirstName" : "MONICA",
+    "LastName" : "LEE",
+    "Email" : "",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106f12"),
+    "Locations" : [ 
+        "WATERLOO"
+    ],
+    "Services" : [ 
+        "BEN"
+    ],
+    "Treatments" : [ 
+        "STATHOL"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 43,
+    "FirstName" : "JEAN",
+    "LastName" : "MAJAURY",
+    "Email" : "jmacleod@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106f18"),
+    "Locations" : [ 
+        "WATERLOO", 
+        ""
+    ],
+    "Services" : [ 
+        "BEN", 
+        "", 
+        "MEET", 
+        "RESERVED", 
+        "MC-PREP"
+    ],
+    "Treatments" : [ 
+        "STATHOL", 
+        "IND", 
+        "NA", 
+        ""
+    ],
+    "Programs" : [ 
+        "NA", 
+        "SLP-ACS", 
+        "SLP-FEED", 
+        ""
+    ],
+    "ID" : 130,
+    "FirstName" : "KATHRINE",
+    "LastName" : "MARTIN",
+    "Email" : "",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106f06"),
+    "Locations" : [ 
+        "KITCHENER", 
+        ""
+    ],
+    "Services" : [ 
+        "MEET", 
+        "BEN", 
+        "LEAVE", 
+        "ASSESS", 
+        "ADMIN", 
+        "RESERVED"
+    ],
+    "Treatments" : [ 
+        "CLOSE", 
+        "STATHOL", 
+        "NA", 
+        "MLOA"
+    ],
+    "Programs" : [ 
+        "OT-GEN", 
+        "NA"
+    ],
+    "ID" : 40,
+    "FirstName" : "LORI",
+    "LastName" : "HILL",
+    "Email" : "lhartman@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106f0d"),
+    "Locations" : [ 
+        ""
+    ],
+    "Services" : [ 
+        "LEAVE"
+    ],
+    "Treatments" : [ 
+        "MLOA"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 40,
+    "FirstName" : "LINDSAY",
+    "LastName" : "HILL",
+    "Email" : "lhartman@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106f1e"),
+    "Locations" : [ 
+        ""
+    ],
+    "Services" : [ 
+        "BEN", 
+        "VAC"
+    ],
+    "Treatments" : [ 
+        "PPL", 
+        "NA"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 1547,
+    "FirstName" : "JILL",
+    "LastName" : "TAYLOR",
+    "Email" : "msteinman@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106f13"),
+    "Locations" : [ 
+        "GUELPHIMP"
+    ],
+    "Services" : [ 
+        "ASSESS"
+    ],
+    "Treatments" : [ 
+        "NA"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 1280,
+    "FirstName" : "ANDREA",
+    "LastName" : "GEORGE",
+    "Email" : "",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106f16"),
+    "Locations" : [ 
+        "WATERLOO"
+    ],
+    "Services" : [ 
+        "BEN"
+    ],
+    "Treatments" : [ 
+        "CLOSE"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 120,
+    "FirstName" : "KATIE",
+    "LastName" : "GIBSON",
+    "Email" : "KGeorge@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106f19"),
+    "Locations" : [ 
+        "ARTHUR"
+    ],
+    "Services" : [ 
+        "A-ADMIN"
+    ],
+    "Treatments" : [ 
+        "NA"
+    ],
+    "Programs" : [ 
+        "OAP"
+    ],
+    "ID" : 1544,
+    "FirstName" : "CARRIE",
+    "LastName" : "MCGRAW",
+    "Email" : "",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106f1b"),
+    "Locations" : [ 
+        "WATERLOO"
+    ],
+    "Services" : [ 
+        "MEET"
+    ],
+    "Treatments" : [ 
+        "CAD", 
+        "NA"
+    ],
+    "Programs" : [ 
+        "SW-GEN"
+    ],
+    "ID" : 1352,
+    "FirstName" : "HEATHER",
+    "LastName" : "MENSCH",
+    "Email" : "hmenaldo@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106f27"),
+    "Locations" : [ 
+        ""
+    ],
+    "Services" : [ 
+        "BEN"
+    ],
+    "Treatments" : [ 
+        "STATHOL"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 1393,
+    "FirstName" : "GREG",
+    "LastName" : "MCGRAW",
+    "Email" : "kamartin@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106eef"),
+    "Locations" : [ 
+        "GUELPHIMP"
+    ],
+    "Services" : [ 
+        "ASSESS"
+    ],
+    "Treatments" : [ 
+        "NA"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 1158,
+    "FirstName" : "KRISTIN",
+    "LastName" : "CONYARD",
+    "Email" : "jchan@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106eee"),
+    "Locations" : [ 
+        ""
+    ],
+    "Services" : [ 
+        "BEN"
+    ],
+    "Treatments" : [ 
+        "CLOSE"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 1386,
+    "FirstName" : "TRISHA",
+    "LastName" : "PLIENEGGER",
+    "Email" : "tpetrosoniak@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106ef0"),
+    "Locations" : [ 
+        "ALEXDC", 
+        ""
+    ],
+    "Services" : [ 
+        "VISIT-IND", 
+        "PREP"
+    ],
+    "Treatments" : [ 
+        "CW-IND", 
+        "NA"
+    ],
+    "Programs" : [ 
+        "OT-SPOT"
+    ],
+    "ID" : 1540,
+    "FirstName" : "KRISTIN",
+    "LastName" : "COWAN",
+    "Email" : "kconran@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106eec"),
+    "Locations" : [ 
+        "GUELPHIMP"
+    ],
+    "Services" : [ 
+        "ASSESS"
+    ],
+    "Treatments" : [ 
+        "NA"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 1158,
+    "FirstName" : "JOANNE",
+    "LastName" : "CONRAN",
+    "Email" : "jchan@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106f2a"),
+    "Locations" : [ 
+        "CAMBBEAR", 
+        ""
+    ],
+    "Services" : [ 
+        "BTI", 
+        "PREP", 
+        "SLP-BTI", 
+        ""
+    ],
+    "Treatments" : [ 
+        "IT", 
+        "NA", 
+        ""
+    ],
+    "Programs" : [ 
+        "SLP-GEN", 
+        "OT-GEN", 
+        ""
+    ],
+    "ID" : 1008,
+    "FirstName" : "MIRIJANA",
+    "LastName" : "PERENCEVIC",
+    "Email" : "",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106efe"),
+    "Locations" : [ 
+        ""
+    ],
+    "Services" : [ 
+        ""
+    ],
+    "Treatments" : [ 
+        ""
+    ],
+    "Programs" : [ 
+        ""
+    ],
+    "ID" : 45,
+    "FirstName" : "HERDIP",
+    "LastName" : "PERENCEVIC",
+    "Email" : "",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106ef3"),
+    "Locations" : [ 
+        "GUELPHIMP", 
+        ""
+    ],
+    "Services" : [ 
+        "ASSESS", 
+        "BEN"
+    ],
+    "Treatments" : [ 
+        "NA", 
+        "CLOSE"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 1464,
+    "FirstName" : "ANDREA",
+    "LastName" : "GALE",
+    "Email" : "kfeltmate@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106eff"),
+    "Locations" : [ 
+        "GUELIMPOTH"
+    ],
+    "Services" : [ 
+        "RESERVED"
+    ],
+    "Treatments" : [ 
+        "NA"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 763,
+    "FirstName" : "LOUISE",
+    "LastName" : "IEROPOLI",
+    "Email" : "KHurst@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106f00"),
+    "Locations" : [ 
+        "CAMBRIDGE", 
+        ""
+    ],
+    "Services" : [ 
+        "BEN", 
+        "MEET", 
+        "RESERVED", 
+        ""
+    ],
+    "Treatments" : [ 
+        "STATHOL", 
+        "NA", 
+        ""
+    ],
+    "Programs" : [ 
+        "NA", 
+        "OT-GEN", 
+        ""
+    ],
+    "ID" : 78,
+    "FirstName" : "TRISHA",
+    "LastName" : "PETROSONIAK",
+    "Email" : "",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106f05"),
+    "Locations" : [ 
+        "KITCHENER", 
+        ""
+    ],
+    "Services" : [ 
+        "BEN", 
+        "VAC"
+    ],
+    "Treatments" : [ 
+        "CLOSE", 
+        "STATHOL", 
+        "NA"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 1546,
+    "FirstName" : "WENDY",
+    "LastName" : "JUTZI",
+    "Email" : "gieropoli@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106f0b"),
+    "Locations" : [ 
+        "WATERLOO"
+    ],
+    "Services" : [ 
+        "MEET", 
+        "RESERVED", 
+        "BEN"
+    ],
+    "Treatments" : [ 
+        "NA", 
+        "STATHOL"
+    ],
+    "Programs" : [ 
+        "SLP-PHL", 
+        "NA"
+    ],
+    "ID" : 119,
+    "FirstName" : "MONICA",
+    "LastName" : "KOEHLER",
+    "Email" : "",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106f11"),
+    "Locations" : [ 
+        "", 
+        "KITCHENER"
+    ],
+    "Services" : [ 
+        "BEN", 
+        "MEET", 
+        "ADMIN"
+    ],
+    "Treatments" : [ 
+        "NA", 
+        "STATHOL", 
+        "CLOSE", 
+        "PL"
+    ],
+    "Programs" : [ 
+        "CDA-GEN", 
+        "NA", 
+        "SW-GEN"
+    ],
+    "ID" : 1135,
+    "FirstName" : "KATYA",
+    "LastName" : "NALBANDIAN",
+    "Email" : "cmyke@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106f02"),
+    "Locations" : [ 
+        "KITCHENER"
+    ],
+    "Services" : [ 
+        "MEET", 
+        "BEN"
+    ],
+    "Treatments" : [ 
+        "NA", 
+        "CLOSE"
+    ],
+    "Programs" : [ 
+        "SLP-GEN", 
+        "NA"
+    ],
+    "ID" : 691,
+    "FirstName" : "CARRIE",
+    "LastName" : "MCKEE",
+    "Email" : "CMcGraw@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106f1f"),
+    "Locations" : [ 
+        "FERGUS"
+    ],
+    "Services" : [ 
+        "TRAVEL"
+    ],
+    "Treatments" : [ 
+        "NA"
+    ],
+    "Programs" : [ 
+        "SLP-GEN"
+    ],
+    "ID" : 1332,
+    "FirstName" : "ANNE",
+    "LastName" : "BEUERMANN",
+    "Email" : "ebelanger@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106f04"),
+    "Locations" : [ 
+        ""
+    ],
+    "Services" : [ 
+        "BEN"
+    ],
+    "Treatments" : [ 
+        "CLOSE"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 1393,
+    "FirstName" : "KATHRINE",
+    "LastName" : "MAXIN",
+    "Email" : "kamartin@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106f1c"),
+    "Locations" : [ 
+        "FERGLARGE"
+    ],
+    "Services" : [ 
+        "ASSESS"
+    ],
+    "Treatments" : [ 
+        "NA"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 101,
+    "FirstName" : "DOREEN",
+    "LastName" : "HUTCHINSON",
+    "Email" : "dhunter@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106ef2"),
+    "Locations" : [ 
+        "GUELPHIMP", 
+        "WATERLOO", 
+        "KITCHENER"
+    ],
+    "Services" : [ 
+        "ASSESS", 
+        "MEET", 
+        "CU"
+    ],
+    "Treatments" : [ 
+        "NA"
+    ],
+    "Programs" : [ 
+        "NA", 
+        "PT-GEN", 
+        "OT-GEN"
+    ],
+    "ID" : 113,
+    "FirstName" : "JOANNE",
+    "LastName" : "CHAN",
+    "Email" : "sbutler@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106f09"),
+    "Locations" : [ 
+        "KITCHENER"
+    ],
+    "Services" : [ 
+        "BEN"
+    ],
+    "Treatments" : [ 
+        "CLOSE"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 1031,
+    "FirstName" : "JENNA",
+    "LastName" : "KLEIHAUER",
+    "Email" : "",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106f15"),
+    "Locations" : [ 
+        ""
+    ],
+    "Services" : [ 
+        ""
+    ],
+    "Treatments" : [ 
+        ""
+    ],
+    "Programs" : [ 
+        ""
+    ],
+    "ID" : 78,
+    "FirstName" : "MIRIJANA",
+    "LastName" : "PETROSONIAK",
+    "Email" : "",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106f23"),
+    "Locations" : [ 
+        "", 
+        "WATERLOO"
+    ],
+    "Services" : [ 
+        "BEN", 
+        "THERAPY", 
+        "MEET"
+    ],
+    "Treatments" : [ 
+        "BREAK", 
+        "NA"
+    ],
+    "Programs" : [ 
+        "NA", 
+        "IHP-SCN"
+    ],
+    "ID" : 48,
+    "FirstName" : "LISA",
+    "LastName" : "MOSES",
+    "Email" : "bmoses@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106f25"),
+    "Locations" : [ 
+        ""
+    ],
+    "Services" : [ 
+        "BEN"
+    ],
+    "Treatments" : [ 
+        "STATHOL", 
+        "BREAK"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 255,
+    "FirstName" : "LISA",
+    "LastName" : "MYKE",
+    "Email" : "lmoses@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106ef4"),
+    "Locations" : [ 
+        ""
+    ],
+    "Services" : [ 
+        "", 
+        "BEN"
+    ],
+    "Treatments" : [ 
+        "", 
+        "STATHOL"
+    ],
+    "Programs" : [ 
+        "", 
+        "NA"
+    ],
+    "ID" : 1464,
+    "FirstName" : "KRISTA",
+    "LastName" : "FELTMATE",
+    "Email" : "kfeltmate@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106f0a"),
+    "Locations" : [ 
+        "WATERLOO", 
+        ""
+    ],
+    "Services" : [ 
+        "RESERVED", 
+        "THERAPY"
+    ],
+    "Treatments" : [ 
+        "NA"
+    ],
+    "Programs" : [ 
+        "NA"
+    ],
+    "ID" : 1488,
+    "FirstName" : "MICHELLE",
+    "LastName" : "REED",
+    "Email" : "crajasri@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106f10"),
+    "Locations" : [ 
+        "WATERLOO", 
+        "OTHER"
+    ],
+    "Services" : [ 
+        "BEN", 
+        "SLP-BTI", 
+        "RESERVED"
+    ],
+    "Treatments" : [ 
+        "HP", 
+        "STATHOL", 
+        "NA"
+    ],
+    "Programs" : [ 
+        "SLP-GEN", 
+        "NA"
+    ],
+    "ID" : 42,
+    "FirstName" : "JEAN",
+    "LastName" : "MACLEOD",
+    "Email" : "rmackinnon@kidsability.ca",
+    "__v" : 0
+}
+
+,
+{
+    "_id" : ObjectId("5d0810b2561abe7849106f24"),
+    "Locations" : [ 
+        "", 
+        "CAMBRIDGE"
+    ],
+    "Services" : [ 
+        "", 
+        "MEET"
+    ],
+    "Treatments" : [ 
+        "", 
+        "NA"
+    ],
+    "Programs" : [ 
+        "", 
+        "SLP-GEN"
+    ],
+    "ID" : 45,
+    "FirstName" : "SHELAGH",
+    "LastName" : "MALNERICH",
+    "Email" : "SMalnerich@kidsability.ca",
+    "__v" : 0
+}
