@@ -9,11 +9,11 @@ USERNAME = process.env.MONGODB_USERNAME;
 PASS = process.env.MONGODB_PASSWORD;
 // connect to database server; if database doesn't exist, it will create it
 mongoose.connect(`mongodb+srv://${USERNAME}:${PASS}@kidsability-vswng.mongodb.net/ClientData`,
-  { useNewUrlParser: true },
+  { useNewUrlParser: true,
+    useUnifiedTopology: true },
   function (err) {
     if (err) {
       console.log('DB connection failed');
-      throw err;
   }
   console.log("DB connection successful.");
 });
